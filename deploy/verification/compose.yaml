@@ -1,0 +1,103 @@
+name: langflow-verification
+
+x-image: &image
+  image: langflow-verification:1.12.0-local
+  build:
+    context: ../..
+    dockerfile: docker/build_and_push.Dockerfile
+    target: base
+
+x-flow-env: &flow-env
+  VERIFICATION_API_URL: http://verification-api:8080
+  VERIFICATION_INTERNAL_TOKEN: ${VERIFICATION_INTERNAL_TOKEN:?Run configure_demo.py first}
+  VERIFICATION_UPSTREAM_TOKEN: ${VERIFICATION_UPSTREAM_TOKEN:?Run configure_demo.py first}
+  VERIFICATION_SETTLEMENT_URL: http://verification-demo:8090
+  VERIFICATION_IMAGING_URL: http://verification-demo:8090
+  VERIFICATION_MODEL_URL: http://verification-demo:8090
+  VERIFICATION_DEMO_MODE: "true"
+
+x-business-env: &business-env
+  <<: *flow-env
+  VERIFICATION_DATABASE_URL: postgresql+psycopg://verification_app:${VERIFICATION_DB_PASSWORD:?required}@postgres:5432/verification
+  VERIFICATION_CLIENTS: ${VERIFICATION_CLIENTS:?Run configure_demo.py first}
+  VERIFICATION_CATALOG_MAPPING: '{"DEMO-HIP":"hip_prosthesis","DEMO-KNEE":"knee_prosthesis"}'
+  VERIFICATION_FLOW_ID: ${VERIFICATION_FLOW_ID:-consumable-verification}
+
+services:
+  postgres:
+    image: postgres:17.10
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?required}
+      PLATFORM_DB_PASSWORD: ${PLATFORM_DB_PASSWORD:?required}
+      VERIFICATION_DB_PASSWORD: ${VERIFICATION_DB_PASSWORD:?required}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init-databases.sh:/docker-entrypoint-initdb.d/10-verification.sh:ro
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  verification-init:
+    <<: *image
+    command: [python, -m, langflow.verification.database]
+    environment: *business-env
+    depends_on:
+      postgres: {condition: service_healthy}
+
+  verification-api:
+    <<: *image
+    command: [uvicorn, langflow.verification.api:create_app, --factory, --host, 0.0.0.0, --port, "8080"]
+    environment: *business-env
+    ports: ["127.0.0.1:8080:8080"]
+    depends_on:
+      verification-init: {condition: service_completed_successfully}
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  verification-demo:
+    <<: *image
+    command: [uvicorn, langflow.verification.demo:create_demo_app, --factory, --host, 0.0.0.0, --port, "8090"]
+    environment: *flow-env
+
+  langflow:
+    <<: *image
+    environment:
+      <<: *flow-env
+      LANGFLOW_DATABASE_URL: postgresql://langflow_platform:${PLATFORM_DB_PASSWORD:?required}@postgres:5432/langflow
+      LANGFLOW_AUTO_LOGIN: "false"
+      LANGFLOW_SUPERUSER: verification-admin
+      LANGFLOW_SUPERUSER_PASSWORD: ${LANGFLOW_SUPERUSER_PASSWORD:?required}
+      LANGFLOW_SECRET_KEY: ${LANGFLOW_SECRET_KEY:?required}
+      LANGFLOW_COMPONENTS_PATH: /app/verification-components
+      LANGFLOW_SKIP_MCP_AUTO_INIT: "true"
+      LANGFLOW_MODELS_DEV_REFRESH: "false"
+      LANGFLOW_DO_NOT_TRACK: "true"
+    volumes:
+      - ./components:/app/verification-components:ro
+      - langflow-data:/app/data
+    ports: ["127.0.0.1:7860:7860"]
+    depends_on:
+      postgres: {condition: service_healthy}
+      verification-api: {condition: service_healthy}
+
+  verification-worker:
+    <<: *image
+    profiles: [worker]
+    command: [python, -m, langflow.verification.worker]
+    environment:
+      <<: *business-env
+      VERIFICATION_LANGFLOW_URL: http://langflow:7860
+      VERIFICATION_LANGFLOW_API_KEY: ${VERIFICATION_LANGFLOW_API_KEY:-}
+      VERIFICATION_FLOW_ID: ${VERIFICATION_FLOW_ID:-consumable-verification}
+    depends_on:
+      verification-api: {condition: service_healthy}
+      langflow: {condition: service_started}
+
+volumes:
+  postgres-data:
+  langflow-data:

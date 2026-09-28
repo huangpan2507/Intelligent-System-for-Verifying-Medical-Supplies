@@ -1,0 +1,122 @@
+# 改造实施进度
+
+更新时间：2026-09-28。状态：首版模拟核心链路已实现并验证。本期目标：完成可运行、可核查的模拟核验核心链路；计划见 `plan.md`。
+
+当前跟进：P10/P11已完成。三个影像云文档已适配，03/05/06 URL可编辑；116项专项测试、平台实跑及浏览器登录/拖拽/编辑/重载通过，源码服务已恢复。
+
+## 已完成
+
+- P0：读取调研报告全部文字和 drawio 六类页面内容，确认01—08、费用与关联规则、任务去重/重跑边界。
+- 检查本地代码：版本1.12.0，现有 `/api/v1/run/{flow_id_or_name}` 可作为Worker调用入口；组件已迁移至lfx，Langflow旧路径为兼容桥。
+- 用户确认没有真实接口，先实现模拟联调链路。
+- 建立 `plan.md`、`progress.md`、`finding.md`。
+
+## 本期交付
+
+- P1/P2：独立任务/运行/证据/模型请求/结果表；来源鉴权、事务去重、只读查询、人工确认和整项重跑。
+- P3：关联与时间规则、部位筛选、可比性判断、Decimal数量/金额比较；同计数范围仅分配到一组明细。
+- P4：01—08共享阶段代码、模拟结算/影像/模型服务；模型提交前持久化请求；原始响应与证据关联保存。
+- P5：一个自定义组件类型、00—08九个配置实例＋Chat Input；已生成可导入流程；独立Worker经HTTP启动整项运行。
+- P6：Compose、不同数据库/账号、私有凭据生成、平台导入和任务提交脚本、中文运行说明已交付。Compose静态配置及全新PostgreSQL初始化脚本通过验证；整套镜像构建未验证。
+- P7：47项专项测试通过，Ruff检查及格式检查通过，完成真实平台HTTP端到端联调。运行说明见 `deploy/verification/README.md`，脱敏的模拟验证记录见 `deploy/verification/validation.json`。
+
+## 已完成的异常验证
+
+- 结果插入时数据库失败：完成状态和结果一起回滚，运行不误报完成。
+- 模型超时/非法JSON/非对象响应：保存原始返回或未知状态，不自动重新提交。
+- 部分失败保留其他结果；有效0与失败、无输入分别表达；缺SETL_TIME禁止影像查询。
+- 相同结果重复保存返回原回执，不同内容拒绝覆盖；人工重跑生成新run_id/request_id，旧运行迟到写入被拒绝。
+
+## 后续步骤
+
+1. 在可完整下载锁定依赖的环境完成本仓库Docker镜像构建和全仓回归。本次未修改原uv.lock，也未把专项测试称为全仓通过。
+2. 获取真实结算、影像云与识别服务契约，落实字段/目录/单位/时区映射，替换模拟适配器。
+3. 使用独立核实病例验收种类识别与检查级跨图去重计数，并与原监管系统联调业务展示及复核。
+
+## 验证记录
+
+- 首轮37项业务/API/Worker契约测试通过。
+- PostgreSQL实际并发测试通过：16次并发同内容受理仅生成一个task/run，16次竞争领取仅一次成功。
+- 当前源码Graph实际执行通过：Chat Input→00入口→01—08；临时HTTP服务；费用差额-10000.00和一致样本均落库。
+- 导出后经 `Graph.from_payload` 重载并执行通过；修正了真实组件端口不能重名、导出类需要可定位模块、Graph输入需InputValueRequest等约束。
+- 全项目开发依赖按要求执行两次 `uv sync --frozen --group dev --package langflow-base`，分别遭遇tree-sitter-kotlin、pip锁定制品下载失败。未修改原uv.lock；使用 `/tmp/langflow-verification-venv` 安装测试所需依赖和本地源码进行专项验证。此环境不等同于全项目锁文件回归。
+- 最终专项测试：`47 passed`。命令为 `uv run --no-project --python /tmp/langflow-verification-venv/bin/python python -m pytest -c deploy/verification/pytest.ini deploy/verification/tests -q`；配合 `PYTHONPATH=.:src/backend/base:src/lfx/src`、可写 `UV_CACHE_DIR`，及临时PostgreSQL连接的 `VERIFICATION_TEST_POSTGRES_URL`。没有PostgreSQL测试连接时，该专项用例明确跳过。
+- 最终代码检查：`ruff check` 与 `ruff format --check` 均通过，范围为新增业务模块、deploy/verification、scripts/verification。
+- 真平台联调：本仓库 `langflow.main:create_app`，实际HTTP登录、创建API key、导入JSON；业务任务保存到PostgreSQL 17.10，Worker调用 `/api/v1/run/consumable-verification`，08保存完成，GET查询结果及证据。平台自身采用临时SQLite库。任务 `fc691d18-fc72-463a-8d13-3e1831cfdde7`，运行 `36e2a171-7f40-4af5-b688-3e3639683265`；2条模型请求、6类证据工件、结果版本1，状态completed。
+- 端到端输出：髋关节数量差-1、折算费用差-10000.00；膝关节数量及费用一致；全部带simulated标记。
+- 部署验证：`docker compose ... config --quiet`通过，初始化脚本在全新PostgreSQL实例执行成功；业务账号和平台账号均能访问本库，交叉连接被拒绝。首次把初始化脚本试用于已有同名verification数据库时按预期失败，随后改用全新实例验证，没有改变脚本的“仅空库初始化”边界。
+- 临时平台/API/模拟服务及两个测试数据库容器已停止并清理；本地私有 `.env`保留，测试平台API key/flow_id绑定已清除，重新部署后通过导入脚本获取新凭据。验证摘要保留在仓库。
+
+## 本次代码范围
+
+首版改造代码均为新增：`src/backend/base/langflow/verification/`、`deploy/verification/`、`scripts/verification/`及三份根目录项目文档。P8另修改现有`src/lfx/src/lfx/inputs/inputs.py`中MultiselectInput的一行字段别名，修复真实导出重载时拒绝`list`字段的问题。未重写Langflow既有执行引擎或监管系统前端，未修改原锁文件，未提交Git。
+
+## 补充交接：模型密钥与源码UI（2026-09-28）
+
+- 核对报告§7.4.1和实际流程：没有调用大模型；06使用预设模拟识别结果，07为确定性规则。平台生成的Worker API key不属于模型厂商密钥。同步在运行说明和finding.md中明确验证边界。
+- 新增源码前后端分开启动的运行说明。本机专项环境加载本仓库可编辑源码，7860后端已启动、健康检查200；采用独立的`deploy/verification/.cache/source-ui/langflow.db`平台库。
+- 已向预览平台导入流程`170f55a2-2b50-49a1-a1e1-efc5e05b0fea`，本地私有`.env`中的flow_id与平台key现在绑定此预览库。切换到另一部署时须清空旧key后重新导入以获取该部署的凭据；不要直接复用预览平台key。
+- 前端首次`npm ci`因Puppeteer尝试写入受限用户缓存失败；使用`PUPPETEER_SKIP_DOWNLOAD=true`后安装1431个包成功。该选项仅跳过测试工具浏览器下载，不影响Vite预览。
+- 当前预览只包含平台API、源码前端和核验流程，不启动业务API/Worker/模拟上游，不代替上一轮业务链路验证；React布局没有变化。
+- UI检查发现并修复了此前API测试未覆盖的导出问题：缺少genericNode类型、连线id及顶层端口引用，导致默认空白节点。生成器现补齐元数据并按执行顺序排列；已更新JSON和预览平台中的原流程。新增导出回归测试先失败再通过，导出格式＋真实Graph执行两项测试通过，涉及文件Ruff检查通过。
+- 最终浏览器实查通过：真实登录、打开流程、10个节点、9条连线、00—08九个阶段标题均可见，pageerror为0；没有点击运行任务。截图保存在`/tmp/langflow-modernization/source-ui.png`。检查禁用远程字体下载以避免外网字体影响加载；平台原组件商店tags接口仍返回500，未纳入核验改造修复范围，不阻断已验证的流程画布。
+- 当前源码预览保持运行：前端`http://127.0.0.1:3000`，平台API`http://127.0.0.1:7860`。重启命令、登录方式及完整模拟链路与UI预览的区别见运行说明“从源码查看编排界面”。
+
+## 完整模拟核验演示（2026-09-28 11:05）
+
+- 用户要求先执行完整模拟。已沿用源码平台及其SQLite库，配置本地核验地址；启动PostgreSQL、业务API、模拟服务和唯一Worker。服务保持运行，前端3000、平台7860、API8080、模拟上游8090、业务数据库55432。
+- 新增`compose.source.yaml`公开仅本机可访问的业务库端口，按本地已验证的PostgreSQL17.10镜像摘要固定。Docker凭据助手缺失导致按标签拉取失败，实际使用缓存摘要及`--pull never --no-build`启动，未改用户Docker全局配置。
+- 新增`run_local.py`统一源码各进程配置，保留现有UI账号与流程；提交脚本新增状态变化显示和按run_id导出请求/结果/证据，失败返回非零退出码，查询绑定本次run_id。
+- 实跑任务`walkthrough-20260928-001`，task_id=`bd343ce7-4548-42ec-ba59-2ddabcf17dcf`，run_id=`fd793fda-aa4e-49b1-8c75-246a64c2f99c`。08完成，result_id=`dd1b8e7f-fa23-47d0-a145-44988712c6ba`，版本1；髋关节数量差−1套、费用差−10000.00，膝关节一致。
+- PostgreSQL直接复核：1项任务、1次运行、6份工件、2条模型请求、1份结果。重复提交同编号后run_id不变，模型请求仍为2。平台monitor接口能读取Chat Input及00—08共10组节点执行记录。
+- 完整请求、结果和证据导出到`deploy/verification/.cache/demo-runs/fd793fda-aa4e-49b1-8c75-246a64c2f99c/`；逐阶段说明、入口与再次运行命令见`deploy/verification/demo-walkthrough.md`。
+- 本轮验证为实际多进程HTTP完整模拟运行及重复受理检查；新增/调整脚本Ruff格式与检查通过，合并Compose配置校验通过。未将本次演示描述为全仓回归或真实算法验证。
+
+## P8：节点业务配置与实际生效验证（2026-09-28）
+
+- 起因：用户发现所有阶段只有Task Context/Business Stage。确认这是首版通用阶段封装的不足，原参数并非业务筛选规则；保留组件类标识，按阶段提供中文参数和职责说明。
+- 实现：新增`configuration.py`类型化配置；02支持11个规范化字段、比较/文本/列表/存在性运算符、AND/OR及缺值策略；03支持0—365天时间窗及DR/CT；04支持部位/项目名称字段和类别词表；07支持比较项目及数量/金额绝对差容差。表格与多选复用平台现有控件，没有新增React页面。
+- 执行与留痕：配置传入真实Pipeline，02/03/04工件记录参数，筛选逐条件记录实际值及命中情况，07结果记录全部生效配置。排除项保留原因且不识别，未启用比较项标记not_requested，原始差额仍保留。固定业务校验继续生效，计数范围不因筛选而重新猜测。
+- 修复两个集成问题：阶段`show=False`会被执行引擎跳过，改为`show=True + advanced=True`；MultiselectInput原序列化别名无法重新解析，改为双向别名。真实模板往返及图执行用例覆盖这两条路径。
+- 专项回归73项通过，含PostgreSQL并发测试和六种实际Graph/HTTP运行。筛选数量≥2仅发生1次模拟模型请求；只比较数量且容差1时髋样本判为一致，但delta仍为−1，费用为not_requested；0天时间窗/仅CT不触发模型调用；按项目名称词表可筛出髋检查。
+- 浏览器实查通过：真实登录后在临时流程副本打开02表格，字段与运算符下拉可选，目标值改2后保存成功，流程API读取到2，重新打开仍为2；10节点/9连线，pageerror为0。截图存于`deploy/verification/.cache/configuration-ui/`。原流程中用户添加的API Request和Data Operations节点部分遮挡业务节点，测试未移动或删除它们。
+- 原流程`170f55a2-2b50-49a1-a1e1-efc5e05b0fea`已更新业务参数、描述和组件代码，保留UUID、用户节点位置/连线及额外节点。现有源码平台完整HTTP实跑`canvas-config-default-20260928-001`完成，run_id=`f8863161-dd8a-454d-8379-6e8e826a4f24`；2次模型请求、6份工件，结果已携带02/03/04/07实际配置，默认样本结论保持髋差异/膝一致。
+- 默认实跑请求/结果/证据保存在`deploy/verification/.cache/demo-runs/f8863161-dd8a-454d-8379-6e8e826a4f24/`。未覆盖前次演示的历史运行，也未把浏览器副本的测试阈值2写入用户原流程。
+- 收尾：最终73项专项测试再次通过；重启平台使组件缓存与九个已保存节点的最新源码一致，原流程02阈值仍为0。只删除本次创建的临时UI验证副本，单Worker已恢复；源码前端、平台、业务API、模拟服务和数据库继续运行。
+- 相关23个Python文件的Ruff检查和格式检查通过。运行说明已增加节点类型、操作步骤、参数优先级与示例。未执行全仓回归；仍未接入真实影像算法。受理时锁定完整流程配置版本属于后续工作，本次保存的是实际执行参数。
+
+## P9：Verification独立组件目录（2026-09-28）
+
+- 用户要求能从Verification分类现场拖出任务输入和00—08，而非只导入预制图。本轮注册10个独立组件类型，默认列表按任务输入、00—08排序，图标区分职责；固定阶段无Business Stage参数，02/03/04/07拖出即有对应业务配置。
+- `src/backend/base/langflow/verification/components.py`集中共享参数及执行适配，目录中的各阶段文件仅声明名称、图标、stage和输入。原`ConsumableVerificationStage`类名保留，用legacy标记默认隐藏通用入口，未替换用户已有节点、字段值或位置。
+- 新任务输入显式设置实例is_input元数据；Worker改用input_type=any传递任务JSON，兼容新输入及内置Chat Input。空输入在新00节点得到说明所需业务JSON的错误；没有增加未经受理的直接运行入口。
+- `build_flow.py --palette`输出独立组件版本`consumable-verification-palette.json`，原导出文件继续保留。节点及输出端口的dataType使用相同扩展命名空间。没有修改React侧栏分类代码，使用现有扩展目录机制。
+- 实际浏览器验证：登录源码UI，新建空白流程，从Verification拖出10个节点，逐一连出9条边；打开02筛选表格并保存，平台API读到完整图，pageerror为0。不是向空白画布注入预生成节点。画布保留为“Verification 拖拽搭建示例”，flow_id=`8266cda9-82a1-4831-9f3a-59a463a9fedc`。
+- 浏览器保存的原始JSON位于`deploy/verification/.cache/configuration-ui/palette-browser-flow.json`，截图为同目录`verification-palette.png`。该JSON再经真实Graph.arun和本地HTTP核验/模拟服务执行，完成结果保存：髋差异、膝一致，2条模型请求和6份工件。
+- 最终专项测试`83 passed`：原回归、独立组件发现/字段/输入校验、新旧两种图各6种场景、浏览器实际保存图执行，以及PostgreSQL并发事务验证。浏览器图用例通过`VERIFICATION_TEST_BROWSER_FLOW`指定上面的快照；未提供时明确跳过该用例，不假定CI有浏览器实查产物。
+- 34个相关Python文件Ruff检查及格式检查通过。独立组件已加载到源码平台；原业务绑定仍为`170f55a2-2b50-49a1-a1e1-efc5e05b0fea`。新搭图要用于业务任务，需绑定新flow_id并重启API/Worker，说明已补充。没有进行全仓回归或真实算法验收。
+- 收尾已刷新平台组件缓存，核对目录中10个组件与示例保存代码一致；平台健康检查通过，唯一Worker恢复监听，前端及其余模拟服务继续运行。
+
+## P10：HTTP URL与影像云文档契约（2026-09-28）
+
+用户要求在05影像清单、06模型识别节点配置API URL，不需要cURL。已核实05先按study_id查询序列，再按series_id查询影像；06提交同步识别请求。本轮提供两个GET URL模板和一个POST完整URL，沿用既有业务请求/响应契约，空值兼容部署默认地址。
+
+- 首轮URL实现105项专项测试通过；默认完整模拟运行`38d252de-5c8e-47b6-90dd-8b4985f7cd8b`保存了生效URL。该版本使用早期模拟v1影像契约。
+- 用户随后补充三个Apipost文档。已通过浏览器读取并核对：检查列表位于03，05执行序列和影像两个请求；增加03的检查列表URL，按文档改为v2路径、X-Token、查询参数和code/data响应，不使用文档里的示例token。
+- 新增`imaging.py`适配器；规范study_id使用study_primary_id，RIS/PACS及DICOM UID另存，序列请求使用检查主键、影像请求使用series_id。domain与file_path构成下载地址，保留签名参数；缺少可解析域名时失败，不猜测。时区暂按Asia/Shanghai，可配置。
+- 模拟服务同步增加文档的三个v2接口、X-Token校验和不同类型的标识字段；保留历史v1模拟端点供排查，但新的核验适配器使用v2响应契约。旧画布空URL继续回退部署默认值，手工填写的旧v1影像地址需改成v2。
+- 三个已有核验流程已补齐03/05/06参数元数据及代码；升级前后校验其他节点、原有参数值、位置和连线不变。备份位于`.cache/cloud-api-upgrade/`，没有改Worker绑定。
+- 116项专项测试通过，包含真实新旧Graph、自定义URL、查询参数与主键传递、X-Token来源限制、HTTP200业务失败、签名URL、PostgreSQL事务及旧浏览器组装图。37个相关Python文件Ruff检查及格式检查通过；未运行全仓回归。
+- 当前源码平台HTTP实跑`cloud-openapi-20260928-001`完成，run_id=`169ff5db-e012-4a10-8366-6eb530a45faa`：髋差异、膝一致，2条模型请求、6份工件，03/05/06生效URL已落库。证据位于`deploy/verification/.cache/demo-runs/169ff5db-e012-4a10-8366-6eb530a45faa/`。这是文档契约模拟，尚未访问真实影像云。
+
+## P11：源码页面恢复（2026-09-28）
+
+- 用户报告打不开页面。端口探测复现3000/7860均无法连接，ss只有业务PostgreSQL55432仍监听；原`/tmp/langflow-verification-venv`和工具运行会话不存在。已排除单纯浏览器页面渲染故障。
+- 将专项Python环境恢复到项目内`deploy/verification/.cache/runtime`，安装本地lfx/langflow-base可编辑源码和运行依赖，并输出`requirements-source.txt`用于重建。根目录uv.lock未改，专项依赖不冒充全功能开发环境。
+- 重新启动源码Vite、平台、业务API、文档契约模拟服务及唯一Worker。平台库、业务库、历史结果和用户流程保留。README与演示手册已改用持久运行环境路径。
+- HTTP检查前端3000登录页和后端7860均正常，浏览器已实际登录并拖出03/05/06，四个URL能编辑、保存、刷新后保持值。临时验收画布不用于业务绑定。
+- 浏览器最终验收pageerror为0，现有用户“New Flow (1)”的四个URL字段可见；保留的“Verification 拖拽搭建示例”已填入本机模拟接口地址，完整图保存为`.cache/configuration-ui/cloud-api-example-flow.json`。界面截图为同目录`cloud-api-urls.png`，本轮临时验收流程已删除。
+
+## 更新约定
+
+完成工作包时记录具体产物、测试命令/结果、未解决事项；失败和方案调整均保留。真实服务与算法验收独立记录，不使用模拟结果替代。
