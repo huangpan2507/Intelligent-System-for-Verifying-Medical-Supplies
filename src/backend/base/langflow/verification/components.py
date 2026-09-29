@@ -1,4 +1,4 @@
-"""Shared inputs and execution for the verification palette and legacy stage adapter."""
+"""Shared inputs and execution for the nine dedicated verification components."""
 
 # ruff: noqa: RUF001 - Chinese UI labels intentionally use Chinese punctuation.
 
@@ -11,11 +11,8 @@ from lfx.schema.data import Data
 from lfx.schema.message import Message
 
 
-class ConsumableVerificationStage(Component):
-    display_name = "高值耗材核验阶段"
-    description = "按业务阶段配置筛选、关联和比较规则；任务数据由连线传递。"
-    icon = "ClipboardCheck"
-    name = "ConsumableVerificationStage"
+class VerificationStageComponent(Component):
+    """Internal base; each palette component declares its fixed stage and inputs."""
 
     FIELD_LABELS = {
         "数量（quantity）": "quantity",
@@ -70,16 +67,6 @@ class ConsumableVerificationStage(Component):
             input_types=["Data", "Message"],
             required=True,
             info="由上一步连线传入任务、数据和证据，无需手工填写。",
-        ),
-        DropdownInput(
-            name="stage",
-            display_name="业务阶段（高级）",
-            options=[f"{i:02d}" for i in range(9)],
-            value="00",
-            advanced=True,
-            show=True,
-            real_time_refresh=True,
-            info="阶段分派参数；筛选和比较规则在对应业务参数中配置。",
         ),
         TableInput(
             name="filter_conditions",
@@ -229,20 +216,6 @@ class ConsumableVerificationStage(Component):
     ]
     outputs = [Output(name="verified_context", display_name="核验上下文", method="execute_stage")]
 
-    def update_build_config(self, build_config, field_value, field_name=None):
-        if field_name != "stage":
-            return build_config
-        selected = self.STAGE_FIELDS.get(field_value, [])
-        for fields in self.STAGE_FIELDS.values():
-            for name in fields:
-                if name not in selected:
-                    build_config.pop(name, None)
-        for name in selected:
-            build_config.setdefault(name, self._inputs[name].to_dict())
-            build_config[name].update(show=True, advanced=False)
-        build_config["stage"].update(value=field_value, show=True, advanced=True)
-        return build_config
-
     def business_configuration(self):
         if self.stage == "02":
             return {
@@ -305,9 +278,9 @@ class ConsumableVerificationStage(Component):
 
 def stage_inputs(stage: str) -> list:
     """Give each palette type its own inputs; fixed stages have no editable dispatcher."""
-    names = {"context", *ConsumableVerificationStage.STAGE_FIELDS.get(stage, [])}
+    names = {"context", *VerificationStageComponent.STAGE_FIELDS.get(stage, [])}
     return [
         field.model_copy(deep=True, update={"show": True})
-        for field in ConsumableVerificationStage.inputs
+        for field in VerificationStageComponent.inputs
         if field.name in names
     ]

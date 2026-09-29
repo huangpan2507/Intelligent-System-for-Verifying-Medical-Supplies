@@ -7,6 +7,7 @@ import httpx
 from dotenv import dotenv_values, set_key
 
 ROOT = Path(__file__).resolve().parents[2]
+DEFAULT_FLOW_FILE = ROOT / "deploy/verification/consumable-verification-palette.json"
 
 
 def main() -> None:
@@ -25,7 +26,7 @@ def main() -> None:
             response = http.post("/api/v1/api_key/", json={"name": "consumable-verification-worker"})
             response.raise_for_status()
             set_key(env_file, "VERIFICATION_LANGFLOW_API_KEY", response.json()["api_key"])
-        with (ROOT / "deploy/verification/consumable-verification.json").open("rb") as file:
+        with DEFAULT_FLOW_FILE.open("rb") as file:
             response = http.post(
                 "/api/v1/flows/upload/", files={"file": ("verification.json", file, "application/json")}
             )

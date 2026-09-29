@@ -1,7 +1,7 @@
 from pathlib import Path
 
 import pytest
-from langflow.verification.components import ConsumableVerificationStage
+from langflow.verification.components import VerificationStageComponent
 from lfx.extension.loader import discover_inline_bundles
 from lfx.interface.components import create_component_template
 from lfx.schema.message import Message
@@ -18,10 +18,10 @@ def palette():
 
 
 def test_discovered_palette_has_ten_visible_components_with_stage_specific_fields(palette):
-    visible = [item for item in palette.values() if not getattr(item.klass, "legacy", False)]
-    assert len(visible) == 10
+    assert len(palette) == 10
     stages = set()
-    for item in visible:
+    for item in palette.values():
+        assert not getattr(item.klass, "legacy", False)
         component = item.klass()
         template, _ = create_component_template(component_extractor=component, module_name=item.module_name)
         if item.class_name == "VerificationTaskInput":
@@ -30,11 +30,10 @@ def test_discovered_palette_has_ten_visible_components_with_stage_specific_field
         else:
             stage = component.stage
             stages.add(stage)
-            expected = {"_type", "code", "context", *ConsumableVerificationStage.STAGE_FIELDS.get(stage, [])}
+            expected = {"_type", "code", "context", *VerificationStageComponent.STAGE_FIELDS.get(stage, [])}
             assert set(template["template"]) == expected
             assert all(template["template"][name]["show"] for name in expected - {"_type", "code"})
     assert stages == {f"{i:02d}" for i in range(9)}
-    assert palette["ConsumableVerificationStage"].klass.legacy is True
 
 
 async def test_empty_task_input_explains_the_required_business_json(palette):

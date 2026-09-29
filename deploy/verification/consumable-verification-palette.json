@@ -138,7 +138,7 @@
                 "list": false,
                 "show": true,
                 "multiline": true,
-                "value": "from langflow.verification.components import (\n    ConsumableVerificationStage as VerificationStageComponent,\n)\nfrom langflow.verification.components import (\n    stage_inputs,\n)\n\n\nclass VerificationTaskValidation(VerificationStageComponent):\n    display_name = \"00 任务入口校验\"\n    description = VerificationStageComponent.STAGE_DESCRIPTIONS[\"00\"]\n    icon = \"ClipboardCheck\"\n    name = \"VerificationTaskValidation\"\n    stage = \"00\"\n    inputs = stage_inputs(\"00\")\n",
+                "value": "from langflow.verification.components import (\n    VerificationStageComponent,\n    stage_inputs,\n)\n\n\nclass VerificationTaskValidation(VerificationStageComponent):\n    display_name = \"00 任务入口校验\"\n    description = VerificationStageComponent.STAGE_DESCRIPTIONS[\"00\"]\n    icon = \"ClipboardCheck\"\n    name = \"VerificationTaskValidation\"\n    stage = \"00\"\n    inputs = stage_inputs(\"00\")\n",
                 "fileTypes": [],
                 "file_path": "",
                 "password": false,
@@ -233,7 +233,7 @@
                 "list": false,
                 "show": true,
                 "multiline": true,
-                "value": "from langflow.verification.components import (\n    ConsumableVerificationStage as VerificationStageComponent,\n)\nfrom langflow.verification.components import (\n    stage_inputs,\n)\n\n\nclass VerificationSettlementSnapshot(VerificationStageComponent):\n    display_name = \"01 结算快照\"\n    description = VerificationStageComponent.STAGE_DESCRIPTIONS[\"01\"]\n    icon = \"Database\"\n    name = \"VerificationSettlementSnapshot\"\n    stage = \"01\"\n    inputs = stage_inputs(\"01\")\n",
+                "value": "from langflow.verification.components import (\n    VerificationStageComponent,\n    stage_inputs,\n)\n\n\nclass VerificationSettlementSnapshot(VerificationStageComponent):\n    display_name = \"01 结算快照\"\n    description = VerificationStageComponent.STAGE_DESCRIPTIONS[\"01\"]\n    icon = \"Database\"\n    name = \"VerificationSettlementSnapshot\"\n    stage = \"01\"\n    inputs = stage_inputs(\"01\")\n",
                 "fileTypes": [],
                 "file_path": "",
                 "password": false,
@@ -328,7 +328,7 @@
                 "list": false,
                 "show": true,
                 "multiline": true,
-                "value": "from langflow.verification.components import (\n    ConsumableVerificationStage as VerificationStageComponent,\n)\nfrom langflow.verification.components import (\n    stage_inputs,\n)\n\n\nclass VerificationConsumableFilter(VerificationStageComponent):\n    display_name = \"02 耗材筛选\"\n    description = VerificationStageComponent.STAGE_DESCRIPTIONS[\"02\"]\n    icon = \"Filter\"\n    name = \"VerificationConsumableFilter\"\n    stage = \"02\"\n    inputs = stage_inputs(\"02\")\n",
+                "value": "from langflow.verification.components import (\n    VerificationStageComponent,\n    stage_inputs,\n)\n\n\nclass VerificationConsumableFilter(VerificationStageComponent):\n    display_name = \"02 耗材筛选\"\n    description = VerificationStageComponent.STAGE_DESCRIPTIONS[\"02\"]\n    icon = \"Filter\"\n    name = \"VerificationConsumableFilter\"\n    stage = \"02\"\n    inputs = stage_inputs(\"02\")\n",
                 "fileTypes": [],
                 "file_path": "",
                 "password": false,
@@ -557,7 +557,7 @@
                 "list": false,
                 "show": true,
                 "multiline": true,
-                "value": "from langflow.verification.components import (\n    ConsumableVerificationStage as VerificationStageComponent,\n)\nfrom langflow.verification.components import (\n    stage_inputs,\n)\n\n\nclass VerificationStudyAssociation(VerificationStageComponent):\n    display_name = \"03 检查关联\"\n    description = VerificationStageComponent.STAGE_DESCRIPTIONS[\"03\"]\n    icon = \"Link\"\n    name = \"VerificationStudyAssociation\"\n    stage = \"03\"\n    inputs = stage_inputs(\"03\")\n",
+                "value": "from langflow.verification.components import (\n    VerificationStageComponent,\n    stage_inputs,\n)\n\n\nclass VerificationStudyAssociation(VerificationStageComponent):\n    display_name = \"03 检查关联\"\n    description = VerificationStageComponent.STAGE_DESCRIPTIONS[\"03\"]\n    icon = \"Link\"\n    name = \"VerificationStudyAssociation\"\n    stage = \"03\"\n    inputs = stage_inputs(\"03\")\n",
                 "fileTypes": [],
                 "file_path": "",
                 "password": false,
@@ -861,7 +861,7 @@
                 "list": false,
                 "show": true,
                 "multiline": true,
-                "value": "from langflow.verification.components import (\n    ConsumableVerificationStage as VerificationStageComponent,\n)\nfrom langflow.verification.components import (\n    stage_inputs,\n)\n\n\nclass VerificationBodyScreening(VerificationStageComponent):\n    display_name = \"04 部位初筛\"\n    description = VerificationStageComponent.STAGE_DESCRIPTIONS[\"04\"]\n    icon = \"ScanSearch\"\n    name = \"VerificationBodyScreening\"\n    stage = \"04\"\n    inputs = stage_inputs(\"04\")\n",
+                "value": "from langflow.verification.components import (\n    VerificationStageComponent,\n    stage_inputs,\n)\n\n\nclass VerificationBodyScreening(VerificationStageComponent):\n    display_name = \"04 部位初筛\"\n    description = VerificationStageComponent.STAGE_DESCRIPTIONS[\"04\"]\n    icon = \"ScanSearch\"\n    name = \"VerificationBodyScreening\"\n    stage = \"04\"\n    inputs = stage_inputs(\"04\")\n",
                 "fileTypes": [],
                 "file_path": "",
                 "password": false,
@@ -956,7 +956,7 @@
                 "list": false,
                 "show": true,
                 "multiline": true,
-                "value": "from langflow.verification.components import (\n    ConsumableVerificationStage as VerificationStageComponent,\n)\nfrom langflow.verification.components import (\n    stage_inputs,\n)\n\n\nclass VerificationImageManifest(VerificationStageComponent):\n    display_name = \"05 影像清单\"\n    description = VerificationStageComponent.STAGE_DESCRIPTIONS[\"05\"]\n    icon = \"Images\"\n    name = \"VerificationImageManifest\"\n    stage = \"05\"\n    inputs = stage_inputs(\"05\")\n",
+                "value": "from langflow.verification.components import (\n    VerificationStageComponent,\n    stage_inputs,\n)\n\n\nclass VerificationImageManifest(VerificationStageComponent):\n    display_name = \"05 影像清单\"\n    description = VerificationStageComponent.STAGE_DESCRIPTIONS[\"05\"]\n    icon = \"Images\"\n    name = \"VerificationImageManifest\"\n    stage = \"05\"\n    inputs = stage_inputs(\"05\")\n",
                 "fileTypes": [],
                 "file_path": "",
                 "password": false,
@@ -1097,7 +1097,7 @@
                 "list": false,
                 "show": true,
                 "multiline": true,
-                "value": "from langflow.verification.components import (\n    ConsumableVerificationStage as VerificationStageComponent,\n)\nfrom langflow.verification.components import (\n    stage_inputs,\n)\n\n\nclass VerificationModelRecognition(VerificationStageComponent):\n    display_name = \"06 模型识别\"\n    description = VerificationStageComponent.STAGE_DESCRIPTIONS[\"06\"]\n    icon = \"ScanEye\"\n    name = \"VerificationModelRecognition\"\n    stage = \"06\"\n    inputs = stage_inputs(\"06\")\n",
+                "value": "from langflow.verification.components import (\n    VerificationStageComponent,\n    stage_inputs,\n)\n\n\nclass VerificationModelRecognition(VerificationStageComponent):\n    display_name = \"06 模型识别\"\n    description = VerificationStageComponent.STAGE_DESCRIPTIONS[\"06\"]\n    icon = \"ScanEye\"\n    name = \"VerificationModelRecognition\"\n    stage = \"06\"\n    inputs = stage_inputs(\"06\")\n",
                 "fileTypes": [],
                 "file_path": "",
                 "password": false,
@@ -1215,7 +1215,7 @@
                 "list": false,
                 "show": true,
                 "multiline": true,
-                "value": "from langflow.verification.components import (\n    ConsumableVerificationStage as VerificationStageComponent,\n)\nfrom langflow.verification.components import (\n    stage_inputs,\n)\n\n\nclass VerificationResultComparison(VerificationStageComponent):\n    display_name = \"07 确定性比较\"\n    description = VerificationStageComponent.STAGE_DESCRIPTIONS[\"07\"]\n    icon = \"Scale\"\n    name = \"VerificationResultComparison\"\n    stage = \"07\"\n    inputs = stage_inputs(\"07\")\n",
+                "value": "from langflow.verification.components import (\n    VerificationStageComponent,\n    stage_inputs,\n)\n\n\nclass VerificationResultComparison(VerificationStageComponent):\n    display_name = \"07 确定性比较\"\n    description = VerificationStageComponent.STAGE_DESCRIPTIONS[\"07\"]\n    icon = \"Scale\"\n    name = \"VerificationResultComparison\"\n    stage = \"07\"\n    inputs = stage_inputs(\"07\")\n",
                 "fileTypes": [],
                 "file_path": "",
                 "password": false,
@@ -1384,7 +1384,7 @@
                 "list": false,
                 "show": true,
                 "multiline": true,
-                "value": "from langflow.verification.components import (\n    ConsumableVerificationStage as VerificationStageComponent,\n)\nfrom langflow.verification.components import (\n    stage_inputs,\n)\n\n\nclass VerificationResultSave(VerificationStageComponent):\n    display_name = \"08 结果保存\"\n    description = VerificationStageComponent.STAGE_DESCRIPTIONS[\"08\"]\n    icon = \"Save\"\n    name = \"VerificationResultSave\"\n    stage = \"08\"\n    inputs = stage_inputs(\"08\")\n",
+                "value": "from langflow.verification.components import (\n    VerificationStageComponent,\n    stage_inputs,\n)\n\n\nclass VerificationResultSave(VerificationStageComponent):\n    display_name = \"08 结果保存\"\n    description = VerificationStageComponent.STAGE_DESCRIPTIONS[\"08\"]\n    icon = \"Save\"\n    name = \"VerificationResultSave\"\n    stage = \"08\"\n    inputs = stage_inputs(\"08\")\n",
                 "fileTypes": [],
                 "file_path": "",
                 "password": false,
@@ -1446,12 +1446,12 @@
     ],
     "edges": [
       {
-        "source": "VerificationModelRecognition-06",
-        "target": "VerificationResultComparison-07",
+        "source": "VerificationStudyAssociation-03",
+        "target": "VerificationBodyScreening-04",
         "data": {
           "sourceHandle": {
-            "dataType": "ext:verification:VerificationModelRecognition@extra",
-            "id": "VerificationModelRecognition-06",
+            "dataType": "ext:verification:VerificationStudyAssociation@extra",
+            "id": "VerificationStudyAssociation-03",
             "name": "verified_context",
             "output_types": [
               "JSON"
@@ -1459,7 +1459,7 @@
           },
           "targetHandle": {
             "fieldName": "context",
-            "id": "VerificationResultComparison-07",
+            "id": "VerificationBodyScreening-04",
             "inputTypes": [
               "Data",
               "Message"
@@ -1467,9 +1467,9 @@
             "type": "other"
           }
         },
-        "id": "verification-VerificationModelRecognition-06-VerificationResultComparison-07",
-        "sourceHandle": "{œdataTypeœ:œext:verification:VerificationModelRecognition@extraœ,œidœ:œVerificationModelRecognition-06œ,œnameœ:œverified_contextœ,œoutput_typesœ:[œJSONœ]}",
-        "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationResultComparison-07œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
+        "id": "verification-VerificationStudyAssociation-03-VerificationBodyScreening-04",
+        "sourceHandle": "{œdataTypeœ:œext:verification:VerificationStudyAssociation@extraœ,œidœ:œVerificationStudyAssociation-03œ,œnameœ:œverified_contextœ,œoutput_typesœ:[œJSONœ]}",
+        "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationBodyScreening-04œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
       },
       {
         "source": "VerificationSettlementSnapshot-01",
@@ -1498,32 +1498,6 @@
         "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationConsumableFilter-02œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
       },
       {
-        "source": "VerificationImageManifest-05",
-        "target": "VerificationModelRecognition-06",
-        "data": {
-          "sourceHandle": {
-            "dataType": "ext:verification:VerificationImageManifest@extra",
-            "id": "VerificationImageManifest-05",
-            "name": "verified_context",
-            "output_types": [
-              "JSON"
-            ]
-          },
-          "targetHandle": {
-            "fieldName": "context",
-            "id": "VerificationModelRecognition-06",
-            "inputTypes": [
-              "Data",
-              "Message"
-            ],
-            "type": "other"
-          }
-        },
-        "id": "verification-VerificationImageManifest-05-VerificationModelRecognition-06",
-        "sourceHandle": "{œdataTypeœ:œext:verification:VerificationImageManifest@extraœ,œidœ:œVerificationImageManifest-05œ,œnameœ:œverified_contextœ,œoutput_typesœ:[œJSONœ]}",
-        "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationModelRecognition-06œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
-      },
-      {
         "source": "VerificationResultComparison-07",
         "target": "VerificationResultSave-08",
         "data": {
@@ -1548,6 +1522,32 @@
         "id": "verification-VerificationResultComparison-07-VerificationResultSave-08",
         "sourceHandle": "{œdataTypeœ:œext:verification:VerificationResultComparison@extraœ,œidœ:œVerificationResultComparison-07œ,œnameœ:œverified_contextœ,œoutput_typesœ:[œJSONœ]}",
         "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationResultSave-08œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
+      },
+      {
+        "source": "VerificationModelRecognition-06",
+        "target": "VerificationResultComparison-07",
+        "data": {
+          "sourceHandle": {
+            "dataType": "ext:verification:VerificationModelRecognition@extra",
+            "id": "VerificationModelRecognition-06",
+            "name": "verified_context",
+            "output_types": [
+              "JSON"
+            ]
+          },
+          "targetHandle": {
+            "fieldName": "context",
+            "id": "VerificationResultComparison-07",
+            "inputTypes": [
+              "Data",
+              "Message"
+            ],
+            "type": "other"
+          }
+        },
+        "id": "verification-VerificationModelRecognition-06-VerificationResultComparison-07",
+        "sourceHandle": "{œdataTypeœ:œext:verification:VerificationModelRecognition@extraœ,œidœ:œVerificationModelRecognition-06œ,œnameœ:œverified_contextœ,œoutput_typesœ:[œJSONœ]}",
+        "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationResultComparison-07œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
       },
       {
         "source": "VerificationConsumableFilter-02",
@@ -1576,58 +1576,6 @@
         "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationStudyAssociation-03œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
       },
       {
-        "source": "VerificationTaskValidation-00",
-        "target": "VerificationSettlementSnapshot-01",
-        "data": {
-          "sourceHandle": {
-            "dataType": "ext:verification:VerificationTaskValidation@extra",
-            "id": "VerificationTaskValidation-00",
-            "name": "verified_context",
-            "output_types": [
-              "JSON"
-            ]
-          },
-          "targetHandle": {
-            "fieldName": "context",
-            "id": "VerificationSettlementSnapshot-01",
-            "inputTypes": [
-              "Data",
-              "Message"
-            ],
-            "type": "other"
-          }
-        },
-        "id": "verification-VerificationTaskValidation-00-VerificationSettlementSnapshot-01",
-        "sourceHandle": "{œdataTypeœ:œext:verification:VerificationTaskValidation@extraœ,œidœ:œVerificationTaskValidation-00œ,œnameœ:œverified_contextœ,œoutput_typesœ:[œJSONœ]}",
-        "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationSettlementSnapshot-01œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
-      },
-      {
-        "source": "VerificationStudyAssociation-03",
-        "target": "VerificationBodyScreening-04",
-        "data": {
-          "sourceHandle": {
-            "dataType": "ext:verification:VerificationStudyAssociation@extra",
-            "id": "VerificationStudyAssociation-03",
-            "name": "verified_context",
-            "output_types": [
-              "JSON"
-            ]
-          },
-          "targetHandle": {
-            "fieldName": "context",
-            "id": "VerificationBodyScreening-04",
-            "inputTypes": [
-              "Data",
-              "Message"
-            ],
-            "type": "other"
-          }
-        },
-        "id": "verification-VerificationStudyAssociation-03-VerificationBodyScreening-04",
-        "sourceHandle": "{œdataTypeœ:œext:verification:VerificationStudyAssociation@extraœ,œidœ:œVerificationStudyAssociation-03œ,œnameœ:œverified_contextœ,œoutput_typesœ:[œJSONœ]}",
-        "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationBodyScreening-04œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
-      },
-      {
         "source": "VerificationTaskInput-Verification",
         "target": "VerificationTaskValidation-00",
         "data": {
@@ -1654,6 +1602,32 @@
         "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationTaskValidation-00œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
       },
       {
+        "source": "VerificationImageManifest-05",
+        "target": "VerificationModelRecognition-06",
+        "data": {
+          "sourceHandle": {
+            "dataType": "ext:verification:VerificationImageManifest@extra",
+            "id": "VerificationImageManifest-05",
+            "name": "verified_context",
+            "output_types": [
+              "JSON"
+            ]
+          },
+          "targetHandle": {
+            "fieldName": "context",
+            "id": "VerificationModelRecognition-06",
+            "inputTypes": [
+              "Data",
+              "Message"
+            ],
+            "type": "other"
+          }
+        },
+        "id": "verification-VerificationImageManifest-05-VerificationModelRecognition-06",
+        "sourceHandle": "{œdataTypeœ:œext:verification:VerificationImageManifest@extraœ,œidœ:œVerificationImageManifest-05œ,œnameœ:œverified_contextœ,œoutput_typesœ:[œJSONœ]}",
+        "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationModelRecognition-06œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
+      },
+      {
         "source": "VerificationBodyScreening-04",
         "target": "VerificationImageManifest-05",
         "data": {
@@ -1678,11 +1652,37 @@
         "id": "verification-VerificationBodyScreening-04-VerificationImageManifest-05",
         "sourceHandle": "{œdataTypeœ:œext:verification:VerificationBodyScreening@extraœ,œidœ:œVerificationBodyScreening-04œ,œnameœ:œverified_contextœ,œoutput_typesœ:[œJSONœ]}",
         "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationImageManifest-05œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
+      },
+      {
+        "source": "VerificationTaskValidation-00",
+        "target": "VerificationSettlementSnapshot-01",
+        "data": {
+          "sourceHandle": {
+            "dataType": "ext:verification:VerificationTaskValidation@extra",
+            "id": "VerificationTaskValidation-00",
+            "name": "verified_context",
+            "output_types": [
+              "JSON"
+            ]
+          },
+          "targetHandle": {
+            "fieldName": "context",
+            "id": "VerificationSettlementSnapshot-01",
+            "inputTypes": [
+              "Data",
+              "Message"
+            ],
+            "type": "other"
+          }
+        },
+        "id": "verification-VerificationTaskValidation-00-VerificationSettlementSnapshot-01",
+        "sourceHandle": "{œdataTypeœ:œext:verification:VerificationTaskValidation@extraœ,œidœ:œVerificationTaskValidation-00œ,œnameœ:œverified_contextœ,œoutput_typesœ:[œJSONœ]}",
+        "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationSettlementSnapshot-01œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
       }
     ]
   },
   "is_component": false,
   "name": "高值耗材核验(模拟联调)",
-  "description": "01—08核验流程。模拟服务不代表真实影像识别效果。",
+  "description": "00—08核验流程。模拟服务不代表真实影像识别效果。",
   "endpoint_name": "consumable-verification"
 }

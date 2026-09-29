@@ -1,7 +1,5 @@
 from langflow.verification.components import (
-    ConsumableVerificationStage as VerificationStageComponent,
-)
-from langflow.verification.components import (
+    VerificationStageComponent,
     stage_inputs,
 )
 

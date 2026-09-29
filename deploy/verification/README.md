@@ -19,13 +19,12 @@
 | `pipeline.py` / `rules.py` | 01—08阶段操作及确定性比较规则的单一实现 |
 | `demo.py` | 模拟结算、影像云和同步识别契约 |
 | `src/backend/base/langflow/verification/components.py` | 共享的业务节点参数和执行适配 |
-| `components/verification/` | 任务输入和00—08独立可拖拽组件；stage.py兼容旧流程 |
-| `consumable-verification.json` | 可导入当前Langflow的完整流程，包含代码，不含密钥 |
-| `consumable-verification-palette.json` | 使用Verification独立组件组装的完整流程 |
+| `components/verification/` | 任务输入和00—08独立可拖拽组件 |
+| `consumable-verification-palette.json` | 默认导入流程，使用Verification独立组件组装 |
 | `scripts/verification/` | 凭据初始化、流程生成/导入、任务提交示例 |
 | `tests/` | 独立业务服务测试及当前Langflow Graph集成测试 |
 
-01—08仍由画布依赖推进。独立组件共享受理上下文校验、固定契约HTTP调用与业务规则，避免复制鉴权、请求登记和回执判断。新组件职责固定，无需选择阶段编号；02—07直接显示对应的业务参数或HTTP URL。旧通用组件仍保留高级阶段参数。03/05/06支持画布覆盖接口地址，留空使用部署默认值；凭据来自部署环境，监管提交任务不能选择URL、SQL或flow_id。本期没有逐节点恢复；阶段状态是审计记录，已开始的阶段不能自动重启。
+01—08仍由画布依赖推进。独立组件共享受理上下文校验、固定契约HTTP调用与业务规则，避免复制鉴权、请求登记和回执判断。组件职责固定，无需选择阶段编号；02—07直接显示对应的业务参数或HTTP URL。03/05/06支持画布覆盖接口地址，留空使用部署默认值；凭据来自部署环境，监管提交任务不能选择URL、SQL或flow_id。本期没有逐节点恢复；阶段状态是审计记录，已开始的阶段不能自动重启。
 
 ## 从Verification拖拽搭建流程
 
@@ -35,23 +34,25 @@
 
 新建空白流程，从该分类拖出每个节点，按上述顺序连接：输入节点的“任务消息”连接00的“核验上下文”，随后各阶段的输出连接下一阶段的“核验上下文”。拖出02即可编辑筛选条件，拖出07即可配置比较项目，不需要编辑代码或选择Business Stage。组件也支持双击添加。
 
-这些节点有各自稳定类型，例如`VerificationConsumableFilter`和`VerificationResultComparison`，共用后台Pipeline。旧`ConsumableVerificationStage`标记为legacy，默认列表隐藏；已有流程和嵌入代码仍可执行，未自动转换用户现有画布。原内置Chat Input仍保留在原分类；Verification里的任务输入是专门传递核验JSON的组件，不提供聊天模型或聊天记录功能。
+这些节点是本项目新增的业务组件，具有独立类型，例如`VerificationConsumableFilter`和`VerificationResultComparison`。它们继承内部基类`VerificationStageComponent`，使用Langflow原生Component、输入控件、端口和图执行机制，共用后台Pipeline。内部基类不注册为可拖拽入口。原内置Chat Input仍保留在原分类；Verification里的任务输入专门传递核验JSON，不提供聊天模型或聊天记录功能。
+
+本项目处于从0到1阶段：早期通用节点`ConsumableVerificationStage`及其兼容入口、旧流程导出、迁移脚本已删除，不再维护两套节点形式。后续正式规则发布的不可变版本、任务绑定和审计属于业务能力，仍按范围任务设计实施。
 
 搭建与执行是两步。新画布保存后，若要让业务API/Worker执行它，将私有`deploy/verification/.env`中的`VERIFICATION_FLOW_ID`设为新流程URL中的UUID；确认没有进行中的任务后，重启业务API和唯一Worker以加载绑定，再用新`--reference`提交模拟任务。平台账号/API key无需更换。本次没有自动替换原流程绑定。
 
-任务输入必须包含已受理、已领取运行的`task_id`、`run_id`、`detail_ids`。空输入或聊天文字无法启动业务核验；新00节点会给出明确JSON格式提示。默认由Worker填充，Worker使用`input_type=any`兼容专用任务输入与原内置Chat Input。调用平台运行API时也使用`input_type=any`。本期仍要求完整00—08顺序，不能跳过保存或重复执行已开始的阶段。
+任务输入必须包含已受理、已领取运行的`task_id`、`run_id`、`detail_ids`。空输入或聊天文字无法启动业务核验；00节点会给出明确JSON格式提示。默认由Worker填充，Worker使用`input_type=any`将数据传给输入节点。调用平台运行API时也使用`input_type=any`。本期仍要求完整00—08顺序，不能跳过保存或重复执行已开始的阶段。
 
 本机已保存从空白画布实际拖拽并连线的“Verification 拖拽搭建示例”；未切换生产绑定。也可以生成独立组件版JSON后通过项目页导入：
 
 ```bash
-uv run python scripts/verification/build_flow.py --palette
+uv run python scripts/verification/build_flow.py
 ```
 
-输出为`deploy/verification/consumable-verification-palette.json`。后端修改组件代码后需重启；仅刷新前端不能替代后端组件目录重新加载。
+输出为`deploy/verification/consumable-verification-palette.json`，也是`import_flow.py`的默认导入文件；生成器只提供这一种流程。后端修改组件代码后需重启，已保存画布的嵌入组件代码也需要同步更新；仅刷新前端不能替代后端组件目录重新加载。
 
 ## 在节点上配置业务规则
 
-首版导入流程使用内置`ChatInput`和项目自定义`ConsumableVerificationStage`；P9新增独立组件目录，供现场拖拽搭建。两种形式共用业务逻辑，都没有LLM节点。`核验上下文`是连线传递的数据；旧`Business Stage`是执行分派编号，不是筛选条件。工具栏的`Parameters`用于控制参数可见性/API输入；实际业务配置在节点上的表格、下拉框和数值输入中填写。
+当前流程使用任务输入和九个独立业务节点，没有LLM节点。`核验上下文`是连线传递的数据。工具栏的`Parameters`用于控制参数可见性/API输入；实际业务配置在节点上的表格、下拉框和数值输入中填写。
 
 | 节点 | 业务职责 | 当前配置入口 |
 |---|---|---|
@@ -86,7 +87,7 @@ uv run python scripts/verification/build_flow.py --palette
 
 03的患者、医院、就诊、时间窗和模态查询参数自动生成。05替换`{study_primary_id}`及`{series_id}`；影像URL可追加`&url_type=4`等地址类型参数。06使用所填URL，不自动追加路径；请求体由核验上下文生成。完整字段映射、三个原始文档链接和鉴权规则见[影像云接口说明](imaging-api-contract.md)。
 
-留空时03/05使用`VERIFICATION_IMAGING_URL`加对应文档路径，06使用`VERIFICATION_MODEL_URL`加`/v1/recognitions`。旧画布的空值兼容；此前模拟v1影像URL若已手工填写，须改成上表v2地址，模型v1接口保持不变。实际地址写入结果的`node_configurations`，检查/影像工件也保存对应配置。
+留空时03/05使用`VERIFICATION_IMAGING_URL`加对应文档路径，06使用`VERIFICATION_MODEL_URL`加`/v1/recognitions`。手工配置影像URL时使用上表三个v2接口。实际地址写入结果的`node_configurations`，检查/影像工件也保存对应配置。
 
 影像鉴权使用`VERIFICATION_IMAGING_TOKEN`作为`X-Token`；本机模拟模式下未单独配置时可使用本地生成的模拟token。06仍使用部署上游Bearer token。凭据仅发送到各自部署服务的同源URL，自定义跨源URL不自动继承凭据。接入真实影像云时配置基础地址、有效X-Token及影像时区后重启后端；不要使用文档里的示例token。
 
@@ -126,7 +127,7 @@ uv run python scripts/verification/submit_demo.py --reference demo-001
 
 ## 从源码查看编排界面
 
-本期没有修改React页面布局，也没有新增监管业务看板。可以查看原“高值耗材核验(模拟联调)”流程，或从Verification分类拖出独立组件搭建新流程。原画布中的阶段仍是`ConsumableVerificationStage`实例；新组件分别拥有自己的类型。输入节点承载任务JSON，不表示调用聊天大模型。
+本期没有修改React页面布局，也没有新增监管业务看板。可以查看“高值耗材核验(模拟联调)”流程，或从Verification分类拖出独立组件搭建新流程。本机原模拟画布的九个通用阶段已显式转换为对应独立类型，输入节点仍承载任务JSON，不表示调用聊天大模型。
 
 以下步骤使用项目目录下的`deploy/verification/.cache/runtime`，已验证源码UI与模拟核验。原`/tmp/langflow-verification-venv`已失效，不再作为运行环境。当前根目录`.venv`仍未完成全仓依赖同步。
 
@@ -165,7 +166,7 @@ VITE_PROXY_TARGET=http://127.0.0.1:7860 npm run start -- --host 127.0.0.1 --port
 
 `PUPPETEER_SKIP_DOWNLOAD=true`只跳过测试工具附带的Chrome下载，不影响浏览器访问Vite页面；需要运行对应浏览器测试时另行安装测试浏览器。本次首次安装在Puppeteer写入用户缓存目录时失败，已在预览命令中明确跳过该无关下载。
 
-**导入流程。** 登录后通过项目页上传 `deploy/verification/consumable-verification.json`，再打开“高值耗材核验(模拟联调)”。也可以在第三个终端执行以下已提供脚本，它同时创建Worker的平台凭据并保存flow_id；同一平台只需导入一次。
+**导入流程。** 登录后通过项目页上传 `deploy/verification/consumable-verification-palette.json`，再打开“高值耗材核验(模拟联调)”。也可以在第三个终端执行以下已提供脚本，它同时创建Worker的平台凭据并保存flow_id；同一平台只需导入一次。
 
 ```bash
 cd /home/huangpan/github_repo/langflow
