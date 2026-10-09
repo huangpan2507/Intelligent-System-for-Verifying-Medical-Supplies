@@ -1,49 +1,52 @@
-"""Single worker: claim once, invoke one fixed flow, check persisted completion."""
-
-from __future__ import annotations
+"""Single worker submits a durable, release-bound job and reconciles its saved receipt."""
 
 import asyncio
-import json
 import logging
 
 import httpx
+from sqlalchemy import select
 
-from langflow.verification.database import Database, Run, Task
+from langflow.verification.database import Database, Run
 from langflow.verification.settings import VerificationSettings
 
 logger = logging.getLogger(__name__)
+TERMINAL_JOBS = {"completed", "failed", "cancelled", "timed_out"}
 
 
 async def run_once(database: Database, settings: VerificationSettings, http: httpx.AsyncClient) -> bool:
-    run_id = database.claim()
+    # Recover tracking after a Worker restart before claiming any new task.
+    with database.sessions() as session:
+        run_id = session.scalar(select(Run.id).where(Run.status == "running").order_by(Run.created_at).limit(1))
+    run_id = run_id or database.claim()
     if run_id is None:
         return False
-    with database.sessions() as session:
-        run = session.get(Run, run_id)
-        task = session.get(Task, run.task_id)
-        flow_id = run.flow_id
-        payload = {"task_id": task.id, "run_id": run.id, "detail_ids": task.payload["detail_ids"]}
+    headers = {"x-api-key": settings.langflow_api_key.get_secret_value()}
+    base = f"{settings.langflow_url}/api/v1/verification/runs/{run_id}"
     try:
-        response = await http.post(
-            f"{settings.langflow_url}/api/v1/run/{flow_id}",
-            headers={"x-api-key": settings.langflow_api_key.get_secret_value()},
-            json={"input_value": json.dumps(payload), "input_type": "any", "output_type": "any", "session_id": run_id},
-            timeout=settings.flow_timeout,
-        )
-        # The platform may have failed after accepting execution. Persistence remains authoritative.
-        code = "flow_returned_without_result" if response.is_success else "flow_http_error"
-        database.record_error(
-            run_id,
-            "needs_confirmation",
-            code,
-            "Flow returned without a committed terminal result; confirm remote execution has ended",
-        )
+        response = await http.get(base + "/job", headers=headers, timeout=settings.request_timeout)
+        response.raise_for_status()
+        state = response.json()
+        if state["status"] == "not_registered":
+            # This endpoint uses the job_id assigned at acceptance and a permanent Run start guard.
+            response = await http.post(base + "/execute", headers=headers, timeout=settings.request_timeout)
+            response.raise_for_status()
+            state = response.json()
+        if state["status"] in TERMINAL_JOBS:
+            database.record_error(
+                run_id,
+                "needs_confirmation",
+                "job_without_receipt",
+                "Job ended without 08 committed completion; confirm remote execution",
+            )
     except httpx.TransportError:
+        # Poll the durable registration next time. Never call the mutable draft-run endpoint.
+        logger.warning("Job receipt unavailable; will query the original registration for run %s", run_id)
+    except httpx.HTTPStatusError as exc:
         database.record_error(
             run_id,
             "needs_confirmation",
-            "flow_transport_unknown",
-            "Flow may have accepted the request; do not automatically resubmit",
+            "job_rejected",
+            f"Job endpoint returned {exc.response.status_code}; confirm before rerunning",
         )
     return True
 
@@ -57,13 +60,10 @@ async def serve() -> None:
     async with httpx.AsyncClient(follow_redirects=False) as http:
         while True:
             try:
-                worked = await run_once(database, settings, http)
+                await run_once(database, settings, http)
             except Exception:
-                # A claimed run is never put back into waiting, even after a DB/process failure.
-                logger.exception("Worker failed; verify any last running task manually")
-                worked = False
-            if not worked:
-                await asyncio.sleep(settings.poll_interval)
+                logger.exception("Worker failed; accepted runs remain queryable")
+            await asyncio.sleep(settings.poll_interval)
 
 
 if __name__ == "__main__":

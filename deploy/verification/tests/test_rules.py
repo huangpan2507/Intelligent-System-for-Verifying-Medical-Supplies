@@ -1,4 +1,3 @@
-from copy import deepcopy
 from datetime import timedelta
 from decimal import Decimal
 
@@ -14,7 +13,17 @@ def comparison():
     return {
         "rows": [Settlement.model_validate(settlement_fixture("hip"))],
         "category": "hip_prosthesis",
-        "review": ReviewedScope.model_validate(example_task()["config"]["reviewed_scopes"][0]),
+        "review": ReviewedScope(
+            scope_id="hip",
+            detail_ids=["detail-hip"],
+            study_ids=["study-hip"],
+            category="hip_prosthesis",
+            unit="set",
+            target_confirmed=True,
+            coverage_confirmed=True,
+            counting_validated=True,
+            evidence_ref="test-review",
+        ),
         "recognition": Recognition(
             status="completed",
             raw_type="hip",
@@ -172,12 +181,7 @@ def test_unknown_body_part_is_retained():
     assert screen_body_part(study, "hip_prosthesis")["status"] == "needs_verification"
 
 
-def test_canonical_scope_and_no_duplicate_allocation():
-    payload = example_task()
-    reverse = deepcopy(payload)
-    reverse["detail_ids"].reverse()
-    reverse["config"]["reviewed_scopes"].reverse()
-    assert SubmitTask.model_validate(payload) == SubmitTask.model_validate(reverse)
-    payload["config"]["reviewed_scopes"][1]["detail_ids"] = ["detail-hip"]
+def test_three_business_inputs_reject_old_trial_contract():
+    assert SubmitTask.model_validate(example_task()).hospital_scope == "常州市第一人民医院"
     with pytest.raises(ValidationError):
-        SubmitTask.model_validate(payload)
+        SubmitTask.model_validate({**example_task(), "detail_ids": ["detail-hip"]})

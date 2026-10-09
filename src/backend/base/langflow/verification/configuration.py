@@ -172,7 +172,18 @@ class RecognitionConfiguration(Contract):
         return validate_api_url(value)
 
 
+class SettlementConfiguration(Contract):
+    settlement_api_url: str = Field(default="", max_length=2048)
+    page_size: int = Field(default=100, ge=1, le=200)
+
+    @field_validator("settlement_api_url")
+    @classmethod
+    def check_url(cls, value: str) -> str:
+        return validate_api_url(value)
+
+
 CONFIGURATION_TYPES = {
+    "01": SettlementConfiguration,
     "02": FilterConfiguration,
     "03": AssociationConfiguration,
     "04": ScreeningConfiguration,

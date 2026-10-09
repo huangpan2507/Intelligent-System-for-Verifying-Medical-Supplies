@@ -559,6 +559,10 @@ def _default_frame_source_factory(*, request, flow_id, user, adapter, **_extra):
     the v1 build pipeline have; without it every background run would silently
     miss it.
     """
+    if request.get("verification_run_id"):
+        from langflow.verification.execution import frame_source
+
+        return frame_source(request=request, user=user)
     parsed = _parse_persisted_workflow_request(request)
     terminal_error_type = adapter.terminal_error_type
 

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import AlertDropdown from "@/alerts/alertDropDown";
 import LangflowLogo from "@/assets/LangflowLogo.svg?react";
@@ -7,6 +7,7 @@ import ModelProviderCount from "@/components/common/modelProviderCountComponent"
 import ShadTooltip from "@/components/common/shadTooltipComponent";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { AuthContext } from "@/contexts/authContext";
 import CustomAccountMenu from "@/customization/components/custom-AccountMenu";
 import CustomLangflowCounts from "@/customization/components/custom-langflow-counts";
 import { CustomOrgSelector } from "@/customization/components/custom-org-selector";
@@ -17,6 +18,7 @@ import FlowMenu from "./components/FlowMenu";
 
 export default function AppHeader(): JSX.Element {
   const { t } = useTranslation();
+  const { userData } = useContext(AuthContext);
   const notificationCenter = useAlertStore((state) => state.notificationCenter);
   const navigate = useCustomNavigate();
   const [activeState, setActiveState] = useState<"notifications" | null>(null);
@@ -81,6 +83,24 @@ export default function AppHeader(): JSX.Element {
         className={`relative left-3 z-30 flex shrink-0 items-center gap-3`}
         data-testid="header_right_section_wrapper"
       >
+        {userData?.is_superuser && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => navigate("/verification/tasks")}
+          >
+            {t("verificationTasks.title")}
+          </Button>
+        )}
+        {userData?.is_superuser && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => navigate("/verification")}
+          >
+            {t("verification.title")}
+          </Button>
+        )}
         {false && <ModelProviderCount />}
         <div className="hidden pr-2 whitespace-nowrap lg:inline-flex lg:items-center">
           <CustomLangflowCounts />

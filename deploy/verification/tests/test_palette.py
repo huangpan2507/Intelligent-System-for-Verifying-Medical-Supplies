@@ -39,5 +39,5 @@ def test_discovered_palette_has_ten_visible_components_with_stage_specific_field
 async def test_empty_task_input_explains_the_required_business_json(palette):
     component = palette["VerificationTaskValidation"].klass()
     component.set(context=Message(text=""))
-    with pytest.raises(ValueError, match="task_id、run_id和detail_ids"):
+    with pytest.raises(ValueError, match="task_id、run_id、release_id和job_id"):
         await component.execute_stage()

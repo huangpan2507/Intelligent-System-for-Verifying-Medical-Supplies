@@ -1,3 +1,4 @@
+# ruff: noqa: RUF001 - Chinese business messages intentionally use Chinese punctuation.
 """Authenticated business API. Run with uvicorn's --factory option."""
 
 from __future__ import annotations
@@ -6,24 +7,39 @@ import secrets
 from typing import Annotated
 from uuid import UUID  # noqa: TC003 - FastAPI resolves endpoint annotations at runtime.
 
-from fastapi import Depends, FastAPI, HTTPException, Query
+from fastapi import Depends, FastAPI, Header, HTTPException, Query
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 
-from langflow.verification.database import Artifact, Database, ModelRequest, Result, Run, Task, fingerprint, new_id, now
+from langflow.verification.database import (
+    Artifact,
+    Database,
+    ExecutionBinding,
+    HospitalScope,
+    ModelRequest,
+    RuleDefinition,
+    RuleRelease,
+    Run,
+    SettlementSnapshot,
+    Task,
+    fingerprint,
+    new_id,
+    now,
+)
 from langflow.verification.schemas import (
     ArtifactWrite,
     ErrorWrite,
-    FinishRun,
     ManualAction,
     RequestResult,
     RequestWrite,
+    RerunAction,
     StageUpdate,
     SubmitTask,
     json_value,
 )
 from langflow.verification.settings import VerificationSettings
+from langflow.verification.task_queries import task_evidence, task_results, task_runs
 
 AUTH = HTTPBearer()
 Credentials = Annotated[HTTPAuthorizationCredentials, Depends(AUTH)]
@@ -57,7 +73,13 @@ def run_view(run: Run) -> dict:
         "status": run.status,
         "stage": run.stage,
         "stage_event": run.stage_event,
-        "flow_id": run.flow_id,
+        "release_id": run.release_id,
+        "binding_id": run.binding_id,
+        "job_id": run.job_id,
+        "execution_started": run.execution_started,
+        "snapshot_id": run.snapshot_id,
+        "progress": run.progress,
+        "rule_version": run.policy["rule_version"],
         "error": run.error,
         "manual_action": run.manual_action,
         "created_at": run.created_at,
@@ -73,7 +95,7 @@ def task_view(session, task: Task, run_id: str | None = None) -> dict:
     return {
         "source_system": task.source_system,
         "external_task_id": task.external_task_id,
-        "detail_ids": task.payload["detail_ids"],
+        "scope": task.payload,
         "current_run_id": task.current_run_id,
         **run_view(run),
     }
@@ -84,6 +106,7 @@ def create_app(settings: VerificationSettings | None = None, database: Database 
     database = database or Database(settings.database_url.get_secret_value(), settings.database_schema)
     app = FastAPI(title="Consumable Verification API", version="1.0.0")
     app.state.database = database
+    app.state.settings = settings
 
     def source_auth(credentials: Credentials) -> str:
         for source, token in settings.clients.items():
@@ -99,61 +122,97 @@ def create_app(settings: VerificationSettings | None = None, database: Database 
     internal = [Depends(internal_auth)]
     prefix = "/api/v1/verification"
 
-    def policy() -> dict:
-        return {
-            "catalog_mapping": settings.catalog_mapping,
-            "rule_version": settings.rule_version,
-            "currency": settings.currency,
-            "money_tolerance": str(settings.money_tolerance),
-            "simulated": settings.demo_mode,
-        }
-
     @app.get("/health")
     def health() -> dict:
         with database.sessions() as session:
             session.execute(select(Task.id).limit(1))
-        return {"status": "ok", "contract_version": "1"}
+        return {"status": "ok", "contract_version": "range-v1"}
 
     @app.post(prefix + "/tasks", status_code=202)
-    def submit(body: SubmitTask, source: str = source_dep) -> dict:
-        if body.source_system != source:
-            raise HTTPException(403, "Source does not match credential")
+    def submit(
+        body: SubmitTask,
+        idempotency_key: Annotated[str, Header(min_length=1, max_length=160)],
+        source: str = source_dep,
+    ) -> dict:
         payload = json_value(body)
         digest = fingerprint(payload)
 
-        def existing(session) -> Task | None:
+        def existing(session):
             return session.scalar(
-                select(Task).where(Task.source_system == source, Task.external_task_id == body.external_task_id)
+                select(Task).where(Task.source_system == source, Task.external_task_id == idempotency_key)
             )
 
         try:
             with database.sessions.begin() as session:
                 task = existing(session)
-                if task is None:
-                    task_id, run_id = new_id(), new_id()
-                    task = Task(
-                        id=task_id,
-                        source_system=source,
-                        external_task_id=body.external_task_id,
-                        payload=payload,
-                        content_hash=digest,
-                        current_run_id=run_id,
+                if task is not None:
+                    if task.content_hash != digest:
+                        conflict("Idempotency key already exists with different content")
+                    return task_view(session, task)
+                hospitals = [
+                    h
+                    for h in session.scalars(select(HospitalScope))
+                    if body.hospital_scope in [h.id, h.name, *h.aliases]
+                ]
+                if len(hospitals) != 1:
+                    raise HTTPException(422, "医院范围未登记或存在歧义")
+                hospital = hospitals[0]
+                if source not in hospital.allowed_sources:
+                    raise HTTPException(403, "来源无权核验该医院范围")
+                rules = list(
+                    session.scalars(
+                        select(RuleDefinition)
+                        .where((RuleDefinition.code == body.rule) | (RuleDefinition.name == body.rule))
+                        .with_for_update()
                     )
-                    session.add(task)
-                    session.flush()
-                    session.add(Run(id=run_id, task_id=task_id, flow_id=settings.flow_id, policy=policy()))
-                    session.flush()
-                elif task.content_hash != digest:
-                    conflict("External task ID already exists with different content")
+                )
+                if len(rules) != 1 or not rules[0].active_binding_id:
+                    raise HTTPException(422, "规则未登记、存在歧义或尚未启用")
+                rule = rules[0]
+                binding = session.get(ExecutionBinding, rule.active_binding_id)
+                release = session.get(RuleRelease, binding.release_id)
+                if binding.config["simulated"] != settings.demo_mode:
+                    conflict("Simulation mode differs from active release")
+                task_id, run_id = new_id(), new_id()
+                task = Task(
+                    id=task_id,
+                    source_system=source,
+                    external_task_id=idempotency_key,
+                    payload={
+                        **payload,
+                        "hospitals": hospital.members,
+                        "hospital_mapping": {"id": hospital.id, "revision": hospital.revision},
+                        "rule_code": rule.code,
+                    },
+                    content_hash=digest,
+                    current_run_id=run_id,
+                )
+                session.add(task)
+                session.flush()
+                session.add(
+                    Run(
+                        id=run_id,
+                        task_id=task_id,
+                        release_id=release.id,
+                        binding_id=binding.id,
+                        policy={
+                            "catalog_mapping": release.package["catalog_mapping"],
+                            "rule_version": f"{rule.code}@{release.version}",
+                            "currency": release.package["currency"],
+                            "money_tolerance": release.package["configurations"]["07"]["money_tolerance"],
+                            "simulated": release.package["simulated"],
+                        },
+                    )
+                )
+                session.flush()
                 return task_view(session, task)
         except IntegrityError:
-            # Concurrent inserts are serialized by the database's source/reference constraint.
             with database.sessions() as session:
                 task = existing(session)
                 if task is None:
                     raise
                 if task.content_hash != digest:
-                    conflict("External task ID already exists with different content")
+                    conflict("Idempotency key already exists with different content")
                 return task_view(session, task)
 
     @app.get(prefix + "/tasks/by-reference/{external_task_id}")
@@ -180,60 +239,39 @@ def create_app(settings: VerificationSettings | None = None, database: Database 
         source: str = source_dep,
     ) -> list[dict]:
         with database.sessions() as session:
-            task_for_source(session, str(task_id), source)
-            return [
-                run_view(run)
-                for run in session.scalars(
-                    select(Run)
-                    .where(Run.task_id == str(task_id))
-                    .order_by(Run.created_at.desc(), Run.id)
-                    .limit(limit)
-                    .offset(offset)
-                )
-            ]
+            return task_runs(session, task_for_source(session, str(task_id), source), limit, offset)
 
     @app.get(prefix + "/tasks/{task_id}/results")
     def results(
         task_id: UUID,
         run_id: UUID | None = None,
         version: Annotated[int, Query(ge=1)] = 1,
+        limit: Annotated[int, Query(ge=1, le=200)] = 50,
+        offset: Annotated[int, Query(ge=0)] = 0,
         source: str = source_dep,
     ) -> dict:
         with database.sessions() as session:
-            task = task_for_source(session, str(task_id), source)
-            view = task_view(session, task, str(run_id) if run_id else None)
-            result = session.scalar(select(Result).where(Result.run_id == view["run_id"], Result.version == version))
-            return {
-                **view,
-                "available": result is not None,
-                "result_id": result.id if result else None,
-                "result_version": result.version if result else None,
-                "result": result.payload if result else None,
-            }
+            return task_results(
+                session,
+                task_for_source(session, str(task_id), source),
+                run_id,
+                version=version,
+                limit=limit,
+                offset=offset,
+            )
 
     @app.get(prefix + "/tasks/{task_id}/evidence")
-    def evidence(task_id: UUID, run_id: UUID | None = None, source: str = source_dep) -> dict:
+    def evidence(
+        task_id: UUID,
+        run_id: UUID | None = None,
+        limit: Annotated[int, Query(ge=1, le=200)] = 50,
+        offset: Annotated[int, Query(ge=0)] = 0,
+        source: str = source_dep,
+    ) -> dict:
         with database.sessions() as session:
-            task = task_for_source(session, str(task_id), source)
-            view = task_view(session, task, str(run_id) if run_id else None)
-            rid = view["run_id"]
-            artifacts = [
-                {"artifact_id": a.id, "kind": a.kind, "key": a.key, "payload": a.payload}
-                for a in session.scalars(select(Artifact).where(Artifact.run_id == rid))
-            ]
-            requests = [
-                {
-                    "request_id": r.id,
-                    "scope_id": r.scope_id,
-                    "input": r.payload,
-                    "status": r.status,
-                    "model_job_id": r.model_job_id,
-                    "raw_response": r.raw_response,
-                    "error": r.error,
-                }
-                for r in session.scalars(select(ModelRequest).where(ModelRequest.run_id == rid))
-            ]
-            return {"task_id": str(task_id), "run_id": rid, "artifacts": artifacts, "model_requests": requests}
+            return task_evidence(
+                session, task_for_source(session, str(task_id), source), run_id, limit=limit, offset=offset
+            )
 
     @app.post(prefix + "/tasks/{task_id}/runs/{run_id}/confirmation")
     def confirm(task_id: UUID, run_id: UUID, body: ManualAction, source: str = source_dep) -> dict:
@@ -250,17 +288,22 @@ def create_app(settings: VerificationSettings | None = None, database: Database 
             return run_view(run)
 
     @app.post(prefix + "/tasks/{task_id}/runs", status_code=202)
-    def rerun(task_id: UUID, body: ManualAction, source: str = source_dep) -> dict:
+    def rerun(task_id: UUID, body: RerunAction, source: str = source_dep) -> dict:
         with database.sessions.begin() as session:
             task = task_for_source(session, str(task_id), source)
             old = session.get(Run, task.current_run_id)
             if old.status not in {"completed", "partial_failed", "failed"}:
                 conflict("Confirm the old execution has ended before requesting a new run")
+            snapshot = session.get(SettlementSnapshot, old.snapshot_id) if old.snapshot_id else None
+            if not (snapshot and snapshot.sealed) and not body.refetch_unsealed:
+                conflict("原结算快照尚未封存，须明确选择重新取数")
             run = Run(
                 id=new_id(),
                 task_id=task.id,
-                flow_id=settings.flow_id,
-                policy=policy(),
+                release_id=old.release_id,
+                binding_id=old.binding_id,
+                snapshot_id=snapshot.id if snapshot and snapshot.sealed else None,
+                policy=old.policy,
                 manual_action={**json_value(body), "previous_run_id": old.id, "source_system": source},
             )
             session.add(run)
@@ -275,7 +318,17 @@ def create_app(settings: VerificationSettings | None = None, database: Database 
             if run is None:
                 raise HTTPException(404, "Run not found")
             task = session.get(Task, run.task_id)
-            return {**run_view(run), "task": task.payload, "policy": run.policy, "current_run_id": task.current_run_id}
+            release = session.get(RuleRelease, run.release_id)
+            binding = session.get(ExecutionBinding, run.binding_id)
+            return {
+                **run_view(run),
+                "task": task.payload,
+                "policy": run.policy,
+                "current_run_id": task.current_run_id,
+                "configurations": release.package["configurations"],
+                "binding": binding.config,
+                "content_hash": release.content_hash,
+            }
 
     @app.post(prefix + "/internal/runs/{run_id}/stages", dependencies=internal)
     def stage(run_id: UUID, body: StageUpdate) -> dict:
@@ -350,55 +403,11 @@ def create_app(settings: VerificationSettings | None = None, database: Database 
             run.finished_at = now()
         return {"saved": True}
 
-    @app.post(prefix + "/internal/runs/{run_id}/results", dependencies=internal)
-    def finish(run_id: UUID, body: FinishRun) -> dict:
-        payload = json_value(body)
-        with database.sessions.begin() as session:
-            # Lock the task before checking for an idempotent result receipt.
-            task = session.scalar(
-                select(Task).join(Run, Run.task_id == Task.id).where(Run.id == str(run_id)).with_for_update()
-            )
-            if task is None:
-                raise HTTPException(404, "Run not found")
-            result = session.scalar(select(Result).where(Result.run_id == str(run_id), Result.version == 1))
-            if result:
-                if result.payload != payload:
-                    conflict("Result version is immutable")
-                return {"saved": True, "result_id": result.id, "result_version": 1, "run_id": str(run_id)}
-            run = active_run(session, str(run_id))
-            if run.stage != "08" or run.stage_event != "started":
-                conflict("Results require stage 08")
-            details = [detail for item in body.results for detail in item.get("detail_ids", [])]
-            if sorted(details) != sorted(task.payload["detail_ids"]):
-                conflict("Results must cover each accepted settlement detail exactly once")
-            saved = {a.kind: a.payload for a in session.scalars(select(Artifact).where(Artifact.run_id == run.id))}
-            if not {"settlement_snapshot", "manifest", "comparison"}.issubset(saved):
-                conflict("Required snapshots, manifests and comparison evidence must be saved first")
-            if saved["comparison"] != payload or body.rule_version != run.policy["rule_version"]:
-                conflict("Result does not match the saved comparison or pinned rules")
-            if body.simulated != run.policy["simulated"]:
-                conflict("Simulation marker must match the accepted run")
-            unresolved = session.scalar(
-                select(ModelRequest.id).where(
-                    ModelRequest.run_id == run.id, ModelRequest.status.in_(["registered", "needs_confirmation"])
-                )
-            )
-            if unresolved:
-                conflict("A recognition request still needs confirmation")
-            states = [item.get("execution_status") for item in body.results]
-            if any(state not in {"completed", "failed", "partial_failed"} for state in states):
-                conflict("Invalid per-scope execution status")
-            run.status = (
-                "failed"
-                if all(s == "failed" for s in states)
-                else "partial_failed"
-                if any(s != "completed" for s in states)
-                else "completed"
-            )
-            run.stage_event, run.finished_at = "finished", now()
-            result = Result(run_id=run.id, version=1, payload=payload)
-            session.add(result)
-            session.flush()
-            return {"saved": True, "result_id": result.id, "result_version": 1, "run_id": run.id}
+    from langflow.verification.release_api import register_release_routes
+    from langflow.verification.scope_api import register_scope_routes
+    from langflow.verification.task_queries import register_task_query_routes
 
+    register_task_query_routes(app, database, source_dep, internal)
+    register_scope_routes(app, database, internal)
+    register_release_routes(app, database, settings, internal)
     return app

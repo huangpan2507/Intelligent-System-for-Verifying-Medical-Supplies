@@ -41,6 +41,7 @@ class VerificationStageComponent(Component):
         "缺失": "missing",
     }
     STAGE_FIELDS = {
+        "01": ["settlement_api_url", "page_size"],
         "02": ["filter_conditions", "filter_match", "filter_missing"],
         "03": ["studies_url", "days_before", "days_after", "modalities"],
         "04": ["body_field", "body_rules"],
@@ -49,8 +50,8 @@ class VerificationStageComponent(Component):
         "07": ["comparisons", "quantity_tolerance", "money_tolerance"],
     }
     STAGE_DESCRIPTIONS = {
-        "00": "任务入口：核对已受理并领取的任务编号、运行编号和明细范围。输入由Worker提供。",
-        "01": "接口查询：按任务明细编号获取结算数据并保存快照。接口地址和凭据由部署配置提供。",
+        "00": "任务入口：核对已受理运行、医院与医保结算范围、发布版本及作业登记。输入由Worker提供。",
+        "01": "结算快照：按任务的医院及医保结算时间分页查询；全部页成功后封存实际明细。重跑默认复用已封存快照。",
         "02": "字段筛选：在医保耗材基础范围内，按字段、运算符和目标值组合附加条件。排除原因会保留。",
         "03": "检查关联：GET检查列表，取得study_primary_id；按患者、医院、就诊、时间窗及模态关联后传给部位初筛。",
         "04": "部位初筛：选择文本字段并维护类别词表，按完整文本匹配、忽略大小写；未命中保留待核实。",
@@ -67,6 +68,21 @@ class VerificationStageComponent(Component):
             input_types=["Data", "Message"],
             required=True,
             info="由上一步连线传入任务、数据和证据，无需手工填写。",
+        ),
+        StrInput(
+            name="settlement_api_url",
+            display_name="结算范围查询 URL（POST）",
+            value="",
+            show=False,
+            input_types=[],
+            info="使用规范化范围查询契约。留空时在发布检查阶段解析为部署地址并固定；凭据由部署提供。",
+        ),
+        IntInput(
+            name="page_size",
+            display_name="每页结算条数",
+            value=100,
+            show=False,
+            info="1—200。分页仅控制查询批量，不拆分业务核验单元。",
         ),
         TableInput(
             name="filter_conditions",
@@ -124,7 +140,7 @@ class VerificationStageComponent(Component):
             display_name="结算前查询天数",
             value=30,
             show=False,
-            info="0—365天；画布配置优先于提交任务中的同名时间窗参数。",
+            info="0—365天；随规则发布版本固定，不扩大医保结算范围。",
         ),
         IntInput(name="days_after", display_name="结算后查询天数", value=30, show=False, info="0—365天。"),
         MultiselectInput(
@@ -217,6 +233,8 @@ class VerificationStageComponent(Component):
     outputs = [Output(name="verified_context", display_name="核验上下文", method="execute_stage")]
 
     def business_configuration(self):
+        if self.stage == "01":
+            return {"settlement_api_url": self.settlement_api_url, "page_size": self.page_size}
         if self.stage == "02":
             return {
                 "conditions": [
@@ -266,12 +284,17 @@ class VerificationStageComponent(Component):
             try:
                 value = json.loads(self.context.text)
             except (json.JSONDecodeError, TypeError) as exc:
-                msg = "任务输入须为已受理运行的JSON，包含task_id、run_id和detail_ids；请先通过核验API提交任务。"
+                msg = "任务输入须为已受理运行的JSON，包含task_id、run_id、release_id和job_id；请先通过核验API提交任务。"
                 raise ValueError(msg) from exc
         else:
             value = self.context.data
-        async with httpx.AsyncClient(follow_redirects=False) as http:
-            context = await Pipeline(FlowSettings(), http).execute(self.stage, value, self.business_configuration())
+        from langflow.verification.validation import component_runtime
+
+        override = component_runtime.get()
+        settings = override[0] if override else FlowSettings()
+        options = {"transport": override[1]} if override else {}
+        async with httpx.AsyncClient(follow_redirects=False, **options) as http:
+            context = await Pipeline(settings, http).execute(self.stage, value, self.business_configuration())
         self.status = context.get("receipt", {"run_id": context["run_id"], "stage": self.stage})
         return Data(data=context)
 

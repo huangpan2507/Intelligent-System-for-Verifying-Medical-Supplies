@@ -13,7 +13,7 @@
                 "list": false,
                 "show": true,
                 "multiline": true,
-                "value": "# ruff: noqa: RUF001 - Chinese business labels use Chinese punctuation.\nfrom lfx.custom import Component\nfrom lfx.io import MultilineInput, Output\nfrom lfx.schema.message import Message\n\n\nclass VerificationTaskInput(Component):\n    display_name = \"Chat Input 任务输入\"\n    description = \"传入已受理运行的任务JSON，连接00任务入口校验。此节点不调用大模型。\"\n    icon = \"MessagesSquare\"\n    name = \"VerificationTaskInput\"\n    priority = 0\n\n    inputs = [\n        MultilineInput(\n            name=\"input_value\",\n            display_name=\"任务JSON\",\n            value=\"\",\n            input_types=[],\n            info=\"由Worker传入task_id、run_id和detail_ids。手工运行须使用已受理且已领取的运行，不能填写聊天文本。\",\n        ),\n    ]\n    outputs = [Output(name=\"message\", display_name=\"任务消息\", method=\"message_response\")]\n\n    def __init__(self, **kwargs):\n        super().__init__(**kwargs)\n        self.is_input = True\n\n    async def message_response(self) -> Message:\n        return Message(text=self.input_value)\n",
+                "value": "# ruff: noqa: RUF001 - Chinese business labels use Chinese punctuation.\nfrom lfx.custom import Component\nfrom lfx.io import MultilineInput, Output\nfrom lfx.schema.message import Message\n\n\nclass VerificationTaskInput(Component):\n    display_name = \"Chat Input 任务输入\"\n    description = \"传入已受理运行的任务JSON，连接00任务入口校验。此节点不调用大模型。\"\n    icon = \"MessagesSquare\"\n    name = \"VerificationTaskInput\"\n    priority = 0\n\n    inputs = [\n        MultilineInput(\n            name=\"input_value\",\n            display_name=\"任务JSON\",\n            value=\"\",\n            input_types=[],\n            info=\"由Worker传入task_id、run_id、release_id和job_id。手工运行须使用已受理且已领取的运行，不能填写聊天文本。\",\n        ),\n    ]\n    outputs = [Output(name=\"message\", display_name=\"任务消息\", method=\"message_response\")]\n\n    def __init__(self, **kwargs):\n        super().__init__(**kwargs)\n        self.is_input = True\n\n    async def message_response(self) -> Message:\n        return Message(text=self.input_value)\n",
                 "fileTypes": [],
                 "file_path": "",
                 "password": false,
@@ -45,7 +45,7 @@
                 "api_editable": false,
                 "input_types": [],
                 "dynamic": false,
-                "info": "由Worker传入task_id、run_id和detail_ids。手工运行须使用已受理且已领取的运行，不能填写聊天文本。",
+                "info": "由Worker传入task_id、run_id、release_id和job_id。手工运行须使用已受理且已领取的运行，不能填写聊天文本。",
                 "title_case": false,
                 "track_in_telemetry": false,
                 "copy_field": false,
@@ -151,7 +151,7 @@
                 "title_case": false
               }
             },
-            "description": "任务入口：核对已受理并领取的任务编号、运行编号和明细范围。输入由Worker提供。",
+            "description": "任务入口：核对已受理运行、医院与医保结算范围、发布版本及作业登记。输入由Worker提供。",
             "icon": "ClipboardCheck",
             "base_classes": [
               "JSON"
@@ -244,9 +244,53 @@
                 "info": "",
                 "load_from_db": false,
                 "title_case": false
+              },
+              "page_size": {
+                "tool_mode": false,
+                "trace_as_metadata": true,
+                "list": false,
+                "list_add_label": "Add More",
+                "override_skip": false,
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "page_size",
+                "value": 100,
+                "display_name": "每页结算条数",
+                "advanced": false,
+                "api_editable": false,
+                "dynamic": false,
+                "info": "1—200。分页仅控制查询批量，不拆分业务核验单元。",
+                "title_case": false,
+                "track_in_telemetry": true,
+                "type": "int",
+                "_input_type": "IntInput"
+              },
+              "settlement_api_url": {
+                "tool_mode": false,
+                "trace_as_metadata": true,
+                "load_from_db": false,
+                "list": false,
+                "list_add_label": "Add More",
+                "override_skip": false,
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "settlement_api_url",
+                "value": "",
+                "display_name": "结算范围查询 URL（POST）",
+                "advanced": false,
+                "api_editable": false,
+                "input_types": [],
+                "dynamic": false,
+                "info": "使用规范化范围查询契约。留空时在发布检查阶段解析为部署地址并固定；凭据由部署提供。",
+                "title_case": false,
+                "track_in_telemetry": false,
+                "type": "str",
+                "_input_type": "StrInput"
               }
             },
-            "description": "接口查询：按任务明细编号获取结算数据并保存快照。接口地址和凭据由部署配置提供。",
+            "description": "结算快照：按任务的医院及医保结算时间分页查询；全部页成功后封存实际明细。重跑默认复用已封存快照。",
             "icon": "Database",
             "base_classes": [
               "JSON"
@@ -605,7 +649,7 @@
                 "advanced": false,
                 "api_editable": false,
                 "dynamic": false,
-                "info": "0—365天；画布配置优先于提交任务中的同名时间窗参数。",
+                "info": "0—365天；随规则发布版本固定，不扩大医保结算范围。",
                 "title_case": false,
                 "track_in_telemetry": true,
                 "type": "int",
@@ -1446,32 +1490,6 @@
     ],
     "edges": [
       {
-        "source": "VerificationStudyAssociation-03",
-        "target": "VerificationBodyScreening-04",
-        "data": {
-          "sourceHandle": {
-            "dataType": "ext:verification:VerificationStudyAssociation@extra",
-            "id": "VerificationStudyAssociation-03",
-            "name": "verified_context",
-            "output_types": [
-              "JSON"
-            ]
-          },
-          "targetHandle": {
-            "fieldName": "context",
-            "id": "VerificationBodyScreening-04",
-            "inputTypes": [
-              "Data",
-              "Message"
-            ],
-            "type": "other"
-          }
-        },
-        "id": "verification-VerificationStudyAssociation-03-VerificationBodyScreening-04",
-        "sourceHandle": "{œdataTypeœ:œext:verification:VerificationStudyAssociation@extraœ,œidœ:œVerificationStudyAssociation-03œ,œnameœ:œverified_contextœ,œoutput_typesœ:[œJSONœ]}",
-        "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationBodyScreening-04œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
-      },
-      {
         "source": "VerificationSettlementSnapshot-01",
         "target": "VerificationConsumableFilter-02",
         "data": {
@@ -1496,58 +1514,6 @@
         "id": "verification-VerificationSettlementSnapshot-01-VerificationConsumableFilter-02",
         "sourceHandle": "{œdataTypeœ:œext:verification:VerificationSettlementSnapshot@extraœ,œidœ:œVerificationSettlementSnapshot-01œ,œnameœ:œverified_contextœ,œoutput_typesœ:[œJSONœ]}",
         "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationConsumableFilter-02œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
-      },
-      {
-        "source": "VerificationResultComparison-07",
-        "target": "VerificationResultSave-08",
-        "data": {
-          "sourceHandle": {
-            "dataType": "ext:verification:VerificationResultComparison@extra",
-            "id": "VerificationResultComparison-07",
-            "name": "verified_context",
-            "output_types": [
-              "JSON"
-            ]
-          },
-          "targetHandle": {
-            "fieldName": "context",
-            "id": "VerificationResultSave-08",
-            "inputTypes": [
-              "Data",
-              "Message"
-            ],
-            "type": "other"
-          }
-        },
-        "id": "verification-VerificationResultComparison-07-VerificationResultSave-08",
-        "sourceHandle": "{œdataTypeœ:œext:verification:VerificationResultComparison@extraœ,œidœ:œVerificationResultComparison-07œ,œnameœ:œverified_contextœ,œoutput_typesœ:[œJSONœ]}",
-        "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationResultSave-08œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
-      },
-      {
-        "source": "VerificationModelRecognition-06",
-        "target": "VerificationResultComparison-07",
-        "data": {
-          "sourceHandle": {
-            "dataType": "ext:verification:VerificationModelRecognition@extra",
-            "id": "VerificationModelRecognition-06",
-            "name": "verified_context",
-            "output_types": [
-              "JSON"
-            ]
-          },
-          "targetHandle": {
-            "fieldName": "context",
-            "id": "VerificationResultComparison-07",
-            "inputTypes": [
-              "Data",
-              "Message"
-            ],
-            "type": "other"
-          }
-        },
-        "id": "verification-VerificationModelRecognition-06-VerificationResultComparison-07",
-        "sourceHandle": "{œdataTypeœ:œext:verification:VerificationModelRecognition@extraœ,œidœ:œVerificationModelRecognition-06œ,œnameœ:œverified_contextœ,œoutput_typesœ:[œJSONœ]}",
-        "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationResultComparison-07œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
       },
       {
         "source": "VerificationConsumableFilter-02",
@@ -1576,20 +1542,20 @@
         "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationStudyAssociation-03œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
       },
       {
-        "source": "VerificationTaskInput-Verification",
-        "target": "VerificationTaskValidation-00",
+        "source": "VerificationBodyScreening-04",
+        "target": "VerificationImageManifest-05",
         "data": {
           "sourceHandle": {
-            "dataType": "ext:verification:VerificationTaskInput@extra",
-            "id": "VerificationTaskInput-Verification",
-            "name": "message",
+            "dataType": "ext:verification:VerificationBodyScreening@extra",
+            "id": "VerificationBodyScreening-04",
+            "name": "verified_context",
             "output_types": [
-              "Message"
+              "JSON"
             ]
           },
           "targetHandle": {
             "fieldName": "context",
-            "id": "VerificationTaskValidation-00",
+            "id": "VerificationImageManifest-05",
             "inputTypes": [
               "Data",
               "Message"
@@ -1597,9 +1563,35 @@
             "type": "other"
           }
         },
-        "id": "verification-VerificationTaskInput-Verification-VerificationTaskValidation-00",
-        "sourceHandle": "{œdataTypeœ:œext:verification:VerificationTaskInput@extraœ,œidœ:œVerificationTaskInput-Verificationœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
-        "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationTaskValidation-00œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
+        "id": "verification-VerificationBodyScreening-04-VerificationImageManifest-05",
+        "sourceHandle": "{œdataTypeœ:œext:verification:VerificationBodyScreening@extraœ,œidœ:œVerificationBodyScreening-04œ,œnameœ:œverified_contextœ,œoutput_typesœ:[œJSONœ]}",
+        "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationImageManifest-05œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
+      },
+      {
+        "source": "VerificationStudyAssociation-03",
+        "target": "VerificationBodyScreening-04",
+        "data": {
+          "sourceHandle": {
+            "dataType": "ext:verification:VerificationStudyAssociation@extra",
+            "id": "VerificationStudyAssociation-03",
+            "name": "verified_context",
+            "output_types": [
+              "JSON"
+            ]
+          },
+          "targetHandle": {
+            "fieldName": "context",
+            "id": "VerificationBodyScreening-04",
+            "inputTypes": [
+              "Data",
+              "Message"
+            ],
+            "type": "other"
+          }
+        },
+        "id": "verification-VerificationStudyAssociation-03-VerificationBodyScreening-04",
+        "sourceHandle": "{œdataTypeœ:œext:verification:VerificationStudyAssociation@extraœ,œidœ:œVerificationStudyAssociation-03œ,œnameœ:œverified_contextœ,œoutput_typesœ:[œJSONœ]}",
+        "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationBodyScreening-04œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
       },
       {
         "source": "VerificationImageManifest-05",
@@ -1628,32 +1620,6 @@
         "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationModelRecognition-06œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
       },
       {
-        "source": "VerificationBodyScreening-04",
-        "target": "VerificationImageManifest-05",
-        "data": {
-          "sourceHandle": {
-            "dataType": "ext:verification:VerificationBodyScreening@extra",
-            "id": "VerificationBodyScreening-04",
-            "name": "verified_context",
-            "output_types": [
-              "JSON"
-            ]
-          },
-          "targetHandle": {
-            "fieldName": "context",
-            "id": "VerificationImageManifest-05",
-            "inputTypes": [
-              "Data",
-              "Message"
-            ],
-            "type": "other"
-          }
-        },
-        "id": "verification-VerificationBodyScreening-04-VerificationImageManifest-05",
-        "sourceHandle": "{œdataTypeœ:œext:verification:VerificationBodyScreening@extraœ,œidœ:œVerificationBodyScreening-04œ,œnameœ:œverified_contextœ,œoutput_typesœ:[œJSONœ]}",
-        "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationImageManifest-05œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
-      },
-      {
         "source": "VerificationTaskValidation-00",
         "target": "VerificationSettlementSnapshot-01",
         "data": {
@@ -1678,6 +1644,84 @@
         "id": "verification-VerificationTaskValidation-00-VerificationSettlementSnapshot-01",
         "sourceHandle": "{œdataTypeœ:œext:verification:VerificationTaskValidation@extraœ,œidœ:œVerificationTaskValidation-00œ,œnameœ:œverified_contextœ,œoutput_typesœ:[œJSONœ]}",
         "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationSettlementSnapshot-01œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
+      },
+      {
+        "source": "VerificationModelRecognition-06",
+        "target": "VerificationResultComparison-07",
+        "data": {
+          "sourceHandle": {
+            "dataType": "ext:verification:VerificationModelRecognition@extra",
+            "id": "VerificationModelRecognition-06",
+            "name": "verified_context",
+            "output_types": [
+              "JSON"
+            ]
+          },
+          "targetHandle": {
+            "fieldName": "context",
+            "id": "VerificationResultComparison-07",
+            "inputTypes": [
+              "Data",
+              "Message"
+            ],
+            "type": "other"
+          }
+        },
+        "id": "verification-VerificationModelRecognition-06-VerificationResultComparison-07",
+        "sourceHandle": "{œdataTypeœ:œext:verification:VerificationModelRecognition@extraœ,œidœ:œVerificationModelRecognition-06œ,œnameœ:œverified_contextœ,œoutput_typesœ:[œJSONœ]}",
+        "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationResultComparison-07œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
+      },
+      {
+        "source": "VerificationTaskInput-Verification",
+        "target": "VerificationTaskValidation-00",
+        "data": {
+          "sourceHandle": {
+            "dataType": "ext:verification:VerificationTaskInput@extra",
+            "id": "VerificationTaskInput-Verification",
+            "name": "message",
+            "output_types": [
+              "Message"
+            ]
+          },
+          "targetHandle": {
+            "fieldName": "context",
+            "id": "VerificationTaskValidation-00",
+            "inputTypes": [
+              "Data",
+              "Message"
+            ],
+            "type": "other"
+          }
+        },
+        "id": "verification-VerificationTaskInput-Verification-VerificationTaskValidation-00",
+        "sourceHandle": "{œdataTypeœ:œext:verification:VerificationTaskInput@extraœ,œidœ:œVerificationTaskInput-Verificationœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
+        "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationTaskValidation-00œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
+      },
+      {
+        "source": "VerificationResultComparison-07",
+        "target": "VerificationResultSave-08",
+        "data": {
+          "sourceHandle": {
+            "dataType": "ext:verification:VerificationResultComparison@extra",
+            "id": "VerificationResultComparison-07",
+            "name": "verified_context",
+            "output_types": [
+              "JSON"
+            ]
+          },
+          "targetHandle": {
+            "fieldName": "context",
+            "id": "VerificationResultSave-08",
+            "inputTypes": [
+              "Data",
+              "Message"
+            ],
+            "type": "other"
+          }
+        },
+        "id": "verification-VerificationResultComparison-07-VerificationResultSave-08",
+        "sourceHandle": "{œdataTypeœ:œext:verification:VerificationResultComparison@extraœ,œidœ:œVerificationResultComparison-07œ,œnameœ:œverified_contextœ,œoutput_typesœ:[œJSONœ]}",
+        "targetHandle": "{œfieldNameœ:œcontextœ,œidœ:œVerificationResultSave-08œ,œinputTypesœ:[œDataœ,œMessageœ],œtypeœ:œotherœ}"
       }
     ]
   },

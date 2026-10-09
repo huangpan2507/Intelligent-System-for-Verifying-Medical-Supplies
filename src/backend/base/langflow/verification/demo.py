@@ -6,45 +6,59 @@ import secrets
 from datetime import datetime
 
 from fastapi import Depends, FastAPI, Header, HTTPException
-from pydantic import BaseModel, Field
 
 from langflow.verification.api import Credentials  # noqa: TC001 - FastAPI resolves this dependency at runtime.
-from langflow.verification.schemas import Identifier
+from langflow.verification.schemas import SettlementQuery  # noqa: TC001 - FastAPI runtime annotation.
 from langflow.verification.settings import MIN_TOKEN_LENGTH, FlowSettings
 
 
-def example_task(reference: str = "demo-001") -> dict:
+def example_task() -> dict:
     return {
-        "source_system": "demo-regulator",
-        "external_task_id": reference,
-        "detail_ids": ["detail-hip", "detail-knee"],
-        "config": {
-            "reviewed_scopes": [
-                {
-                    "scope_id": "hip",
-                    "detail_ids": ["detail-hip"],
-                    "study_ids": ["study-hip"],
-                    "category": "hip_prosthesis",
-                    "unit": "set",
-                    "target_confirmed": True,
-                    "coverage_confirmed": True,
-                    "counting_validated": True,
-                    "evidence_ref": "synthetic-review:hip",
-                },
-                {
-                    "scope_id": "knee",
-                    "detail_ids": ["detail-knee"],
-                    "study_ids": ["study-knee"],
-                    "category": "knee_prosthesis",
-                    "unit": "set",
-                    "target_confirmed": True,
-                    "coverage_confirmed": True,
-                    "counting_validated": True,
-                    "evidence_ref": "synthetic-review:knee",
-                },
-            ]
+        "hospital_scope": "常州市第一人民医院",
+        "settlement_time_range": {
+            "start_inclusive": "2024-06-01T00:00:00+08:00",
+            "end_exclusive": "2025-09-01T00:00:00+08:00",
         },
+        "rule": "高值耗材智能体",
     }
+
+
+def seed_demo(database) -> None:
+    from langflow.verification.database import HospitalScope, ReviewDetail, ReviewRecord
+
+    with database.sessions.begin() as session:
+        if session.get(HospitalScope, "demo-changzhou") is None:
+            session.add(
+                HospitalScope(
+                    id="demo-changzhou",
+                    name="常州市第一人民医院",
+                    aliases=["demo-changzhou"],
+                    members=[{"settlement_id": "synthetic-hospital", "organ_code": "synthetic-hospital"}],
+                    allowed_sources=["demo-regulator"],
+                )
+            )
+        for joint in ["hip", "knee"]:
+            if session.get(ReviewRecord, joint):
+                continue
+            ids = ["detail-hip", "detail-hip-extra"] if joint == "hip" else ["detail-knee"]
+            record = ReviewRecord(
+                id=joint,
+                simulated=True,
+                payload={
+                    "scope_id": joint,
+                    "detail_ids": ids,
+                    "study_ids": [f"study-{joint}"],
+                    "category": f"{joint}_prosthesis",
+                    "unit": "set",
+                    "target_confirmed": True,
+                    "coverage_confirmed": True,
+                    "counting_validated": True,
+                    "evidence_ref": f"synthetic-review:{joint}:v1",
+                },
+            )
+            session.add(record)
+            session.flush()
+            session.add_all([ReviewDetail(detail_id=key, review_id=joint) for key in ids])
 
 
 def settlement_fixture(joint: str) -> dict:
@@ -63,8 +77,8 @@ def settlement_fixture(joint: str) -> dict:
         "unit": "set",
         "unit_price": "10000.00" if hip else "5000.00",
         "amount": "20000.00" if hip else "5000.00",
-        "settlement_time": "2026-09-20T10:00:00+08:00",
-        "update_time": "2026-09-21T10:00:00+08:00",
+        "settlement_time": "2025-08-20T10:00:00+08:00",
+        "update_time": "2025-08-21T10:00:00+08:00",
         "is_reversal": False,
         "raw": {"simulated": True},
     }
@@ -78,14 +92,10 @@ def study_fixture(joint: str) -> dict:
         "encounter_id": f"synthetic-visit-{joint}",
         "encounter_type": "inpatient",
         "modality": "DR",
-        "checked_at": "2026-09-19T10:00:00+08:00",
+        "checked_at": "2025-08-19T10:00:00+08:00",
         "project_name": f"Synthetic {joint} radiograph",
         "body_part": joint,
     }
-
-
-class SettlementQuery(BaseModel):
-    detail_ids: list[Identifier] = Field(min_length=1, max_length=100)
 
 
 def create_demo_app(settings: FlowSettings | None = None) -> FastAPI:
@@ -110,8 +120,34 @@ def create_demo_app(settings: FlowSettings | None = None) -> FastAPI:
 
     @app.post("/v1/settlements/query", dependencies=[Depends(authenticate)])
     def settlements(body: SettlementQuery) -> dict:
-        items = [settlement_fixture(joint) for joint in ("hip", "knee")]
-        return {"simulated": True, "items": [row for row in items if row["detail_id"] in body.detail_ids]}
+        from langflow.verification.database import fingerprint
+
+        rows = [settlement_fixture(joint) for joint in ("hip", "knee")]
+        rows[0]["quantity"], rows[0]["amount"] = "1", "10000.00"
+        rows.append({**rows[0], "detail_id": "detail-hip-extra"})
+        # Same unit deliberately spans pages; the adapter must group across page boundaries.
+        rows.sort(key=lambda row: row["detail_id"])
+        token = fingerprint({"rows": rows})
+        if body.snapshot_token and body.snapshot_token != token:
+            raise HTTPException(409, "Synthetic source snapshot changed")
+        filtered = [
+            r
+            for r in rows
+            if r["hospital_id"] in body.hospital_ids
+            and body.settlement_time_range.start_inclusive
+            <= datetime.fromisoformat(r["settlement_time"])
+            < body.settlement_time_range.end_exclusive
+        ]
+        offset = int(body.cursor or "0")
+        items = filtered[offset : offset + body.limit]
+        next_cursor = str(offset + len(items)) if offset + len(items) < len(filtered) else None
+        return {
+            "simulated": True,
+            "items": items,
+            "snapshot_token": token,
+            "consistency": "source_snapshot",
+            "next_cursor": next_cursor,
+        }
 
     @app.get("/v1/studies", dependencies=[Depends(authenticate)])
     def studies(

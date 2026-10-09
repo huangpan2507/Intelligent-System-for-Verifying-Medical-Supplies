@@ -13,17 +13,18 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 def main() -> None:
+    config = dotenv_values(ROOT / "deploy/verification/.env")
     parser = argparse.ArgumentParser()
-    parser.add_argument("--url", default="http://127.0.0.1:8080")
+    api_port = int(config.get("VERIFICATION_SOURCE_API_PORT") or "8081")
+    parser.add_argument("--url", default=f"http://127.0.0.1:{api_port}")
     parser.add_argument("--reference", default="demo-001")
     parser.add_argument("--timeout", type=float, default=120)
     parser.add_argument("--output-dir", type=Path, help="Save this run's request, result and evidence JSON")
     args = parser.parse_args()
-    config = dotenv_values(ROOT / "deploy/verification/.env")
     token = json.loads(config["VERIFICATION_CLIENTS"])["demo-regulator"]
     with httpx.Client(base_url=args.url, headers={"Authorization": f"Bearer {token}"}, timeout=30) as http:
-        task = example_task(args.reference)
-        response = http.post("/api/v1/verification/tasks", json=task)
+        task = example_task()
+        response = http.post("/api/v1/verification/tasks", json=task, headers={"Idempotency-Key": args.reference})
         response.raise_for_status()
         accepted = response.json()
         print(json.dumps(accepted, ensure_ascii=False, indent=2), flush=True)

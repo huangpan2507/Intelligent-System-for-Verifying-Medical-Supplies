@@ -3,7 +3,7 @@ from concurrent.futures import ThreadPoolExecutor
 from uuid import uuid4
 
 import pytest
-from conftest import CLIENT_TOKEN
+from conftest import CLIENT_TOKEN, seed_release
 from fastapi.testclient import TestClient
 from langflow.verification.api import create_app
 from langflow.verification.database import Database, Run, Task
@@ -20,12 +20,15 @@ def test_postgres_concurrent_acceptance_and_claim(settings):
     schema = "verification_test_" + uuid4().hex
     database = Database(url, schema)
     database.initialize()
+    seed_release(database, settings)
     app = create_app(settings, database)
 
     def submit(_):
         with TestClient(app) as client:
             response = client.post(
-                "/api/v1/verification/tasks", json=example_task(), headers={"Authorization": f"Bearer {CLIENT_TOKEN}"}
+                "/api/v1/verification/tasks",
+                json=example_task(),
+                headers={"Authorization": f"Bearer {CLIENT_TOKEN}", "Idempotency-Key": "concurrent"},
             )
             assert response.status_code == 202, response.text
             return response.json()

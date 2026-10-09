@@ -1,8 +1,12 @@
+from uuid import uuid4
+
 import httpx
 import pytest
 from langflow.verification.api import create_app
-from langflow.verification.database import Database
-from langflow.verification.demo import create_demo_app
+from langflow.verification.database import Database, ReleaseCandidate, RuleDefinition
+from langflow.verification.demo import create_demo_app, seed_demo
+from langflow.verification.releases import activate, compile_release, publish
+from langflow.verification.schemas import ActivateRelease, PublishRelease
 from langflow.verification.settings import VerificationSettings
 
 CLIENT_TOKEN = "test-client-token-123456"
@@ -28,7 +32,6 @@ def settings(tmp_path):
         model_url="http://upstream",
         langflow_url="http://flow",
         demo_mode=True,
-        catalog_mapping={"DEMO-HIP": "hip_prosthesis", "DEMO-KNEE": "knee_prosthesis"},
     )
 
 
@@ -36,6 +39,7 @@ def settings(tmp_path):
 def database(settings):
     db = Database(settings.database_url.get_secret_value())
     db.initialize()
+    seed_release(db, settings)
     yield db
     db.engine.dispose()
 
@@ -75,3 +79,57 @@ async def client(app):
         headers={"Authorization": f"Bearer {CLIENT_TOKEN}"},
     ) as client:
         yield client
+
+
+ACTOR = "c23d7b4c-e0c9-4eee-a09c-35a8dfd7c7f4"
+
+
+def draft_graph():
+    import importlib.util
+    from pathlib import Path
+
+    path = Path(__file__).resolve().parents[3] / "scripts/verification/build_flow.py"
+    spec = importlib.util.spec_from_file_location("verification_builder", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.build_payload()["data"]
+
+
+def seed_release(database, settings, graph=None):
+    from langflow.verification.database import fingerprint
+
+    graph = graph or draft_graph()
+    for node in graph["nodes"]:
+        if node["data"]["type"].endswith("VerificationSettlementSnapshot@extra"):
+            node["data"]["node"]["template"]["page_size"]["value"] = 1
+    seed_demo(database)
+    with database.sessions.begin() as session:
+        rule = session.get(RuleDefinition, "high_value_consumables")
+        if rule is None:
+            rule = RuleDefinition(
+                code="high_value_consumables", name="高值耗材智能体", flow_id=str(uuid4()), owner_id=ACTOR
+            )
+            session.add(rule)
+            session.flush()
+        package = compile_release(
+            graph,
+            {"DEMO-HIP": "hip_prosthesis", "DEMO-KNEE": "knee_prosthesis"},
+            settings,
+            flow_id=rule.flow_id,
+            owner_id=ACTOR,
+        )
+        candidate = ReleaseCandidate(
+            rule_code=rule.code,
+            package=package,
+            content_hash=fingerprint(package),
+            author_id=ACTOR,
+            validation={"structure": "passed", "simulation": "passed"},
+            note="test",
+        )
+        session.add(candidate)
+        session.flush()
+        release = publish(
+            session, rule, PublishRelease(candidate_id=candidate.id, content_hash=candidate.content_hash), ACTOR
+        )
+        activate(session, rule, ActivateRelease(release_id=release.id, expected_revision=rule.revision), ACTOR)
+        return release

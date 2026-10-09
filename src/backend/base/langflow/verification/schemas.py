@@ -40,48 +40,92 @@ class ReviewedScope(Contract):
         return sorted(value)
 
 
-class TaskConfig(Contract):
-    days_before: int = Field(default=30, ge=0, le=365)
-    days_after: int = Field(default=30, ge=0, le=365)
-    reviewed_scopes: list[ReviewedScope] = Field(default_factory=list, max_length=100)
+class SettlementTimeRange(Contract):
+    start_inclusive: AwareDatetime
+    end_exclusive: AwareDatetime
+
+    @model_validator(mode="after")
+    def ordered(self) -> SettlementTimeRange:
+        if self.start_inclusive >= self.end_exclusive:
+            msg = "Settlement time range must have start < end"
+            raise ValueError(msg)
+        return self
 
 
 class SubmitTask(Contract):
-    source_system: Identifier
-    external_task_id: Identifier
-    detail_ids: list[Identifier] = Field(min_length=1, max_length=100)
-    config: TaskConfig = Field(default_factory=TaskConfig)
+    hospital_scope: str = Field(min_length=1, max_length=200)
+    settlement_time_range: SettlementTimeRange
+    rule: str = Field(min_length=1, max_length=200)
 
-    @field_validator("detail_ids")
+    @field_validator("hospital_scope", "rule")
     @classmethod
-    def canonical_ids(cls, value: list[str]) -> list[str]:
-        if len(value) != len(set(value)):
-            msg = "Settlement detail IDs must be unique"
+    def nonblank(cls, value: str) -> str:
+        value = value.strip()
+        if not value:
+            msg = "Hospital and rule selection cannot be blank"
             raise ValueError(msg)
-        return sorted(value)
+        return value
 
-    @model_validator(mode="after")
-    def validate_scopes(self) -> SubmitTask:
-        assigned: set[str] = set()
-        scope_ids: set[str] = set()
-        study_categories: set[tuple[str, str]] = set()
-        for scope in self.config.reviewed_scopes:
-            if scope.scope_id in scope_ids or not set(scope.detail_ids).issubset(self.detail_ids):
-                msg = "Comparison scope must have a unique ID and belong to this task"
-                raise ValueError(msg)
-            if assigned.intersection(scope.detail_ids):
-                msg = "A settlement detail cannot consume multiple recognition totals"
-                raise ValueError(msg)
-            for study in scope.study_ids:
-                key = (study, scope.category)
-                if key in study_categories:
-                    msg = "A study/category count cannot be allocated to multiple scopes"
-                    raise ValueError(msg)
-                study_categories.add(key)
-            assigned.update(scope.detail_ids)
-            scope_ids.add(scope.scope_id)
-        self.config.reviewed_scopes.sort(key=lambda scope: scope.scope_id)
-        return self
+
+class SettlementQuery(Contract):
+    hospital_ids: list[Identifier] = Field(min_length=1, max_length=100)
+    settlement_time_range: SettlementTimeRange
+    cursor: str | None = None
+    snapshot_token: str | None = None
+    limit: int = Field(default=100, ge=1, le=200)
+
+
+class SettlementPage(Contract):
+    items: list[dict] = Field(max_length=200)
+    next_cursor: str | None
+    snapshot_token: str
+    consistency: Literal["source_snapshot", "observed_pages"]
+    simulated: bool
+
+
+class RuleCreate(Contract):
+    code: Identifier
+    name: str = Field(min_length=1, max_length=200)
+    flow_id: UUID
+
+
+class PrepareRelease(Contract):
+    catalog_mapping: dict[str, Category] = Field(min_length=1, max_length=1000)
+    note: str = Field(default="", max_length=1000)
+
+
+class SaveRuleDraft(PrepareRelease):
+    expected_revision: int = Field(ge=0)
+
+
+class PublishRelease(Contract):
+    candidate_id: UUID
+    content_hash: str = Field(pattern=r"^[a-f0-9]{64}$")
+
+
+class ActivateRelease(Contract):
+    release_id: UUID | None
+    expected_revision: int = Field(ge=0)
+
+
+class SnapshotPageWrite(Contract):
+    items: list[dict] = Field(max_length=200)
+    snapshot_token: str
+    consistency: Literal["source_snapshot", "observed_pages"]
+    cursor: str | None
+    next_cursor: str | None
+    simulated: bool
+
+
+class UnitWrite(Contract):
+    key: Identifier
+    payload: dict
+
+
+class RerunAction(Contract):
+    confirmed_execution_ended: Literal[True]
+    reason: str = Field(min_length=5, max_length=1000)
+    refetch_unsealed: bool = False
 
 
 class Settlement(Contract):
@@ -183,12 +227,6 @@ class RequestResult(Contract):
     error: str | None = None
 
 
-class FinishRun(Contract):
-    results: list[dict] = Field(min_length=1, max_length=100)
-    rule_version: str
-    simulated: bool
-
-
 class ManualAction(Contract):
     confirmed_execution_ended: Literal[True]
     reason: str = Field(min_length=5, max_length=1000)
@@ -197,7 +235,8 @@ class ManualAction(Contract):
 class RunInput(Contract):
     task_id: UUID
     run_id: UUID
-    detail_ids: list[Identifier]
+    release_id: UUID
+    job_id: UUID
 
 
 class ErrorWrite(Contract):

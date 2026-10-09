@@ -32,9 +32,12 @@ def main() -> None:
             )
         response.raise_for_status()
         flow = response.json()[0]
-        set_key(env_file, "VERIFICATION_FLOW_ID", str(flow["id"]))
+        set_key(env_file, "VERIFICATION_DRAFT_FLOW_ID", str(flow["id"]))
         env_file.chmod(0o600)
-        print(f"Imported flow {flow['id']}; worker credential saved privately to {env_file}")
+        print(
+            f"Imported draft {flow['id']}; publish and activate it in /verification. "
+            f"Worker credential saved privately to {env_file}"
+        )
 
 
 if __name__ == "__main__":

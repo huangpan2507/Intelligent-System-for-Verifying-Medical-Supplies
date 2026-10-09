@@ -23,7 +23,7 @@ def configure() -> Path:
     }
     values["VERIFICATION_CLIENTS"] = json.dumps({"demo-regulator": secrets.token_urlsafe(32)}, separators=(",", ":"))
     values["VERIFICATION_LANGFLOW_API_KEY"] = ""
-    values["VERIFICATION_FLOW_ID"] = "consumable-verification"
+    values["VERIFICATION_DRAFT_FLOW_ID"] = ""
     with target.open("x", encoding="utf-8") as file:
         target.chmod(0o600)
         file.write("\n".join(f"{key}={value}" for key, value in values.items()) + "\n")

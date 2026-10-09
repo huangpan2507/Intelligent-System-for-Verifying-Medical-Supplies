@@ -20,8 +20,7 @@ x-business-env: &business-env
   <<: *flow-env
   VERIFICATION_DATABASE_URL: postgresql+psycopg://verification_app:${VERIFICATION_DB_PASSWORD:?required}@postgres:5432/verification
   VERIFICATION_CLIENTS: ${VERIFICATION_CLIENTS:?Run configure_demo.py first}
-  VERIFICATION_CATALOG_MAPPING: '{"DEMO-HIP":"hip_prosthesis","DEMO-KNEE":"knee_prosthesis"}'
-  VERIFICATION_FLOW_ID: ${VERIFICATION_FLOW_ID:-consumable-verification}
+  VERIFICATION_DATABASE_SCHEMA: verification_scope
 
 services:
   postgres:
@@ -43,6 +42,8 @@ services:
     <<: *image
     command: [python, -m, langflow.verification.database]
     environment: *business-env
+    volumes:
+      - ./components:/app/deploy/verification/components:ro
     depends_on:
       postgres: {condition: service_healthy}
 
@@ -50,7 +51,9 @@ services:
     <<: *image
     command: [uvicorn, langflow.verification.api:create_app, --factory, --host, 0.0.0.0, --port, "8080"]
     environment: *business-env
-    ports: ["127.0.0.1:8080:8080"]
+    volumes:
+      - ./components:/app/deploy/verification/components:ro
+    ports: ["127.0.0.1:8081:8080"]
     depends_on:
       verification-init: {condition: service_completed_successfully}
     healthcheck:
@@ -73,12 +76,12 @@ services:
       LANGFLOW_SUPERUSER: verification-admin
       LANGFLOW_SUPERUSER_PASSWORD: ${LANGFLOW_SUPERUSER_PASSWORD:?required}
       LANGFLOW_SECRET_KEY: ${LANGFLOW_SECRET_KEY:?required}
-      LANGFLOW_COMPONENTS_PATH: /app/verification-components
+      LANGFLOW_COMPONENTS_PATH: /app/deploy/verification/components
       LANGFLOW_SKIP_MCP_AUTO_INIT: "true"
       LANGFLOW_MODELS_DEV_REFRESH: "false"
       LANGFLOW_DO_NOT_TRACK: "true"
     volumes:
-      - ./components:/app/verification-components:ro
+      - ./components:/app/deploy/verification/components:ro
       - langflow-data:/app/data
     ports: ["127.0.0.1:7860:7860"]
     depends_on:
@@ -93,7 +96,6 @@ services:
       <<: *business-env
       VERIFICATION_LANGFLOW_URL: http://langflow:7860
       VERIFICATION_LANGFLOW_API_KEY: ${VERIFICATION_LANGFLOW_API_KEY:-}
-      VERIFICATION_FLOW_ID: ${VERIFICATION_FLOW_ID:-consumable-verification}
     depends_on:
       verification-api: {condition: service_healthy}
       langflow: {condition: service_started}

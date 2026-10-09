@@ -321,6 +321,10 @@ class BackgroundExecutionService(Service):
 
     async def _enqueue(self, *, job_id: UUID, flow_id: UUID, request: dict[str, Any], user: UserRead | None) -> None:
         """Build a runner for the job and submit it to the in-process executor."""
+        if self._frame_source_factory is None:
+            from langflow.api.v2.workflow import _default_frame_source_factory
+
+            self._frame_source_factory = _default_frame_source_factory
         job_service = get_job_service()
         adapter = self._build_adapter(request, job_id, flow_id)
         source = self._frame_source_factory(request=request, flow_id=flow_id, user=user, adapter=adapter)
@@ -336,6 +340,8 @@ class BackgroundExecutionService(Service):
         )
 
         async def _coro() -> None:
+            if request.get("verification_run_id") and not await job_service.claim_queued_job(job_id):
+                return
             # job_id reaches the frame source via source_kwargs so the default
             # build-loop source can tag its memory-base hook with the run's job.
             await runner.run(job_id=job_id, source_kwargs={"job_id": job_id})

@@ -17,7 +17,7 @@ class VerificationTaskInput(Component):
             display_name="任务JSON",
             value="",
             input_types=[],
-            info="由Worker传入task_id、run_id和detail_ids。手工运行须使用已受理且已领取的运行，不能填写聊天文本。",
+            info="由Worker传入task_id、run_id、release_id和job_id。手工运行须使用已受理且已领取的运行，不能填写聊天文本。",
         ),
     ]
     outputs = [Output(name="message", display_name="任务消息", method="message_response")]

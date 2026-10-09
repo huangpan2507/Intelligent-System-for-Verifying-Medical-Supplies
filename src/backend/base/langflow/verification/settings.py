@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from decimal import Decimal
 from zoneinfo import ZoneInfo
 
 from pydantic import Field, SecretStr, field_validator, model_validator
@@ -38,13 +37,7 @@ class VerificationSettings(FlowSettings):
     clients: dict[str, SecretStr]
     langflow_url: str = "http://langflow:7860"
     langflow_api_key: SecretStr = SecretStr("")
-    flow_id: str = Field(default="consumable-verification", pattern=r"^[\w-]+$")
-    flow_timeout: float = Field(default=600, gt=0, le=86400)
     poll_interval: float = Field(default=2, gt=0, le=60)
-    catalog_mapping: dict[str, str] = Field(default_factory=dict)
-    rule_version: str = "consumables-v1"
-    currency: str = "CNY"
-    money_tolerance: Decimal = Field(default=Decimal("0.01"), ge=0, le=1, allow_inf_nan=False)
 
     @model_validator(mode="after")
     def distinct_credentials(self) -> VerificationSettings:
@@ -55,8 +48,5 @@ class VerificationSettings(FlowSettings):
             raise ValueError(msg)
         if len(set(tokens)) != len(tokens) or internal in tokens:
             msg = "Each source and the internal service must use distinct credentials"
-            raise ValueError(msg)
-        if set(self.catalog_mapping.values()) - {"hip_prosthesis", "knee_prosthesis"}:
-            msg = "Only hip_prosthesis and knee_prosthesis catalog mappings are supported"
             raise ValueError(msg)
         return self

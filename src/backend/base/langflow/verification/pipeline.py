@@ -20,10 +20,19 @@ from langflow.verification.configuration import (
     ManifestConfiguration,
     RecognitionConfiguration,
     ScreeningConfiguration,
+    SettlementConfiguration,
 )
 from langflow.verification.imaging import ENCOUNTER_CODES, IMAGES_PATH, SERIES_PATH, STUDIES_PATH, ImageCloudClient
 from langflow.verification.rules import association_reasons, compare_scope, screen_body_part, select_settlement
-from langflow.verification.schemas import ImageRef, Recognition, ReviewedScope, RunInput, Settlement, Study, SubmitTask
+from langflow.verification.schemas import (
+    ImageRef,
+    Recognition,
+    ReviewedScope,
+    RunInput,
+    Settlement,
+    SettlementPage,
+    Study,
+)
 
 if TYPE_CHECKING:
     from langflow.verification.settings import FlowSettings
@@ -79,7 +88,12 @@ class Pipeline:
         return response.json()
 
     async def save(self, context: dict, kind: str, payload: dict) -> None:
-        await self.internal("POST", context["run_id"], "/artifacts", {"kind": kind, "payload": payload})
+        await self.internal(
+            "POST",
+            context["run_id"],
+            "/artifacts",
+            {"kind": kind, "key": context.get("unit_key", "main"), "payload": payload},
+        )
 
     async def enter(self, value: dict) -> dict:
         entry = RunInput.model_validate(value)
@@ -89,15 +103,16 @@ class Pipeline:
             or saved["current_run_id"] != str(entry.run_id)
             or saved["status"] != "running"
             or saved["stage"] is not None
-            or sorted(entry.detail_ids) != saved["task"]["detail_ids"]
+            or str(entry.release_id) != saved["release_id"]
+            or str(entry.job_id) != saved["job_id"]
+            or not saved["execution_started"]
         ):
             msg = "Flow input does not match the claimed run and immutable task scope"
             raise ValueError(msg)
-        SubmitTask.model_validate(saved["task"])
         if saved["policy"]["simulated"] != self.settings.demo_mode:
             msg = "Runtime simulation mode differs from the accepted run"
             raise ValueError(msg)
-        return saved
+        return {key: saved[key] for key in ["task_id", "run_id", "release_id", "job_id", "snapshot_id", "progress"]}
 
     async def execute(self, stage: str, context: dict, configuration: dict | None = None) -> dict:
         if stage == "00":
@@ -115,13 +130,46 @@ class Pipeline:
         if stage not in operations:
             msg = "Unsupported verification stage"
             raise ValueError(msg)
-        context = copy.deepcopy(context)
+        reference = context
+        context = await self.internal("GET", reference["run_id"])
+        for key in ["task_id", "release_id", "job_id"]:
+            if reference.get(key) != context[key]:
+                msg_0 = "Stage reference differs from accepted run"
+                raise ValueError(msg_0)
+        # Connections and configurations come from the accepted immutable binding.
+        self.settings = self.settings.model_copy(
+            update={
+                key: value
+                for key, value in context["binding"].items()
+                if key in {"settlement_url", "imaging_url", "model_url", "imaging_timezone", "request_timeout"}
+            }
+        )
+        context["node_configurations"] = copy.deepcopy(context["configurations"])
         await self.internal("POST", context["run_id"], "/stages", {"stage": stage, "event": "started"})
         try:
             if configuration is not None:
                 parsed = CONFIGURATION_TYPES[stage].model_validate(configuration)
-                context.setdefault("node_configurations", {})[stage] = parsed.model_dump(mode="json")
-            await operations[stage](context)
+                if parsed != CONFIGURATION_TYPES[stage].model_validate(context["configurations"][stage]):
+                    msg_0 = "Node parameters differ from pinned release; draft execution cannot modify a business run"
+                    raise ValueError(msg_0)
+            if stage in {"03", "04", "05", "06", "07"}:
+                after = 0
+                while True:
+                    page = await self.internal("GET", context["run_id"], f"/units?after={after}")
+                    unit = page["unit"]
+                    if unit is None:
+                        break
+                    local = {**context, **unit["payload"], "unit_key": unit["key"]}
+                    await operations[stage](local)
+                    payload = {key: local[key] for key in ["settlements", "groups"]}
+                    if stage == "07":
+                        payload["result"] = local["result"]
+                    await self.internal(
+                        "PUT", context["run_id"], f"/units/{unit['id']}", {"key": unit["key"], "payload": payload}
+                    )
+                    after = unit["id"]
+            else:
+                await operations[stage](context)
             if stage != "08":
                 await self.internal("POST", context["run_id"], "/stages", {"stage": stage, "event": "finished"})
         except Exception as exc:
@@ -141,78 +189,95 @@ class Pipeline:
                     },
                 )
             raise
-        return context
+        saved = await self.internal("GET", context["run_id"])
+        return {
+            **{key: saved[key] for key in ["task_id", "run_id", "release_id", "job_id", "snapshot_id", "progress"]},
+            **({"receipt": context["receipt"]} if "receipt" in context else {}),
+        }
 
     async def settlements(self, ctx: dict) -> None:
-        response = await self.upstream(
-            self.settings.settlement_url,
-            "/v1/settlements/query",
-            method="POST",
-            payload={"detail_ids": ctx["task"]["detail_ids"]},
-        )
-        if response.get("simulated", False) and not self.settings.demo_mode:
-            msg = "Simulated settlement data cannot be used in a real run"
-            raise ValueError(msg)
-        rows = [Settlement.model_validate(item) for item in response["items"]]
-        if sorted(row.detail_id for row in rows) != ctx["task"]["detail_ids"]:
-            msg = "Settlement response must contain every requested detail exactly once"
-            raise ValueError(msg)
-        ctx["settlements"] = [row.model_dump(mode="json") for row in rows]
-        await self.save(ctx, "settlement_snapshot", {"items": ctx["settlements"], "simulated": self.settings.demo_mode})
+        snapshot = await self.internal("GET", ctx["run_id"], "/snapshot")
+        if snapshot["sealed"]:
+            await self.internal("POST", ctx["run_id"], "/snapshot/reuse")
+            return
+        config = SettlementConfiguration.model_validate(ctx["configurations"]["01"])
+        cursor, token, seen = None, None, set()
+        while True:
+            response = await self.upstream(
+                self.settings.settlement_url,
+                "",
+                method="POST",
+                url=config.settlement_api_url,
+                payload={
+                    "hospital_ids": [h["settlement_id"] for h in ctx["task"]["hospitals"]],
+                    "settlement_time_range": ctx["task"]["settlement_time_range"],
+                    "cursor": cursor,
+                    "snapshot_token": token,
+                    "limit": config.page_size,
+                },
+            )
+            page = SettlementPage.model_validate(response)
+            if page.next_cursor is not None and page.next_cursor in seen:
+                msg = "Source pagination cursor repeated"
+                raise ValueError(msg)
+            await self.internal(
+                "POST", ctx["run_id"], "/snapshot/pages", {**page.model_dump(mode="json"), "cursor": cursor}
+            )
+            if page.next_cursor is None:
+                break
+            cursor, token = page.next_cursor, page.snapshot_token
+            seen.add(cursor)
+        await self.internal("POST", ctx["run_id"], "/snapshot/seal")
 
     async def select(self, ctx: dict) -> None:
-        rows = {item["detail_id"]: Settlement.model_validate(item) for item in ctx["settlements"]}
-        configuration = FilterConfiguration.model_validate(ctx.get("node_configurations", {}).get("02", {}))
-        selection = {
-            key: select_settlement(row, ctx["policy"]["catalog_mapping"], configuration) for key, row in rows.items()
-        }
-        groups, assigned = [], set()
-        for scope in ctx["task"]["config"]["reviewed_scopes"]:
-            groups.append(
-                {
-                    "scope_id": scope["scope_id"],
-                    "detail_ids": scope["detail_ids"],
-                    "category": scope["category"],
-                    "unit": scope["unit"],
-                    "review": scope,
-                }
-            )
-            assigned.update(scope["detail_ids"])
-        groups.extend(
-            {
-                "scope_id": key,
-                "detail_ids": [key],
-                "category": selection[key]["category"],
-                "unit": rows[key].unit,
-                "review": None,
+        configuration = FilterConfiguration.model_validate(ctx["configurations"]["02"])
+        after = ""
+        while True:
+            source = await self.internal("GET", ctx["run_id"], f"/unit-source?after={quote(after, safe='')}")
+            unit = source["unit"]
+            if unit is None:
+                break
+            rows = {item["detail_id"]: Settlement.model_validate(item) for item in unit["settlements"]}
+            selection = {
+                key: select_settlement(row, ctx["policy"]["catalog_mapping"], configuration)
+                for key, row in rows.items()
             }
-            for key in sorted(rows.keys() - assigned)
-        )
-        # Scope IDs and detail IDs are separate namespaces; use a stable index for request association.
-        for index, group in enumerate(groups):
-            group["request_scope_id"] = f"scope-{index}"
-            group["reasons"] = sorted({reason for key in group["detail_ids"] for reason in selection[key]["reasons"]})
-            group["studies"], group["images"] = [], []
-            if any(selection[key]["category"] != group["category"] for key in group["detail_ids"]):
-                group["reasons"].append("review_category_does_not_match_catalog")
-        ctx["groups"] = groups
-        await self.save(
-            ctx,
-            "selection",
-            {"selection": selection, "groups": groups, "configuration": configuration.model_dump(mode="json")},
-        )
+            categories = {item["category"] for item in selection.values()}
+            review = unit["review"]
+            category = review["category"] if review else next(iter(categories)) if len(categories) == 1 else None
+            reasons = sorted({reason for decision in selection.values() for reason in decision["reasons"]})
+            if review and any(c != category for c in categories):
+                reasons.append("review_category_does_not_match_catalog")
+            group = {
+                "scope_id": unit["key"],
+                "request_scope_id": unit["key"],
+                "detail_ids": sorted(rows),
+                "category": category,
+                "unit": review["unit"] if review else next(iter(rows.values())).unit,
+                "review": review,
+                "reasons": reasons,
+                "studies": [],
+                "images": [],
+            }
+            payload = {"settlements": unit["settlements"], "groups": [group]}
+            await self.save(
+                {**ctx, "unit_key": unit["key"]},
+                "selection",
+                {"selection": selection, "configuration": configuration.model_dump(mode="json")},
+            )
+            await self.internal("POST", ctx["run_id"], "/units", {"key": unit["key"], "payload": payload})
+            after = unit["key"]
 
     async def studies(self, ctx: dict) -> None:
         cloud = ImageCloudClient(self.settings, self.http)
         rows = {item["detail_id"]: Settlement.model_validate(item) for item in ctx["settlements"]}
-        config = ctx.get("node_configurations", {}).get("03") or {
-            key: ctx["task"]["config"][key] for key in ("days_before", "days_after")
-        }
+        config = ctx["node_configurations"]["03"]
         configuration = AssociationConfiguration.model_validate(config)
         configuration.studies_url = (
             configuration.studies_url or f"{self.settings.imaging_url.rstrip('/')}{STUDIES_PATH}"
         )
         ctx.setdefault("node_configurations", {})["03"] = configuration.model_dump(mode="json")
+        hospital_codes = {h["settlement_id"]: h["organ_code"] for h in ctx["task"]["hospitals"]}
         for group in ctx["groups"]:
             group["rejected_studies"] = []
             if group["reasons"]:
@@ -232,7 +297,7 @@ class Pipeline:
                         configuration.studies_url,
                         params={
                             "system_patient_id": row.patient_id,
-                            "organ_code": row.hospital_id,
+                            "organ_code": hospital_codes[row.hospital_id],
                             "op_em_hp_ex_no": row.encounter_id or "",
                             "op_em_hp_ex_mark": ENCOUNTER_CODES.get(row.encounter_type, ""),
                             "chk_modality": modality,
@@ -246,6 +311,11 @@ class Pipeline:
                     )
                     for item in response:
                         study = cloud.study(item)
+                        if study.hospital_id != hospital_codes[row.hospital_id]:
+                            msg = "Image cloud returned a different hospital"
+                            raise ValueError(msg)
+                        study.raw["organ_code"] = study.hospital_id
+                        study.hospital_id = row.hospital_id
                         if study.study_id in candidates and candidates[study.study_id] != study:
                             msg = "Conflicting study identity"
                             raise ValueError(msg)
@@ -309,7 +379,10 @@ class Pipeline:
                     )
                 )
                 for item in series:
-                    if item.get("organ_code") != study["hospital_id"] or item.get("chk_modality") != study["modality"]:
+                    if (
+                        item.get("organ_code") != study.get("raw", {}).get("organ_code", study["hospital_id"])
+                        or item.get("chk_modality") != study["modality"]
+                    ):
                         msg = "Series hospital or modality differs from the associated study"
                         raise ValueError(msg)
                     # Validate path identifiers before constructing another URL.
@@ -443,4 +516,4 @@ class Pipeline:
         await self.save(ctx, "comparison", ctx["result"])
 
     async def finish(self, ctx: dict) -> None:
-        ctx["receipt"] = await self.internal("POST", ctx["run_id"], "/results", ctx["result"])
+        ctx["receipt"] = await self.internal("POST", ctx["run_id"], "/results")

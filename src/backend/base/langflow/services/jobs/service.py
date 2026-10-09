@@ -125,11 +125,13 @@ class JobService(Service):
         user_id: UUID | None = None,
         dedupe_key: str | None = None,
         end_user_id: str | None = None,
+        request: dict | None = None,
     ) -> Job:
         """Create a new job record with QUEUED status.
 
         Args:
             job_id: The job ID
+            request: Optional internal request persisted atomically for durable fixed executions.
             flow_id: The flow ID
             user_id: The user ID
             job_type: The job type
@@ -201,7 +203,13 @@ class JobService(Service):
                 #
                 # Still None when neither applies, so non-serving untraced rows stay
                 # byte-identical to what they were.
-                job_metadata=inject_trace_carrier({"end_user_id": end_user_id} if end_user_id else None) or None,
+                job_metadata=inject_trace_carrier(
+                    {
+                        **({"end_user_id": end_user_id} if end_user_id else {}),
+                        **({"request": request} if request is not None else {}),
+                    }
+                )
+                or None,
             )
             session.add(job)
             await session.flush()

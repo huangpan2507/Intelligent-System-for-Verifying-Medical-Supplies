@@ -41,6 +41,9 @@ import McpClientPage from "./pages/SettingsPage/pages/McpClientPage";
 import ModelProvidersPage from "./pages/SettingsPage/pages/ModelProvidersPage";
 import MessagesPage from "./pages/SettingsPage/pages/messagesPage";
 import ShortcutsPage from "./pages/SettingsPage/pages/ShortcutsPage";
+import VerificationPage from "./pages/VerificationPage";
+import VerificationTasksPage from "./pages/VerificationTasksPage";
+import VerificationTaskDetailsPage from "./pages/VerificationTasksPage/TaskDetailsPage";
 
 const LoginAdminPage = lazy(() => import("./pages/AdminPage/LoginPage"));
 
@@ -140,6 +143,15 @@ const router = createBrowserRouter(
                     />
                   </Route>
                 </Route>
+                <Route path="verification" element={<VerificationPage />} />
+                <Route
+                  path="verification/tasks"
+                  element={<VerificationTasksPage />}
+                />
+                <Route
+                  path="verification/tasks/:taskId"
+                  element={<VerificationTaskDetailsPage />}
+                />
                 <Route path="settings" element={<SettingsPage />}>
                   <Route
                     index
