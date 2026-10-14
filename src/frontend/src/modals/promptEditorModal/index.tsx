@@ -55,7 +55,7 @@ export default function PromptEditorModal({
 
   const coloredContent = strategy.renderColoredContent(
     typeof inputValue === "string" ? inputValue : "",
-    (key: string) => t(key),
+    (key) => t(key),
   );
 
   useEffect(() => {

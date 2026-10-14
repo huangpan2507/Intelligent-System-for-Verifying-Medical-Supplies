@@ -1,0 +1,11 @@
+
+Running 1 test using 1 worker
+
+(node:28) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:28) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/core/features/business-compact-core.spec.ts:5:5 › compact core canvas exposes reusable nodes and correctly scoped lookup fields @release @api @workspace (1.9m)
+
+  1 passed (1.9m)
+Browser acceptance passed; artifacts: /home/huangpan/github_repo/langflow/deploy/business/evidence/lookup-configuration-20261014/browser

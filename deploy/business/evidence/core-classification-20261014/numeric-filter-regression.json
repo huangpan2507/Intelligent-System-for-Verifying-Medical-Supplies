@@ -1,0 +1,11 @@
+[
+  {
+    "value": "0",
+    "error": "ProgrammingError",
+    "database_message": "operator does not exist: numeric = character varying"
+  },
+  {
+    "value": 0,
+    "rows": 2
+  }
+]

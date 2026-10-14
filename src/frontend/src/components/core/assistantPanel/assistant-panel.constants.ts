@@ -12,7 +12,7 @@ const ASSISTANT_PLACEHOLDER_KEYS = [
   "assistant.placeholder.2",
   "assistant.placeholder.3",
   "assistant.placeholder.4",
-];
+] as const;
 
 export const ASSISTANT_PLACEHOLDERS: string[] = ASSISTANT_PLACEHOLDER_KEYS.map(
   (key) => i18n.t(key),
@@ -30,7 +30,7 @@ export const ASSISTANT_SESSION_PREVIEW_LENGTH = 80;
 
 export const ASSISTANT_WELCOME_TEXT = "Here's how I can help";
 
-export const ASSISTANT_SUGGESTIONS: AssistantSuggestion[] = [
+export const ASSISTANT_SUGGESTIONS = [
   {
     id: "build-agents",
     icon: "Sparkles",
@@ -41,4 +41,4 @@ export const ASSISTANT_SUGGESTIONS: AssistantSuggestion[] = [
     icon: "Sparkles",
     text: "Answer questions about Langflow",
   },
-];
+] as const satisfies readonly AssistantSuggestion[];

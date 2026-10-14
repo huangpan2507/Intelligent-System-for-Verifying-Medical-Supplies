@@ -18,6 +18,7 @@ import {
 import { classNames, cn } from "@/utils/utils";
 import { getNodeScopedDomId } from "../../../../helpers/get-node-scoped-dom-id";
 import { useIMEInputForOnChange } from "../../../../hooks/use-ime-input";
+import type { InputComponentType } from "@/types/components";
 
 const CustomInputPopoverObject = ({
   id,
@@ -46,6 +47,14 @@ const CustomInputPopoverObject = ({
   showOptions,
   inspectionPanel,
   ariaLabelledBy,
+}: Omit<InputComponentType, "options" | "password"> & {
+  options?: { id: string; name: string }[];
+  refInput: React.RefObject<HTMLInputElement | null>;
+  onInputLostFocus: React.FocusEventHandler<HTMLInputElement>;
+  setShowOptions: (open: boolean) => void;
+  handleKeyDown: React.KeyboardEventHandler<HTMLInputElement>;
+  showOptions: boolean;
+  ariaLabelledBy?: string;
 }) => {
   const { t } = useTranslation();
   const PopoverContentInput =
@@ -157,7 +166,7 @@ const CustomInputPopoverObject = ({
                           ? selectedOptions.filter(
                               (item) => item !== currentValue,
                             )
-                          : [...selectedOptions, currentValue],
+                          : [...(selectedOptions ?? []), currentValue],
                       );
                     !setSelectedOptions && setShowOptions(false);
                   }}
@@ -194,7 +203,7 @@ const CustomInputPopoverObject = ({
 
                       {/* Display the name property of the option */}
                     </div>
-                    {optionButton && optionButton(option)}
+                    {optionButton && optionButton(option.id)}
                   </div>
                 </CommandItem>
               ))}

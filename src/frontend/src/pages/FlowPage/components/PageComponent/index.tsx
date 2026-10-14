@@ -1,3 +1,4 @@
+import CanvasConfiguration from "@/pages/BusinessPage/CanvasConfiguration";
 import {
   type Connection,
   type Edge,
@@ -161,7 +162,9 @@ export default function Page({
         y: number;
       }) =>
         t("flow.a11y.nodeMoved", {
-          direction: t(`flow.a11y.direction.${direction}`),
+          direction: t(`flow.a11y.direction.${direction}`, {
+            defaultValue: direction,
+          }),
           x,
           y,
         }),
@@ -1121,6 +1124,7 @@ export default function Page({
               </div>
               {helperLineEnabled && <HelperLines helperLines={helperLines} />}
             </ReactFlow>
+            {!effectiveLocked && <CanvasConfiguration />}
             <FlowBuildingComponent />
             {bannerVisible && (
               <div

@@ -1,0 +1,24 @@
+{
+  "model": "deepseek-ai/DeepSeek-V4-Flash",
+  "answer": {
+    "category": "人工膝关节",
+    "reason": "手术为人工全膝关节置换术，耗材为膝关节假体系统，属于人工膝关节类别。",
+    "evidence_field": "HILIST_NAME, HOS_PROJ_NAME",
+    "evidence_text": "人工全膝关节置换术, 膝关节假体系统（模拟成套产品B）",
+    "confidence": 1
+  },
+  "usage": {
+    "prompt_tokens": 135,
+    "completion_tokens": 78,
+    "total_tokens": 213,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 135
+  },
+  "finish_reason": "stop"
+}

@@ -1,6 +1,12 @@
 import type { AllNodeType } from "@/types/flow";
 
-type Translate = (key: string, options?: Record<string, unknown>) => string;
+type Translate = (
+  key:
+    | "noteNode.ariaLabel"
+    | "flow.nodeAriaLabel"
+    | "flow.nodeAriaLabelOrdinal",
+  options?: Record<string, unknown>,
+) => string;
 
 /**
  * Note nodes don't carry a meaningful component display_name (it's an empty

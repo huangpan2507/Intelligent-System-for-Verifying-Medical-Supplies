@@ -1,0 +1,77 @@
+Private demo-source configuration ready
+启动并检查 PostgreSQL（保留现有数据）……
+ Container langflow-verification-postgres-1 Running 
+ Container langflow-verification-postgres-1 Waiting 
+ Container langflow-verification-postgres-1 Healthy 
+Task intake: maintenance; pending local tasks: 0
+启动 langflow-verification-demo……
+就绪：http://127.0.0.1:8090/openapi.json
+启动 langflow-business-core-demo……
+就绪：http://127.0.0.1:8091/openapi.json
+启动 langflow-verification-api……
+就绪：http://127.0.0.1:18081/health
+启动 langflow-platform……
+就绪：http://127.0.0.1:7860/health
+启动 langflow-frontend……
+就绪：http://127.0.0.1:3000/verification/tasks
+就绪：http://127.0.0.1:3000/health
+基础服务已就绪；Worker 等待迁移检查后启动。
+
+前端：http://localhost:3000
+业务方案：http://localhost:3000/business
+通用任务：http://localhost:3000/business/tasks
+历史核验：http://localhost:3000/verification/tasks
+平台 API：http://localhost:7860/docs
+核验 API：http://localhost:18081/docs
+模拟上游：http://localhost:8090/docs
+PostgreSQL：127.0.0.1:55433
+账号：verification-admin（密码见 deploy/verification/.env 的 LANGFLOW_SUPERUSER_PASSWORD）
+日志目录：/home/huangpan/github_repo/langflow/deploy/verification/.cache/source-ui/langflow-*.log
+重启命令：bash scripts/verification/start_local.sh --restart
+ Container langflow-business-sources-postgres-1 Running 
+ Container langflow-business-sources-mysql-1 Running 
+ Container langflow-business-sources-postgres-1 Waiting 
+ Container langflow-business-sources-mysql-1 Waiting 
+ Container langflow-business-sources-mysql-1 Healthy 
+ Container langflow-business-sources-postgres-1 Healthy 
+{"checked": 23, "changed": []}
+{"releases": [{"scheme": "acceptance.taskstart.5ac08f2620", "release_id": "bf109b93-d23d-4426-aa22-930c88d04409", "version": 8}, {"scheme": "demo.cross_database.v2", "release_id": "a1902fd3-02e3-4e46-bb6e-29189ba59a90", "version": 17}, {"scheme": "core.normal.1791804428546", "release_id": "9da91ce6-ae5b-41ac-a1c4-21d06408221f", "version": 7}, {"scheme": "core.normal.compact.v1", "release_id": "5defdbf5-e615-4a9d-99bc-85664a713964", "version": 5}, {"scheme": "demo.consumables.v2", "release_id": "c646dc2d-b33f-4956-9bcc-b02896a3834c", "version": 17}]}
+Two generic schemes are active; legacy intake is closed and history is preserved.
+Task intake: open; pending local tasks: 0
+启动并检查 PostgreSQL（保留现有数据）……
+ Container langflow-verification-postgres-1 Running 
+ Container langflow-verification-postgres-1 Waiting 
+ Container langflow-verification-postgres-1 Healthy 
+langflow-verification-demo 已运行，复用现有进程。
+就绪：http://127.0.0.1:8090/openapi.json
+langflow-business-core-demo 已运行，复用现有进程。
+就绪：http://127.0.0.1:8091/openapi.json
+langflow-verification-api 已运行，复用现有进程。
+就绪：http://127.0.0.1:18081/health
+langflow-platform 已运行，复用现有进程。
+就绪：http://127.0.0.1:7860/health
+启动 langflow-verification-worker……
+langflow-frontend 已运行，复用现有进程。
+就绪：http://127.0.0.1:3000/verification/tasks
+就绪：http://127.0.0.1:3000/health
+项目服务已启动，由 tmux 在后台保持。
+
+前端：http://localhost:3000
+业务方案：http://localhost:3000/business
+通用任务：http://localhost:3000/business/tasks
+历史核验：http://localhost:3000/verification/tasks
+平台 API：http://localhost:7860/docs
+核验 API：http://localhost:18081/docs
+模拟上游：http://localhost:8090/docs
+PostgreSQL：127.0.0.1:55433
+账号：verification-admin（密码见 deploy/verification/.env 的 LANGFLOW_SUPERUSER_PASSWORD）
+日志目录：/home/huangpan/github_repo/langflow/deploy/verification/.cache/source-ui/langflow-*.log
+重启命令：bash scripts/verification/start_local.sh --restart
+
+通用业务平台：http://localhost:3000/business
+连接管理：http://localhost:3000/business/connections
+任务与结果：http://localhost:3000/business/tasks
+历史规则：http://localhost:3000/business/history
+历史任务：http://localhost:3000/verification/tasks
+示例数据源：MySQL 13306 / PostgreSQL 55434（均为模拟业务数据）
+一键重启：bash scripts/business/start_local.sh --restart

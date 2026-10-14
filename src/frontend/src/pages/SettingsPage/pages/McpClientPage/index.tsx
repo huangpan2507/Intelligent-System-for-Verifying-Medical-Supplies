@@ -1,3 +1,4 @@
+import type en from "@/locales/en.json";
 import { useCallback, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
@@ -34,7 +35,7 @@ function buildMcpJson(serverUrl: string): string {
 
 function getAgentInstructions(
   agent: AgentTab,
-  t: (key: string) => string,
+  t: (key: Extract<keyof typeof en, `settings.mcpClient.${string}`>) => string,
 ): {
   configPath: string;
   steps: string[];

@@ -1,0 +1,43 @@
+{
+  "nodes": 10,
+  "edges": 9,
+  "ports": [
+    "data",
+    "issues"
+  ],
+  "errors": {},
+  "old_task_readable": "c07d6d7a-8419-42aa-8731-9fd76ceaeb47",
+  "old_classification_ports": [
+    "data",
+    "issues",
+    "excluded"
+  ],
+  "intake": "open",
+  "active_schemes": [
+    {
+      "scheme": "acceptance.taskstart.5ac08f2620",
+      "version": 5,
+      "runtime_compatible": true
+    },
+    {
+      "scheme": "demo.cross_database.v2",
+      "version": 14,
+      "runtime_compatible": true
+    },
+    {
+      "scheme": "core.normal.1791804428546",
+      "version": 4,
+      "runtime_compatible": true
+    },
+    {
+      "scheme": "core.normal.compact.v1",
+      "version": 2,
+      "runtime_compatible": true
+    },
+    {
+      "scheme": "demo.consumables.v2",
+      "version": 14,
+      "runtime_compatible": true
+    }
+  ]
+}

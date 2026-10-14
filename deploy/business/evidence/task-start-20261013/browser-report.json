@@ -1,0 +1,123 @@
+{
+  "config": {
+    "configFile": "/tmp/business-task-start-vr2_z_re/playwright.config.ts",
+    "rootDir": "/home/huangpan/github_repo/langflow/src/frontend/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/huangpan/github_repo/langflow/deploy/business/evidence/task-start-20261013/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/home/huangpan/github_repo/langflow/src/frontend/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "core/features/business-task-start.spec.ts"
+        ],
+        "timeout": 240000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/home/huangpan/github_repo/langflow/deploy/business/evidence/task-start-20261013/browser-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.60.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "core/features/business-task-start.spec.ts",
+      "file": "core/features/business-task-start.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "regulatory task entry displays the selected request without editing the canvas",
+          "ok": true,
+          "tags": [
+            "release",
+            "api",
+            "workspace"
+          ],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 141961,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T10:19:12.738Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "api-4xx-responses",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJtZXRob2QiOiAiR0VUIiwKICAgICJwYXRoIjogIi9hcGkvdjEvYXV0b19sb2dpbiIsCiAgICAic3RhdHVzIjogNDAzLAogICAgInN0YXR1c1RleHQiOiAiRm9yYmlkZGVuIiwKICAgICJyZXNwb25zZUJvZHkiOiAie1wiZGV0YWlsXCI6e1wibWVzc2FnZVwiOlwiQXV0byBsb2dpbiBpcyBkaXNhYmxlZC5cIixcImF1dG9fbG9naW5cIjpmYWxzZX19IgogIH0sCiAgewogICAgIm1ldGhvZCI6ICJHRVQiLAogICAgInBhdGgiOiAiL2FwaS92MS9hdXRvX2xvZ2luIiwKICAgICJzdGF0dXMiOiA0MDMsCiAgICAic3RhdHVzVGV4dCI6ICJGb3JiaWRkZW4iLAogICAgInJlc3BvbnNlQm9keSI6ICJ7XCJkZXRhaWxcIjp7XCJtZXNzYWdlXCI6XCJBdXRvIGxvZ2luIGlzIGRpc2FibGVkLlwiLFwiYXV0b19sb2dpblwiOmZhbHNlfX0iCiAgfSwKICB7CiAgICAibWV0aG9kIjogIkdFVCIsCiAgICAicGF0aCI6ICIvYXBpL3YxL2F1dG9fbG9naW4iLAogICAgInN0YXR1cyI6IDQwMywKICAgICJzdGF0dXNUZXh0IjogIkZvcmJpZGRlbiIsCiAgICAicmVzcG9uc2VCb2R5IjogIntcImRldGFpbFwiOntcIm1lc3NhZ2VcIjpcIkF1dG8gbG9naW4gaXMgZGlzYWJsZWQuXCIsXCJhdXRvX2xvZ2luXCI6ZmFsc2V9fSIKICB9LAogIHsKICAgICJtZXRob2QiOiAiR0VUIiwKICAgICJwYXRoIjogIi9hcGkvdjEvYXV0b19sb2dpbiIsCiAgICAic3RhdHVzIjogNDAzLAogICAgInN0YXR1c1RleHQiOiAiRm9yYmlkZGVuIiwKICAgICJyZXNwb25zZUJvZHkiOiAie1wiZGV0YWlsXCI6e1wibWVzc2FnZVwiOlwiQXV0byBsb2dpbiBpcyBkaXNhYmxlZC5cIixcImF1dG9fbG9naW5cIjpmYWxzZX19IgogIH0sCiAgewogICAgIm1ldGhvZCI6ICJHRVQiLAogICAgInBhdGgiOiAiL2FwaS92MS9hdXRvX2xvZ2luIiwKICAgICJzdGF0dXMiOiA0MDMsCiAgICAic3RhdHVzVGV4dCI6ICJGb3JiaWRkZW4iLAogICAgInJlc3BvbnNlQm9keSI6ICJ7XCJkZXRhaWxcIjp7XCJtZXNzYWdlXCI6XCJBdXRvIGxvZ2luIGlzIGRpc2FibGVkLlwiLFwiYXV0b19sb2dpblwiOmZhbHNlfX0iCiAgfSwKICB7CiAgICAibWV0aG9kIjogIkdFVCIsCiAgICAicGF0aCI6ICIvYXBpL3YxL2F1dG9fbG9naW4iLAogICAgInN0YXR1cyI6IDQwMywKICAgICJzdGF0dXNUZXh0IjogIkZvcmJpZGRlbiIsCiAgICAicmVzcG9uc2VCb2R5IjogIntcImRldGFpbFwiOntcIm1lc3NhZ2VcIjpcIkF1dG8gbG9naW4gaXMgZGlzYWJsZWQuXCIsXCJhdXRvX2xvZ2luXCI6ZmFsc2V9fSIKICB9Cl0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "611ef77a8ce751278df5-cffd9a202f638048c2af",
+          "file": "core/features/business-task-start.spec.ts",
+          "line": 5,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-13T10:19:10.800Z",
+    "duration": 144711.03,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

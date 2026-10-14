@@ -1,0 +1,16 @@
+{
+  "flow_id": "ce588a72-0614-4d84-badd-0e4355c427e6",
+  "nodes": 11,
+  "configurations_preserved": true,
+  "edges_preserved": true,
+  "errors": {},
+  "identity": {
+    "name": "settlement_detail",
+    "namespace": "core-flow-v1",
+    "keys": [
+      "ORGAN_CODE",
+      "DATA_SOURCE",
+      "SETL_FEE_LIST_ID"
+    ]
+  }
+}

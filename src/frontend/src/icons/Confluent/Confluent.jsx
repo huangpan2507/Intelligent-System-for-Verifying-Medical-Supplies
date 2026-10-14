@@ -1,7 +1,7 @@
 // Stylized Confluent mark: a ring of arc segments (the "C" of the Confluent
 // logo family), in Confluent's brand blue.  Kept geometric so it stays crisp
 // at sidebar sizes and readable on both light and dark grounds.
-const SvgConfluent = ({ isDark, ...props }) => {
+const SvgConfluent = ({ isDark = false, ...props }) => {
   const stroke = isDark ? "#7DA6FF" : "#173361";
   return (
     <svg

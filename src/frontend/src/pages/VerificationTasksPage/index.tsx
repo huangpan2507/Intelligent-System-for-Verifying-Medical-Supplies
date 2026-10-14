@@ -110,14 +110,16 @@ export default function VerificationTasksPage() {
                     <Table aria-label={t("verificationTasks.title")}>
                       <TableHeader>
                         <TableRow>
-                          {[
-                            "reference",
-                            "hospital",
-                            "rule",
-                            "statusLabel",
-                            "stageLabel",
-                            "createdAt",
-                          ].map((key) => (
+                          {(
+                            [
+                              "reference",
+                              "hospital",
+                              "rule",
+                              "statusLabel",
+                              "stageLabel",
+                              "createdAt",
+                            ] as const
+                          ).map((key) => (
                             <TableHead key={key}>
                               {t(`verificationTasks.${key}`)}
                             </TableHead>

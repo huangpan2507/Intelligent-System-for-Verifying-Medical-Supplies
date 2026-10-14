@@ -1,0 +1,1874 @@
+{
+  "INSPECTION_INFO_RECORD": {
+    "fields": [
+      {
+        "name": "organ_code",
+        "type": "VARCHAR(255) COLLATE \"utf8mb4_bin\"",
+        "nullable": false,
+        "comment": "检查采集医疗机构编码"
+      },
+      {
+        "name": "system_id",
+        "type": "VARCHAR(255) COLLATE \"utf8mb4_bin\"",
+        "nullable": false,
+        "comment": "信息系统院内唯一ID，具体值与云影像平台协商"
+      },
+      {
+        "name": "ris_study_id",
+        "type": "VARCHAR(255) COLLATE \"utf8mb4_bin\"",
+        "nullable": false,
+        "comment": "RIS检查号，检查唯一主键"
+      },
+      {
+        "name": "organ_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "检查采集医疗机构名称"
+      },
+      {
+        "name": "organ_lv",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "医疗机构等级"
+      },
+      {
+        "name": "fix_organ_code",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "定点医药机构编号"
+      },
+      {
+        "name": "fix_organ_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "定点医疗机构名称"
+      },
+      {
+        "name": "proj_no",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "检查项目标准编码（检查项目编码）"
+      },
+      {
+        "name": "hos_proj_no",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "检查项目医院编码（检查结果中的项目）"
+      },
+      {
+        "name": "proj_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "检查项目医院名称（检查结果中的项目）"
+      },
+      {
+        "name": "ckpt_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "检查部位"
+      },
+      {
+        "name": "chk_method",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "检查方法编码"
+      },
+      {
+        "name": "chk_methodname",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "检查方法名称"
+      },
+      {
+        "name": "chk_dpt_code",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "检查科室编码"
+      },
+      {
+        "name": "chk_dpt_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "检查科室名称"
+      },
+      {
+        "name": "dev_room",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "设备房间"
+      },
+      {
+        "name": "dev_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "设备名称"
+      },
+      {
+        "name": "chk_modality",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "检查设备类型（模态）"
+      },
+      {
+        "name": "chk_desc",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "检查项目描述"
+      },
+      {
+        "name": "chk_status",
+        "type": "INTEGER",
+        "nullable": true,
+        "comment": "检查状态"
+      },
+      {
+        "name": "reg_dt",
+        "type": "BIGINT",
+        "nullable": true,
+        "comment": "登记日期时间"
+      },
+      {
+        "name": "reg_doc_idcard",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "登记医生身份证号"
+      },
+      {
+        "name": "reg_doc_hos_code",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "登记医生院内唯一编码"
+      },
+      {
+        "name": "reg_doc_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "登记医生姓名"
+      },
+      {
+        "name": "arrive_dt",
+        "type": "BIGINT",
+        "nullable": true,
+        "comment": "患者到检日期时间"
+      },
+      {
+        "name": "chk_dt",
+        "type": "DATETIME",
+        "nullable": true,
+        "comment": "检查日期时间"
+      },
+      {
+        "name": "chk_doc_idcard",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "检查技师身份证号"
+      },
+      {
+        "name": "chk_doc_hos_code",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "检查技师院内唯一编码"
+      },
+      {
+        "name": "chk_doc_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "检查技师姓名"
+      },
+      {
+        "name": "system_patient_id",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "系统内患者唯一编号"
+      },
+      {
+        "name": "cardtype",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "患者证件类型"
+      },
+      {
+        "name": "cardno",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "患者证件号码"
+      },
+      {
+        "name": "idcard_hos_type",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "医保卡类型"
+      },
+      {
+        "name": "idcard_hos",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "医保卡号"
+      },
+      {
+        "name": "patient_idcard",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "身份证号 缺省000000000000000000"
+      },
+      {
+        "name": "name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "患者姓名"
+      },
+      {
+        "name": "ename",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "患者拼音姓名"
+      },
+      {
+        "name": "sex",
+        "type": "INTEGER",
+        "nullable": true,
+        "comment": "患者性别"
+      },
+      {
+        "name": "birthday",
+        "type": "BIGINT",
+        "nullable": true,
+        "comment": "患者生日"
+      },
+      {
+        "name": "mobile",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "患者电话 缺省00000000000"
+      },
+      {
+        "name": "op_em_hp_ex_mark",
+        "type": "INTEGER",
+        "nullable": true,
+        "comment": "门诊/急诊/住院/体检标志"
+      },
+      {
+        "name": "op_em_hp_ex_no",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "门诊/急诊/住院/体检编号"
+      },
+      {
+        "name": "img_count",
+        "type": "INTEGER",
+        "nullable": true,
+        "comment": "检查图像数"
+      },
+      {
+        "name": "update_time",
+        "type": "BIGINT",
+        "nullable": true,
+        "comment": "数据最后修改时间"
+      },
+      {
+        "name": "disable_flag",
+        "type": "INTEGER",
+        "nullable": true,
+        "comment": "删除标记"
+      },
+      {
+        "name": "hash_id",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "数据hash值"
+      },
+      {
+        "name": "rpt_no",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "检查申请单编号"
+      },
+      {
+        "name": "chk_organ_code",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "检查机构代码"
+      },
+      {
+        "name": "chk_organ_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "检查机构名称"
+      },
+      {
+        "name": "pric_code",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "物价检查项目编码"
+      },
+      {
+        "name": "upload_status",
+        "type": "INTEGER",
+        "nullable": true,
+        "comment": "上传状态"
+      },
+      {
+        "name": "order_code",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "指令编码"
+      },
+      {
+        "name": "age",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "患者年龄"
+      },
+      {
+        "name": "address",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "患者家庭地址"
+      },
+      {
+        "name": "marital_status",
+        "type": "INTEGER",
+        "nullable": true,
+        "comment": "婚姻状况"
+      },
+      {
+        "name": "nation_code",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "患者所属民族代码"
+      },
+      {
+        "name": "nation",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "患者所属民族"
+      },
+      {
+        "name": "nationality",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "患者国籍"
+      },
+      {
+        "name": "sample_sampling_dt",
+        "type": "BIGINT",
+        "nullable": true,
+        "comment": "标本采样日期时间"
+      },
+      {
+        "name": "opt_code",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "操作编码:为患者实施的检查操作在特定编码体系中的编码"
+      },
+      {
+        "name": "opt_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "操作名称:按照ICD-9-CM-3的名称"
+      },
+      {
+        "name": "int_object_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "介入物名称:实施手术操作时使用/放置的材料/药物的名称"
+      },
+      {
+        "name": "opt_method_desc",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "操作方法描述"
+      },
+      {
+        "name": "opt_count",
+        "type": "INTEGER",
+        "nullable": true,
+        "comment": "操作次数"
+      },
+      {
+        "name": "opt_dt",
+        "type": "BIGINT",
+        "nullable": true,
+        "comment": "操作日期时间"
+      },
+      {
+        "name": "ane_method_code",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "麻醉方法代码"
+      },
+      {
+        "name": "ane_obs_result",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "麻醉观察结果"
+      },
+      {
+        "name": "ane_caw_code",
+        "type": "INTEGER",
+        "nullable": true,
+        "comment": "麻醉中西医标识代码"
+      },
+      {
+        "name": "ane_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "麻醉医生签名"
+      },
+      {
+        "name": "diag_pro_desc",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "诊疗过程描述"
+      },
+      {
+        "name": "chk_sample_code",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "检查标本号"
+      },
+      {
+        "name": "sample_status",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "标本状态"
+      },
+      {
+        "name": "sample_sta_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "标本固定液名称"
+      },
+      {
+        "name": "film_type",
+        "type": "INTEGER",
+        "nullable": true,
+        "comment": "胶片类型"
+      },
+      {
+        "name": "charge",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "检查费用"
+      },
+      {
+        "name": "instr_code",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "检查设备编码"
+      },
+      {
+        "name": "check_organ_lv",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "检查医疗机构等级"
+      },
+      {
+        "name": "ckpt_code",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "检查部位编码"
+      },
+      {
+        "name": "img_exam_type",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "影像检查类型"
+      },
+      {
+        "name": "data_source",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "数据来源"
+      },
+      {
+        "name": "order_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "检查医嘱ID"
+      },
+      {
+        "name": "report_class",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "检查/检验类别"
+      },
+      {
+        "name": "data_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "省级平台项目名称"
+      },
+      {
+        "name": "data_code",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "省级平台项目编码"
+      },
+      {
+        "name": "project_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "国家平台项目名称"
+      },
+      {
+        "name": "project_code",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "国家平台项目编码"
+      },
+      {
+        "name": "national_pat_type",
+        "type": "INTEGER",
+        "nullable": true,
+        "comment": "医院原始门诊/急诊/住院/体检等标志（国家标准病人类型）"
+      },
+      {
+        "name": "data_process_time",
+        "type": "DATETIME",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "collect_data_process_time",
+        "type": "DATETIME",
+        "nullable": true,
+        "comment": "医保补采源报文处理时间"
+      },
+      {
+        "name": "center_data_process_time",
+        "type": "DATETIME",
+        "nullable": true,
+        "comment": "管理中心源报文处理时间"
+      },
+      {
+        "name": "data_store_time",
+        "type": "DATETIME",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "collect_flag",
+        "type": "TINYINT",
+        "nullable": true,
+        "comment": "医保补采标志 1-有"
+      },
+      {
+        "name": "center_flag",
+        "type": "TINYINT",
+        "nullable": true,
+        "comment": "管理中心同步标志 1-有"
+      },
+      {
+        "name": "link_id",
+        "type": "VARCHAR(512) COLLATE \"utf8mb4_bin\"",
+        "nullable": false,
+        "comment": "MD5 of organ_code + '_' + system_id + '_' + ris_study_id, UTF-8 lowercase hex"
+      },
+      {
+        "name": "EXAM_PART",
+        "type": "VARCHAR(128) COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": "WS/T 364.8-2023 CV04.30.002 检查技术编码;一个原始代码"
+      }
+    ]
+  },
+  "SERIES_INFO": {
+    "fields": [
+      {
+        "name": "organ_code",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": false,
+        "comment": ""
+      },
+      {
+        "name": "system_id",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": false,
+        "comment": ""
+      },
+      {
+        "name": "pacs_series_id",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": false,
+        "comment": ""
+      },
+      {
+        "name": "ris_study_id",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "pacs_study_id",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "study_instance_uid",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "image_count",
+        "type": "INTEGER",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "series_sort",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "image_type",
+        "type": "INTEGER",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "disable_flag",
+        "type": "INTEGER",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "storage_path",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "thumb_path",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "patient_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "series_instance_uid",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "patient_id",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "other_patient_ids",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "other_patient_names",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "patient_birth_date",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "patient_birth_time",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "patient_sex",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "patient_weight",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "patient_size",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "pregnancy_status",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "study_priority_id",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "study_comments",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "study_date",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "study_time",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "study_completion_date",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "study_completion_time",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "performing_physician_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "modalities_in_study",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "body_part_examined",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "study_description",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "patient_age",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "institution_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "manufacturer",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "manufacturers_model_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "station_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "software_version",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "chk_modality",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "imagenumber_of_study",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "patient_phone",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "patient_address",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "occupation",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "allergic_history",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "kvp",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "exposure",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "series_description",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "series_date",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "series_time",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "image_position",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "image_orientation",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "slice_thickness",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "spacing_between_slices",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "slice_location",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "mr_acquisition_type",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "accession_number",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "entrance_dose_in_milli_gy",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "distance_source_to_detector",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "window_center",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "window_width",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "study_id",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "acquisition_time",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "requested_procedure_description",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "series_number",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "dicom_image_type",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "content_date",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "content_time",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "samples_per_pixel",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "photometric_interpretation",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "rows",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "columns",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "pixel_spacing",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "bits_allocated",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "bits_stored",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "high_bit",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "pixel_representation",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "rescale_intercept",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "rescale_slope",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "rescale_type",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "instance_creation_date",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "instance_creation_time",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "image_horizontal_flip",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "image_rotation",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "instance_number",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "data_collection_diameter",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "device_serial_number",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "protocol_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "reconstruction_diameter",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "distance_source_to_patient",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "detector_tilt",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "table_height",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "rotation_direction",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "exposure_time",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "x_ray_tube_current",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "filter_type",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "generator_power",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "focal_spot",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "date_of_last_calibration",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "time_of_last_calibration",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "convolution_kernel",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "scan_length",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "patient_position",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "revolution_time",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "single_collimation_width",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "total_collimation_width",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "table_speed",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "table_feed_per_rotation",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "spiral_pitch_factor",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "data_collection_center_patient",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "reconstruction_target_center_patient",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "exposure_modulation_type",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "estimated_dose_saving",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "ctdivol",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "scanning_sequence",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "sequence_variant",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "scan_options",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "sequence_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "angio_flag",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "repetition_time",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "echo_time",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "number_of_averages",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "imaging_frequency",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "imaged_nucleus",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "echo_numbers",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "magnetic_field_strength",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "number_of_phase_encoding_steps",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "echo_train_length",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "pixel_bandwidth",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "transmit_coil_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "acquisition_matrix",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "in_plane_phase_encoding_direction",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "flip_angle",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "variable_flip_angle_flag",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "sar",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "db_dt",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "contrast_agent",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "transfer_syntax_uid",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "implementation_class_uid",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "implementation_version_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "series_in_study",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "acquisitions_in_series",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "images_in_acquisition",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "images_in_series",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "images_in_study",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "data_process_time",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "dcm_analysis_time",
+        "type": "BIGINT",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "dcm_upload_time",
+        "type": "BIGINT",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "upload_status",
+        "type": "INTEGER",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "order_code",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "laterality",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "image_laterality",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "sop_class_uid",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "manufacturer_model_version",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "manufacturer_device_class_uid",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "manufacturer_device_identifier",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "modifying_device_manufacturer",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "institution_department_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "conversion_type",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "secondary_capture_device_manufacturer",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "secondary_capture_device_manufacturer_model_name",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "series_description_code_sequence",
+        "type": "TEXT COLLATE \"utf8mb4_bin\"",
+        "nullable": true,
+        "comment": ""
+      },
+      {
+        "name": "link_id",
+        "type": "VARCHAR(512) COLLATE \"utf8mb4_bin\"",
+        "nullable": false,
+        "comment": "MD5 of organ_code + '_' + system_id + '_' + ris_study_id, UTF-8 lowercase hex"
+      },
+      {
+        "name": "global_id",
+        "type": "VARCHAR(512) COLLATE \"utf8mb4_bin\"",
+        "nullable": false,
+        "comment": "Synthetic image API series_id; independent of the study link_id"
+      }
+    ]
+  },
+  "core_flow_settlement_v1": {
+    "fields": [
+      {
+        "name": "ORGAN_CODE",
+        "type": "TEXT",
+        "nullable": false,
+        "comment": "采集医疗机构代码；对接的医疗机构代码，采用18位“统一社会信用代码”；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "ORGAN_NAME",
+        "type": "TEXT",
+        "nullable": false,
+        "comment": "采集医疗机构名称；医疗机构第一执业许可名称；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "ORGAN_ADMDVS",
+        "type": "TEXT",
+        "nullable": false,
+        "comment": "医疗机构医保区划；医疗机构所属医保区划；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "ORGAN_LV",
+        "type": "TEXT",
+        "nullable": false,
+        "comment": "医疗机构等级；医疗机构等级；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "FIX_ORGAN_CODE",
+        "type": "TEXT",
+        "nullable": false,
+        "comment": "定点医药机构编号；医疗机构医保定点编号，采用12位的H码；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "FIX_ORGAN_NAME",
+        "type": "TEXT",
+        "nullable": false,
+        "comment": "定点医药机构名称；定点医药机构名称；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "DATA_SOURCE",
+        "type": "TEXT",
+        "nullable": false,
+        "comment": "信息系统院内唯一ID；信息系统在医疗机构的唯一ID，该字段用来解决同一家医疗机构有多个系统，造成部分ID重复问题，建议从HIS01开始。；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "SETL_HOS_ID",
+        "type": "TEXT",
+        "nullable": false,
+        "comment": "院内结算id；主键，院内结算唯一号；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "INIT_SETL_HOS_ID",
+        "type": "TEXT",
+        "nullable": true,
+        "comment": "原院内结算id；原院内结算id，退费时必填；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "SETL_MED_ID",
+        "type": "TEXT",
+        "nullable": true,
+        "comment": "医保结算id；医保结算id，医保结算时必填；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "INIT_SETL_MED_ID",
+        "type": "TEXT",
+        "nullable": true,
+        "comment": "原医保结算id；原医保结算id，医保退费时必填；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "MDTRT_SN",
+        "type": "TEXT",
+        "nullable": false,
+        "comment": "就医流水号；机构内生成唯一就诊流水号；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "MDTRT_ID",
+        "type": "TEXT",
+        "nullable": true,
+        "comment": "就诊id；医保病人必填；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "MED_PAY_FLAG",
+        "type": "TEXT",
+        "nullable": false,
+        "comment": "医保结算标识；是否医保结算，0：否，1：是；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "PSN_NO",
+        "type": "TEXT",
+        "nullable": true,
+        "comment": "患者人员编号；医保患者必填；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "PSN_NAME",
+        "type": "TEXT",
+        "nullable": false,
+        "comment": "患者姓名；居民本人正式登记注册的姓名；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "PSN_CERT_TYPE",
+        "type": "TEXT",
+        "nullable": false,
+        "comment": "患者证件类型；详见“RC038-国家公立医院绩效考核患者证件类别”码表（表5）；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "CERTNO",
+        "type": "TEXT",
+        "nullable": false,
+        "comment": "患者证件号码；卡证号码应与卡证类型相匹配；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "SOC_SEC_CARD_NO",
+        "type": "TEXT",
+        "nullable": true,
+        "comment": "社会保障卡卡号；就诊时的社会保障卡卡号（社会保障卡就诊时必填）；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "GEND",
+        "type": "TEXT",
+        "nullable": false,
+        "comment": "性别代码；0、未知的性别，1、男性，2、女性，9、未说明的性别；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "OP_EM_MARK",
+        "type": "TEXT",
+        "nullable": false,
+        "comment": "门诊/急诊/住院/体检标识；1、普通门诊、2急诊，3、住院，4、体检；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "OP_EM_NO",
+        "type": "TEXT",
+        "nullable": false,
+        "comment": "门诊/急诊/住院/体检编号；同门诊/急诊/住院/体检关联；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "RCD_DT",
+        "type": "TEXT",
+        "nullable": false,
+        "comment": "收费/退费日期时间；收费/退费日期时间；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "REFD_SETL_FLAG",
+        "type": "NUMERIC(1, 0)",
+        "nullable": false,
+        "comment": "退费结算标志；收费或退费的标志，0、正常；1、退费；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "MED_TYPE",
+        "type": "TEXT",
+        "nullable": true,
+        "comment": "医疗类别；详见附录表13，医保结算时必填；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "MEDFEE_SUMAMT",
+        "type": "NUMERIC(16, 2)",
+        "nullable": false,
+        "comment": "医疗费总额；医疗费总额，医保结算时必填；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "FUND_PAY_SUMAMT",
+        "type": "NUMERIC(16, 2)",
+        "nullable": true,
+        "comment": "基金支付总额；基金支付总额，医保结算时必填；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "PSN_PART_AMT",
+        "type": "NUMERIC(16, 2)",
+        "nullable": true,
+        "comment": "个人负担总金额；个人负担总金额，医保结算时必填；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "ACCT_PAY",
+        "type": "NUMERIC(16, 2)",
+        "nullable": true,
+        "comment": "个人账户支出；个人账户支出，医保结算时必填；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "PSN_CASH_PAY",
+        "type": "NUMERIC(16, 2)",
+        "nullable": true,
+        "comment": "个人现金支出；个人现金支出，医保结算时必填；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "HOSP_PART_AMT",
+        "type": "NUMERIC(16, 2)",
+        "nullable": true,
+        "comment": "医院负担金额；医院负担金额，医保结算时必填；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "UPDATE_TIME",
+        "type": "TIMESTAMP WITH TIME ZONE",
+        "nullable": false,
+        "comment": "最终结算时间；最终结算时间（精确到秒），采集按照该字段定时采集；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "SETL_FEE_LIST_ID",
+        "type": "TEXT",
+        "nullable": false,
+        "comment": "结算明细id；主键，院内结算明细id；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "RPT_NO",
+        "type": "TEXT",
+        "nullable": true,
+        "comment": "申请单编号；院内申请单编号，检查检验必填；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "FEEDETL_SN",
+        "type": "TEXT",
+        "nullable": false,
+        "comment": "费用明细流水号；费用明细流水号；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "INIT_FEEDETL_SN",
+        "type": "TEXT",
+        "nullable": true,
+        "comment": "原费用明细流水号；原费用明细流水号，退费时必填；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "HOS_PROJ_NO",
+        "type": "TEXT",
+        "nullable": false,
+        "comment": "院内项目编码；该项目在医疗机构中的编码；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "HOS_PROJ_NAME",
+        "type": "TEXT",
+        "nullable": false,
+        "comment": "院内项目名称；该项目在医疗机构中的名称；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "HILIST_CODE",
+        "type": "TEXT",
+        "nullable": true,
+        "comment": "医保目录编码；医保服务项目价格目录编码，医保结算时必填；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "HILIST_NAME",
+        "type": "TEXT",
+        "nullable": true,
+        "comment": "医保目录名称；医保服务项目价格目录名称，医保结算时必填；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "LIST_TYPE",
+        "type": "TEXT",
+        "nullable": true,
+        "comment": "目录类别；101西药中成药，102中药饮片，103自制剂，104民族药，201医疗服务项目，301医用耗材；医保结算时必填；来源：mock结算信息数据库.docx及用户补充码表"
+      },
+      {
+        "name": "MED_LIST_CODG",
+        "type": "TEXT",
+        "nullable": true,
+        "comment": "医疗目录编码；药剂或者耗材的医疗目录编码，医保结算时必填；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "MEDINS_LIST_CODG",
+        "type": "TEXT",
+        "nullable": false,
+        "comment": "医药机构目录编码；院内收费目录编码 ；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "MEDINS_LIST_NAME",
+        "type": "TEXT",
+        "nullable": false,
+        "comment": "医药机构目录名称；院内收费目录名称；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "MED_CHRGITM_TYPE",
+        "type": "TEXT",
+        "nullable": true,
+        "comment": "医疗收费项目类别；详见附录表16；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "PRODNAME",
+        "type": "TEXT",
+        "nullable": true,
+        "comment": "商品名；商品名；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "SPEC",
+        "type": "TEXT",
+        "nullable": true,
+        "comment": "规格；规格；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "DOSFORM_NAME",
+        "type": "TEXT",
+        "nullable": true,
+        "comment": "剂型名称；剂型名称；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "CNT",
+        "type": "NUMERIC(10, 2)",
+        "nullable": false,
+        "comment": "项目数量；项目数量；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "PRIC",
+        "type": "NUMERIC(10, 2)",
+        "nullable": false,
+        "comment": "项目单价（元）；项目单价（元）；来源：mock结算信息数据库.docx"
+      },
+      {
+        "name": "SYSTEM_ID",
+        "type": "VARCHAR(16)",
+        "nullable": false,
+        "comment": "检查所属系统的院内唯一ID; 最大16字符; 用户2026-10-13补充; 不替代DATA_SOURCE"
+      }
+    ]
+  }
+}

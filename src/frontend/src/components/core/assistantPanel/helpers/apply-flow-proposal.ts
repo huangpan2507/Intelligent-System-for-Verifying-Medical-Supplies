@@ -19,15 +19,15 @@ import { mergeFlowIntoCanvas } from "./merge-flow-into-canvas";
 
 type UpdateNodeInternals = ReturnType<typeof useUpdateNodeInternals>;
 
-interface PositionedNode {
+type PositionedNode = {
   id: string;
   position: { x: number; y: number };
-}
-interface SimpleEdge {
+};
+type SimpleEdge = {
   id: string;
   source: string;
   target: string;
-}
+};
 
 /**
  * The proposal card advertises the full node/edge counts, so a policy drop

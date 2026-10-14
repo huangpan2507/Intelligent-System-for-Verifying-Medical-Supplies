@@ -1,0 +1,23 @@
+[
+  {
+    "id": "92eec597-7121-4df8-83e3-fe585054d8b5",
+    "node_id": "NameModel",
+    "connection_id": "73f76ea6-93d7-48a3-8fcc-e33a406d0e29",
+    "transport": "responded",
+    "validity": "valid"
+  },
+  {
+    "id": "dfe28bc1-10ef-48f0-9565-c7ee9ca9d04e",
+    "node_id": "Observation",
+    "connection_id": "bd965b78-e1c6-4553-b884-c78a807b67bc",
+    "transport": "responded",
+    "validity": "valid"
+  },
+  {
+    "id": "cbbd43fe-060a-46e2-a5e9-6223f042d02e",
+    "node_id": "Observation",
+    "connection_id": "bd965b78-e1c6-4553-b884-c78a807b67bc",
+    "transport": "responded",
+    "validity": "valid"
+  }
+]

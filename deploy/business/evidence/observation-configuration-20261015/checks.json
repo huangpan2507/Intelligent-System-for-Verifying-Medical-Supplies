@@ -1,0 +1,55 @@
+{
+  "backend": {
+    "passed": 51,
+    "log": "backend-tests.log"
+  },
+  "frontend": {
+    "suites": 12,
+    "passed": 39,
+    "log": "frontend-tests.log",
+    "final_imaging_tests_passed": 2
+  },
+  "typescript": {
+    "status": "passed",
+    "exit_code": 0,
+    "log": "typescript-final.log"
+  },
+  "browser": {
+    "passed": 1,
+    "duration": "4.3m",
+    "log": "browser-acceptance.log"
+  },
+  "ruff": "passed",
+  "biome": "passed",
+  "runtime": {
+    "changed_nodes": [
+      "Observation",
+      "Compare",
+      "Results"
+    ],
+    "edges_unchanged": true,
+    "version": 8,
+    "task_id": "03c6b813-0067-4781-9edf-15860ae1d0b9",
+    "unit_parameters_sent": false,
+    "fixed_unit_result_label": false,
+    "observation_data": 2,
+    "observation_issues": 0
+  },
+  "final_recheck": {
+    "changed_node_configs": [
+      "Observation",
+      "Compare",
+      "Results"
+    ],
+    "edges_unchanged": true,
+    "version": 8,
+    "health": {
+      "frontend": 200,
+      "platform": 200,
+      "business": 200,
+      "mock": 200
+    },
+    "locales": 7,
+    "new_translation_keys": 20
+  }
+}

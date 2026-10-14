@@ -263,7 +263,11 @@ export function ParameterRenderComponent({
         return (
           <SliderComponent
             {...baseInputProps}
-            value={templateValue}
+            value={
+              typeof templateValue === "number"
+                ? templateValue
+                : String(templateValue ?? "")
+            }
             rangeSpec={templateData.rangeSpec ?? templateData.range_spec}
             minLabel={templateData?.min_label}
             maxLabel={templateData?.max_label}

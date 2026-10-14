@@ -1,0 +1,100 @@
+{
+  "flow_id": "ce588a72-0614-4d84-badd-0e4355c427e6",
+  "release_id": "d4af40ac-fb56-4a31-bf78-756b761136f3",
+  "version": 8,
+  "node_count": 11,
+  "scheme": "core.normal.compact.v1",
+  "task_id": "03c6b813-0067-4781-9edf-15860ae1d0b9",
+  "status": "completed",
+  "counts": {
+    "Settlements": 2,
+    "SettlementChecks": 2,
+    "Classification": 2,
+    "Studies": 5,
+    "StudyRelevance": 5,
+    "Series": 5,
+    "Images": 2,
+    "Observation": 2,
+    "Compare": 2,
+    "Results": 2
+  },
+  "assessment": {
+    "mode": "verification",
+    "state": "accounted",
+    "checks": [
+      {
+        "name": "category",
+        "units": 2,
+        "counts": {
+          "equal": 2
+        },
+        "effective": 2,
+        "dataset_id": "9099eb3a-03d8-450f-9a74-71848b617b46",
+        "coverage_gaps": 0
+      },
+      {
+        "name": "quantity",
+        "units": 2,
+        "counts": {
+          "equal": 2
+        },
+        "effective": 2,
+        "dataset_id": "7769bcd0-b74f-47a5-bd05-938d3a3582af",
+        "coverage_gaps": 0
+      },
+      {
+        "name": "fee",
+        "units": 2,
+        "counts": {
+          "equal": 2
+        },
+        "effective": 2,
+        "dataset_id": "b3945ff6-05f7-4cb1-936c-41d63f6b4843",
+        "coverage_gaps": 0
+      }
+    ],
+    "sources": [
+      {
+        "node": "Settlements",
+        "basis": "query_exhausted",
+        "state": "complete",
+        "dataset_id": "47275642-2507-435c-930f-29b8a8daef02",
+        "received_rows": 2
+      },
+      {
+        "node": "Studies--source",
+        "basis": "query_exhausted",
+        "state": "complete",
+        "dataset_id": "02a46c34-8c48-4a5c-90e2-0309474c3678",
+        "received_rows": 5
+      },
+      {
+        "node": "Series--source",
+        "basis": "query_exhausted",
+        "state": "complete",
+        "dataset_id": "aaf88b61-bce3-491c-bc17-0fb9b76a14cf",
+        "received_rows": 5
+      },
+      {
+        "node": "Images--responses",
+        "basis": "core-flow-v1 controlled mock returns the complete finite set for each request",
+        "scope": "object",
+        "state": "complete",
+        "dataset_id": "4d94f84d-0139-4130-9fd9-cf63ae885772",
+        "received_rows": 12
+      }
+    ],
+    "execution_errors": {},
+    "received_records": 2,
+    "discovery_complete": true,
+    "business_identities": 2,
+    "coverage_gap_records": 0,
+    "dispositions_dataset_id": "e9903cae-1221-4a2d-834c-e7cdb26e8096",
+    "missing_identity_records": 0,
+    "known_record_accountability": 1.0
+  },
+  "matches_expected_samples": true,
+  "real_text_model_calls": 2,
+  "image_observation_simulated": true,
+  "cross_business_acceptance": "deferred_by_Q24"
+}

@@ -28,7 +28,7 @@ jest.mock("@/controllers/API/helpers/constants", () => ({
 jest.mock("@/controllers/API/services/request-processor", () => ({
   UseRequestProcessor: jest.fn(() => ({
     query: jest.fn((_key, fn, _options) => {
-      const result = {
+      const result: { data: unknown; error: unknown; isLoading: boolean } = {
         data: null,
         isLoading: false,
         error: null,

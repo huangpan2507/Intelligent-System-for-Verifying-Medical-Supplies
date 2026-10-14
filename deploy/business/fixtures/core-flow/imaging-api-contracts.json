@@ -1,0 +1,693 @@
+[
+  {
+    "key": "check",
+    "source_url": "https://docs.apipost.net/docs/detail/6dfae7d97c79000?locale=zh-cn&target_id=444ee13",
+    "retrieved_date": "2026-10-12",
+    "name": "获取检查列表",
+    "method": "GET",
+    "path": "/api/v2/study/list",
+    "auth_headers": [
+      {
+        "key": "X-token",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      }
+    ],
+    "query": [
+      {
+        "key": "begin_time",
+        "field_type": "string",
+        "not_null": 1,
+        "is_checked": 1,
+        "description": ""
+      },
+      {
+        "key": "end_time",
+        "field_type": "string",
+        "not_null": 1,
+        "is_checked": 1,
+        "description": ""
+      },
+      {
+        "key": "name",
+        "field_type": "string",
+        "not_null": -1,
+        "is_checked": 1,
+        "description": "患者名字"
+      },
+      {
+        "key": "cardno",
+        "field_type": "string",
+        "not_null": -1,
+        "is_checked": 1,
+        "description": ""
+      },
+      {
+        "key": "organ_code",
+        "field_type": "string",
+        "not_null": -1,
+        "is_checked": -1,
+        "description": "医院代码，社会统一信用代码"
+      },
+      {
+        "key": "cardtype",
+        "field_type": "string",
+        "not_null": -1,
+        "is_checked": -1,
+        "description": "01身份证,02户口本，03护照，04军官证，05驾驶证，06港澳通行证，07台湾通行证，99其他法定证件"
+      },
+      {
+        "key": "mobile",
+        "field_type": "string",
+        "not_null": -1,
+        "is_checked": -1,
+        "description": "患者手机号"
+      },
+      {
+        "key": "system_patient_id",
+        "field_type": "string",
+        "not_null": -1,
+        "is_checked": -1,
+        "description": "患者编号"
+      },
+      {
+        "key": "chk_modality",
+        "field_type": "string",
+        "not_null": -1,
+        "is_checked": -1,
+        "description": "检查类型"
+      },
+      {
+        "key": "op_em_hp_ex_mark",
+        "field_type": "string",
+        "not_null": -1,
+        "is_checked": -1,
+        "description": "1 门诊 2 急诊  3 住院  4 体检"
+      },
+      {
+        "key": "op_em_hp_ex_no",
+        "field_type": "string",
+        "not_null": -1,
+        "is_checked": -1,
+        "description": "门诊/急诊/住院/体检编号"
+      },
+      {
+        "key": "chk_status",
+        "field_type": "string",
+        "not_null": -1,
+        "is_checked": -1,
+        "description": "检查状态"
+      },
+      {
+        "key": "is_upload",
+        "field_type": "string",
+        "not_null": -1,
+        "is_checked": -1,
+        "description": "影像是否上传"
+      },
+      {
+        "key": "is_report",
+        "field_type": "string",
+        "not_null": -1,
+        "is_checked": -1,
+        "description": "是否有报告"
+      },
+      {
+        "key": "page",
+        "field_type": "string",
+        "not_null": -1,
+        "is_checked": -1,
+        "description": "页码，需要调用方计算（page - 1）* page_size"
+      },
+      {
+        "key": "page_size",
+        "field_type": "string",
+        "not_null": -1,
+        "is_checked": -1,
+        "description": "每页数量"
+      },
+      {
+        "key": "is_valid",
+        "field_type": "string",
+        "not_null": -1,
+        "is_checked": -1,
+        "description": "数据质控标识"
+      },
+      {
+        "key": "ris_study_id",
+        "field_type": "string",
+        "not_null": -1,
+        "is_checked": -1,
+        "description": "检查id"
+      },
+      {
+        "key": "sort",
+        "field_type": "string",
+        "not_null": -1,
+        "is_checked": -1,
+        "description": "排序字段"
+      },
+      {
+        "key": "order",
+        "field_type": "string",
+        "not_null": -1,
+        "is_checked": -1,
+        "description": "排序方式 asc desc"
+      },
+      {
+        "key": "page",
+        "field_type": "string",
+        "not_null": 1,
+        "is_checked": -1,
+        "description": "分页页码，数字类型"
+      },
+      {
+        "key": "page_size",
+        "field_type": "string",
+        "not_null": 1,
+        "is_checked": -1,
+        "description": "每页数量"
+      }
+    ],
+    "success_response_fields": [
+      {
+        "key": "code",
+        "field_type": "number",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "message",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data",
+        "field_type": "array",
+        "not_null": 1,
+        "description": "返回数据"
+      },
+      {
+        "key": "data.study_primary_id",
+        "field_type": "string",
+        "not_null": 1,
+        "description": "检查主键id，查询需要"
+      },
+      {
+        "key": "data.ris_study_id",
+        "field_type": "string",
+        "not_null": 1,
+        "description": "检查id"
+      },
+      {
+        "key": "data.organ_code",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.organ_name",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.system_patient_id",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.name",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.sex",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.age",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.op_em_hp_ex_mark",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.op_em_hp_ex_no",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.chk_modality",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.chk_status",
+        "field_type": "number",
+        "not_null": 1,
+        "description": "检查状态：8 报告发布退回  10  报告已发布"
+      },
+      {
+        "key": "data.image_type",
+        "field_type": "string",
+        "not_null": 1,
+        "description": "图像类型"
+      },
+      {
+        "key": "data.is_upload",
+        "field_type": "number",
+        "not_null": 1,
+        "description": "是否有图，1有图，0,还未上传图"
+      },
+      {
+        "key": "data.proj_name",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.chk_methodname",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.ckpt_name",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.chk_dt",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.chk_doc_name",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.is_report",
+        "field_type": "number",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.report_list",
+        "field_type": "array",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.report_list.rpt_code",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.report_list.rpt_dt",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.report_list.rpt_name",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.report_list.rv_dt",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.report_list.rv_name",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.report_list.is_valid",
+        "field_type": "number",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.thumb_images",
+        "field_type": "Null",
+        "not_null": 1,
+        "description": "缩略图"
+      },
+      {
+        "key": "error",
+        "field_type": "object",
+        "not_null": 1,
+        "description": "错误响应"
+      },
+      {
+        "key": "error.error_code",
+        "field_type": "number",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "meta",
+        "field_type": "object",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "meta.trace",
+        "field_type": "object",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "meta.trace.trace_id",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "meta.trace.parent_id",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "meta.trace.span_id",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "meta.trace.request_id",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      }
+    ],
+    "success_code": 200,
+    "items_path": "data"
+  },
+  {
+    "key": "series",
+    "source_url": "https://docs.apipost.net/docs/detail/6dfae9144079000?target_id=1204a95cb12101&locale=zh-cn",
+    "retrieved_date": "2026-10-12",
+    "name": "获取DICOM影像序列Uid(DICOM) ",
+    "method": "GET",
+    "path": "/api/v2/dicom/series-instance-uid",
+    "auth_headers": [
+      {
+        "key": "X-Token",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      }
+    ],
+    "query": [
+      {
+        "key": "study_primary_id",
+        "field_type": "string",
+        "not_null": 1,
+        "is_checked": 1,
+        "description": "患者名字"
+      }
+    ],
+    "success_response_fields": [
+      {
+        "key": "code",
+        "field_type": "number",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "message",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data",
+        "field_type": "array",
+        "not_null": 1,
+        "description": "返回数据"
+      },
+      {
+        "key": "data.series_id",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.organ_code",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.pacs_study_id",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.pacs_series_id",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.series_number",
+        "field_type": "number",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.chk_modality",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "error",
+        "field_type": "object",
+        "not_null": 1,
+        "description": "错误响应"
+      },
+      {
+        "key": "error.error_code",
+        "field_type": "number",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "meta",
+        "field_type": "object",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "meta.trace",
+        "field_type": "object",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "meta.trace.trace_id",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "meta.trace.parent_id",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "meta.trace.span_id",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "meta.trace.request_id",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      }
+    ],
+    "success_code": 200,
+    "items_path": "data"
+  },
+  {
+    "key": "images",
+    "source_url": "https://docs.apipost.net/docs/detail/6dfaead25070000?target_id=11ffcb2c7120a1&locale=zh-cn",
+    "retrieved_date": "2026-10-12",
+    "name": "获取DICOM影像下载地址(DICOM)",
+    "method": "GET",
+    "path": "/api/v2/storage/dicom/sop-instance-uid",
+    "auth_headers": [
+      {
+        "key": "X-token",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      }
+    ],
+    "query": [
+      {
+        "key": "series_id",
+        "field_type": "string",
+        "not_null": 1,
+        "is_checked": 1,
+        "description": "检查id"
+      },
+      {
+        "key": "url_type",
+        "field_type": "string",
+        "not_null": -1,
+        "is_checked": 1,
+        "description": "获取指定类型的url地址,0-s3,1-网关,2-专网相对路径,3-互联网,4-专网"
+      }
+    ],
+    "success_response_fields": [
+      {
+        "key": "code",
+        "field_type": "integer",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "message",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data",
+        "field_type": "array",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.image_instance_number",
+        "field_type": "integer",
+        "not_null": 1,
+        "description": "图像顺序号"
+      },
+      {
+        "key": "data.file_path",
+        "field_type": "string",
+        "not_null": 1,
+        "description": "文件下载连接"
+      },
+      {
+        "key": "data.file_size",
+        "field_type": "string",
+        "not_null": 1,
+        "description": "文件大小"
+      },
+      {
+        "key": "data.domain",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "data.study_instance_uid",
+        "field_type": "string",
+        "not_null": 1,
+        "description": "检查id"
+      },
+      {
+        "key": "data.series_instance_uid",
+        "field_type": "string",
+        "not_null": 1,
+        "description": "序列id"
+      },
+      {
+        "key": "data.sop_instance_uid",
+        "field_type": "string",
+        "not_null": 1,
+        "description": "SOPA序列id"
+      },
+      {
+        "key": "data.file_suffix",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "error",
+        "field_type": "object",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "error.error_code",
+        "field_type": "integer",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "meta",
+        "field_type": "object",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "meta.trace",
+        "field_type": "object",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "meta.trace.trace_id",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "meta.trace.parent_id",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "meta.trace.span_id",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      },
+      {
+        "key": "meta.trace.request_id",
+        "field_type": "string",
+        "not_null": 1,
+        "description": ""
+      }
+    ],
+    "success_code": 200,
+    "items_path": "data"
+  }
+]

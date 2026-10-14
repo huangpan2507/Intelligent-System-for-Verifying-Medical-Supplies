@@ -1,0 +1,6 @@
+# For an already-initialized data volume when Desktop's WSL bind-mount service
+# is unavailable. start_local.sh checks PG_VERSION before using this override.
+services:
+  postgres:
+    volumes: !override
+      - postgres-data:/var/lib/postgresql/data

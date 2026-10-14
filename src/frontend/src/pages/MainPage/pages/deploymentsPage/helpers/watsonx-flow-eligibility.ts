@@ -3,14 +3,11 @@ export type WatsonxFlowEligibilityIssue =
   | "multipleChatInputs"
   | "missingChatOutput";
 
-export const WATSONX_ELIGIBILITY_MESSAGE_KEYS: Record<
-  WatsonxFlowEligibilityIssue,
-  string
-> = {
+export const WATSONX_ELIGIBILITY_MESSAGE_KEYS = {
   missingChatInput: "deployments.wxoMissingChatInput",
   multipleChatInputs: "deployments.wxoMultipleChatInputs",
   missingChatOutput: "deployments.wxoMissingChatOutput",
-};
+} as const satisfies Record<WatsonxFlowEligibilityIssue, string>;
 
 export function getWatsonxFlowEligibilityIssue(
   flowData: unknown,

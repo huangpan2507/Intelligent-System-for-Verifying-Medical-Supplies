@@ -47,22 +47,29 @@ const mockDeployment: Deployment = {
 };
 
 function renderEditHook(
-  overrides?: Partial<{
-    editingDeployment: Deployment;
-    selectedVersionByFlow: Map<
-      string,
-      { versionId: string; versionTag: string }
-    >;
-    initialLlm: string;
-    initialToolNameByFlow: Map<string, string>;
-    initialConnectionsByFlow: Map<string, string[]>;
-  }>,
+  overrides?: Parameters<typeof DeploymentStepperProvider>[0]["initialState"],
 ) {
   const defaults = {
     editingDeployment: mockDeployment,
     selectedVersionByFlow: new Map([
-      ["flow-1", { versionId: "ver-1", versionTag: "v1" }],
-      ["flow-2", { versionId: "ver-2", versionTag: "v2" }],
+      [
+        "flow-1",
+        {
+          key: "flow-1:ver-1",
+          flowId: "flow-1",
+          versionId: "ver-1",
+          versionTag: "v1",
+        },
+      ],
+      [
+        "flow-2",
+        {
+          key: "flow-2:ver-2",
+          flowId: "flow-2",
+          versionId: "ver-2",
+          versionTag: "v2",
+        },
+      ],
     ]),
     initialLlm: "test-model",
     initialToolNameByFlow: new Map([

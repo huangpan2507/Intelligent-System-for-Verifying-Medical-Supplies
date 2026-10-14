@@ -1,0 +1,14 @@
+{
+  "flow_id": "e55b03b0-7c7f-420b-b720-33b1a4cf5559",
+  "task_id": "34daafef-3b63-4b3f-8c2e-55d18bc7bee8",
+  "node_count": 42,
+  "selected_node_configuration": [
+    "NameModel",
+    "Studies",
+    "Series"
+  ],
+  "task_start_received_values_visible": true,
+  "result_page_visible": true,
+  "canvas_unchanged_by_read": true,
+  "page_errors": []
+}

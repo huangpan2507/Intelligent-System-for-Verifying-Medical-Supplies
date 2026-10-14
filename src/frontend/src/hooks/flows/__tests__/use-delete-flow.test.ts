@@ -32,8 +32,12 @@ jest.mock("@/utils/reactflowUtils", () => ({
   extractFieldsFromComponenents: () => ({}),
 }));
 
-const makeFlow = (id: string): FlowType =>
-  ({ id, name: id, data: { nodes: [], edges: [], viewport: {} } }) as FlowType;
+const makeFlow = (id: string): FlowType => ({
+  id,
+  name: id,
+  description: "",
+  data: { nodes: [], edges: [], viewport: { x: 0, y: 0, zoom: 1 } },
+});
 
 describe("useDeleteFlow", () => {
   beforeEach(() => {

@@ -232,7 +232,7 @@ describe("ChatMessage Component", () => {
         message: "",
         files: [],
         content_blocks: [],
-        properties: { ...mockChat.properties, state: "partial" },
+        properties: { ...mockChat.properties, state: "partial" as const },
       },
     };
 
@@ -252,9 +252,13 @@ describe("ChatMessage Component", () => {
         message: "",
         files: [],
         content_blocks: [
-          { title: "Agent Steps", contents: [{ type: "text", text: "Input" }] },
+          {
+            type: "group" as const,
+            title: "Agent Steps",
+            contents: [{ type: "text" as const, text: "Input" }],
+          },
         ],
-        properties: { ...mockChat.properties, state: "partial" },
+        properties: { ...mockChat.properties, state: "partial" as const },
       },
     };
 

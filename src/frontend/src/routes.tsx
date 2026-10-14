@@ -41,7 +41,7 @@ import McpClientPage from "./pages/SettingsPage/pages/McpClientPage";
 import ModelProvidersPage from "./pages/SettingsPage/pages/ModelProvidersPage";
 import MessagesPage from "./pages/SettingsPage/pages/messagesPage";
 import ShortcutsPage from "./pages/SettingsPage/pages/ShortcutsPage";
-import VerificationPage from "./pages/VerificationPage";
+import BusinessPage from "./pages/BusinessPage";
 import VerificationTasksPage from "./pages/VerificationTasksPage";
 import VerificationTaskDetailsPage from "./pages/VerificationTasksPage/TaskDetailsPage";
 
@@ -143,7 +143,12 @@ const router = createBrowserRouter(
                     />
                   </Route>
                 </Route>
-                <Route path="verification" element={<VerificationPage />} />
+                <Route path="verification" element={<BusinessPage />} />
+                <Route path="business" element={<BusinessPage />} />
+                <Route path="business/connections" element={<BusinessPage />} />
+                <Route path="business/history" element={<BusinessPage />} />
+                <Route path="business/tasks" element={<BusinessPage />} />
+                <Route path="business/tasks/:taskId" element={<BusinessPage />} />
                 <Route
                   path="verification/tasks"
                   element={<VerificationTasksPage />}

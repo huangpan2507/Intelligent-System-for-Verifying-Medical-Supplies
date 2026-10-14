@@ -56,6 +56,7 @@ i18n.use(initReactI18next).init({
   },
   lng: detectedLang,
   fallbackLng: "en",
+  keySeparator: false,
   returnNull: false,
   returnEmptyString: false,
   interpolation: {

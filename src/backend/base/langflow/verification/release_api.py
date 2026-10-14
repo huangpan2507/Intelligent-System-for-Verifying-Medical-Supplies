@@ -29,6 +29,13 @@ def register_release_routes(app, database, settings, dependencies):
     from langflow.verification.api import active_run, conflict
 
     prefix = "/api/v1/verification/internal"
+    from langflow.business.migration import require_legacy_intake
+    def require_writable():
+        with database.sessions() as session:
+            require_legacy_intake(session)
+
+    from fastapi import Depends
+    writes = [*dependencies, Depends(require_writable)]
     actor_type = Annotated[str, Header(alias="X-Verification-Actor", min_length=1, max_length=36)]
 
     def owned(session, code, actor):
@@ -51,7 +58,7 @@ def register_release_routes(app, database, settings, dependencies):
                 )
             ]
 
-    @app.post(prefix + "/rules", dependencies=dependencies, status_code=201)
+    @app.post(prefix + "/rules", dependencies=writes, status_code=201)
     def create(body: RuleCreate, actor: actor_type):
         try:
             with database.sessions.begin() as session:
@@ -70,7 +77,7 @@ def register_release_routes(app, database, settings, dependencies):
         except IntegrityError as exc:
             raise HTTPException(409, "规则编码或名称已存在") from exc
 
-    @app.put(prefix + "/rules/{code}/draft", dependencies=dependencies)
+    @app.put(prefix + "/rules/{code}/draft", dependencies=writes)
     def save_draft(code: str, body: SaveRuleDraft, actor: actor_type):
         with database.sessions.begin() as session:
             rule = owned(session, code, actor)
@@ -87,7 +94,7 @@ def register_release_routes(app, database, settings, dependencies):
             session.refresh(rule)
             return rule_view(session, rule)
 
-    @app.post(prefix + "/rules/{code}/candidates", dependencies=dependencies, status_code=201)
+    @app.post(prefix + "/rules/{code}/candidates", dependencies=writes, status_code=201)
     async def prepare(code: str, body: CandidateWrite, actor: actor_type):
         with database.sessions() as session:
             rule = owned(session, code, actor)
@@ -121,7 +128,7 @@ def register_release_routes(app, database, settings, dependencies):
                 "configurations": package["configurations"],
             }
 
-    @app.post(prefix + "/rules/{code}/releases", dependencies=dependencies, status_code=201)
+    @app.post(prefix + "/rules/{code}/releases", dependencies=writes, status_code=201)
     def release(code: str, body: PublishRelease, actor: actor_type):
         try:
             with database.sessions.begin() as session:
@@ -149,7 +156,7 @@ def register_release_routes(app, database, settings, dependencies):
                 raise HTTPException(404, "发布版本不存在")
             return release_view(release, include_package=True)
 
-    @app.put(prefix + "/rules/{code}/active", dependencies=dependencies)
+    @app.put(prefix + "/rules/{code}/active", dependencies=writes)
     def enable(code: str, body: ActivateRelease, actor: actor_type):
         try:
             with database.sessions.begin() as session:

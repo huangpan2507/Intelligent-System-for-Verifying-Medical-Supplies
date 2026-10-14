@@ -1,9 +1,12 @@
+import type en from "@/locales/en.json";
 import TableAutoCellRender from "@/components/core/parameterRenderComponent/components/tableComponent/components/tableAutoCellRender";
 import CreatedAtCellRender from "../components/CreatedAtCellRender";
 import ExpiryDateCellRender from "../components/ExpiryDateCellRender";
 import LastUsedAtCellRender from "../components/LastUsedAtCellRender";
 
-export const getColumnDefs = (t: (key: string) => string) => {
+export const getColumnDefs = (
+  t: (key: Extract<keyof typeof en, `settings.apiKeys.${string}`>) => string,
+) => {
   return [
     {
       headerCheckboxSelection: true,

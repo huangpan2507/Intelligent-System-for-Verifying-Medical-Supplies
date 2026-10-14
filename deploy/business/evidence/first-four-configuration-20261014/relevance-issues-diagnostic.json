@@ -1,0 +1,607 @@
+{
+  "id": "7bb54723-6bd9-4bb7-9684-cb5cb42589e7",
+  "name": "StudyRelevance",
+  "fields": [
+    {
+      "name": "ORGAN_CODE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ORGAN_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ORGAN_ADMDVS",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ORGAN_LV",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "FIX_ORGAN_CODE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "FIX_ORGAN_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "DATA_SOURCE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "SETL_HOS_ID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "INIT_SETL_HOS_ID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "SETL_MED_ID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "INIT_SETL_MED_ID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MDTRT_SN",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MDTRT_ID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MED_PAY_FLAG",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "PSN_NO",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "PSN_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "PSN_CERT_TYPE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "CERTNO",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "SOC_SEC_CARD_NO",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "GEND",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "OP_EM_MARK",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "OP_EM_NO",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "RCD_DT",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "REFD_SETL_FLAG",
+      "type": "decimal128(1, 0)",
+      "nullable": true
+    },
+    {
+      "name": "MED_TYPE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MEDFEE_SUMAMT",
+      "type": "decimal128(16, 2)",
+      "nullable": true
+    },
+    {
+      "name": "FUND_PAY_SUMAMT",
+      "type": "decimal128(16, 2)",
+      "nullable": true
+    },
+    {
+      "name": "PSN_PART_AMT",
+      "type": "decimal128(16, 2)",
+      "nullable": true
+    },
+    {
+      "name": "ACCT_PAY",
+      "type": "decimal128(16, 2)",
+      "nullable": true
+    },
+    {
+      "name": "PSN_CASH_PAY",
+      "type": "decimal128(16, 2)",
+      "nullable": true
+    },
+    {
+      "name": "HOSP_PART_AMT",
+      "type": "decimal128(16, 2)",
+      "nullable": true
+    },
+    {
+      "name": "UPDATE_TIME",
+      "type": "timestamp[us, tz=UTC]",
+      "nullable": true
+    },
+    {
+      "name": "SETL_FEE_LIST_ID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "RPT_NO",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "FEEDETL_SN",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "INIT_FEEDETL_SN",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "HOS_PROJ_NO",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "HOS_PROJ_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "HILIST_CODE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "HILIST_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "LIST_TYPE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MED_LIST_CODG",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MEDINS_LIST_CODG",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MEDINS_LIST_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MED_CHRGITM_TYPE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "PRODNAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "SPEC",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "DOSFORM_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "CNT",
+      "type": "decimal128(10, 2)",
+      "nullable": true
+    },
+    {
+      "name": "PRIC",
+      "type": "decimal128(10, 2)",
+      "nullable": true
+    },
+    {
+      "name": "SYSTEM_ID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "_identity",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "_representative_row_id",
+      "type": "int64",
+      "nullable": true
+    },
+    {
+      "name": "_identity_status",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "target_category",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_method",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_reason",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_evidence_field",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_evidence_text",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_confidence",
+      "type": "decimal128(38, 6)",
+      "nullable": true
+    },
+    {
+      "name": "classification_ambiguity",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_disposition",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_disposition_reason",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "study_organ_code",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "study_system_id",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "study_ris_study_id",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "study_name",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "study_cardno",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "study_op_em_hp_ex_no",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "study_ckpt_name",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "study_chk_modality",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "study_primary_id",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "study_visit_type",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "checked_at",
+      "type": "timestamp[us, tz=UTC]",
+      "nullable": true
+    },
+    {
+      "name": "study_exam_part",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "study_chk_desc",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "study_proj_name",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "_match_status",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "_lookup_input_row_id",
+      "type": "int64",
+      "nullable": true
+    },
+    {
+      "name": "_lookup_source_row_id",
+      "type": "int64",
+      "nullable": true
+    },
+    {
+      "name": "_business_row_id",
+      "type": "int64",
+      "nullable": true
+    },
+    {
+      "name": "_issue_reason",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "_issue_severity",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "study_relevance_code_name",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "study_relevance_code_status",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "study_relevance_code_version",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "study_relevance_code_source",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "study_relevance",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "study_relevance_method",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "study_relevance_reason",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "study_relevance_evidence_field",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "study_relevance_evidence_text",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "study_relevance_confidence",
+      "type": "decimal128(38, 6)",
+      "nullable": true
+    },
+    {
+      "name": "study_relevance_ambiguity",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "study_relevance_disposition",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "study_relevance_disposition_reason",
+      "type": "string",
+      "nullable": true
+    }
+  ],
+  "total": 1,
+  "offset": 0,
+  "limit": 50,
+  "rows": [
+    {
+      "ORGAN_CODE": "MOCKHOSP0000000001",
+      "ORGAN_NAME": "核心流程模拟医院",
+      "ORGAN_ADMDVS": "000000",
+      "ORGAN_LV": "MOCK",
+      "FIX_ORGAN_CODE": "H00000000001",
+      "FIX_ORGAN_NAME": "核心流程模拟医院",
+      "DATA_SOURCE": "MOCK-HIS01",
+      "SETL_HOS_ID": "MOCK-SETL-HIP",
+      "INIT_SETL_HOS_ID": null,
+      "SETL_MED_ID": "MOCK-MEDSETL-HIP",
+      "INIT_SETL_MED_ID": null,
+      "MDTRT_SN": "MOCK-MDTRTSN-HIP",
+      "MDTRT_ID": "MOCK-MDTRT-HIP",
+      "MED_PAY_FLAG": "1",
+      "PSN_NO": "MOCK-PATIENT-HIP",
+      "PSN_NAME": "模拟患者甲",
+      "PSN_CERT_TYPE": "99",
+      "CERTNO": "MOCK-CARD-HIP",
+      "SOC_SEC_CARD_NO": null,
+      "GEND": "9",
+      "OP_EM_MARK": "3",
+      "OP_EM_NO": "MOCK-VISIT-HIP",
+      "RCD_DT": "20250820100000",
+      "REFD_SETL_FLAG": "0",
+      "MED_TYPE": "MOCK-INPAT",
+      "MEDFEE_SUMAMT": "10000.00",
+      "FUND_PAY_SUMAMT": "10000.00",
+      "PSN_PART_AMT": "0.00",
+      "ACCT_PAY": "0.00",
+      "PSN_CASH_PAY": "0.00",
+      "HOSP_PART_AMT": "0.00",
+      "UPDATE_TIME": "2025-08-20T10:00:00+08:00",
+      "SETL_FEE_LIST_ID": "MOCK-DETAIL-HIP",
+      "RPT_NO": "MOCK-RPT-HIP",
+      "FEEDETL_SN": "MOCK-FEE-HIP",
+      "INIT_FEEDETL_SN": null,
+      "HOS_PROJ_NO": "MOCK-PROJ-HIP",
+      "HOS_PROJ_NAME": "人工髋关节（模拟A型号）",
+      "HILIST_CODE": "MOCK-HILIST-HIP",
+      "HILIST_NAME": "人工全髋关节置换术",
+      "LIST_TYPE": "301",
+      "MED_LIST_CODG": "MOCK-MEDLIST-HIP",
+      "MEDINS_LIST_CODG": "MOCK-MEDINS-HIP",
+      "MEDINS_LIST_NAME": "人工髋关节（模拟A型号）",
+      "MED_CHRGITM_TYPE": "MOCK-CONSUMABLE",
+      "PRODNAME": "人工髋关节（模拟A型号）",
+      "SPEC": "模拟规格一套",
+      "DOSFORM_NAME": null,
+      "CNT": "1.00",
+      "PRIC": "10000.00",
+      "SYSTEM_ID": "MOCK-RIS01",
+      "_identity": "core-flow-v1:settlement_detail:{\"ORGAN_CODE\":\"MOCKHOSP0000000001\",\"DATA_SOURCE\":\"MOCK-HIS01\",\"SETL_FEE_LIST_ID\":\"MOCK-DETAIL-HIP\"}",
+      "_representative_row_id": 0,
+      "_identity_status": "canonical",
+      "target_category": "人工髋关节",
+      "classification_method": "rule",
+      "classification_reason": "configured_rule",
+      "classification_evidence_field": "PRODNAME",
+      "classification_evidence_text": "人工髋关节（模拟A型号）",
+      "classification_confidence": null,
+      "classification_ambiguity": "[]",
+      "classification_disposition": "continue",
+      "classification_disposition_reason": "target_category",
+      "study_organ_code": "MOCKHOSP0000000001",
+      "study_system_id": "MOCK-RIS01",
+      "study_ris_study_id": "MOCK-RIS-HIP-NEAR",
+      "study_name": "模拟患者甲",
+      "study_cardno": "MOCK-CARD-HIP",
+      "study_op_em_hp_ex_no": "MOCK-VISIT-HIP",
+      "study_ckpt_name": "髋关节",
+      "study_chk_modality": "DR",
+      "study_primary_id": "8afc8a56121e922c5f0f3f16e8edb913",
+      "study_visit_type": "3",
+      "checked_at": "2025-08-19T10:00:00+08:00",
+      "study_exam_part": "BQ03ZZ900",
+      "study_chk_desc": "模拟右侧股骨近端检查,采集范围包含髋关节;影像可用性待识别确认",
+      "study_proj_name": "模拟右侧股骨近端检查,采集范围包含髋关节;影像可用性待识别确认",
+      "_match_status": "matched",
+      "_lookup_input_row_id": 0,
+      "_lookup_source_row_id": 2,
+      "_business_row_id": 2,
+      "_issue_reason": "",
+      "_issue_severity": "",
+      "study_relevance_code_name": "右侧股骨前后位(近髋)",
+      "study_relevance_code_status": "resolved",
+      "study_relevance_code_version": "WS/T 364.8-2023; CV04.30.002",
+      "study_relevance_code_source": "{\"url\": \"https://www.nhc.gov.cn/wjw/s9497/202311/fedbd15e15514084b419e08a3e989dcd.shtml\", \"sha256\": \"30a8dad9640387f36389dfdd64df18a08810990948f123ae80ecc2cf3093a39c\", \"entries\": [{\"name\": \"右侧股骨前后位(近髋)\", \"pdf_page\": 13, \"printed_page\": 11}]}",
+      "study_relevance": "无法确定",
+      "study_relevance_method": "model",
+      "study_relevance_reason": "invalid_or_conflicting_evidence",
+      "study_relevance_evidence_field": "study_chk_desc",
+      "study_relevance_evidence_text": "采集范围包含骼关节",
+      "study_relevance_confidence": "0.800000",
+      "study_relevance_ambiguity": "[]",
+      "study_relevance_disposition": "uncompared",
+      "study_relevance_disposition_reason": "invalid_or_conflicting_evidence"
+    }
+  ],
+  "raw": false,
+  "provenance": {
+    "lineage": "1346d0bc-a09e-41f1-a56a-680eaaf2abdf",
+    "parents": [
+      "bbdb63d8-9ad2-43b4-8598-ccc21420b79a"
+    ],
+    "blockers": [],
+    "completeness": {
+      "state": "complete"
+    },
+    "blocking_rows": 1,
+    "classification_counts": {
+      "continue": 4,
+      "excluded": 0,
+      "uncompared": 1
+    },
+    "classification_result_field": "study_relevance"
+  }
+}

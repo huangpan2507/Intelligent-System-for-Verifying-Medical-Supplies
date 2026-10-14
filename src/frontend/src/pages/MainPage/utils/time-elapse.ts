@@ -1,4 +1,7 @@
-type TFunction = (key: string, opts?: object) => string;
+type TFunction = (
+  key: `mainPage.timeElapsed.${"year" | "month" | "day" | "hour" | "minute" | "lessThanMinute"}`,
+  opts?: { count?: number },
+) => string;
 
 export const timeElapsed = (
   dateTimeString: string | undefined,

@@ -559,6 +559,10 @@ def _default_frame_source_factory(*, request, flow_id, user, adapter, **_extra):
     the v1 build pipeline have; without it every background run would silently
     miss it.
     """
+    if request.get("business_task_id"):
+        from langflow.business.execution import frame_source as business_frame_source
+        return business_frame_source(request=request, user=user)
+
     if request.get("verification_run_id"):
         from langflow.verification.execution import frame_source
 

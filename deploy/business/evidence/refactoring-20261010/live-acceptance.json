@@ -1,0 +1,173 @@
+{
+  "source": "demo-regulator",
+  "tasks": {
+    "demo.cross_database.v2": {
+      "id": "430b648e-10f5-4d56-9f19-7e8678308757",
+      "status": "completed",
+      "version": 5,
+      "result_count": 4,
+      "unresolved_rows": 0,
+      "assessment": {
+        "mode": "verification",
+        "state": "accounted",
+        "checks": [
+          {
+            "name": "amount",
+            "units": 4,
+            "counts": {
+              "equal": 1,
+              "different": 1,
+              "uncompared": 2
+            },
+            "effective": 2,
+            "dataset_id": "bf66b3b2-f4ae-4563-b9fa-bb7517bed41c",
+            "coverage_gaps": 0
+          }
+        ],
+        "sources": [
+          {
+            "node": "Orders",
+            "basis": "query_exhausted",
+            "state": "complete",
+            "dataset_id": "ba9812aa-0459-4e21-9b3f-15620426dde4",
+            "received_rows": 3
+          },
+          {
+            "node": "Payments",
+            "basis": "query_exhausted",
+            "state": "complete",
+            "dataset_id": "c2494c27-f482-4cbb-a74f-0cda56f6b85f",
+            "received_rows": 4
+          }
+        ],
+        "execution_errors": {},
+        "received_records": 7,
+        "discovery_complete": true,
+        "business_identities": 7,
+        "coverage_gap_records": 0,
+        "dispositions_dataset_id": "ce9b6996-81be-4ce6-9b80-f28ad4ef6e48",
+        "missing_identity_records": 0,
+        "known_record_accountability": 1.0
+      },
+      "url": "http://localhost:3000/business/tasks/430b648e-10f5-4d56-9f19-7e8678308757"
+    },
+    "demo.consumables.v2": {
+      "id": "f3f3b3c9-1b1e-4883-844b-73d466596654",
+      "status": "completed",
+      "version": 5,
+      "result_count": 2,
+      "unresolved_rows": 2,
+      "assessment": {
+        "mode": "verification",
+        "state": "accounted",
+        "checks": [
+          {
+            "name": "category",
+            "units": 2,
+            "counts": {
+              "equal": 2
+            },
+            "effective": 2,
+            "dataset_id": "eb3b1a15-e9ce-4ee6-ac02-d7c1515affb2",
+            "coverage_gaps": 0
+          },
+          {
+            "name": "quantity",
+            "units": 2,
+            "counts": {
+              "equal": 1,
+              "different": 1
+            },
+            "effective": 2,
+            "dataset_id": "cf018fa1-8b33-4a7b-8175-69f88d8a980f",
+            "coverage_gaps": 0
+          },
+          {
+            "name": "fee",
+            "units": 2,
+            "counts": {
+              "equal": 1,
+              "different": 1
+            },
+            "effective": 2,
+            "dataset_id": "b85d07ed-87fb-4c10-b280-01c348d20682",
+            "coverage_gaps": 0
+          }
+        ],
+        "sources": [
+          {
+            "node": "Catalog",
+            "basis": "Synthetic v2: complete response for the explicitly requested scope",
+            "scope": "range",
+            "state": "complete",
+            "dataset_id": "14a8eccb-874e-43aa-8282-6cb6fe2e7beb",
+            "complete_path": "complete",
+            "received_rows": 4
+          },
+          {
+            "node": "Settlements",
+            "basis": "Synthetic v2: complete response for the explicitly requested scope",
+            "scope": "range",
+            "state": "complete",
+            "dataset_id": "81d3063d-fe98-4167-ad14-f71b466e2e63",
+            "complete_path": "complete",
+            "received_rows": 6
+          },
+          {
+            "node": "Studies",
+            "basis": "Synthetic v2: complete response for the explicitly requested scope",
+            "scope": "object",
+            "state": "complete",
+            "dataset_id": "984ddb70-278f-4cb7-bc04-fd53e7ad654f",
+            "complete_path": "complete",
+            "received_rows": 2
+          },
+          {
+            "node": "Series",
+            "basis": "Synthetic v2: complete response for the explicitly requested scope",
+            "scope": "object",
+            "state": "complete",
+            "dataset_id": "3729b8d0-2036-463e-977b-838d07c94816",
+            "complete_path": "complete",
+            "received_rows": 2
+          },
+          {
+            "node": "Images",
+            "basis": "Synthetic v2: complete response for the explicitly requested scope",
+            "scope": "object",
+            "state": "complete",
+            "dataset_id": "69fd2206-ed5a-4d79-958f-f22491fa4416",
+            "complete_path": "complete",
+            "received_rows": 2
+          }
+        ],
+        "execution_errors": {},
+        "received_records": 6,
+        "discovery_complete": true,
+        "business_identities": 6,
+        "coverage_gap_records": 0,
+        "dispositions_dataset_id": "a0609854-f6f1-4434-b722-f73200d4d3fd",
+        "missing_identity_records": 0,
+        "known_record_accountability": 1.0
+      },
+      "url": "http://localhost:3000/business/tasks/f3f3b3c9-1b1e-4883-844b-73d466596654"
+    }
+  },
+  "legacy_intake_status": 410,
+  "history": {
+    "task": 12,
+    "run": 12,
+    "rule_release": 11,
+    "artifact": 88,
+    "run_statuses": [
+      {
+        "status": "completed",
+        "count": 8
+      },
+      {
+        "status": "needs_confirmation",
+        "count": 4
+      }
+    ]
+  }
+}

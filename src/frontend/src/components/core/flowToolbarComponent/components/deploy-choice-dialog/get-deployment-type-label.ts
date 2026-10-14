@@ -7,7 +7,7 @@ import type { DeploymentType } from "@/pages/MainPage/pages/deploymentsPage/type
  */
 export function getDeploymentTypeLabel(
   deploymentType: DeploymentType,
-  t: (key: string) => string,
+  t: (key: "deployments.agentTypeLabel" | "deployments.mcpTypeLabel") => string,
 ): string {
   if (deploymentType === "agent") {
     return t("deployments.agentTypeLabel");

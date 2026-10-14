@@ -1,0 +1,175 @@
+{
+  "flow_id": "ce588a72-0614-4d84-badd-0e4355c427e6",
+  "release_id": "aec3acdf-faaf-4007-a3e2-9388db7b19c4",
+  "version": 7,
+  "node_count": 11,
+  "retain_fields": [
+    "ORGAN_CODE",
+    "ORGAN_NAME",
+    "ORGAN_ADMDVS",
+    "ORGAN_LV",
+    "FIX_ORGAN_CODE",
+    "FIX_ORGAN_NAME",
+    "DATA_SOURCE",
+    "SETL_HOS_ID",
+    "INIT_SETL_HOS_ID",
+    "SETL_MED_ID",
+    "INIT_SETL_MED_ID",
+    "MDTRT_SN",
+    "MDTRT_ID",
+    "MED_PAY_FLAG",
+    "PSN_NO",
+    "PSN_NAME",
+    "PSN_CERT_TYPE",
+    "CERTNO",
+    "SOC_SEC_CARD_NO",
+    "GEND",
+    "OP_EM_MARK",
+    "OP_EM_NO",
+    "RCD_DT",
+    "REFD_SETL_FLAG",
+    "MED_TYPE",
+    "MEDFEE_SUMAMT",
+    "FUND_PAY_SUMAMT",
+    "PSN_PART_AMT",
+    "ACCT_PAY",
+    "PSN_CASH_PAY",
+    "HOSP_PART_AMT",
+    "UPDATE_TIME",
+    "SETL_FEE_LIST_ID",
+    "RPT_NO",
+    "FEEDETL_SN",
+    "INIT_FEEDETL_SN",
+    "HOS_PROJ_NO",
+    "HOS_PROJ_NAME",
+    "HILIST_CODE",
+    "HILIST_NAME",
+    "LIST_TYPE",
+    "MED_LIST_CODG",
+    "MEDINS_LIST_CODG",
+    "MEDINS_LIST_NAME",
+    "MED_CHRGITM_TYPE",
+    "PRODNAME",
+    "SPEC",
+    "DOSFORM_NAME",
+    "CNT",
+    "PRIC",
+    "SYSTEM_ID",
+    "target_category",
+    "classification_method",
+    "classification_reason",
+    "classification_evidence_field",
+    "classification_evidence_text",
+    "classification_confidence",
+    "_representative_row_id"
+  ],
+  "item_context": [
+    "RPT_NO",
+    "study_primary_id",
+    "study_ris_study_id",
+    "series_id",
+    "series_modality",
+    "study_exam_part",
+    "study_relevance_code_name",
+    "study_relevance_code_version",
+    "study_relevance_code_source",
+    "study_relevance",
+    "study_relevance_method",
+    "study_relevance_reason",
+    "study_relevance_evidence_text"
+  ],
+  "scheme": "core.normal.compact.v1",
+  "task_id": "7bd204d6-2940-4373-9495-c3f91cbf5408",
+  "status": "completed",
+  "counts": {
+    "Settlements": 2,
+    "SettlementChecks": 2,
+    "Classification": 2,
+    "Studies": 5,
+    "StudyRelevance": 5,
+    "Series": 5,
+    "Images": 2,
+    "Observation": 2,
+    "Compare": 2,
+    "Results": 2
+  },
+  "assessment": {
+    "mode": "verification",
+    "state": "accounted",
+    "checks": [
+      {
+        "name": "category",
+        "units": 2,
+        "counts": {
+          "equal": 2
+        },
+        "effective": 2,
+        "dataset_id": "05761e2a-1472-4407-b8f2-8d214bd3055d",
+        "coverage_gaps": 0
+      },
+      {
+        "name": "quantity",
+        "units": 2,
+        "counts": {
+          "equal": 2
+        },
+        "effective": 2,
+        "dataset_id": "4412da6c-59e2-4a6a-ada7-1a24ad1c137b",
+        "coverage_gaps": 0
+      },
+      {
+        "name": "fee",
+        "units": 2,
+        "counts": {
+          "equal": 2
+        },
+        "effective": 2,
+        "dataset_id": "e55af74d-5a0e-409d-a1b2-46a784658762",
+        "coverage_gaps": 0
+      }
+    ],
+    "sources": [
+      {
+        "node": "Settlements",
+        "basis": "query_exhausted",
+        "state": "complete",
+        "dataset_id": "0692b107-00f5-47a1-8309-c4b0bb7a0917",
+        "received_rows": 2
+      },
+      {
+        "node": "Studies--source",
+        "basis": "query_exhausted",
+        "state": "complete",
+        "dataset_id": "e9ce6cf8-a780-4d36-aae0-ddd2152a680c",
+        "received_rows": 5
+      },
+      {
+        "node": "Series--source",
+        "basis": "query_exhausted",
+        "state": "complete",
+        "dataset_id": "aeadebbe-e71e-4634-8c0c-f81e938243a8",
+        "received_rows": 5
+      },
+      {
+        "node": "Images--responses",
+        "basis": "core-flow-v1 controlled mock returns the complete finite set for each request",
+        "scope": "object",
+        "state": "complete",
+        "dataset_id": "b1873a73-3a4c-4d57-abad-494b28cec374",
+        "received_rows": 12
+      }
+    ],
+    "execution_errors": {},
+    "received_records": 2,
+    "discovery_complete": true,
+    "business_identities": 2,
+    "coverage_gap_records": 0,
+    "dispositions_dataset_id": "04348343-453a-4007-897e-4ed8999105c3",
+    "missing_identity_records": 0,
+    "known_record_accountability": 1.0
+  },
+  "matches_expected_samples": true,
+  "real_text_model_calls": 2,
+  "image_observation_simulated": true,
+  "cross_business_acceptance": "deferred_by_Q24"
+}

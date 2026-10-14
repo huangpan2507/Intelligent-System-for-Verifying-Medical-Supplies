@@ -1,3 +1,4 @@
+import type en from "@/locales/en.json";
 import { useTranslation } from "react-i18next";
 import ForwardedIconComponent from "@/components/common/genericIconComponent";
 import { IS_MAC } from "@/constants/constants";
@@ -10,7 +11,7 @@ import { cn } from "@/utils/utils";
 // Safari/VoiceOver (LE-2041 QA).
 export function shortcutKeyLabel(
   value: string,
-  t: (key: string) => string,
+  t: (key: Extract<keyof typeof en, `shortcuts.key.${string}`>) => string,
 ): string {
   const check = value.toLowerCase().trim();
   if (check === "shift") return t("shortcuts.key.shift");

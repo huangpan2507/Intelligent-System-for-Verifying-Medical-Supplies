@@ -1,3 +1,4 @@
+import { parseApiTimestamp } from "@/utils/dateTime";
 import type { ChatMessageType } from "../../../../../types/chat";
 import sortSenderMessages from "../helpers/sort-sender-messages";
 
@@ -53,7 +54,9 @@ describe("sortSenderMessages", () => {
       const sorted = [...messages].sort(sortSenderMessages);
 
       // Check that first is earliest, last is latest
-      const sortedTimes = sorted.map((m) => new Date(m.timestamp).getTime());
+      const sortedTimes = sorted.map((m) =>
+        parseApiTimestamp(m.timestamp)!.getTime(),
+      );
       expect(sortedTimes[0]).toBeLessThan(sortedTimes[1]);
       expect(sortedTimes[1]).toBeLessThan(sortedTimes[2]);
       expect(sorted[0].id).toBe("utc"); // 08:51:21 is earliest

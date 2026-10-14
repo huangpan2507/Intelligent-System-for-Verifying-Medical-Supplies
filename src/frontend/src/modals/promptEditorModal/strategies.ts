@@ -1,3 +1,4 @@
+import type { InvalidVariableMessageKey } from "@/utils/promptVariables";
 import { INVALID_CHARACTERS, regexHighlight } from "@/constants/constants";
 import type { APIClassType } from "@/types/api";
 import { invalidVariableMessageKey } from "@/utils/promptVariables";
@@ -51,7 +52,7 @@ export const fstringStrategy: PromptSyntaxStrategy = {
   },
   renderColoredContent(
     inputValue: string,
-    translate: (key: string) => string,
+    translate: (key: InvalidVariableMessageKey) => string,
   ): string {
     return escapeHtml(typeof inputValue === "string" ? inputValue : "")
       .replace(
@@ -120,7 +121,7 @@ export const mustacheStrategy: PromptSyntaxStrategy = {
   },
   renderColoredContent(
     inputValue: string,
-    translate: (key: string) => string,
+    translate: (key: InvalidVariableMessageKey) => string,
   ): string {
     return escapeHtml(typeof inputValue === "string" ? inputValue : "")
       .replace(/\{\{([a-zA-Z_][a-zA-Z0-9_]*)\}\}/g, (match, varName) => {

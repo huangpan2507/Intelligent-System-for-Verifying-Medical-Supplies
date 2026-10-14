@@ -1,3 +1,4 @@
+import type en from "@/locales/en.json";
 import type { ColDef } from "ag-grid-community";
 import { useLayoutEffect, useRef, useState } from "react";
 import ForwardedIconComponent from "@/components/common/genericIconComponent";
@@ -35,7 +36,10 @@ export interface KnowledgeBaseColumnsCallbacks {
   onStopIngestion?: (knowledgeBase: KnowledgeBaseInfo) => void;
 }
 
-type TranslateFn = (key: string, options?: Record<string, unknown>) => string;
+type TranslateFn = (
+  key: Extract<keyof typeof en, `knowledge.${string}`>,
+  options?: Record<string, unknown>,
+) => string;
 
 interface KnowledgeBaseRowActionsProps {
   knowledgeBase: KnowledgeBaseInfo;
@@ -182,10 +186,10 @@ function KnowledgeBaseRowActions({
 
 export const createKnowledgeBaseColumns = (
   callbacks?: KnowledgeBaseColumnsCallbacks,
-  t: (key: string, options?: Record<string, unknown>) => string = (
-    key,
-    options,
-  ) => {
+  t: (
+    key: Extract<keyof typeof en, `knowledge.${string}`>,
+    options?: Record<string, unknown>,
+  ) => string = (key, options) => {
     const template = enTranslations[key as keyof typeof enTranslations] ?? key;
     if (!options) return template;
     return Object.entries(options).reduce(

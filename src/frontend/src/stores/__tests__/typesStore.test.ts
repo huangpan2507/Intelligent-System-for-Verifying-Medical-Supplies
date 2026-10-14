@@ -1,3 +1,4 @@
+import { createComponent, createInput } from "@/test-utils/factories";
 import { act, renderHook } from "@testing-library/react";
 import type { APIClassType, APIDataType } from "../../types/api";
 import { useTypesStore } from "../typesStore";
@@ -32,36 +33,28 @@ const mockTypesGenerator = require("../../utils/reactflowUtils").typesGenerator;
 
 const mockAPIData: APIDataType = {
   TextInput: {
-    template: {
-      value: {
-        type: "str",
-        required: true,
-        placeholder: "Enter text",
+    TextInput: createComponent({
+      display_name: "Text input",
+      template: {
+        value: createInput({ required: true, placeholder: "Enter text" }),
       },
-    },
-    description: "Text input component",
+    }),
   },
   NumberInput: {
-    template: {
-      value: {
-        type: "int",
-        required: false,
-        placeholder: "Enter number",
+    NumberInput: createComponent({
+      display_name: "Number input",
+      template: {
+        value: createInput({ type: "int", placeholder: "Enter number" }),
       },
-    },
-    description: "Number input component",
+    }),
   },
 };
-
 const mockAPIData2: APIDataType = {
   BooleanInput: {
-    template: {
-      value: {
-        type: "bool",
-        required: true,
-      },
-    },
-    description: "Boolean input component",
+    BooleanInput: createComponent({
+      display_name: "Boolean input",
+      template: { value: createInput({ type: "bool", required: true }) },
+    }),
   },
 };
 
@@ -81,7 +74,7 @@ describe("useTypesStore", () => {
 
     // Reset mock implementations
     mockExtractSecretFieldsFromComponents.mockImplementation((data) => {
-      if (!data || typeof data !== "object") return new Set();
+      if (!data || typeof data !== "object") return new Set<string>();
       return new Set(Object.keys(data));
     });
     mockTemplatesGenerator.mockReturnValue({});
@@ -89,7 +82,7 @@ describe("useTypesStore", () => {
 
     act(() => {
       useTypesStore.setState({
-        ComponentFields: new Set(),
+        ComponentFields: new Set<string>(),
         types: {},
         templates: {},
         data: {},
@@ -101,7 +94,7 @@ describe("useTypesStore", () => {
     it("should have correct initial state", () => {
       const { result } = renderHook(() => useTypesStore());
 
-      expect(result.current.ComponentFields).toEqual(new Set());
+      expect(result.current.ComponentFields).toEqual(new Set<string>());
       expect(result.current.types).toEqual({});
       expect(result.current.templates).toEqual({});
       expect(result.current.data).toEqual({});
@@ -138,7 +131,7 @@ describe("useTypesStore", () => {
 
     it("should handle empty Set", () => {
       const { result } = renderHook(() => useTypesStore());
-      const emptySet = new Set();
+      const emptySet = new Set<string>();
 
       act(() => {
         result.current.setComponentFields(emptySet);
@@ -523,7 +516,7 @@ describe("useTypesStore", () => {
 
     it("should handle large ComponentFields sets", () => {
       const { result } = renderHook(() => useTypesStore());
-      const largeSet = new Set();
+      const largeSet = new Set<string>();
 
       for (let i = 0; i < 1000; i++) {
         largeSet.add(`field-${i}`);

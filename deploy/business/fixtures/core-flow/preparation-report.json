@@ -1,0 +1,24 @@
+{
+  "table": "public.core_flow_settlement_v1",
+  "created": true,
+  "column_count": 50,
+  "row_count": 0,
+  "missing_business_fields_pending_decision": [
+    "SETL_TIME",
+    "DET_ITEM_FEE_SUMAMT",
+    "CNT_UNIT"
+  ],
+  "platform_metadata_fields": 50,
+  "database_connection": {
+    "id": "537d8c03-3c9a-4c25-8a8e-d66cfc2b187a",
+    "name": "模拟结算 PostgreSQL（核心流程）"
+  },
+  "imaging_connection": {
+    "id": "bd965b78-e1c6-4553-b884-c78a807b67bc",
+    "name": "模拟影像 API（X-Token）"
+  },
+  "created_connections": [
+    "模拟结算 PostgreSQL（核心流程）",
+    "模拟影像 API（X-Token）"
+  ]
+}

@@ -52,7 +52,7 @@ export default function SliderComponent({
   handleOnNewValue,
   showParameter = true,
   ariaLabelledBy,
-}: InputProps<string[] | number[], SliderComponentType>): JSX.Element | null {
+}: InputProps<string | number, SliderComponentType>): JSX.Element | null {
   const min = rangeSpec?.min ?? -2;
   const max = rangeSpec?.max ?? 2;
 

@@ -1,0 +1,11 @@
+
+> langflow@1.12.0 test
+> jest --maxWorkers=2 --workerIdleMemoryLimit=512MB --json --outputFile=/tmp/langflow-jest-final.json
+
+
+Test Suites: 641 passed, 641 total
+Tests:       6824 passed, 6824 total
+Snapshots:   0 total
+Time:        157.572 s, estimated 161 s
+Ran all test suites.
+Test results written to: ../../../../../../tmp/langflow-jest-final.json

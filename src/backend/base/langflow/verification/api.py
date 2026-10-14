@@ -122,6 +122,9 @@ def create_app(settings: VerificationSettings | None = None, database: Database 
     internal = [Depends(internal_auth)]
     prefix = "/api/v1/verification"
 
+    from langflow.business.api import register as register_business
+    register_business(app, database, settings, internal_auth, source_auth)
+
     @app.get("/health")
     def health() -> dict:
         with database.sessions() as session:
@@ -149,6 +152,8 @@ def create_app(settings: VerificationSettings | None = None, database: Database 
                     if task.content_hash != digest:
                         conflict("Idempotency key already exists with different content")
                     return task_view(session, task)
+                from langflow.business.migration import require_legacy_intake
+                require_legacy_intake(session)
                 hospitals = [
                     h
                     for h in session.scalars(select(HospitalScope))
@@ -276,6 +281,9 @@ def create_app(settings: VerificationSettings | None = None, database: Database 
     @app.post(prefix + "/tasks/{task_id}/runs/{run_id}/confirmation")
     def confirm(task_id: UUID, run_id: UUID, body: ManualAction, source: str = source_dep) -> dict:
         with database.sessions.begin() as session:
+            from langflow.business.migration import require_legacy_confirmation
+
+            require_legacy_confirmation(session)
             task = task_for_source(session, str(task_id), source)
             run = session.get(Run, str(run_id))
             if run is None or run.task_id != task.id:
@@ -290,6 +298,8 @@ def create_app(settings: VerificationSettings | None = None, database: Database 
     @app.post(prefix + "/tasks/{task_id}/runs", status_code=202)
     def rerun(task_id: UUID, body: RerunAction, source: str = source_dep) -> dict:
         with database.sessions.begin() as session:
+            from langflow.business.migration import require_legacy_intake
+            require_legacy_intake(session)
             task = task_for_source(session, str(task_id), source)
             old = session.get(Run, task.current_run_id)
             if old.status not in {"completed", "partial_failed", "failed"}:

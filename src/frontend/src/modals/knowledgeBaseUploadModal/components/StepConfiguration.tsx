@@ -2,9 +2,8 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ForwardedIconComponent from "@/components/common/genericIconComponent";
 import { DBProviderInput } from "@/components/core/parameterRenderComponent/components/dbProviderInputComponent";
-import ModelInputComponent, {
-  type ModelOption,
-} from "@/components/core/parameterRenderComponent/components/modelInputComponent";
+import ModelInputComponent from "@/components/core/parameterRenderComponent/components/modelInputComponent";
+import type { ModelOption } from "@/components/core/parameterRenderComponent/components/modelInputComponent/types";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,

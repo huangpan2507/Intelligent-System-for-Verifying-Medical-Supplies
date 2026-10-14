@@ -107,6 +107,7 @@ describe("mcpServerUtils", () => {
   describe("buildMcpServerJson", () => {
     it("builds valid JSON for macoslinux platform", () => {
       const json = buildMcpServerJson({
+        transport: "sse",
         folderName: "test",
         selectedPlatform: "macoslinux",
         apiUrl: "https://api.test.com",
@@ -122,6 +123,7 @@ describe("mcpServerUtils", () => {
 
     it("builds JSON with wsl command and uvx arg for WSL platform", () => {
       const json = buildMcpServerJson({
+        transport: "sse",
         folderName: "wslproj",
         selectedPlatform: "wsl",
         apiUrl: "https://api.test.com",
@@ -135,6 +137,7 @@ describe("mcpServerUtils", () => {
 
     it("builds JSON with cmd for windows platform", () => {
       const json = buildMcpServerJson({
+        transport: "sse",
         folderName: "project",
         selectedPlatform: "windows",
         apiUrl: "https://api.test.com",
@@ -149,6 +152,7 @@ describe("mcpServerUtils", () => {
 
     it("uses mcp-composer for OAuth projects", () => {
       const json = buildMcpServerJson({
+        transport: "sse",
         folderName: "oauth-proj",
         selectedPlatform: "macoslinux",
         apiUrl: "https://api.test.com",
@@ -165,6 +169,7 @@ describe("mcpServerUtils", () => {
 
     it("includes auth headers in args", () => {
       const json = buildMcpServerJson({
+        transport: "sse",
         folderName: "secure",
         selectedPlatform: "macoslinux",
         apiUrl: "https://api.test.com",

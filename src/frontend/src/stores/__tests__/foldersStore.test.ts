@@ -24,7 +24,6 @@ describe("useFolderStore", () => {
   beforeEach(() => {
     act(() => {
       useFolderStore.setState({
-        loadingById: false,
         myCollectionId: "",
         folderToEdit: null,
         folderDragging: false,
@@ -39,7 +38,6 @@ describe("useFolderStore", () => {
     it("should have correct initial state", () => {
       const { result } = renderHook(() => useFolderStore());
 
-      expect(result.current.loadingById).toBe(false);
       expect(result.current.myCollectionId).toBe("");
       expect(result.current.folderToEdit).toBeNull();
       expect(result.current.folderDragging).toBe(false);
@@ -321,17 +319,6 @@ describe("useFolderStore", () => {
       expect(result.current.folderDragging).toBe(false);
       expect(result.current.folderIdDragging).toBe("");
       expect(result.current.folders).toEqual([]);
-    });
-
-    it("should not affect loadingById field", () => {
-      const { result } = renderHook(() => useFolderStore());
-
-      act(() => {
-        useFolderStore.setState({ loadingById: true });
-        result.current.resetStore();
-      });
-
-      expect(result.current.loadingById).toBe(true);
     });
   });
 

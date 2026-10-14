@@ -1,0 +1,10 @@
+{
+  "active_release_id": "aec3acdf-faaf-4007-a3e2-9388db7b19c4",
+  "flow_id": "ce588a72-0614-4d84-badd-0e4355c427e6",
+  "nodes": 11,
+  "retained": 58,
+  "changed_configuration": [
+    "Images.collection.item_context"
+  ],
+  "edges_unchanged": true
+}

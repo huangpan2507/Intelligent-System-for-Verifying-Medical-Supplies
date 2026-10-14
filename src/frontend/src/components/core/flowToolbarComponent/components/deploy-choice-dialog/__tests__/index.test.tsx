@@ -519,7 +519,7 @@ describe("DeployChoiceDialog — review phase", () => {
   it("shows spinner while loading review attachment details", async () => {
     cleanup();
     mockDeploymentsData = {
-      deployments: [makeDeployment("dep-1", "My Bot", "snap-1", "v-1")],
+      deployments: [makeDeployment("dep-1", "My Bot")],
     };
     mockAttachmentsData = undefined;
     mockIsLoadingAttachments = true;
@@ -581,7 +581,7 @@ describe("DeployChoiceDialog — review phase", () => {
   it("lets user choose exact attached version when deployment has many", async () => {
     cleanup();
     mockDeploymentsData = {
-      deployments: [makeDeployment("dep-1", "My Bot", "snap-1", "v-1")],
+      deployments: [makeDeployment("dep-1", "My Bot")],
     };
     mockAttachmentsData = {
       flow_versions: [

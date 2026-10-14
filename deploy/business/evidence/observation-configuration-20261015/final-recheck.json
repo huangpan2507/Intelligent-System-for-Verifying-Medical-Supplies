@@ -1,0 +1,17 @@
+{
+  "changed_node_configs": [
+    "Observation",
+    "Compare",
+    "Results"
+  ],
+  "edges_unchanged": true,
+  "version": 8,
+  "health": {
+    "frontend": 200,
+    "platform": 200,
+    "business": 200,
+    "mock": 200
+  },
+  "locales": 7,
+  "new_translation_keys": 20
+}

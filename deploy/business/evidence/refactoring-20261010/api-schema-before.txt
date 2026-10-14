@@ -1,0 +1,37 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______________ test_api_schema_failure_keeps_received_raw_records ______________
+
+env = (<langflow.verification.database.Database object at 0x745ab6a1e3c0>, VerificationSettings(internal_token=SecretStr('**...tStr('**********')}, langflow_url='http://langflow:7860', langflow_api_key=SecretStr('**********'), poll_interval=2.0))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x745ab6849940>
+
+>   ???
+E   AssertionError: assert [] == [{'id': 'A', ... 'preserved'}]
+E     
+E     Right contains 2 more items, first extra item: {'id': 'A', 'amount': '1.00'}
+E     Use -v to get more diff
+
+deploy/business/tests/test_refactoring.py:299: AssertionError
+=============================== warnings summary ===============================
+deploy/verification/.cache/runtime/lib/python3.13/site-packages/pydantic/_internal/_generate_schema.py:325
+deploy/verification/.cache/runtime/lib/python3.13/site-packages/pydantic/_internal/_generate_schema.py:325
+deploy/verification/.cache/runtime/lib/python3.13/site-packages/pydantic/_internal/_generate_schema.py:325
+  /home/huangpan/github_repo/langflow/deploy/verification/.cache/runtime/lib/python3.13/site-packages/pydantic/_internal/_generate_schema.py:325: PydanticDeprecatedSince20: `json_encoders` is deprecated. See https://docs.pydantic.dev/2.13/concepts/serialization/#custom-serializers for alternatives. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    warnings.warn(
+
+src/lfx/src/lfx/inputs/inputs.py:915
+  /home/huangpan/github_repo/langflow/src/lfx/src/lfx/inputs/inputs.py:915: PydanticDeprecatedSince212: Using `@model_validator` with mode='after' on a classmethod is deprecated. Instead, use an instance method. See the documentation at https://docs.pydantic.dev/2.13/concepts/validators/#model-after-validator. Deprecated in Pydantic V2.12 to be removed in V3.0.
+    @model_validator(mode="after")
+
+deploy/verification/.cache/runtime/lib/python3.13/site-packages/langchain_classic/chains/api/base.py:57
+  /home/huangpan/github_repo/langflow/deploy/verification/.cache/runtime/lib/python3.13/site-packages/langchain_classic/chains/api/base.py:57: DeprecationWarning: `langchain-community` is being sunset and is no longer actively maintained. See https://github.com/langchain-ai/langchain-community/issues/674 for details and migration guidance toward standalone integration packages.
+    from langchain_community.utilities.requests import TextRequestsWrapper
+
+deploy/verification/.cache/runtime/lib/python3.13/site-packages/sqlmodel/main.py:619
+  /home/huangpan/github_repo/langflow/deploy/verification/.cache/runtime/lib/python3.13/site-packages/sqlmodel/main.py:619: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    "SQLModel", super().__new__(cls, name, bases, dict_used, **config_kwargs)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED deploy/business/tests/test_refactoring.py::test_api_schema_failure_keeps_received_raw_records
+1 failed, 15 deselected, 6 warnings in 5.97s

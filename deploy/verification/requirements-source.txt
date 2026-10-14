@@ -218,3 +218,7 @@ wrapt==2.5.0
 xxhash==4.0.1
 yarl==1.25.1
 zstandard==0.25.0
+
+# Generic business datasets and MySQL connector
+pyarrow==23.0.1
+pymysql==1.2.3

@@ -264,6 +264,9 @@ describe("updateMessage — streaming token preservation (UI-014)", () => {
       sender: "Machine",
       sender_name: "AI",
       timestamp: existing.timestamp,
+      edit: false,
+      background_color: "",
+      text_color: "",
       files: [],
       properties: { state: "partial" } as Message["properties"],
     } as Message);
@@ -304,6 +307,9 @@ describe("updateMessage — streaming token preservation (UI-014)", () => {
       sender: "Machine",
       sender_name: "AI",
       timestamp: existing.timestamp,
+      edit: false,
+      background_color: "",
+      text_color: "",
       files: [],
       properties: { state: "partial" } as Message["properties"],
     } as Message);

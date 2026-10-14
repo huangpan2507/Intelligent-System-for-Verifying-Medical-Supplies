@@ -387,8 +387,6 @@ function NodeOutputField({
   const disabledInspectButton =
     !displayOutputPreview || unknownOutput || emptyOutput;
 
-  const memoizedType = useMemo(() => type?.split("|") ?? [], [type]);
-
   if (!showHiddenOutputs && hidden) return <></>;
   if (!showNode) return <>{Handle}</>;
 
@@ -422,13 +420,6 @@ function NodeOutputField({
             <MemoizedOutputComponent
               proxy={outputProxy}
               outputs={outputs}
-              idx={index}
-              types={memoizedType}
-              selected={
-                data.node?.outputs![index].selected ??
-                data.node?.outputs![index].types[0] ??
-                title
-              }
               nodeId={data.id}
               frozen={data.node?.frozen}
               name={title ?? type}

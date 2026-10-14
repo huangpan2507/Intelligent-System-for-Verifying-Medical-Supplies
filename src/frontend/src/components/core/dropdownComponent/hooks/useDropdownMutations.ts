@@ -31,13 +31,14 @@ export function useDropdownMutations({
 }) {
   // API and store hooks
   const postTemplateValue = usePostTemplateValue({
-    parameterId: name,
-    nodeId: nodeId,
+    parameterId: name ?? "",
+    nodeId: nodeId ?? "",
     node: nodeClass,
   });
   const setErrorData = useAlertStore((state) => state.setErrorData);
 
   const handleSourceOptions = async (value: string) => {
+    if (!nodeId || !nodeClass || !name) return;
     setWaitingForResponse(true);
     setOpen(false);
 
@@ -55,6 +56,7 @@ export function useDropdownMutations({
   };
 
   const handleRefreshButtonPress = async () => {
+    if (!nodeId || !nodeClass || !name) return;
     setRefreshOptions(true);
     setOpen(false);
 

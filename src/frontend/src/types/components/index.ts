@@ -72,10 +72,10 @@ export type DropDownComponent = {
   isLoading?: boolean;
   value: string;
   combobox?: boolean;
-  nodeId: string;
-  nodeClass: APIClassType;
+  nodeId?: string;
+  nodeClass?: APIClassType;
   // biome-ignore lint/suspicious/noExplicitAny: pre-existing loose handler type
-  handleNodeClass: (value: any, code?: string, type?: string) => void;
+  handleNodeClass?: (value: any, code?: string, type?: string) => void;
   options: string[];
   // biome-ignore lint/suspicious/noExplicitAny: pre-existing untyped metadata array
   optionsMetaData?: any[];
@@ -89,7 +89,7 @@ export type DropDownComponent = {
   editNode?: boolean;
   id?: string;
   children?: ReactNode;
-  name: string;
+  name?: string;
   dialogInputs?: {
     fields: { data: { node: APIClassType } };
     functionality: string;
@@ -232,7 +232,7 @@ export type FloatComponentType = {
 };
 
 export type SliderComponentType = {
-  value: string;
+  value: string | number;
   disabled?: boolean;
   rangeSpec: RangeSpecType;
   editNode?: boolean;
@@ -504,11 +504,11 @@ export type ApiKeyType = {
   onCloseModal?: () => void;
   modalProps?: {
     title?: string;
-    description?: string | ReactElement | HTMLElement;
-    inputLabel?: string | ReactElement | HTMLElement | ReactNode;
+    description?: ReactNode;
+    inputLabel?: ReactNode;
     inputPlaceholder?: string;
     buttonText?: string;
-    generatedKeyMessage?: string | ReactElement | HTMLElement;
+    generatedKeyMessage?: ReactNode;
     showIcon?: boolean;
     size?:
       | "x-small"

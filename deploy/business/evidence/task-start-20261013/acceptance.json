@@ -1,0 +1,53 @@
+{
+  "flow_id": "1096a14d-0ffb-40df-ae44-489f9e53e4cc",
+  "scheme": "acceptance.taskstart.5ac08f2620",
+  "release_id": "495b5da5-91ce-4aff-a899-e5d8aa486b5b",
+  "tasks": [
+    {
+      "id": "b165ae69-2f29-4d4e-a524-ff6a284e7ca5",
+      "expected_count": 2,
+      "input": {
+        "parameters": {
+          "hospital_name": "核心流程模拟医院",
+          "start": "2025-08-01 00:00:00",
+          "end": "2025-08-31 23:59:59"
+        },
+        "task": {
+          "scheme": "acceptance.taskstart.5ac08f2620",
+          "rule_name": "监管任务入口验收(模拟)-5ac08f2620",
+          "external_task_id": "MOCK-REG-1",
+          "task_id": "b165ae69-2f29-4d4e-a524-ff6a284e7ca5",
+          "release_id": "495b5da5-91ce-4aff-a899-e5d8aa486b5b",
+          "version": 1
+        }
+      },
+      "status": "completed",
+      "row_count": 2,
+      "job_id": "f6636f68-dcdc-4ab9-b9e2-7840451ea7a4"
+    },
+    {
+      "id": "53330f06-b7de-4cb3-a10e-69c08dd4aba0",
+      "expected_count": 0,
+      "input": {
+        "parameters": {
+          "hospital_name": "另一家模拟医院",
+          "start": "2025-09-01 00:00:00",
+          "end": "2025-09-30 23:59:59"
+        },
+        "task": {
+          "scheme": "acceptance.taskstart.5ac08f2620",
+          "rule_name": "监管任务入口验收(模拟)-5ac08f2620",
+          "external_task_id": "MOCK-REG-2",
+          "task_id": "53330f06-b7de-4cb3-a10e-69c08dd4aba0",
+          "release_id": "495b5da5-91ce-4aff-a899-e5d8aa486b5b",
+          "version": 1
+        }
+      },
+      "status": "completed",
+      "row_count": 0,
+      "job_id": "555d002c-0a5e-4b26-8bae-55a0e9ea830b"
+    }
+  ],
+  "core_flow_executed": false,
+  "worker_executed": true
+}

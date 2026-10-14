@@ -1,5 +1,6 @@
+import type en from "@/locales/en.json";
 export interface StatusConfigEntry {
-  label: string;
+  label: Extract<keyof typeof en, `knowledge.status.${string}`>;
   textClass: string;
 }
 

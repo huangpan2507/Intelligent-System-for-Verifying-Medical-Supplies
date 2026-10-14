@@ -1,0 +1,14 @@
+{
+  "changed_nodes": [
+    "Observation",
+    "Compare",
+    "Results"
+  ],
+  "edges_unchanged": true,
+  "version": 8,
+  "task_id": "03c6b813-0067-4781-9edf-15860ae1d0b9",
+  "unit_parameters_sent": false,
+  "fixed_unit_result_label": false,
+  "observation_data": 2,
+  "observation_issues": 0
+}

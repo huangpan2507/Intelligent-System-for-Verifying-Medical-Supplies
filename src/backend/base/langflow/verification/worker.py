@@ -60,7 +60,9 @@ async def serve() -> None:
     async with httpx.AsyncClient(follow_redirects=False) as http:
         while True:
             try:
-                await run_once(database, settings, http)
+                from langflow.business.execution import run_once as run_business_once
+                if not await run_business_once(database, settings, http):
+                    await run_once(database, settings, http)
             except Exception:
                 logger.exception("Worker failed; accepted runs remain queryable")
             await asyncio.sleep(settings.poll_interval)

@@ -205,19 +205,19 @@ describe("useUtilityStore", () => {
       expect(result.current.selectedItems).toEqual(["item-2"]);
     });
 
-    it("should handle various item types", () => {
+    it("should handle distinct string item IDs", () => {
       const { result } = renderHook(() => useUtilityStore());
 
       act(() => {
         result.current.setSelectedItems("string-item");
-        result.current.setSelectedItems(123);
-        result.current.setSelectedItems({ id: "object-item" });
+        result.current.setSelectedItems("123");
+        result.current.setSelectedItems("object-item");
       });
 
       expect(result.current.selectedItems).toEqual([
         "string-item",
-        123,
-        { id: "object-item" },
+        "123",
+        "object-item",
       ]);
     });
 
@@ -537,23 +537,23 @@ describe("useUtilityStore", () => {
   });
 
   describe("setEventDelivery", () => {
-    it("should set event delivery to webhook", () => {
+    it("should set event delivery to polling", () => {
       const { result } = renderHook(() => useUtilityStore());
 
       act(() => {
-        result.current.setEventDelivery(EventDeliveryType.WEBHOOK);
+        result.current.setEventDelivery(EventDeliveryType.POLLING);
       });
 
-      expect(result.current.eventDelivery).toBe(EventDeliveryType.WEBHOOK);
+      expect(result.current.eventDelivery).toBe(EventDeliveryType.POLLING);
     });
 
     it("should switch between event delivery types", () => {
       const { result } = renderHook(() => useUtilityStore());
 
       act(() => {
-        result.current.setEventDelivery(EventDeliveryType.WEBHOOK);
+        result.current.setEventDelivery(EventDeliveryType.STREAMING);
       });
-      expect(result.current.eventDelivery).toBe(EventDeliveryType.WEBHOOK);
+      expect(result.current.eventDelivery).toBe(EventDeliveryType.STREAMING);
 
       act(() => {
         result.current.setEventDelivery(EventDeliveryType.POLLING);
@@ -723,10 +723,10 @@ describe("useUtilityStore", () => {
       };
 
       act(() => {
-        result.current.setSelectedItems(complexObject);
+        result.current.setSelectedItems(complexObject.id);
       });
 
-      expect(result.current.selectedItems).toEqual([complexObject]);
+      expect(result.current.selectedItems).toEqual([complexObject.id]);
     });
 
     it("should handle extreme pagination values", () => {

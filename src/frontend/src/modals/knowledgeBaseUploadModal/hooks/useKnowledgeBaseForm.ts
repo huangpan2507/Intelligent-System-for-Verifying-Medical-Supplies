@@ -1,7 +1,7 @@
 import { type AxiosError } from "axios";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import type { ModelOption } from "@/components/core/parameterRenderComponent/components/modelInputComponent";
+import type { ModelOption } from "@/components/core/parameterRenderComponent/components/modelInputComponent/types";
 import {
   ACTIVE_DB_PROVIDER_VARIABLE,
   type AvailableDBProviderId,
@@ -251,15 +251,8 @@ export function useKnowledgeBaseForm({
       } else {
         setSeparator(DEFAULT_SEPARATOR);
       }
-      // Always enable advanced mode in add-sources mode so the file
-      // upload section is visible. Also enable when the KB already has
-      // advanced chunking config.
-      const hasAdvancedConfig =
-        isAddSourcesMode ||
-        existingKnowledgeBase.chunkSize != null ||
-        existingKnowledgeBase.chunkOverlap != null ||
-        existingKnowledgeBase.separator != null;
-      if (hasAdvancedConfig && !hideAdvanced) {
+      // An existing knowledge base is always in add-sources mode.
+      if (!hideAdvanced) {
         setShowAdvanced(true);
       }
       if (

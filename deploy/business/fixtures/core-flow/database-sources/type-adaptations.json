@@ -1,0 +1,944 @@
+[
+  {
+    "table": "INSPECTION_INFO_RECORD",
+    "field": "chk_dt",
+    "source_type": "bigint",
+    "local_type": "DATETIME"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "organ_code",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "system_id",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "pacs_series_id",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "ris_study_id",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "pacs_study_id",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "study_instance_uid",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "series_sort",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "storage_path",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "thumb_path",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "patient_name",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "series_instance_uid",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "patient_id",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "other_patient_ids",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "other_patient_names",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "patient_birth_date",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "patient_birth_time",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "patient_sex",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "patient_weight",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "patient_size",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "pregnancy_status",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "study_priority_id",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "study_comments",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "study_date",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "study_time",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "study_completion_date",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "study_completion_time",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "performing_physician_name",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "modalities_in_study",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "body_part_examined",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "study_description",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "patient_age",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "institution_name",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "manufacturer",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "manufacturers_model_name",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "station_name",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "software_version",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "chk_modality",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "imagenumber_of_study",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "patient_phone",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "patient_address",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "occupation",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "allergic_history",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "kvp",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "exposure",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "series_description",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "series_date",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "series_time",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "image_position",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "image_orientation",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "slice_thickness",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "spacing_between_slices",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "slice_location",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "mr_acquisition_type",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "accession_number",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "entrance_dose_in_milli_gy",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "distance_source_to_detector",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "window_center",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "window_width",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "study_id",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "acquisition_time",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "requested_procedure_description",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "series_number",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "dicom_image_type",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "content_date",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "content_time",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "samples_per_pixel",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "photometric_interpretation",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "rows",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "columns",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "pixel_spacing",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "bits_allocated",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "bits_stored",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "high_bit",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "pixel_representation",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "rescale_intercept",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "rescale_slope",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "rescale_type",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "instance_creation_date",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "instance_creation_time",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "image_horizontal_flip",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "image_rotation",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "instance_number",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "data_collection_diameter",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "device_serial_number",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "protocol_name",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "reconstruction_diameter",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "distance_source_to_patient",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "detector_tilt",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "table_height",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "rotation_direction",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "exposure_time",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "x_ray_tube_current",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "filter_type",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "generator_power",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "focal_spot",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "date_of_last_calibration",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "time_of_last_calibration",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "convolution_kernel",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "scan_length",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "patient_position",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "revolution_time",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "single_collimation_width",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "total_collimation_width",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "table_speed",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "table_feed_per_rotation",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "spiral_pitch_factor",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "data_collection_center_patient",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "reconstruction_target_center_patient",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "exposure_modulation_type",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "estimated_dose_saving",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "ctdivol",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "scanning_sequence",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "sequence_variant",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "scan_options",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "sequence_name",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "angio_flag",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "repetition_time",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "echo_time",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "number_of_averages",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "imaging_frequency",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "imaged_nucleus",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "echo_numbers",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "magnetic_field_strength",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "number_of_phase_encoding_steps",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "echo_train_length",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "pixel_bandwidth",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "transmit_coil_name",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "acquisition_matrix",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "in_plane_phase_encoding_direction",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "flip_angle",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "variable_flip_angle_flag",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "sar",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "db_dt",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "contrast_agent",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "transfer_syntax_uid",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "implementation_class_uid",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "implementation_version_name",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "series_in_study",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "acquisitions_in_series",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "images_in_acquisition",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "images_in_series",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "images_in_study",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "data_process_time",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "order_code",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "laterality",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "image_laterality",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "sop_class_uid",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "manufacturer_model_version",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "manufacturer_device_class_uid",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "manufacturer_device_identifier",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "modifying_device_manufacturer",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "institution_department_name",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "conversion_type",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "secondary_capture_device_manufacturer",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "secondary_capture_device_manufacturer_model_name",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  },
+  {
+    "table": "SERIES_INFO",
+    "field": "series_description_code_sequence",
+    "source_type": "varchar(1024)",
+    "local_type": "TEXT"
+  }
+]

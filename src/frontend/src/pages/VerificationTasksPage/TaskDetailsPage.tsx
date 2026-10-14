@@ -162,12 +162,14 @@ function TaskDetails({ taskId }: { taskId: string }) {
                   {t("verificationTasks.traceability")}
                 </summary>
                 <dl className="mt-3 grid gap-2 break-all text-xs sm:grid-cols-2">
-                  {["task_id", "run_id", "job_id", "release_id"].map((key) => (
-                    <div key={key}>
-                      <dt>{t(`verificationTasks.${key}`)}</dt>
-                      <dd>{view[key]}</dd>
-                    </div>
-                  ))}
+                  {(["task_id", "run_id", "job_id", "release_id"] as const).map(
+                    (key) => (
+                      <div key={key}>
+                        <dt>{t(`verificationTasks.${key}`)}</dt>
+                        <dd>{view[key]}</dd>
+                      </div>
+                    ),
+                  )}
                 </dl>
               </details>
             </section>
@@ -216,12 +218,14 @@ function TaskDetails({ taskId }: { taskId: string }) {
                 ) : (
                   <>
                     <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-                      {[
-                        "units",
-                        "consistent",
-                        "difference",
-                        "not_compared",
-                      ].map((key) => (
+                      {(
+                        [
+                          "units",
+                          "consistent",
+                          "difference",
+                          "not_compared",
+                        ] as const
+                      ).map((key) => (
                         <div key={key} className="rounded-lg border p-4">
                           <p className="text-sm text-muted-foreground">
                             {t(`verificationTasks.summary.${key}`)}

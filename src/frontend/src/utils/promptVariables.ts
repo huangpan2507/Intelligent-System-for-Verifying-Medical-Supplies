@@ -61,7 +61,13 @@ export type InvalidVariableReason =
   | "reservedPrefix"
   | "reservedName";
 
-const INVALID_VARIABLE_MESSAGE_KEYS: Record<InvalidVariableReason, string> = {
+export type InvalidVariableMessageKey =
+  `modal.prompt.invalidVariable.${InvalidVariableReason}`;
+
+const INVALID_VARIABLE_MESSAGE_KEYS: Record<
+  InvalidVariableReason,
+  InvalidVariableMessageKey
+> = {
   leadingDigit: "modal.prompt.invalidVariable.leadingDigit",
   invalidCharacter: "modal.prompt.invalidVariable.invalidCharacter",
   reservedPrefix: "modal.prompt.invalidVariable.reservedPrefix",
@@ -101,7 +107,9 @@ export function invalidVariableReason(
 }
 
 /** Translation key explaining the rejection, or `null` when the name is valid. */
-export function invalidVariableMessageKey(rawName: string): string | null {
+export function invalidVariableMessageKey(
+  rawName: string,
+): InvalidVariableMessageKey | null {
   const reason = invalidVariableReason(rawName);
   return reason === null ? null : INVALID_VARIABLE_MESSAGE_KEYS[reason];
 }

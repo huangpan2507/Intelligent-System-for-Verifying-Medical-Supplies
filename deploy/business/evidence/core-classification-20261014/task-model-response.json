@@ -1,0 +1,32 @@
+{
+  "id": "01a13636da7944b1ab31dd3b0220d167",
+  "model": "deepseek-ai/DeepSeek-V4-Flash",
+  "usage": {
+    "total_tokens": 753,
+    "prompt_tokens": 664,
+    "completion_tokens": 89,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 664,
+    "completion_tokens_details": {
+      "reasoning_tokens": 30
+    }
+  },
+  "object": "chat.completion",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\"model_category\":\"人工膝关节\",\"model_reason\":\"耗材名称为膝关节假体系统，明确属于膝关节假体\",\"model_evidence_field\":\"PRODNAME\",\"model_evidence_text\":\"膝关节假体系统（模拟成套产品B）\",\"model_confidence\":0.95}",
+        "reasoning_content": "我们根据规则判断：PRODNAME是\"膝关节假体系统（模拟成套产品B）\"，明确属于人工膝关节。输出JSON。"
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "created": 1791910927,
+  "system_fingerprint": ""
+}

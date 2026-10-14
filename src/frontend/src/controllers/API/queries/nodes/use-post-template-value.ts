@@ -29,7 +29,7 @@ interface IPostTemplateValue {
 }
 
 interface IPostTemplateValueParams {
-  node: APIClassType;
+  node?: APIClassType;
   nodeId: string;
   parameterId: string;
 }
@@ -50,6 +50,7 @@ export const usePostTemplateValue: useMutationFunctionType<
   const postTemplateValueFn = async (
     payload: IPostTemplateValue,
   ): Promise<APIClassType | undefined> => {
+    if (!node || !nodeId || !parameterId) return;
     const template = node.template;
 
     if (!template) return;

@@ -284,4 +284,6 @@ def create_demo_app(settings: FlowSettings | None = None) -> FastAPI:
             "simulated": True,
         }
 
+    from langflow.business.demo import register_demo
+    register_demo(app, authenticate)
     return app

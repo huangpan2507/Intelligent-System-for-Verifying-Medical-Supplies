@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[2]
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("service", choices=["init", "platform", "api", "demo", "worker"])
+    parser.add_argument("service", choices=["init", "platform", "api", "demo", "core-demo", "worker"])
     args = parser.parse_args()
     private = ROOT / "deploy/verification/.env"
     if not private.is_file():
@@ -75,6 +75,7 @@ def main() -> None:
         "platform": ("langflow.main:create_app", 7860),
         "api": ("langflow.verification.api:create_app", api_port),
         "demo": ("langflow.verification.demo:create_demo_app", 8090),
+        "core-demo": ("langflow.business.core_flow_demo:create_core_flow_app", 8091),
     }
     app, port = services[args.service]
     uvicorn.run(app, factory=True, host="127.0.0.1", port=port)

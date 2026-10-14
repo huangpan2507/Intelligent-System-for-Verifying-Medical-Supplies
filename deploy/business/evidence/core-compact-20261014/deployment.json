@@ -1,0 +1,33 @@
+{
+  "scheme": "core.normal.compact.v1",
+  "flow_id": "ce588a72-0614-4d84-badd-0e4355c427e6",
+  "original_flow_id": "e55b03b0-7c7f-420b-b720-33b1a4cf5559",
+  "original_canvas_unchanged": true,
+  "releases": [
+    {
+      "scheme": "acceptance.taskstart.5ac08f2620",
+      "release_id": "bdd2ddbd-afc4-432e-849a-f8c7750b2359",
+      "version": 4
+    },
+    {
+      "scheme": "demo.cross_database.v2",
+      "release_id": "ab4289e0-fb32-42fc-8e94-415d8bf4f47a",
+      "version": 13
+    },
+    {
+      "scheme": "core.normal.1791804428546",
+      "release_id": "7b45fa47-8170-46fc-9ce4-725e7fa7512b",
+      "version": 3
+    },
+    {
+      "scheme": "core.normal.compact.v1",
+      "release_id": "5c2c18da-aee0-49dc-82b8-38eae85394ba",
+      "version": 1
+    },
+    {
+      "scheme": "demo.consumables.v2",
+      "release_id": "4799cbd4-95b8-41e8-9109-498633ce638f",
+      "version": 13
+    }
+  ]
+}

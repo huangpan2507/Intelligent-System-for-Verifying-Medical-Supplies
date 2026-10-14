@@ -46,6 +46,12 @@ describe("dateTime", () => {
         "2024-01-02T03:04:05.000Z",
       );
     });
+
+    it("interprets space-separated API timestamps without an offset as UTC", () => {
+      expect(parseApiTimestamp("2024-01-02 03:04:05.123")?.toISOString()).toBe(
+        "2024-01-02T03:04:05.123Z",
+      );
+    });
   });
 
   describe("formatSmartTimestamp", () => {

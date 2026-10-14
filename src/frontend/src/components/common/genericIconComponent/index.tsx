@@ -45,7 +45,7 @@ export const ForwardedIconComponent = memo(
       const [showFallback, setShowFallback] = useState(false);
       const [iconError, setIconError] = useState(false);
       const [TargetIcon, setTargetIcon] = useState<IconComponentType | null>(
-        getCachedIcon(name) as IconComponentType | null,
+        () => (getCachedIcon(name) as IconComponentType | undefined) ?? null,
       );
 
       useEffect(() => {
@@ -60,7 +60,7 @@ export const ForwardedIconComponent = memo(
           getNodeIcon(name)
             .then((component) => {
               if (isMounted) {
-                setTargetIcon(component);
+                setTargetIcon(() => component ?? null);
                 setShowFallback(false);
               }
             })

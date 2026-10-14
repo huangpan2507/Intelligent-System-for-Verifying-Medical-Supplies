@@ -1,0 +1,1191 @@
+{
+  "nodes": [
+    {
+      "id": "Request",
+      "kind": "taskinput",
+      "label": "Task Start",
+      "config": {},
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "Settlements",
+      "kind": "database",
+      "label": "Settlements",
+      "config": {
+        "connection": "537d8c03-3c9a-4c25-8a8e-d66cfc2b187a",
+        "schema": "public",
+        "table": "core_flow_settlement_v1",
+        "timezone": "Asia/Shanghai",
+        "conditions": [
+          {
+            "field": "ORGAN_NAME",
+            "op": "eq",
+            "parameter": "hospital_name"
+          },
+          {
+            "field": "UPDATE_TIME",
+            "op": "ge",
+            "parameter": "start"
+          },
+          {
+            "field": "UPDATE_TIME",
+            "op": "le",
+            "parameter": "end"
+          },
+          {
+            "field": "MED_PAY_FLAG",
+            "op": "eq",
+            "value": "1"
+          },
+          {
+            "field": "LIST_TYPE",
+            "op": "eq",
+            "value": "301"
+          },
+          {
+            "field": "REFD_SETL_FLAG",
+            "op": "eq",
+            "value": 0
+          }
+        ]
+      },
+      "position": {
+        "x": 410,
+        "y": 0
+      }
+    },
+    {
+      "id": "SettlementChecks",
+      "kind": "validate",
+      "label": "SettlementChecks",
+      "config": {
+        "required": [
+          "ORGAN_CODE",
+          "DATA_SOURCE",
+          "SETL_FEE_LIST_ID",
+          "PSN_NO",
+          "PSN_NAME",
+          "CERTNO",
+          "OP_EM_MARK",
+          "OP_EM_NO",
+          "UPDATE_TIME",
+          "HILIST_NAME",
+          "CNT",
+          "PRIC",
+          "SYSTEM_ID",
+          "RPT_NO"
+        ],
+        "identity": {
+          "name": "settlement_detail",
+          "namespace": "core-flow-v1",
+          "keys": [
+            "ORGAN_CODE",
+            "DATA_SOURCE",
+            "SETL_FEE_LIST_ID"
+          ]
+        },
+        "conditions": [
+          {
+            "field": "CNT",
+            "op": "ge",
+            "value": 0
+          },
+          {
+            "field": "PRIC",
+            "op": "ge",
+            "value": 0
+          }
+        ]
+      },
+      "position": {
+        "x": 820,
+        "y": 0
+      }
+    },
+    {
+      "id": "Classification",
+      "kind": "classification",
+      "label": "Classification",
+      "config": {
+        "connection": "73f76ea6-93d7-48a3-8fcc-e33a406d0e29",
+        "path": "/v1/chat/completions",
+        "model": "deepseek-ai/DeepSeek-V4-Flash",
+        "max_calls": 10,
+        "classification_fields": [
+          {
+            "field": "HILIST_NAME",
+            "role": "context"
+          },
+          {
+            "field": "PRODNAME",
+            "role": "evidence"
+          },
+          {
+            "field": "HOS_PROJ_NAME",
+            "role": "evidence"
+          },
+          {
+            "field": "MEDINS_LIST_NAME",
+            "role": "evidence"
+          },
+          {
+            "field": "SPEC",
+            "role": "context"
+          }
+        ],
+        "category_routes": [
+          {
+            "category": "人工髋关节",
+            "continue": true
+          },
+          {
+            "category": "人工膝关节",
+            "continue": true
+          },
+          {
+            "category": "其他",
+            "continue": false
+          }
+        ],
+        "business_guidance": "判断该条耗材的类别，不要仅凭手术名称把同一手术的全部耗材当成关节假体。\n明确的髋/膝关节假体或成套假体系统可归入对应类别，其他具体耗材归入其他。\n依据不足、相互矛盾或无法判断时保持无法确定；不根据数量、价格猜类别。\n请用简短中文说明可核对的依据，不需要内部推理过程。",
+        "rules": [
+          {
+            "op": "contains_all",
+            "keywords": [
+              "人工",
+              "髋关节"
+            ],
+            "category": "人工髋关节"
+          },
+          {
+            "op": "contains_all",
+            "keywords": [
+              "人工",
+              "膝关节"
+            ],
+            "category": "人工膝关节"
+          }
+        ],
+        "ambiguity_hints": [
+          "未使用",
+          "非人工",
+          "取出器"
+        ],
+        "conflicts": [
+          {
+            "category": "人工髋关节",
+            "field": "HILIST_NAME",
+            "contains": "膝"
+          },
+          {
+            "category": "人工膝关节",
+            "field": "HILIST_NAME",
+            "contains": "髋"
+          }
+        ]
+      },
+      "position": {
+        "x": 1230,
+        "y": 0
+      }
+    },
+    {
+      "id": "Studies",
+      "kind": "databaselookup",
+      "label": "Studies",
+      "config": {
+        "connection": "fb22b9dd-11b7-4650-b86d-78332de3e2ec",
+        "schema": "business_demo",
+        "table": "INSPECTION_INFO_RECORD",
+        "timezone": "Asia/Shanghai",
+        "conditions": [
+          {
+            "field": "organ_name",
+            "op": "eq",
+            "parameter": "hospital_name"
+          },
+          {
+            "field": "chk_dt",
+            "op": "ge",
+            "parameter": "start"
+          },
+          {
+            "field": "chk_dt",
+            "op": "le",
+            "parameter": "end"
+          }
+        ],
+        "keys": [
+          {
+            "left": "ORGAN_CODE",
+            "right": "organ_code"
+          },
+          {
+            "left": "SYSTEM_ID",
+            "right": "system_id"
+          },
+          {
+            "left": "RPT_NO",
+            "right": "rpt_no"
+          }
+        ],
+        "source_identity": {
+          "name": "study",
+          "namespace": "core-study-v2",
+          "keys": [
+            "organ_code",
+            "system_id",
+            "ris_study_id"
+          ]
+        },
+        "source_required": [
+          "organ_code",
+          "system_id",
+          "ris_study_id",
+          "rpt_no",
+          "link_id",
+          "chk_dt"
+        ],
+        "returns": [
+          {
+            "field": "organ_code",
+            "output": "study_organ_code"
+          },
+          {
+            "field": "system_id",
+            "output": "study_system_id"
+          },
+          {
+            "field": "ris_study_id",
+            "output": "study_ris_study_id"
+          },
+          {
+            "field": "name",
+            "output": "study_name"
+          },
+          {
+            "field": "cardno",
+            "output": "study_cardno"
+          },
+          {
+            "field": "op_em_hp_ex_no",
+            "output": "study_op_em_hp_ex_no"
+          },
+          {
+            "field": "ckpt_name",
+            "output": "study_ckpt_name"
+          },
+          {
+            "field": "chk_modality",
+            "output": "study_chk_modality"
+          },
+          {
+            "field": "link_id",
+            "output": "study_primary_id"
+          },
+          {
+            "field": "op_em_hp_ex_mark",
+            "output": "study_visit_type",
+            "type": "text"
+          },
+          {
+            "field": "chk_dt",
+            "output": "checked_at",
+            "type": "datetime",
+            "timezone": "Asia/Shanghai"
+          },
+          {
+            "field": "EXAM_PART",
+            "output": "study_exam_part"
+          },
+          {
+            "field": "chk_desc",
+            "output": "study_chk_desc"
+          },
+          {
+            "field": "proj_name",
+            "output": "study_proj_name"
+          }
+        ],
+        "checks": {
+          "required": [
+            "study_primary_id",
+            "checked_at"
+          ],
+          "conditions": [
+            {
+              "field": "PSN_NAME",
+              "op": "eq",
+              "right_field": "study_name"
+            },
+            {
+              "field": "CERTNO",
+              "op": "eq",
+              "right_field": "study_cardno"
+            },
+            {
+              "field": "OP_EM_NO",
+              "op": "eq",
+              "right_field": "study_op_em_hp_ex_no"
+            },
+            {
+              "field": "OP_EM_MARK",
+              "op": "eq",
+              "right_field": "study_visit_type"
+            },
+            {
+              "field": "study_chk_modality",
+              "op": "in",
+              "value": [
+                "DR",
+                "CT"
+              ]
+            },
+            {
+              "field": "checked_at",
+              "op": "lt",
+              "right_field": "UPDATE_TIME"
+            }
+          ]
+        },
+        "binding_source": {
+          "connection": "fb22b9dd-11b7-4650-b86d-78332de3e2ec",
+          "schema": "business_demo",
+          "table": "INSPECTION_INFO_RECORD"
+        }
+      },
+      "position": {
+        "x": 1640,
+        "y": 0
+      }
+    },
+    {
+      "id": "StudyRelevance",
+      "kind": "classification",
+      "label": "StudyRelevance",
+      "config": {
+        "connection": "73f76ea6-93d7-48a3-8fcc-e33a406d0e29",
+        "path": "/v1/chat/completions",
+        "model": "deepseek-ai/DeepSeek-V4-Flash",
+        "max_calls": 30,
+        "result_prefix": "study_relevance",
+        "dictionary": {
+          "id": "wst364.8-2023-cv04.30.002",
+          "field": "study_exam_part"
+        },
+        "classification_fields": [
+          {
+            "field": "study_relevance_code_name",
+            "role": "evidence"
+          },
+          {
+            "field": "study_chk_desc",
+            "role": "evidence"
+          },
+          {
+            "field": "target_category",
+            "role": "context"
+          },
+          {
+            "field": "study_exam_part",
+            "role": "context"
+          },
+          {
+            "field": "study_proj_name",
+            "role": "context"
+          },
+          {
+            "field": "study_ckpt_name",
+            "role": "context"
+          },
+          {
+            "field": "study_chk_modality",
+            "role": "context"
+          }
+        ],
+        "category_routes": [
+          {
+            "category": "候选相关",
+            "continue": true
+          },
+          {
+            "category": "明确无关",
+            "continue": false
+          }
+        ],
+        "rules": [
+          {
+            "fields": [
+              "study_relevance_code_name"
+            ],
+            "op": "contains",
+            "value": "髋关节",
+            "category": "候选相关",
+            "when": [
+              {
+                "field": "target_category",
+                "value": "人工髋关节"
+              }
+            ]
+          },
+          {
+            "fields": [
+              "study_relevance_code_name"
+            ],
+            "op": "contains",
+            "value": "膝关节",
+            "category": "明确无关",
+            "when": [
+              {
+                "field": "target_category",
+                "value": "人工髋关节"
+              }
+            ]
+          },
+          {
+            "fields": [
+              "study_relevance_code_name"
+            ],
+            "op": "contains",
+            "value": "膝关节",
+            "category": "候选相关",
+            "when": [
+              {
+                "field": "target_category",
+                "value": "人工膝关节"
+              }
+            ]
+          },
+          {
+            "fields": [
+              "study_relevance_code_name"
+            ],
+            "op": "contains",
+            "value": "髋关节",
+            "category": "明确无关",
+            "when": [
+              {
+                "field": "target_category",
+                "value": "人工膝关节"
+              }
+            ]
+          }
+        ],
+        "ambiguity_hints": [
+          "未包含",
+          "不包含",
+          "动脉",
+          "静脉",
+          "造影"
+        ],
+        "conflicts": [
+          {
+            "category": "候选相关",
+            "field": "study_relevance_code_name",
+            "contains": "CT",
+            "when": [
+              {
+                "field": "study_chk_modality",
+                "value": "DR"
+              }
+            ]
+          },
+          {
+            "category": "候选相关",
+            "field": "study_relevance_code_name",
+            "contains": "MRI",
+            "when": [
+              {
+                "field": "study_chk_modality",
+                "value": "DR"
+              }
+            ]
+          },
+          {
+            "category": "候选相关",
+            "field": "study_relevance_code_name",
+            "contains": "MRI",
+            "when": [
+              {
+                "field": "study_chk_modality",
+                "value": "CT"
+              }
+            ]
+          },
+          {
+            "category": "明确无关",
+            "field": "study_relevance_code_name",
+            "contains": "CT",
+            "when": [
+              {
+                "field": "study_chk_modality",
+                "value": "DR"
+              }
+            ]
+          },
+          {
+            "category": "明确无关",
+            "field": "study_relevance_code_name",
+            "contains": "MRI",
+            "when": [
+              {
+                "field": "study_chk_modality",
+                "value": "DR"
+              }
+            ]
+          },
+          {
+            "category": "明确无关",
+            "field": "study_relevance_code_name",
+            "contains": "MRI",
+            "when": [
+              {
+                "field": "study_chk_modality",
+                "value": "CT"
+              }
+            ]
+          }
+        ],
+        "business_guidance": "判断这次检查是否可作为当前 target_category 目标关节的候选检查，不是重新判断耗材类别。标准名称已由字典解释，不要猜码、补码或改写含义。结合完整检查技术名称和该检查的原始描述。明确相符可判候选相关，明确不相关判明确无关；下肢、近髋等宽泛描述须结合已有描述判断，不能只凭下肢两字或目标类别推断实际覆盖。仅有下肢血管检查名称而无关节相关依据时判无法确定。候选不是影像覆盖确认，也不是发现假体或已经能计数。保留左/右/双侧，不由检查侧别推定耗材侧别；明确侧别矛盾、源模态与检查技术明确冲突时判无法确定。证据必须引用标准名称或检查描述的原文；置信度仅为自报展示。"
+      },
+      "position": {
+        "x": 0,
+        "y": 450
+      }
+    },
+    {
+      "id": "Series",
+      "kind": "databaselookup",
+      "label": "Series",
+      "config": {
+        "connection": "fb22b9dd-11b7-4650-b86d-78332de3e2ec",
+        "schema": "business_demo",
+        "table": "SERIES_INFO",
+        "keys": [
+          {
+            "left": "study_organ_code",
+            "right": "organ_code"
+          },
+          {
+            "left": "study_system_id",
+            "right": "system_id"
+          },
+          {
+            "left": "study_ris_study_id",
+            "right": "ris_study_id"
+          }
+        ],
+        "source_identity": {
+          "name": "series",
+          "namespace": "core-series-v2",
+          "keys": [
+            "organ_code",
+            "system_id",
+            "pacs_series_id"
+          ]
+        },
+        "source_required": [
+          "organ_code",
+          "system_id",
+          "ris_study_id",
+          "pacs_series_id",
+          "global_id",
+          "link_id"
+        ],
+        "returns": [
+          {
+            "field": "global_id",
+            "output": "series_id"
+          },
+          {
+            "field": "link_id",
+            "output": "link_id"
+          },
+          {
+            "field": "chk_modality",
+            "output": "series_modality"
+          }
+        ],
+        "checks": {
+          "required": [
+            "series_id",
+            "link_id"
+          ],
+          "conditions": [
+            {
+              "field": "link_id",
+              "op": "eq",
+              "right_field": "study_primary_id"
+            },
+            {
+              "field": "series_modality",
+              "op": "in",
+              "value": [
+                "DR",
+                "CT"
+              ]
+            }
+          ]
+        },
+        "binding_source": {
+          "connection": "fb22b9dd-11b7-4650-b86d-78332de3e2ec",
+          "schema": "business_demo",
+          "table": "SERIES_INFO"
+        }
+      },
+      "position": {
+        "x": 410,
+        "y": 450
+      }
+    },
+    {
+      "id": "Images",
+      "kind": "api",
+      "label": "Images",
+      "config": {
+        "connection": "bd965b78-e1c6-4553-b884-c78a807b67bc",
+        "path": "/api/v2/storage/dicom/sop-instance-uid",
+        "method": "GET",
+        "body": {
+          "series_id": {
+            "field": "series_id"
+          },
+          "url_type": "3"
+        },
+        "items_path": "data",
+        "pagination": "none",
+        "max_calls": 10,
+        "response_conditions": [
+          {
+            "path": "code",
+            "equals": 200
+          },
+          {
+            "path": "error.error_code",
+            "equals": 0
+          }
+        ],
+        "completeness": {
+          "scope": "object",
+          "basis": "core-flow-v1 controlled mock returns the complete finite set for each request"
+        },
+        "fields": [
+          {
+            "name": "domain",
+            "type": "text",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "file_path",
+            "type": "text",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "study_instance_uid",
+            "type": "text",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "series_instance_uid",
+            "type": "text",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "sop_instance_uid",
+            "type": "text",
+            "required": true,
+            "nullable": false
+          }
+        ],
+        "field_evidence": {
+          "kind": "document",
+          "reference": "https://docs.apipost.net/docs/detail/6dfaead25070000?target_id=11ffcb2c7120a1&locale=zh-cn — core-flow-v1 synthetic implementation",
+          "source": {
+            "connection": "bd965b78-e1c6-4553-b884-c78a807b67bc",
+            "path": "/api/v2/storage/dicom/sop-instance-uid",
+            "method": "GET",
+            "body": {
+              "series_id": {
+                "field": "series_id"
+              },
+              "url_type": "3"
+            },
+            "items_path": "data",
+            "response_conditions": [
+              {
+                "path": "code",
+                "equals": 200
+              },
+              {
+                "path": "error.error_code",
+                "equals": 0
+              }
+            ]
+          },
+          "fields": [
+            {
+              "name": "domain",
+              "type": "text",
+              "required": true,
+              "nullable": false
+            },
+            {
+              "name": "file_path",
+              "type": "text",
+              "required": true,
+              "nullable": false
+            },
+            {
+              "name": "study_instance_uid",
+              "type": "text",
+              "required": true,
+              "nullable": false
+            },
+            {
+              "name": "series_instance_uid",
+              "type": "text",
+              "required": true,
+              "nullable": false
+            },
+            {
+              "name": "sop_instance_uid",
+              "type": "text",
+              "required": true,
+              "nullable": false
+            }
+          ]
+        },
+        "collection": {
+          "group_by": [
+            "_identity"
+          ],
+          "retain_fields": [
+            "ORGAN_CODE",
+            "ORGAN_NAME",
+            "ORGAN_ADMDVS",
+            "ORGAN_LV",
+            "FIX_ORGAN_CODE",
+            "FIX_ORGAN_NAME",
+            "DATA_SOURCE",
+            "SETL_HOS_ID",
+            "INIT_SETL_HOS_ID",
+            "SETL_MED_ID",
+            "INIT_SETL_MED_ID",
+            "MDTRT_SN",
+            "MDTRT_ID",
+            "MED_PAY_FLAG",
+            "PSN_NO",
+            "PSN_NAME",
+            "PSN_CERT_TYPE",
+            "CERTNO",
+            "SOC_SEC_CARD_NO",
+            "GEND",
+            "OP_EM_MARK",
+            "OP_EM_NO",
+            "RCD_DT",
+            "REFD_SETL_FLAG",
+            "MED_TYPE",
+            "MEDFEE_SUMAMT",
+            "FUND_PAY_SUMAMT",
+            "PSN_PART_AMT",
+            "ACCT_PAY",
+            "PSN_CASH_PAY",
+            "HOSP_PART_AMT",
+            "UPDATE_TIME",
+            "SETL_FEE_LIST_ID",
+            "RPT_NO",
+            "FEEDETL_SN",
+            "INIT_FEEDETL_SN",
+            "HOS_PROJ_NO",
+            "HOS_PROJ_NAME",
+            "HILIST_CODE",
+            "HILIST_NAME",
+            "LIST_TYPE",
+            "MED_LIST_CODG",
+            "MEDINS_LIST_CODG",
+            "MEDINS_LIST_NAME",
+            "MED_CHRGITM_TYPE",
+            "PRODNAME",
+            "SPEC",
+            "DOSFORM_NAME",
+            "CNT",
+            "PRIC",
+            "SYSTEM_ID",
+            "target_category",
+            "classification_method",
+            "classification_reason",
+            "classification_evidence_field",
+            "classification_evidence_text",
+            "classification_confidence",
+            "_representative_row_id"
+          ],
+          "address_fields": [
+            "domain",
+            "file_path"
+          ],
+          "item_keys": [
+            "study_instance_uid",
+            "series_instance_uid",
+            "sop_instance_uid"
+          ],
+          "output": "image_manifest",
+          "item_context": [
+            "study_primary_id",
+            "study_ris_study_id",
+            "series_id",
+            "series_modality",
+            "study_exam_part",
+            "study_relevance_code_name",
+            "study_relevance_code_version",
+            "study_relevance_code_source",
+            "study_relevance",
+            "study_relevance_method",
+            "study_relevance_reason",
+            "study_relevance_evidence_text"
+          ]
+        }
+      },
+      "position": {
+        "x": 820,
+        "y": 450
+      }
+    },
+    {
+      "id": "Observation",
+      "kind": "imaging",
+      "label": "Observation",
+      "config": {
+        "connection": "bd965b78-e1c6-4553-b884-c78a807b67bc",
+        "path": "/business/core-flow/imaging",
+        "patient_field": "PSN_NO",
+        "hospital_field": "ORGAN_CODE",
+        "encounter_field": "OP_EM_NO",
+        "category_field": "target_category",
+        "evidence_field": "image_manifest",
+        "max_calls": 10,
+        "unit_value": "套",
+        "result_checks": {
+          "required": [
+            "recognized_category",
+            "recognized_quantity",
+            "evidence_ref"
+          ],
+          "conditions": [
+            {
+              "field": "recognition_confirmed",
+              "op": "eq",
+              "value": true
+            },
+            {
+              "field": "coverage_confirmed",
+              "op": "eq",
+              "value": true
+            },
+            {
+              "field": "recognized_quantity",
+              "op": "ge",
+              "value": 0
+            },
+            {
+              "field": "observed_unit",
+              "op": "eq",
+              "value": "套"
+            }
+          ]
+        },
+        "evidence_context_field": "image_manifest_context"
+      },
+      "position": {
+        "x": 1230,
+        "y": 450
+      }
+    },
+    {
+      "id": "Compare",
+      "kind": "compare",
+      "label": "Compare",
+      "config": {
+        "comparisons": [
+          {
+            "left": "target_category",
+            "right": "recognized_category",
+            "mode": "exact",
+            "output": "category_status"
+          },
+          {
+            "left": "CNT",
+            "right": "recognized_quantity",
+            "mode": "numeric",
+            "tolerance": 0,
+            "output": "quantity_status"
+          },
+          {
+            "left": "settled_amount",
+            "right": "observed_amount",
+            "mode": "numeric",
+            "tolerance": 0,
+            "output": "amount_status"
+          }
+        ],
+        "calculations": [
+          {
+            "field": "_representative_row_id",
+            "output": "unit_row_id",
+            "operation": "copy"
+          },
+          {
+            "output": "unit",
+            "operation": "expression",
+            "expression": "'套'"
+          },
+          {
+            "output": "settled_amount",
+            "operation": "expression",
+            "expression": "CNT * PRIC"
+          },
+          {
+            "output": "observed_amount",
+            "operation": "expression",
+            "expression": "recognized_quantity * PRIC"
+          }
+        ]
+      },
+      "position": {
+        "x": 1640,
+        "y": 450
+      }
+    },
+    {
+      "id": "Results",
+      "kind": "output",
+      "label": "Results",
+      "config": {
+        "name": "核心流程核验结果",
+        "primary": true,
+        "columns": [
+          "unit_row_id",
+          "ORGAN_CODE",
+          "SYSTEM_ID",
+          "DATA_SOURCE",
+          "SETL_FEE_LIST_ID",
+          "ORGAN_NAME",
+          "PSN_NO",
+          "PSN_NAME",
+          "CERTNO",
+          "OP_EM_NO",
+          "OP_EM_MARK",
+          "RPT_NO",
+          "HILIST_NAME",
+          "PRODNAME",
+          "HOS_PROJ_NAME",
+          "MEDINS_LIST_NAME",
+          "SPEC",
+          "UPDATE_TIME",
+          "CNT",
+          "PRIC",
+          "unit",
+          "settled_amount",
+          "target_category",
+          "classification_method",
+          "classification_reason",
+          "classification_evidence_field",
+          "classification_evidence_text",
+          "classification_confidence",
+          "recognized_category",
+          "recognized_quantity",
+          "observed_amount",
+          "category_status",
+          "quantity_status",
+          "amount_status",
+          "difference_1",
+          "difference_2",
+          "evidence_ref",
+          "image_manifest",
+          "simulated"
+        ],
+        "obligation": {
+          "mode": "verification",
+          "sources": [
+            {
+              "node": "Settlements",
+              "identity": "SettlementChecks"
+            }
+          ],
+          "checks": [
+            {
+              "name": "category",
+              "units": {
+                "node": "Classification",
+                "port": "data"
+              },
+              "results": [
+                {
+                  "node": "Compare",
+                  "port": "data",
+                  "status_field": "category_status",
+                  "evidence_field": "evidence_ref"
+                },
+                {
+                  "node": "StudyRelevance",
+                  "port": "issues",
+                  "status": "uncompared",
+                  "reason_field": "study_relevance_reason",
+                  "fallback": true
+                }
+              ]
+            },
+            {
+              "name": "quantity",
+              "units": {
+                "node": "Classification",
+                "port": "data"
+              },
+              "results": [
+                {
+                  "node": "Compare",
+                  "port": "data",
+                  "status_field": "quantity_status",
+                  "evidence_field": "evidence_ref"
+                },
+                {
+                  "node": "StudyRelevance",
+                  "port": "issues",
+                  "status": "uncompared",
+                  "reason_field": "study_relevance_reason",
+                  "fallback": true
+                }
+              ]
+            },
+            {
+              "name": "fee",
+              "units": {
+                "node": "Classification",
+                "port": "data"
+              },
+              "results": [
+                {
+                  "node": "Compare",
+                  "port": "data",
+                  "status_field": "amount_status",
+                  "evidence_field": "evidence_ref"
+                },
+                {
+                  "node": "StudyRelevance",
+                  "port": "issues",
+                  "status": "uncompared",
+                  "reason_field": "study_relevance_reason",
+                  "fallback": true
+                }
+              ]
+            }
+          ],
+          "dispositions": [
+            {
+              "node": "Studies",
+              "port": "issues",
+              "status": "uncompared",
+              "reason": "incomplete_evidence"
+            },
+            {
+              "node": "Series",
+              "port": "issues",
+              "status": "uncompared",
+              "reason": "incomplete_evidence"
+            },
+            {
+              "node": "Images",
+              "port": "issues",
+              "status": "uncompared",
+              "reason": "incomplete_evidence"
+            },
+            {
+              "node": "Observation",
+              "port": "issues",
+              "status": "uncompared",
+              "reason": "incomplete_evidence"
+            },
+            {
+              "node": "Classification",
+              "port": "issues",
+              "status_field": "classification_disposition",
+              "reason_field": "classification_disposition_reason"
+            }
+          ]
+        }
+      },
+      "position": {
+        "x": 0,
+        "y": 900
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "Compare",
+      "target": "Results",
+      "port": "data",
+      "input": "data"
+    },
+    {
+      "source": "Images",
+      "target": "Observation",
+      "port": "data",
+      "input": "data"
+    },
+    {
+      "source": "Observation",
+      "target": "Compare",
+      "port": "data",
+      "input": "data"
+    },
+    {
+      "source": "Classification",
+      "target": "Studies",
+      "port": "data",
+      "input": "data"
+    },
+    {
+      "source": "SettlementChecks",
+      "target": "Classification",
+      "port": "valid",
+      "input": "data"
+    },
+    {
+      "source": "Series",
+      "target": "Images",
+      "port": "data",
+      "input": "data"
+    },
+    {
+      "source": "StudyRelevance",
+      "target": "Series",
+      "port": "data",
+      "input": "data"
+    },
+    {
+      "source": "Studies",
+      "target": "StudyRelevance",
+      "port": "data",
+      "input": "data"
+    },
+    {
+      "source": "Request",
+      "target": "Settlements",
+      "port": "data",
+      "input": "data"
+    },
+    {
+      "source": "Settlements",
+      "target": "SettlementChecks",
+      "port": "data",
+      "input": "data"
+    }
+  ]
+}

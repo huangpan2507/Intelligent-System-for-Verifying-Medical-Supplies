@@ -1,0 +1,192 @@
+{
+  "checked_at": "2026-10-13T07:14:50.023477+00:00",
+  "authorization": "User explicitly approved Q12: at most three rows per relevant table, identifier/time columns only; in-memory comparisons, no raw values saved.",
+  "row_limit_per_table": 3,
+  "raw_values_saved": false,
+  "tables": {
+    "yb_emr_inspection_info_record_s": {
+      "queried_columns": [
+        "organ_code",
+        "system_id",
+        "ris_study_id",
+        "chk_dt"
+      ],
+      "sample_count": 3,
+      "samples": [
+        {
+          "chk_dt": {
+            "null": false,
+            "python_type": "int",
+            "digit_count": 13,
+            "possible_encodings": [
+              "unix_milliseconds"
+            ]
+          }
+        },
+        {
+          "chk_dt": {
+            "null": false,
+            "python_type": "int",
+            "digit_count": 13,
+            "possible_encodings": [
+              "unix_milliseconds"
+            ]
+          }
+        },
+        {
+          "chk_dt": {
+            "null": false,
+            "python_type": "int",
+            "digit_count": 13,
+            "possible_encodings": [
+              "unix_milliseconds"
+            ]
+          }
+        }
+      ]
+    },
+    "yb_emr_inspection_info_record_v": {
+      "queried_columns": [
+        "organ_code",
+        "system_id",
+        "ris_study_id",
+        "chk_dt",
+        "link_id"
+      ],
+      "sample_count": 3,
+      "samples": [
+        {
+          "chk_dt": {
+            "null": false,
+            "python_type": "datetime",
+            "database_returns_date_object": true
+          },
+          "link_id": {
+            "null": false,
+            "length": 6,
+            "is_32_hex": false,
+            "is_uuid_with_hyphens": false,
+            "is_numeric": false,
+            "separator_counts": {},
+            "equals_md5_organ_system_study_utf8": false
+          }
+        },
+        {
+          "chk_dt": {
+            "null": false,
+            "python_type": "datetime",
+            "database_returns_date_object": true
+          },
+          "link_id": {
+            "null": false,
+            "length": 6,
+            "is_32_hex": false,
+            "is_uuid_with_hyphens": false,
+            "is_numeric": false,
+            "separator_counts": {},
+            "equals_md5_organ_system_study_utf8": false
+          }
+        },
+        {
+          "chk_dt": {
+            "null": false,
+            "python_type": "datetime",
+            "database_returns_date_object": true
+          },
+          "link_id": {
+            "null": false,
+            "length": 32,
+            "is_32_hex": true,
+            "is_uuid_with_hyphens": false,
+            "is_numeric": false,
+            "separator_counts": {},
+            "equals_md5_organ_system_study_utf8": false
+          }
+        }
+      ]
+    },
+    "yb_dp_series_info_s": {
+      "queried_columns": [
+        "organ_code",
+        "system_id",
+        "ris_study_id",
+        "pacs_series_id"
+      ],
+      "sample_count": 0,
+      "samples": []
+    },
+    "yb_dp_series_info_v": {
+      "queried_columns": [
+        "organ_code",
+        "system_id",
+        "ris_study_id",
+        "pacs_series_id",
+        "link_id",
+        "global_id"
+      ],
+      "sample_count": 3,
+      "samples": [
+        {
+          "link_id": {
+            "null": false,
+            "length": 35,
+            "is_32_hex": false,
+            "is_uuid_with_hyphens": false,
+            "is_numeric": false,
+            "separator_counts": {},
+            "equals_md5_organ_system_study_utf8": false
+          },
+          "global_id": {
+            "null": true,
+            "equals_pacs_series_id": null,
+            "same_length_as_pacs_series_id": null,
+            "equals_md5_organ_system_pacs_utf8": null,
+            "equals_md5_organ_system_study_utf8": null,
+            "equals_organ_system_pacs_joined_by_underscore": null,
+            "equals_link_id": null
+          }
+        },
+        {
+          "link_id": {
+            "null": false,
+            "length": 35,
+            "is_32_hex": false,
+            "is_uuid_with_hyphens": false,
+            "is_numeric": false,
+            "separator_counts": {},
+            "equals_md5_organ_system_study_utf8": false
+          },
+          "global_id": {
+            "null": true,
+            "equals_pacs_series_id": null,
+            "same_length_as_pacs_series_id": null,
+            "equals_md5_organ_system_pacs_utf8": null,
+            "equals_md5_organ_system_study_utf8": null,
+            "equals_organ_system_pacs_joined_by_underscore": null,
+            "equals_link_id": null
+          }
+        },
+        {
+          "link_id": {
+            "null": false,
+            "length": 35,
+            "is_32_hex": false,
+            "is_uuid_with_hyphens": false,
+            "is_numeric": false,
+            "separator_counts": {},
+            "equals_md5_organ_system_study_utf8": false
+          },
+          "global_id": {
+            "null": true,
+            "equals_pacs_series_id": null,
+            "same_length_as_pacs_series_id": null,
+            "equals_md5_organ_system_pacs_utf8": null,
+            "equals_md5_organ_system_study_utf8": null,
+            "equals_organ_system_pacs_joined_by_underscore": null,
+            "equals_link_id": null
+          }
+        }
+      ]
+    }
+  }
+}

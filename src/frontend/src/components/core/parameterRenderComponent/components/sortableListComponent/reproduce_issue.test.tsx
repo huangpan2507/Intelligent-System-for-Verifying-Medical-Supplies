@@ -33,6 +33,7 @@ describe("SortableListComponent reproduction", () => {
       value: [{ name: "item1" }, { name: "item2" }],
       handleOnNewValue: handleOnNewValue,
       disabled: false,
+      editNode: false,
       recommended: false,
       placeholder: "Select items",
       isList: true,

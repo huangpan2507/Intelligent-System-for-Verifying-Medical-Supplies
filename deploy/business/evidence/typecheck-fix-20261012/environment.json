@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-12",
+  "timezone": "Asia/Shanghai",
+  "node": "v22.23.1",
+  "npm": "10.9.8",
+  "uv": "0.12.7",
+  "typescript": "5.9.3",
+  "vite": "7.3.6",
+  "jest": "30.3.0",
+  "baseline": {
+    "diagnostics": 252,
+    "files": 87,
+    "logLines": 609
+  },
+  "typescriptConfigRelaxed": false,
+  "newTypeSuppressionDirectives": 0,
+  "newAnyAssertions": 0,
+  "addedTranslationKeys": 15,
+  "localesChecked": [
+    "de",
+    "en",
+    "es",
+    "fr",
+    "ja",
+    "pt",
+    "zh-Hans"
+  ]
+}

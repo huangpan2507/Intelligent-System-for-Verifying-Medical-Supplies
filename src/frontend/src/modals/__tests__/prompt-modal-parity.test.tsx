@@ -214,8 +214,18 @@ describe.each(syntaxes)(
       value: "",
       setValue: jest.fn(),
       nodeClass: {
+        documentation: "",
+        display_name: "Test component",
+        description: "",
         template: {
-          template: { value: "" },
+          template: {
+            readonly: false,
+            show: true,
+            list: false,
+            required: false,
+            type: "str",
+            value: "",
+          },
         },
       },
       setNodeClass: jest.fn(),
@@ -361,7 +371,19 @@ describe.each(syntaxes)(
         mockMutate.mockImplementation((data, options) => {
           options.onSuccess({
             frontend_node: {
-              template: { template: { value: data.template } },
+              documentation: "",
+              display_name: "Test component",
+              description: "",
+              template: {
+                template: {
+                  readonly: false,
+                  show: true,
+                  list: false,
+                  required: false,
+                  type: "str",
+                  value: data.template,
+                },
+              },
             },
             input_variables: ["name"],
           });
@@ -389,7 +411,19 @@ describe.each(syntaxes)(
         mockMutate.mockImplementation((data, options) => {
           options.onSuccess({
             frontend_node: {
-              template: { template: { value: data.template } },
+              documentation: "",
+              display_name: "Test component",
+              description: "",
+              template: {
+                template: {
+                  readonly: false,
+                  show: true,
+                  list: false,
+                  required: false,
+                  type: "str",
+                  value: data.template,
+                },
+              },
             },
             input_variables: [],
           });
@@ -546,8 +580,18 @@ describe("fstring-specific behavior (PromptModal)", () => {
     value: "",
     setValue: jest.fn(),
     nodeClass: {
+      documentation: "",
+      display_name: "Test component",
+      description: "",
       template: {
-        template: { value: "" },
+        template: {
+          readonly: false,
+          show: true,
+          list: false,
+          required: false,
+          type: "str",
+          value: "",
+        },
       },
     },
     setNodeClass: jest.fn(),
@@ -584,8 +628,18 @@ describe("mustache-specific behavior (MustachePromptModal)", () => {
     value: "",
     setValue: jest.fn(),
     nodeClass: {
+      documentation: "",
+      display_name: "Test component",
+      description: "",
       template: {
-        template: { value: "" },
+        template: {
+          readonly: false,
+          show: true,
+          list: false,
+          required: false,
+          type: "str",
+          value: "",
+        },
       },
     },
     setNodeClass: jest.fn(),

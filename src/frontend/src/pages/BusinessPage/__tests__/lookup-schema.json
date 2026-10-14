@@ -1,0 +1,236 @@
+{
+  "type": "object",
+  "properties": {
+    "connection": {
+      "type": "string",
+      "format": "connection",
+      "minLength": 1
+    },
+    "schema": {
+      "type": "string",
+      "format": "database_schema"
+    },
+    "table": {
+      "type": "string",
+      "format": "table"
+    },
+    "timezone": {
+      "type": "string"
+    },
+    "binding_source": {
+      "type": "object",
+      "properties": {
+        "connection": {
+          "type": "string"
+        },
+        "schema": {
+          "type": "string"
+        },
+        "table": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "connection",
+        "schema",
+        "table"
+      ],
+      "additionalProperties": false
+    },
+    "keys": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "left": {
+            "type": "string",
+            "format": "field",
+            "minLength": 1
+          },
+          "right": {
+            "type": "string",
+            "format": "field:database",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "left",
+          "right"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "conditions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "format": "field:database",
+            "minLength": 1
+          },
+          "op": {
+            "type": "string",
+            "enum": [
+              "eq",
+              "ne",
+              "gt",
+              "ge",
+              "lt",
+              "le",
+              "in"
+            ]
+          },
+          "value": {},
+          "parameter": {
+            "type": "string",
+            "format": "parameter",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "field",
+          "op"
+        ],
+        "additionalProperties": false,
+        "format": "condition"
+      }
+    },
+    "source_identity": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "keys": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "field:database",
+            "minLength": 1
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "name",
+        "namespace",
+        "keys"
+      ],
+      "additionalProperties": false
+    },
+    "source_required": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "field:database",
+        "minLength": 1
+      }
+    },
+    "returns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "format": "field:database",
+            "minLength": 1
+          },
+          "output": {
+            "type": "string",
+            "minLength": 1
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "text",
+              "integer",
+              "number",
+              "datetime"
+            ]
+          },
+          "timezone": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "field",
+          "output"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "checks": {
+      "type": "object",
+      "properties": {
+        "required": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "field:result"
+          }
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "format": "field:result"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "eq",
+                  "ne",
+                  "gt",
+                  "ge",
+                  "lt",
+                  "le",
+                  "in",
+                  "not_in",
+                  "contains",
+                  "is_null",
+                  "not_null"
+                ]
+              },
+              "value": {},
+              "parameter": {
+                "type": "string",
+                "format": "parameter",
+                "minLength": 1
+              },
+              "right_field": {
+                "type": "string",
+                "format": "field:result"
+              }
+            },
+            "required": [
+              "field",
+              "op"
+            ],
+            "additionalProperties": false,
+            "format": "condition"
+          }
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "connection",
+    "table",
+    "keys",
+    "returns"
+  ],
+  "additionalProperties": false
+}

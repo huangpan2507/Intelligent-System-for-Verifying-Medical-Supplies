@@ -1,0 +1,16 @@
+{
+  "backend_business_tests": 147,
+  "real_source_database_tests_enabled": true,
+  "demo_service_tests": 11,
+  "frontend_suites": 7,
+  "frontend_tests": 24,
+  "browser_tests": 1,
+  "typescript": "passed_full_and_incremental",
+  "ruff": "passed",
+  "biome": "passed",
+  "release_version": 4,
+  "node_count": 11,
+  "task_id": "dea219d9-72f6-46b9-a76b-df49d8574d46",
+  "image_recognition": "simulated",
+  "cross_business_validation": "deferred_by_Q24"
+}

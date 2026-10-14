@@ -1,0 +1,61 @@
+
+> langflow@1.12.0 test
+> jest --runInBand src/stores/__tests__/messagesStore.test.ts
+
+FAIL src/stores/__tests__/messagesStore.test.ts
+  ● useMessagesStore › addMessage › keeps messages without persistent IDs separate
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 14
+    + Received  +  1
+
+    @@ -1,20 +1,7 @@
+      Array [
+        Object {
+    -     "background_color": "#ffffff",
+    -     "edit": false,
+    -     "files": Array [],
+    -     "flow_id": "flow-1",
+    -     "id": null,
+    -     "sender": "User",
+    -     "sender_name": "Test User",
+    -     "session_id": "session-1",
+    -     "text": "Hello world",
+    -     "text_color": "#000000",
+    -     "timestamp": "2023-01-01T00:00:00Z",
+    -   },
+    -   Object {
+          "background_color": "#f0f0f0",
+          "category": "response",
+          "edit": false,
+          "files": Array [
+            "file1.txt",
+    @@ -25,10 +12,10 @@
+            "state": "partial",
+          },
+          "sender": "Machine",
+          "sender_name": "AI Assistant",
+          "session_id": "session-1",
+    -     "text": "Machine response",
+    +     "text": "Hello world",
+          "text_color": "#333333",
+          "timestamp": "2023-01-01T00:01:00Z",
+        },
+      ]
+
+      124 |       useMessagesStore.getState().addMessage(first);
+      125 |       useMessagesStore.getState().addMessage(second);
+    > 126 |       expect(useMessagesStore.getState().messages).toEqual([first, second]);
+          |                                                    ^
+      127 |     });
+      128 |
+      129 |     it("should add new message to empty list", () => {
+
+      at Object.<anonymous> (src/stores/__tests__/messagesStore.test.ts:126:52)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 42 passed, 43 total
+Snapshots:   0 total
+Time:        2.807 s
+Ran all test suites matching src/stores/__tests__/messagesStore.test.ts.

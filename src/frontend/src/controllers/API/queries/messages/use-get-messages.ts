@@ -22,7 +22,7 @@ interface MessagesQueryParams {
 }
 
 interface MessagesResponse {
-  rows: Array<object>;
+  rows: { data: Message[] };
   columns: Array<ColDef | ColGroupDef>;
 }
 

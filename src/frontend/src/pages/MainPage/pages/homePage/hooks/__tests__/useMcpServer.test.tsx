@@ -65,7 +65,8 @@ jest.mock("@/customization/feature-flags", () => ({
 const customGetMCPUrlMock = jest.fn(() => "http://test.com/api");
 
 jest.mock("@/customization/utils/custom-mcp-url", () => ({
-  customGetMCPUrl: (...args: unknown[]) => customGetMCPUrlMock(...args),
+  customGetMCPUrl: (...args: Parameters<typeof customGetMCPUrlMock>) =>
+    customGetMCPUrlMock(...args),
 }));
 
 const createWrapper = () => {

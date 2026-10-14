@@ -1,0 +1,64 @@
+[
+  {
+    "input": {
+      "HILIST_NAME": "人工全髋关节置换术",
+      "PRODNAME": "医用骨水泥（模拟辅助材料）",
+      "HOS_PROJ_NAME": "医用骨水泥（模拟辅助材料）",
+      "MEDINS_LIST_NAME": "医用骨水泥（模拟辅助材料）",
+      "SPEC": "模拟规格一套"
+    },
+    "answer": {
+      "model_category": "其他",
+      "model_reason": "耗材描述为骨水泥模拟辅助材料，非关节假体或成套假体系统，属于手术辅助耗材。",
+      "model_evidence_field": "PRODNAME",
+      "model_evidence_text": "医用骨水泥（模拟辅助材料）",
+      "model_confidence": 0.9
+    },
+    "final_category": "其他",
+    "expected": "其他",
+    "usage": {
+      "prompt_tokens": 490,
+      "completion_tokens": 77,
+      "total_tokens": 567,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 490
+    }
+  },
+  {
+    "input": {
+      "HILIST_NAME": "人工全髋关节置换术",
+      "PRODNAME": "模拟材料，未提供具体名称",
+      "HOS_PROJ_NAME": "模拟材料，未提供具体名称",
+      "MEDINS_LIST_NAME": "模拟材料，未提供具体名称",
+      "SPEC": "模拟规格一套"
+    },
+    "answer": {
+      "model_category": "无法确定",
+      "model_reason": "耗材名称为模拟材料，未提供具体耗材信息，无法判断是否为关节假体。",
+      "model_evidence_field": "",
+      "model_evidence_text": "",
+      "model_confidence": 0.1
+    },
+    "final_category": "无法确定",
+    "expected": "无法确定",
+    "usage": {
+      "prompt_tokens": 487,
+      "completion_tokens": 60,
+      "total_tokens": 547,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 487
+    }
+  }
+]

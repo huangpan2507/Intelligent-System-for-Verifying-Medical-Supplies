@@ -1,0 +1,127 @@
+{
+  "scheme": "core.normal.compact.v1",
+  "flow_id": "ce588a72-0614-4d84-badd-0e4355c427e6",
+  "original_flow_id": "e55b03b0-7c7f-420b-b720-33b1a4cf5559",
+  "original_canvas_unchanged": true,
+  "releases": [
+    {
+      "scheme": "acceptance.taskstart.5ac08f2620",
+      "release_id": "bdd2ddbd-afc4-432e-849a-f8c7750b2359",
+      "version": 4
+    },
+    {
+      "scheme": "demo.cross_database.v2",
+      "release_id": "ab4289e0-fb32-42fc-8e94-415d8bf4f47a",
+      "version": 13
+    },
+    {
+      "scheme": "core.normal.1791804428546",
+      "release_id": "7b45fa47-8170-46fc-9ce4-725e7fa7512b",
+      "version": 3
+    },
+    {
+      "scheme": "core.normal.compact.v1",
+      "release_id": "5c2c18da-aee0-49dc-82b8-38eae85394ba",
+      "version": 1
+    },
+    {
+      "scheme": "demo.consumables.v2",
+      "release_id": "4799cbd4-95b8-41e8-9109-498633ce638f",
+      "version": 13
+    }
+  ],
+  "task_id": "c07d6d7a-8419-42aa-8731-9fd76ceaeb47",
+  "release_id": "5c2c18da-aee0-49dc-82b8-38eae85394ba",
+  "status": "completed",
+  "node_count": 10,
+  "counts": {
+    "Settlements": 2,
+    "SettlementChecks": 2,
+    "Classification": 2,
+    "Studies": 2,
+    "Series": 2,
+    "Images": 2,
+    "Observation": 2,
+    "Compare": 2,
+    "Results": 2
+  },
+  "assessment": {
+    "mode": "verification",
+    "state": "accounted",
+    "checks": [
+      {
+        "name": "category",
+        "units": 2,
+        "counts": {
+          "equal": 2
+        },
+        "effective": 2,
+        "dataset_id": "789e8c1f-ced4-4f58-b26b-046b58ce4f9a",
+        "coverage_gaps": 0
+      },
+      {
+        "name": "quantity",
+        "units": 2,
+        "counts": {
+          "equal": 2
+        },
+        "effective": 2,
+        "dataset_id": "af69501b-5b3e-4436-9340-d6bd77602e19",
+        "coverage_gaps": 0
+      },
+      {
+        "name": "fee",
+        "units": 2,
+        "counts": {
+          "equal": 2
+        },
+        "effective": 2,
+        "dataset_id": "00fcd7f5-62eb-4ae5-967f-a6a7bb918b2f",
+        "coverage_gaps": 0
+      }
+    ],
+    "sources": [
+      {
+        "node": "Settlements",
+        "basis": "query_exhausted",
+        "state": "complete",
+        "dataset_id": "cbb67429-fc62-4d8c-9bca-493dbb92a29b",
+        "received_rows": 2
+      },
+      {
+        "node": "Studies--source",
+        "basis": "query_exhausted",
+        "state": "complete",
+        "dataset_id": "e08970d0-65c6-461c-bda1-e28b9c2e944e",
+        "received_rows": 2
+      },
+      {
+        "node": "Series--source",
+        "basis": "query_exhausted",
+        "state": "complete",
+        "dataset_id": "4a559113-56f9-40e6-a0ce-5b3f6b58dca9",
+        "received_rows": 2
+      },
+      {
+        "node": "Images--responses",
+        "basis": "core-flow-v1 controlled mock returns the complete finite set for each request",
+        "scope": "object",
+        "state": "complete",
+        "dataset_id": "6848e9f5-536d-4a06-8b0a-312b74f21339",
+        "received_rows": 4
+      }
+    ],
+    "execution_errors": {},
+    "received_records": 2,
+    "discovery_complete": true,
+    "business_identities": 2,
+    "coverage_gap_records": 0,
+    "dispositions_dataset_id": "7ca2567f-5ef6-49bf-8bd8-9a3b55b34b57",
+    "missing_identity_records": 0,
+    "known_record_accountability": 1.0
+  },
+  "matches_previous_business_results": true,
+  "real_text_model_calls": 1,
+  "image_observation_simulated": true,
+  "cross_business_acceptance": "deferred_by_Q24"
+}

@@ -37,12 +37,18 @@ jest.mock("@/controllers/API/helpers/constants", () => ({
   getURL: jest.fn(() => "/api/v1/messages"),
 }));
 
-const mockFindLastBotMessage = jest.fn(() => null);
+const mockFindLastBotMessage = jest.fn(
+  (): {
+    message: { id: string; properties: Record<string, unknown> };
+    queryKey: string[];
+  } | null => null,
+);
 const mockUpdateMessageProperties = jest.fn();
 jest.mock(
   "@/components/core/playgroundComponent/chat-view/utils/message-utils",
   () => ({
-    findLastBotMessage: (...args: any[]) => mockFindLastBotMessage(...args),
+    findLastBotMessage: (...args: Parameters<typeof mockFindLastBotMessage>) =>
+      mockFindLastBotMessage(...args),
     updateMessageProperties: (...args: any[]) =>
       mockUpdateMessageProperties(...args),
   }),
@@ -57,12 +63,14 @@ jest.mock(
 
 const mockIsErrorLogType = jest.fn(() => false);
 jest.mock("@/types/utils/typeCheckingUtils", () => ({
-  isErrorLogType: (...args: any[]) => mockIsErrorLogType(...args),
+  isErrorLogType: (...args: Parameters<typeof mockIsErrorLogType>) =>
+    mockIsErrorLogType(...args),
 }));
 
 const mockIsOutputType = jest.fn(() => false);
 jest.mock("@/utils/reactflowUtils", () => ({
-  isOutputType: (...args: any[]) => mockIsOutputType(...args),
+  isOutputType: (...args: Parameters<typeof mockIsOutputType>) =>
+    mockIsOutputType(...args),
 }));
 
 jest.mock("@/utils/utils", () => ({

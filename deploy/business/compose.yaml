@@ -1,0 +1,32 @@
+name: langflow-business-sources
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: ${BUSINESS_DB_PASSWORD:?required}
+      MYSQL_DATABASE: business_demo
+      MYSQL_USER: business_demo
+      MYSQL_PASSWORD: ${BUSINESS_DB_PASSWORD:?required}
+    ports: ["127.0.0.1:13306:3306"]
+    volumes: ["mysql-data:/var/lib/mysql"]
+    healthcheck:
+      test: [CMD-SHELL, 'MYSQL_PWD="$$MYSQL_PASSWORD" mysql -u business_demo -e "SELECT 1" business_demo >/dev/null']
+      interval: 5s
+      timeout: 5s
+      retries: 40
+  postgres:
+    image: postgres:17.10
+    environment:
+      POSTGRES_USER: business_demo
+      POSTGRES_DB: business_demo
+      POSTGRES_PASSWORD: ${BUSINESS_DB_PASSWORD:?required}
+    ports: ["127.0.0.1:55434:5432"]
+    volumes: ["postgres-data:/var/lib/postgresql/data"]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U business_demo -d business_demo"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+volumes:
+  mysql-data:
+  postgres-data:

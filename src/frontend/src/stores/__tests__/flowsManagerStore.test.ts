@@ -18,8 +18,8 @@ const mockSetEdges = jest.fn();
 
 const mockFlowStore = {
   getState: jest.fn(() => ({
-    nodes: [],
-    edges: [],
+    nodes: [] as { id: string; data: Record<string, unknown> }[],
+    edges: [] as { id: string }[],
     resetFlow: mockResetFlow,
     setNodes: mockSetNodes,
     setEdges: mockSetEdges,
@@ -40,7 +40,7 @@ describe("useFlowsManagerStore", () => {
     id: "flow-1",
     name: "Test Flow 1",
     description: "Test Description 1",
-    data: { nodes: [], edges: [] },
+    data: { nodes: [], edges: [], viewport: { x: 0, y: 0, zoom: 1 } },
     is_component: false,
   } as FlowType;
 
@@ -48,7 +48,7 @@ describe("useFlowsManagerStore", () => {
     id: "flow-2",
     name: "Test Flow 2",
     description: "Test Description 2",
-    data: { nodes: [], edges: [] },
+    data: { nodes: [], edges: [], viewport: { x: 0, y: 0, zoom: 1 } },
     is_component: false,
   } as FlowType;
 

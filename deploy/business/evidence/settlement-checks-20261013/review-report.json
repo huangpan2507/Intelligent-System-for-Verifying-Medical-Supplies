@@ -1,0 +1,284 @@
+{
+  "flow_id": "e55b03b0-7c7f-420b-b720-33b1a4cf5559",
+  "flow_name": "髋膝关节正常核心流程（数据库＋API）",
+  "before": {
+    "SettlementChecks": {
+      "required": [
+        "ORGAN_CODE",
+        "DATA_SOURCE",
+        "SETL_FEE_LIST_ID",
+        "PSN_NO",
+        "PSN_NAME",
+        "CERTNO",
+        "OP_EM_MARK",
+        "OP_EM_NO",
+        "UPDATE_TIME",
+        "HILIST_NAME",
+        "CNT",
+        "PRIC"
+      ],
+      "identity": {
+        "name": "settlement_detail",
+        "namespace": "core-flow-v1",
+        "keys": [
+          "ORGAN_CODE",
+          "DATA_SOURCE",
+          "SETL_FEE_LIST_ID"
+        ]
+      },
+      "conditions": [
+        {
+          "field": "CNT",
+          "op": "ge",
+          "value": 0
+        },
+        {
+          "field": "PRIC",
+          "op": "ge",
+          "value": 0
+        },
+        {
+          "field": "OP_EM_MARK",
+          "op": "eq",
+          "value": "3"
+        }
+      ]
+    },
+    "NormalPaid": {
+      "logic": "and",
+      "conditions": [
+        {
+          "field": "MED_PAY_FLAG",
+          "op": "eq",
+          "value": "1"
+        },
+        {
+          "field": "REFD_SETL_FLAG",
+          "op": "eq",
+          "value": 0
+        }
+      ]
+    }
+  },
+  "after": {
+    "SettlementChecks": {
+      "required": [
+        "ORGAN_CODE",
+        "DATA_SOURCE",
+        "SETL_FEE_LIST_ID",
+        "PSN_NO",
+        "PSN_NAME",
+        "CERTNO",
+        "OP_EM_MARK",
+        "OP_EM_NO",
+        "UPDATE_TIME",
+        "HILIST_NAME",
+        "CNT",
+        "PRIC"
+      ],
+      "identity": {
+        "name": "settlement_detail",
+        "namespace": "core-flow-v1",
+        "keys": [
+          "ORGAN_CODE",
+          "DATA_SOURCE",
+          "SETL_FEE_LIST_ID"
+        ]
+      },
+      "conditions": [
+        {
+          "field": "CNT",
+          "op": "ge",
+          "value": 0
+        },
+        {
+          "field": "PRIC",
+          "op": "ge",
+          "value": 0
+        }
+      ]
+    },
+    "NormalPaid": {
+      "logic": "and",
+      "conditions": [
+        {
+          "field": "MED_PAY_FLAG",
+          "op": "eq",
+          "value": "1"
+        },
+        {
+          "field": "LIST_TYPE",
+          "op": "eq",
+          "value": "301"
+        },
+        {
+          "field": "OP_EM_MARK",
+          "op": "eq",
+          "value": "3"
+        },
+        {
+          "field": "REFD_SETL_FLAG",
+          "op": "eq",
+          "value": 0
+        }
+      ]
+    }
+  },
+  "changed_nodes_only": [
+    "SettlementChecks",
+    "NormalPaid"
+  ],
+  "edges_unchanged": true,
+  "source_rows": [
+    {
+      "SETL_FEE_LIST_ID": "MOCK-DETAIL-HIP",
+      "LIST_TYPE": "301",
+      "OP_EM_MARK": "3"
+    },
+    {
+      "SETL_FEE_LIST_ID": "MOCK-DETAIL-KNEE",
+      "LIST_TYPE": "301",
+      "OP_EM_MARK": "3"
+    }
+  ],
+  "source_other_columns_unchanged": true,
+  "duplicates_port": "removed; duplicate notices included in Issues with severity info",
+  "published_release_changed": false,
+  "verification": {
+    "execution": "Actual Runtime.run_node using saved canvas configuration and database preview; isolated temporary DatasetStore",
+    "recipe_matches_saved_canvas": true,
+    "cases": [
+      {
+        "name": "two actual database fixtures",
+        "input": 2,
+        "validate": {
+          "valid": 2,
+          "issues": 0
+        },
+        "filter": {
+          "matched": 2,
+          "unmatched": 0,
+          "unknown": 0
+        },
+        "matched": [
+          "MOCK-DETAIL-HIP",
+          "MOCK-DETAIL-KNEE"
+        ],
+        "unmatched": [],
+        "issues": {}
+      },
+      {
+        "name": "quality versus business scope, temporary records only",
+        "input": 12,
+        "validate": {
+          "valid": 10,
+          "issues": 2
+        },
+        "filter": {
+          "matched": 2,
+          "unmatched": 8,
+          "unknown": 0
+        },
+        "matched": [
+          "MOCK-DETAIL-HIP",
+          "MOCK-DETAIL-KNEE"
+        ],
+        "unmatched": [
+          "REVIEW-category-101",
+          "REVIEW-category-102",
+          "REVIEW-category-103",
+          "REVIEW-category-104",
+          "REVIEW-category-201",
+          "REVIEW-not-insurance",
+          "REVIEW-outpatient",
+          "REVIEW-refund"
+        ],
+        "issues": {
+          "REVIEW-negative-quantity": "condition:CNT",
+          "REVIEW-missing-patient": "required:PSN_NO"
+        }
+      }
+    ],
+    "whole_flow_executed": false,
+    "pytest": {
+      "passed": 79,
+      "skipped": 0,
+      "real_databases": true
+    },
+    "jest": {
+      "passed": 17,
+      "suites": 5
+    },
+    "ruff": "passed",
+    "biome_changed_ui": "passed with frontend config in isolated directory",
+    "browser": {
+      "flow_id": "e55b03b0-7c7f-420b-b720-33b1a4cf5559",
+      "validate_nodes": [
+        {
+          "id": "ext:business:BusinessValidate@extra-mzJBu",
+          "name": "SettlementChecks",
+          "ports": [
+            "valid",
+            "issues"
+          ]
+        },
+        {
+          "id": "ext:business:BusinessValidate@extra-uayCT",
+          "name": "StudyChecks",
+          "ports": [
+            "valid",
+            "issues"
+          ]
+        },
+        {
+          "id": "ext:business:BusinessValidate@extra-leTKU",
+          "name": "SeriesChecks",
+          "ports": [
+            "valid",
+            "issues"
+          ]
+        },
+        {
+          "id": "ext:business:BusinessValidate@extra-qtaNr",
+          "name": "ImageChecks",
+          "ports": [
+            "valid",
+            "issues"
+          ]
+        }
+      ],
+      "rendered_settlement_checks_ports": [
+        "Valid",
+        "Issues"
+      ],
+      "duplicates_visible": false,
+      "canvas_unchanged_by_read": true
+    }
+  },
+  "q16": "confirmed",
+  "canvas_migration": {
+    "checked": 21,
+    "changed": [
+      {
+        "id": "5d71b389-defe-4dde-add5-e7dae990ab26",
+        "name": "跨库对账（契约 v2，模拟业务数据）",
+        "added_filters": 2
+      },
+      {
+        "id": "1dbd1737-dfd3-47aa-a93b-e68cd240440a",
+        "name": "高值耗材核验（契约 v2，模拟）",
+        "added_filters": 2
+      },
+      {
+        "id": "e55b03b0-7c7f-420b-b720-33b1a4cf5559",
+        "name": "髋膝关节正常核心流程（数据库＋API）",
+        "added_filters": 0
+      }
+    ]
+  },
+  "services": {
+    "startup_exit_code": 0,
+    "intake": "open",
+    "worker": "started"
+  }
+}

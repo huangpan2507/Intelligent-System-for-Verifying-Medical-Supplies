@@ -35,7 +35,7 @@ for key in ("VERIFICATION_LANGFLOW_API_KEY", "VERIFICATION_INTERNAL_TOKEN", "VER
     if not config.get(key):
         raise SystemExit(f"私有配置缺少 {key}，请先完成首次配置和流程导入。")
 port = int(config.get("VERIFICATION_SOURCE_API_PORT") or "8081")
-if not 1 <= port <= 65535 or port in {3000, 7860, 8090, 55433}:
+if not 1 <= port <= 65535 or port in {3000, 7860, 8090, 8091, 55433}:
     raise SystemExit("VERIFICATION_SOURCE_API_PORT 无效或与其他项目服务端口冲突。")
 print(port)
 PY
@@ -43,9 +43,8 @@ PY
 
 # Docker Desktop installs this CLI when its WSL integration becomes ready.
 export PATH="$PATH:/mnt/wsl/docker-desktop/cli-tools/usr/bin"
-docker_ready() {
-  command -v docker >/dev/null && timeout 5 docker info >/dev/null 2>&1
-}
+source "$root/scripts/verification/docker_cli.sh"
+docker_ready() { select_docker_cli; }
 if ! docker_ready; then
   powershell=/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe
   if [[ -x "$powershell" && -f '/mnt/c/Program Files/Docker/Docker/Docker Desktop.exe' ]]; then
@@ -63,9 +62,20 @@ if ! docker_ready; then
 fi
 
 echo "启动并检查 PostgreSQL（保留现有数据）……"
-docker compose --env-file deploy/verification/.env \
-  -f deploy/verification/compose.yaml -f deploy/verification/compose.source.yaml \
+compose_files=(-f deploy/verification/compose.yaml -f deploy/verification/compose.source.yaml)
+if "$verification_docker_windows"; then
+  "${verification_docker_cli[@]}" volume inspect langflow-verification_postgres-data >/dev/null || fail "找不到原数据库卷，请先完成首次初始化。"
+  "${verification_docker_cli[@]}" run --rm \
+    --mount type=volume,source=langflow-verification_postgres-data,target=/data,readonly \
+    --pull never --entrypoint sh postgres@sha256:5c855ad7b85e68e48a62f34662853f38b57c1c1d80f3a927ab58034fd6d31c5e -c 'test -s /data/PG_VERSION' || fail "原数据库尚未初始化，请先恢复 Docker WSL 集成完成首次初始化。"
+  compose_files+=(-f deploy/verification/compose.windows-source.yaml)
+fi
+verification_compose --env-file deploy/verification/.env "${compose_files[@]}" \
   up -d --no-build --no-recreate --pull never --wait --wait-timeout 120 postgres
+
+if [[ "${BUSINESS_DRAIN_ON_START:-0}" == "1" ]]; then
+  "${python[@]}" scripts/business/maintenance_local.py close --wait 60
+fi
 
 session_live() {
   tmux has-session -t "=$1" 2>/dev/null &&
@@ -86,7 +96,7 @@ stop_service() {
   fi
 }
 if "$restart"; then
-  for service in verification-worker frontend platform verification-api verification-demo; do
+  for service in verification-worker frontend platform verification-api verification-demo business-core-demo; do
     stop_service "langflow-$service"
   done
 fi
@@ -118,9 +128,10 @@ wait_http() {
   echo "就绪：$url"
 }
 
-for service in demo api platform; do
+for service in demo core-demo api platform; do
   case "$service" in
     demo) session=langflow-verification-demo; port=8090; probe=/openapi.json ;;
+    core-demo) session=langflow-business-core-demo; port=8091; probe=/openapi.json ;;
     api) session=langflow-verification-api; port="$api_port"; probe=/health ;;
     platform) session=langflow-platform; port=7860; probe=/health ;;
   esac
@@ -128,21 +139,28 @@ for service in demo api platform; do
     PYTHONUNBUFFERED=1 "${python[@]}" "$root/scripts/verification/run_local.py" "$service"
   wait_http "$session" "http://127.0.0.1:$port$probe"
 done
-start_service langflow-verification-worker "$root" "" env UV_CACHE_DIR="$UV_CACHE_DIR" \
-  PYTHONUNBUFFERED=1 "${python[@]}" "$root/scripts/verification/run_local.py" worker
+if [[ "${BUSINESS_DEFER_WORKER:-0}" != 1 ]]; then
+  start_service langflow-verification-worker "$root" "" env UV_CACHE_DIR="$UV_CACHE_DIR" \
+    PYTHONUNBUFFERED=1 "${python[@]}" "$root/scripts/verification/run_local.py" worker
+fi
 start_service langflow-frontend "$root/src/frontend" 3000 \
   env VITE_PROXY_TARGET=http://127.0.0.1:7860 npm run start -- --host 127.0.0.1 --port 3000 --strictPort
 wait_http langflow-frontend http://127.0.0.1:3000/verification/tasks
 wait_http langflow-frontend http://127.0.0.1:3000/health
 sleep 2
-session_live langflow-verification-worker || fail "Worker 已退出，请查看 $logs/langflow-verification-worker.log。"
+[[ "${BUSINESS_DEFER_WORKER:-0}" == 1 ]] || session_live langflow-verification-worker || fail "Worker 已退出，请查看 $logs/langflow-verification-worker.log。"
 
+if [[ "${BUSINESS_DEFER_WORKER:-0}" == 1 ]]; then
+  echo "基础服务已就绪；Worker 等待迁移检查后启动。"
+else
+  echo "项目服务已启动，由 tmux 在后台保持。"
+fi
 cat <<EOF
 
-完整模拟项目已启动，进程由 tmux 在后台保持，关闭当前终端后仍会运行。
 前端：http://localhost:3000
-核验规则：http://localhost:3000/verification
-核验任务：http://localhost:3000/verification/tasks
+业务方案：http://localhost:3000/business
+通用任务：http://localhost:3000/business/tasks
+历史核验：http://localhost:3000/verification/tasks
 平台 API：http://localhost:7860/docs
 核验 API：http://localhost:$api_port/docs
 模拟上游：http://localhost:8090/docs

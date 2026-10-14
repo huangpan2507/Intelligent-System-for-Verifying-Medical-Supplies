@@ -1,0 +1,38 @@
+{
+  "flow_id": "ce588a72-0614-4d84-badd-0e4355c427e6",
+  "scheme": "core.normal.compact.v1",
+  "canvases": [
+    {
+      "flow_id": "ce588a72-0614-4d84-badd-0e4355c427e6",
+      "nodes": 10,
+      "errors": {}
+    }
+  ],
+  "releases": [
+    {
+      "scheme": "acceptance.taskstart.5ac08f2620",
+      "release_id": "7b3ca27f-d11f-4aea-8069-029fbf9aa14a",
+      "version": 5
+    },
+    {
+      "scheme": "demo.cross_database.v2",
+      "release_id": "a3784826-30c9-46bf-89ec-b5c0f85211d2",
+      "version": 14
+    },
+    {
+      "scheme": "core.normal.1791804428546",
+      "release_id": "1943515a-df60-46d6-8e85-6dddf84df25e",
+      "version": 4
+    },
+    {
+      "scheme": "core.normal.compact.v1",
+      "release_id": "04382a46-2e32-49c2-983a-675f7cd27478",
+      "version": 2
+    },
+    {
+      "scheme": "demo.consumables.v2",
+      "release_id": "6bd686b5-f189-4347-81f6-aff04fa392eb",
+      "version": 14
+    }
+  ]
+}

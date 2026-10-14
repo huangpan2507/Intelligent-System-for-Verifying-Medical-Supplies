@@ -1,0 +1,96 @@
+﻿序号,数据库字段,当前MySQL类型,数据库允许NULL,数据库注释
+1,organ_code,"VARCHAR(255) COLLATE ""utf8mb4_bin""",否,检查采集医疗机构编码
+2,system_id,"VARCHAR(255) COLLATE ""utf8mb4_bin""",否,信息系统院内唯一ID，具体值与云影像平台协商
+3,ris_study_id,"VARCHAR(255) COLLATE ""utf8mb4_bin""",否,RIS检查号，检查唯一主键
+4,organ_name,"TEXT COLLATE ""utf8mb4_bin""",是,检查采集医疗机构名称
+5,organ_lv,"TEXT COLLATE ""utf8mb4_bin""",是,医疗机构等级
+6,fix_organ_code,"TEXT COLLATE ""utf8mb4_bin""",是,定点医药机构编号
+7,fix_organ_name,"TEXT COLLATE ""utf8mb4_bin""",是,定点医疗机构名称
+8,proj_no,"TEXT COLLATE ""utf8mb4_bin""",是,检查项目标准编码（检查项目编码）
+9,hos_proj_no,"TEXT COLLATE ""utf8mb4_bin""",是,检查项目医院编码（检查结果中的项目）
+10,proj_name,"TEXT COLLATE ""utf8mb4_bin""",是,检查项目医院名称（检查结果中的项目）
+11,ckpt_name,"TEXT COLLATE ""utf8mb4_bin""",是,检查部位
+12,chk_method,"TEXT COLLATE ""utf8mb4_bin""",是,检查方法编码
+13,chk_methodname,"TEXT COLLATE ""utf8mb4_bin""",是,检查方法名称
+14,chk_dpt_code,"TEXT COLLATE ""utf8mb4_bin""",是,检查科室编码
+15,chk_dpt_name,"TEXT COLLATE ""utf8mb4_bin""",是,检查科室名称
+16,dev_room,"TEXT COLLATE ""utf8mb4_bin""",是,设备房间
+17,dev_name,"TEXT COLLATE ""utf8mb4_bin""",是,设备名称
+18,chk_modality,"TEXT COLLATE ""utf8mb4_bin""",是,检查设备类型（模态）
+19,chk_desc,"TEXT COLLATE ""utf8mb4_bin""",是,检查项目描述
+20,chk_status,INTEGER,是,检查状态
+21,reg_dt,BIGINT,是,登记日期时间
+22,reg_doc_idcard,"TEXT COLLATE ""utf8mb4_bin""",是,登记医生身份证号
+23,reg_doc_hos_code,"TEXT COLLATE ""utf8mb4_bin""",是,登记医生院内唯一编码
+24,reg_doc_name,"TEXT COLLATE ""utf8mb4_bin""",是,登记医生姓名
+25,arrive_dt,BIGINT,是,患者到检日期时间
+26,chk_dt,DATETIME,是,检查日期时间
+27,chk_doc_idcard,"TEXT COLLATE ""utf8mb4_bin""",是,检查技师身份证号
+28,chk_doc_hos_code,"TEXT COLLATE ""utf8mb4_bin""",是,检查技师院内唯一编码
+29,chk_doc_name,"TEXT COLLATE ""utf8mb4_bin""",是,检查技师姓名
+30,system_patient_id,"TEXT COLLATE ""utf8mb4_bin""",是,系统内患者唯一编号
+31,cardtype,"TEXT COLLATE ""utf8mb4_bin""",是,患者证件类型
+32,cardno,"TEXT COLLATE ""utf8mb4_bin""",是,患者证件号码
+33,idcard_hos_type,"TEXT COLLATE ""utf8mb4_bin""",是,医保卡类型
+34,idcard_hos,"TEXT COLLATE ""utf8mb4_bin""",是,医保卡号
+35,patient_idcard,"TEXT COLLATE ""utf8mb4_bin""",是,身份证号 缺省000000000000000000
+36,name,"TEXT COLLATE ""utf8mb4_bin""",是,患者姓名
+37,ename,"TEXT COLLATE ""utf8mb4_bin""",是,患者拼音姓名
+38,sex,INTEGER,是,患者性别
+39,birthday,BIGINT,是,患者生日
+40,mobile,"TEXT COLLATE ""utf8mb4_bin""",是,患者电话 缺省00000000000
+41,op_em_hp_ex_mark,INTEGER,是,门诊/急诊/住院/体检标志
+42,op_em_hp_ex_no,"TEXT COLLATE ""utf8mb4_bin""",是,门诊/急诊/住院/体检编号
+43,img_count,INTEGER,是,检查图像数
+44,update_time,BIGINT,是,数据最后修改时间
+45,disable_flag,INTEGER,是,删除标记
+46,hash_id,"TEXT COLLATE ""utf8mb4_bin""",是,数据hash值
+47,rpt_no,"TEXT COLLATE ""utf8mb4_bin""",是,检查申请单编号
+48,chk_organ_code,"TEXT COLLATE ""utf8mb4_bin""",是,检查机构代码
+49,chk_organ_name,"TEXT COLLATE ""utf8mb4_bin""",是,检查机构名称
+50,pric_code,"TEXT COLLATE ""utf8mb4_bin""",是,物价检查项目编码
+51,upload_status,INTEGER,是,上传状态
+52,order_code,"TEXT COLLATE ""utf8mb4_bin""",是,指令编码
+53,age,"TEXT COLLATE ""utf8mb4_bin""",是,患者年龄
+54,address,"TEXT COLLATE ""utf8mb4_bin""",是,患者家庭地址
+55,marital_status,INTEGER,是,婚姻状况
+56,nation_code,"TEXT COLLATE ""utf8mb4_bin""",是,患者所属民族代码
+57,nation,"TEXT COLLATE ""utf8mb4_bin""",是,患者所属民族
+58,nationality,"TEXT COLLATE ""utf8mb4_bin""",是,患者国籍
+59,sample_sampling_dt,BIGINT,是,标本采样日期时间
+60,opt_code,"TEXT COLLATE ""utf8mb4_bin""",是,操作编码:为患者实施的检查操作在特定编码体系中的编码
+61,opt_name,"TEXT COLLATE ""utf8mb4_bin""",是,操作名称:按照ICD-9-CM-3的名称
+62,int_object_name,"TEXT COLLATE ""utf8mb4_bin""",是,介入物名称:实施手术操作时使用/放置的材料/药物的名称
+63,opt_method_desc,"TEXT COLLATE ""utf8mb4_bin""",是,操作方法描述
+64,opt_count,INTEGER,是,操作次数
+65,opt_dt,BIGINT,是,操作日期时间
+66,ane_method_code,"TEXT COLLATE ""utf8mb4_bin""",是,麻醉方法代码
+67,ane_obs_result,"TEXT COLLATE ""utf8mb4_bin""",是,麻醉观察结果
+68,ane_caw_code,INTEGER,是,麻醉中西医标识代码
+69,ane_name,"TEXT COLLATE ""utf8mb4_bin""",是,麻醉医生签名
+70,diag_pro_desc,"TEXT COLLATE ""utf8mb4_bin""",是,诊疗过程描述
+71,chk_sample_code,"TEXT COLLATE ""utf8mb4_bin""",是,检查标本号
+72,sample_status,"TEXT COLLATE ""utf8mb4_bin""",是,标本状态
+73,sample_sta_name,"TEXT COLLATE ""utf8mb4_bin""",是,标本固定液名称
+74,film_type,INTEGER,是,胶片类型
+75,charge,"TEXT COLLATE ""utf8mb4_bin""",是,检查费用
+76,instr_code,"TEXT COLLATE ""utf8mb4_bin""",是,检查设备编码
+77,check_organ_lv,"TEXT COLLATE ""utf8mb4_bin""",是,检查医疗机构等级
+78,ckpt_code,"TEXT COLLATE ""utf8mb4_bin""",是,检查部位编码
+79,img_exam_type,"TEXT COLLATE ""utf8mb4_bin""",是,影像检查类型
+80,data_source,"TEXT COLLATE ""utf8mb4_bin""",是,数据来源
+81,order_name,"TEXT COLLATE ""utf8mb4_bin""",是,检查医嘱ID
+82,report_class,"TEXT COLLATE ""utf8mb4_bin""",是,检查/检验类别
+83,data_name,"TEXT COLLATE ""utf8mb4_bin""",是,省级平台项目名称
+84,data_code,"TEXT COLLATE ""utf8mb4_bin""",是,省级平台项目编码
+85,project_name,"TEXT COLLATE ""utf8mb4_bin""",是,国家平台项目名称
+86,project_code,"TEXT COLLATE ""utf8mb4_bin""",是,国家平台项目编码
+87,national_pat_type,INTEGER,是,医院原始门诊/急诊/住院/体检等标志（国家标准病人类型）
+88,data_process_time,DATETIME,是,
+89,collect_data_process_time,DATETIME,是,医保补采源报文处理时间
+90,center_data_process_time,DATETIME,是,管理中心源报文处理时间
+91,data_store_time,DATETIME,是,
+92,collect_flag,TINYINT,是,医保补采标志 1-有
+93,center_flag,TINYINT,是,管理中心同步标志 1-有
+94,link_id,"VARCHAR(512) COLLATE ""utf8mb4_bin""",否,"MD5 of organ_code + '_' + system_id + '_' + ris_study_id, UTF-8 lowercase hex"
+95,EXAM_PART,"VARCHAR(128) COLLATE ""utf8mb4_bin""",是,WS/T 364.8-2023 CV04.30.002 检查技术编码;一个原始代码

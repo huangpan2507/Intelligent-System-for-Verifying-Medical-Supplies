@@ -1,0 +1,134 @@
+{
+  "id": "6e2e5f56-8ab2-428c-971b-9cf6dfbd0dba",
+  "name": "耗材名称分类与依据",
+  "fields": [
+    {
+      "name": "SETL_FEE_LIST_ID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "HILIST_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "PRODNAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "HOS_PROJ_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MEDINS_LIST_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "SPEC",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "target_category",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_method",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_reason",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_evidence_field",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_evidence_text",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_confidence",
+      "type": "decimal128(38, 6)",
+      "nullable": true
+    },
+    {
+      "name": "_business_row_id",
+      "type": "int64",
+      "nullable": true
+    }
+  ],
+  "total": 2,
+  "offset": 0,
+  "limit": 50,
+  "rows": [
+    {
+      "SETL_FEE_LIST_ID": "MOCK-DETAIL-HIP",
+      "HILIST_NAME": "人工全髋关节置换术",
+      "PRODNAME": "人工髋关节（模拟A型号）",
+      "HOS_PROJ_NAME": "人工髋关节（模拟A型号）",
+      "MEDINS_LIST_NAME": "人工髋关节（模拟A型号）",
+      "SPEC": "模拟规格一套",
+      "target_category": "人工髋关节",
+      "classification_method": "rule",
+      "classification_reason": "名称规则v1：PRODNAME中的明确耗材描述命中人工髋关节",
+      "classification_evidence_field": "PRODNAME",
+      "classification_evidence_text": "人工髋关节（模拟A型号）",
+      "classification_confidence": null,
+      "_business_row_id": 0
+    },
+    {
+      "SETL_FEE_LIST_ID": "MOCK-DETAIL-KNEE",
+      "HILIST_NAME": "人工全膝关节置换术",
+      "PRODNAME": "膝关节假体系统（模拟成套产品B）",
+      "HOS_PROJ_NAME": "膝关节假体系统（模拟成套产品B）",
+      "MEDINS_LIST_NAME": "膝关节假体系统（模拟成套产品B）",
+      "SPEC": "模拟规格一套",
+      "target_category": "人工膝关节",
+      "classification_method": "model",
+      "classification_reason": "耗材名称为膝关节假体系统，明确属于膝关节假体",
+      "classification_evidence_field": "PRODNAME",
+      "classification_evidence_text": "膝关节假体系统（模拟成套产品B）",
+      "classification_confidence": "0.950000",
+      "_business_row_id": 1
+    }
+  ],
+  "raw": false,
+  "provenance": {
+    "lineage": "9d6a54c6-c6ff-4195-8de0-d9e4e1c67d01",
+    "parents": [
+      "c9aca60e-4b1e-4e79-97b5-f1799205e289"
+    ],
+    "operation": "output",
+    "completeness": {
+      "state": "complete"
+    },
+    "configuration": {
+      "name": "耗材名称分类与依据",
+      "columns": [
+        "SETL_FEE_LIST_ID",
+        "HILIST_NAME",
+        "PRODNAME",
+        "HOS_PROJ_NAME",
+        "MEDINS_LIST_NAME",
+        "SPEC",
+        "target_category",
+        "classification_method",
+        "classification_reason",
+        "classification_evidence_field",
+        "classification_evidence_text",
+        "classification_confidence"
+      ]
+    }
+  }
+}

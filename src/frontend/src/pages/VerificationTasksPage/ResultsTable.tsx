@@ -19,14 +19,16 @@ export default function ResultsTable({ results }: { results: UnitResult[] }) {
       <Table aria-label={t("verificationTasks.resultDetails")}>
         <TableHeader>
           <TableRow>
-            {[
-              "category",
-              "conclusion",
-              "typeComparison",
-              "quantityComparison",
-              "feeComparison",
-              "basis",
-            ].map((key) => (
+            {(
+              [
+                "category",
+                "conclusion",
+                "typeComparison",
+                "quantityComparison",
+                "feeComparison",
+                "basis",
+              ] as const
+            ).map((key) => (
               <TableHead key={key}>{t(`verificationTasks.${key}`)}</TableHead>
             ))}
           </TableRow>
@@ -71,14 +73,14 @@ export default function ResultsTable({ results }: { results: UnitResult[] }) {
                 <TableCell className="align-top">
                   {t(
                     `verificationTasks.comparison.${row.type?.status ?? "not_compared"}`,
-                    { defaultValue: row.type?.status },
+                    { defaultValue: row.type?.status ?? "not_compared" },
                   )}
                 </TableCell>
                 <TableCell className="min-w-44 align-top">
                   <p>
                     {t(
                       `verificationTasks.comparison.${row.quantity?.status ?? "not_compared"}`,
-                      { defaultValue: row.quantity?.status },
+                      { defaultValue: row.quantity?.status ?? "not_compared" },
                     )}
                   </p>
                   <p className="mt-1 text-sm text-muted-foreground">
@@ -103,7 +105,7 @@ export default function ResultsTable({ results }: { results: UnitResult[] }) {
                   <p>
                     {t(
                       `verificationTasks.comparison.${row.fee?.status ?? "not_compared"}`,
-                      { defaultValue: row.fee?.status },
+                      { defaultValue: row.fee?.status ?? "not_compared" },
                     )}
                   </p>
                   <p className="mt-1 text-sm text-muted-foreground">

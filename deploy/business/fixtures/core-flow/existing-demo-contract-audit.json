@@ -1,0 +1,57 @@
+{
+  "scope": "Existing demo endpoints only; no workflow execution or new fixture records",
+  "checks": [
+    {
+      "path": "/api/v2/study/list",
+      "http_status": 200,
+      "row_count": 1,
+      "missing_documented_response_fields": [
+        "age",
+        "chk_doc_name",
+        "chk_methodname",
+        "chk_status",
+        "is_report",
+        "name",
+        "organ_name",
+        "report_list",
+        "sex",
+        "thumb_images"
+      ],
+      "missing_envelope_fields": [
+        "message",
+        "meta"
+      ]
+    },
+    {
+      "path": "/api/v2/dicom/series-instance-uid",
+      "http_status": 200,
+      "row_count": 1,
+      "missing_documented_response_fields": [],
+      "missing_envelope_fields": [
+        "message",
+        "meta"
+      ]
+    },
+    {
+      "path": "/api/v2/storage/dicom/sop-instance-uid",
+      "http_status": 200,
+      "row_count": 2,
+      "missing_documented_response_fields": [
+        "file_size",
+        "file_suffix"
+      ],
+      "missing_envelope_fields": [
+        "message",
+        "meta"
+      ]
+    }
+  ],
+  "document_minimum_request_status": 422,
+  "extra_required_query_fields": [
+    "system_patient_id",
+    "organ_code",
+    "chk_modality",
+    "op_em_hp_ex_mark",
+    "op_em_hp_ex_no"
+  ]
+}

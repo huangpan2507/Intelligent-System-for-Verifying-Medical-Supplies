@@ -1,0 +1,24 @@
+[
+  {
+    "scheme": "core.normal.1791804428546",
+    "previous": "27877935-f494-41da-bac9-0b68701a93af",
+    "release_id": "f89e49de-f225-4da9-9aab-b2feac1ec8ef",
+    "removed": [
+      {
+        "node": "Observation",
+        "field": "unit_field"
+      }
+    ]
+  },
+  {
+    "scheme": "demo.consumables.v2",
+    "previous": "973e318c-a0ff-4dbe-bdb0-d00c02329e13",
+    "release_id": "9e21a841-368d-4c52-bb11-8e0e5aca21e1",
+    "removed": [
+      {
+        "node": "Imaging",
+        "field": "unit_field"
+      }
+    ]
+  }
+]

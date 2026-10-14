@@ -1,0 +1,11 @@
+Browser acceptance task: beca730f-403a-448b-964f-c02b7752ebe2; artifacts: /home/huangpan/github_repo/langflow/deploy/verification/.cache/business-browser-acceptance
+
+Running 1 test using 1 worker
+
+(node:20) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:20) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/core/features/business-refactoring.spec.ts:6:5 › published business obligations and request receipts are visible @release @api @workspace (2.6m)
+
+  1 passed (2.7m)

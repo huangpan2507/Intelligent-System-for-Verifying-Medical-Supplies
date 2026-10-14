@@ -1,0 +1,96 @@
+{
+  "flow_id": "e55b03b0-7c7f-420b-b720-33b1a4cf5559",
+  "task_id": "34daafef-3b63-4b3f-8c2e-55d18bc7bee8",
+  "release_id": "14114ab9-39a0-4889-b9ec-d6251acd5410",
+  "status": "completed",
+  "counts": {
+    "Settlements": 2,
+    "Studies": 2,
+    "Series": 2,
+    "NameModel": 1,
+    "Images": 4,
+    "Manifests": 2,
+    "Observation": 2
+  },
+  "assessment": {
+    "mode": "verification",
+    "state": "accounted",
+    "checks": [
+      {
+        "name": "category",
+        "units": 2,
+        "counts": {
+          "equal": 2
+        },
+        "effective": 2,
+        "dataset_id": "cea4717c-df27-4598-a6b7-cb37fab99a52",
+        "coverage_gaps": 0
+      },
+      {
+        "name": "quantity",
+        "units": 2,
+        "counts": {
+          "equal": 2
+        },
+        "effective": 2,
+        "dataset_id": "da9f1ae1-014f-4d10-b2b6-c6a7d6b39311",
+        "coverage_gaps": 0
+      },
+      {
+        "name": "fee",
+        "units": 2,
+        "counts": {
+          "equal": 2
+        },
+        "effective": 2,
+        "dataset_id": "a6c51da7-6c31-45a7-b03d-4853a4d6b1e2",
+        "coverage_gaps": 0
+      }
+    ],
+    "sources": [
+      {
+        "node": "Series",
+        "basis": "query_exhausted",
+        "state": "complete",
+        "dataset_id": "13ff1da1-8efb-4fdb-8be4-ad26076ec4fb",
+        "received_rows": 2
+      },
+      {
+        "node": "Studies",
+        "basis": "query_exhausted",
+        "state": "complete",
+        "dataset_id": "1ed3a27f-e13c-4b78-8056-b91c451509ce",
+        "received_rows": 2
+      },
+      {
+        "node": "ext:business:BusinessDatabase@extra-8csZc",
+        "basis": "query_exhausted",
+        "state": "complete",
+        "dataset_id": "a3b7ac60-e7f3-4bd3-bef8-56bfb496e650",
+        "received_rows": 2
+      },
+      {
+        "node": "ext:business:BusinessApi@extra-goOjW",
+        "basis": "core-flow-v1 controlled mock returns the complete finite set for each request",
+        "scope": "object",
+        "state": "complete",
+        "dataset_id": "5ae1d673-8ac0-4738-952d-378fcfbe2591",
+        "received_rows": 4
+      }
+    ],
+    "execution_errors": {},
+    "received_records": 2,
+    "discovery_complete": true,
+    "business_identities": 2,
+    "coverage_gap_records": 0,
+    "dispositions_dataset_id": "a70d9cea-405a-4dc4-bb41-13b85410d172",
+    "missing_identity_records": 0,
+    "known_record_accountability": 1.0
+  },
+  "source_scope": "query_returned_settlement_rows",
+  "real_text_model_calls": 1,
+  "inspection_and_series_via_database": true,
+  "outpatient_included": true,
+  "image_observation_simulated": true,
+  "all_six_comparisons_equal": true
+}

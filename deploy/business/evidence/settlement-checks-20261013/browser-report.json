@@ -1,0 +1,43 @@
+{
+  "flow_id": "e55b03b0-7c7f-420b-b720-33b1a4cf5559",
+  "validate_nodes": [
+    {
+      "id": "ext:business:BusinessValidate@extra-mzJBu",
+      "name": "SettlementChecks",
+      "ports": [
+        "valid",
+        "issues"
+      ]
+    },
+    {
+      "id": "ext:business:BusinessValidate@extra-uayCT",
+      "name": "StudyChecks",
+      "ports": [
+        "valid",
+        "issues"
+      ]
+    },
+    {
+      "id": "ext:business:BusinessValidate@extra-leTKU",
+      "name": "SeriesChecks",
+      "ports": [
+        "valid",
+        "issues"
+      ]
+    },
+    {
+      "id": "ext:business:BusinessValidate@extra-qtaNr",
+      "name": "ImageChecks",
+      "ports": [
+        "valid",
+        "issues"
+      ]
+    }
+  ],
+  "rendered_settlement_checks_ports": [
+    "Valid",
+    "Issues"
+  ],
+  "duplicates_visible": false,
+  "canvas_unchanged_by_read": true
+}

@@ -1,0 +1,15 @@
+{
+  "backend_tests": 149,
+  "real_source_database_tests_enabled": true,
+  "frontend_suites": 8,
+  "frontend_tests": 31,
+  "browser_tests": 1,
+  "typescript": "passed",
+  "ruff": "passed",
+  "biome": "passed",
+  "release_version": 5,
+  "node_count": 11,
+  "task_id": "a5d22e99-5ca8-45fb-880a-52f107d90b47",
+  "image_recognition": "simulated",
+  "database_records_modified": false
+}

@@ -18,4 +18,11 @@ describe("loadLanguage", () => {
   it("returns early without throwing for 'en'", async () => {
     await expect(loadLanguage("en")).resolves.toBeUndefined();
   });
+
+  it("resolves flat translation keys and their plural forms", () => {
+    const t = i18n.getFixedT("en");
+    expect(t("assistant.files.empty")).toBe("(empty file)");
+    expect(t("mainPage.timeElapsed.year", { count: 1 })).toBe("1 year");
+    expect(t("mainPage.timeElapsed.year", { count: 2 })).toBe("2 years");
+  });
 });

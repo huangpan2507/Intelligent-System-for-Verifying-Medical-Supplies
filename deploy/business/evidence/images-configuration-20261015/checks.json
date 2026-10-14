@@ -1,0 +1,34 @@
+{
+  "frontend_unit": {
+    "suites": 11,
+    "passed": 37
+  },
+  "api_unit_after_type_fix": {
+    "passed": 3
+  },
+  "typescript": {
+    "command": "tsc --noEmit --incremental",
+    "exit_code": 0
+  },
+  "backend_related": {
+    "passed": 23,
+    "checked_before_interruption": true
+  },
+  "runtime_task": "7bd204d6-2940-4373-9495-c3f91cbf5408",
+  "browser": {
+    "passed": 1,
+    "duration": "3.1m",
+    "includes": [
+      "six sections",
+      "51+7 retain summary",
+      "pagination hidden when none",
+      "wide and narrow editor",
+      "RPT_NO item context",
+      "save and reload",
+      "task results",
+      "polling cleanup"
+    ]
+  },
+  "scoped_biome": "passed",
+  "scoped_ruff": "passed"
+}

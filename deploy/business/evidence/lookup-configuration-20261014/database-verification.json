@@ -1,0 +1,20 @@
+{
+  "Settlements": {
+    "schema": "public",
+    "table": "core_flow_settlement_v1",
+    "default_schema": "public",
+    "field_count": 51
+  },
+  "Studies": {
+    "schema": "business_demo",
+    "table": "INSPECTION_INFO_RECORD",
+    "default_schema": "business_demo",
+    "field_count": 95
+  },
+  "Series": {
+    "schema": "business_demo",
+    "table": "SERIES_INFO",
+    "default_schema": "business_demo",
+    "field_count": 164
+  }
+}

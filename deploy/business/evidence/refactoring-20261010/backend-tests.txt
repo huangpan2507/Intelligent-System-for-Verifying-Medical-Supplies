@@ -1,0 +1,63 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.15, pytest-9.1.1, pluggy-1.6.0 -- /home/huangpan/github_repo/langflow/deploy/verification/.cache/runtime/bin/python
+cachedir: .pytest_cache
+rootdir: /home/huangpan/github_repo/langflow/deploy/business
+configfile: pytest.ini
+plugins: langflow-sdk-0.4.0, langsmith-0.14.1, asyncio-1.4.0, anyio-4.15.1, lfx-1.12.0, platformdirs-4.12.1
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 32 items
+
+deploy/business/tests/test_databases.py::test_switch_connections_tables_and_field_names PASSED [  3%]
+deploy/business/tests/test_databases.py::test_database_and_paginated_api_use_the_same_comparison_graph PASSED [  6%]
+deploy/business/tests/test_refactoring.py::test_read_failure_seals_prior_batches PASSED [  9%]
+deploy/business/tests/test_refactoring.py::test_identity_uses_all_original_facts_after_projection PASSED [ 12%]
+deploy/business/tests/test_refactoring.py::test_union_arbitrary_deduplication_is_rejected_at_publication PASSED [ 15%]
+deploy/business/tests/test_refactoring.py::test_decimal_schema_retains_declared_scale PASSED [ 18%]
+deploy/business/tests/test_refactoring.py::test_final_audit_finds_unwired_record_and_ablation_hides_it PASSED [ 21%]
+deploy/business/tests/test_refactoring.py::test_subflow_and_multiport_lineage_run_without_recursive_scheduler PASSED [ 25%]
+deploy/business/tests/test_refactoring.py::test_model_receipt_precedes_send_timeout_unknown_no_retry PASSED [ 28%]
+deploy/business/tests/test_refactoring.py::test_api_independent_scope_continues_but_shared_failure_is_incomplete PASSED [ 31%]
+deploy/business/tests/test_refactoring.py::test_api_schema_failure_keeps_received_raw_records PASSED [ 34%]
+deploy/business/tests/test_refactoring.py::test_execution_digest_excludes_demo_and_keeps_real_dependencies PASSED [ 37%]
+deploy/business/tests/test_refactoring.py::test_model_pending_malformed_and_partial_observations_are_distinct PASSED [ 40%]
+deploy/business/tests/test_refactoring.py::test_invalid_member_blocks_its_group_not_independent_group PASSED [ 43%]
+deploy/business/tests/test_refactoring.py::test_numeric_conversion_never_silently_rounds PASSED [ 46%]
+deploy/business/tests/test_refactoring.py::test_maintenance_keeps_idempotency_and_request_source_isolation PASSED [ 50%]
+deploy/business/tests/test_refactoring.py::test_republish_uses_selected_immutable_release_not_newer_draft PASSED [ 53%]
+deploy/business/tests/test_refactoring.py::test_consumable_three_checks_and_adversarial_dispositions PASSED [ 56%]
+deploy/business/tests/test_workflows.py::test_cross_batch_aggregation_and_full_join PASSED [ 59%]
+deploy/business/tests/test_workflows.py::test_ambiguous_join_preserves_both_sides_as_issues PASSED [ 62%]
+deploy/business/tests/test_workflows.py::test_filter_distinguishes_false_and_unknown PASSED [ 65%]
+deploy/business/tests/test_workflows.py::test_actual_langflow_graph_runtime PASSED [ 68%]
+deploy/business/tests/test_workflows.py::test_source_isolation_idempotency_and_release_pinning PASSED [ 71%]
+deploy/business/tests/test_workflows.py::test_consumable_template_preserves_unknowns_and_simulation PASSED [ 75%]
+deploy/business/tests/test_workflows.py::test_subflow_uses_frozen_input_and_transformation PASSED [ 78%]
+deploy/business/tests/test_workflows.py::test_api_record_binding_and_model_after_validation PASSED [ 81%]
+deploy/business/tests/test_workflows.py::test_large_integer_aggregation_stays_exact PASSED [ 84%]
+deploy/business/tests/test_workflows.py::test_repeat_validation_and_comparison_replace_current_status PASSED [ 87%]
+deploy/business/tests/test_workflows.py::test_legacy_migration_closes_intake_preserves_history PASSED [ 90%]
+deploy/business/tests/test_workflows.py::test_native_canvas_handles_match_templates_and_reject_edited_code PASSED [ 93%]
+deploy/business/tests/test_workflows.py::test_union_branches_and_primary_result PASSED [ 96%]
+deploy/business/tests/test_workflows.py::test_migration_waits_for_started_runs_preserves_rejected_runs PASSED [100%]
+
+=============================== warnings summary ===============================
+deploy/verification/.cache/runtime/lib/python3.13/site-packages/pydantic/_internal/_generate_schema.py:325
+deploy/verification/.cache/runtime/lib/python3.13/site-packages/pydantic/_internal/_generate_schema.py:325
+deploy/verification/.cache/runtime/lib/python3.13/site-packages/pydantic/_internal/_generate_schema.py:325
+  /home/huangpan/github_repo/langflow/deploy/verification/.cache/runtime/lib/python3.13/site-packages/pydantic/_internal/_generate_schema.py:325: PydanticDeprecatedSince20: `json_encoders` is deprecated. See https://docs.pydantic.dev/2.13/concepts/serialization/#custom-serializers for alternatives. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    warnings.warn(
+
+src/lfx/src/lfx/inputs/inputs.py:915
+  /home/huangpan/github_repo/langflow/src/lfx/src/lfx/inputs/inputs.py:915: PydanticDeprecatedSince212: Using `@model_validator` with mode='after' on a classmethod is deprecated. Instead, use an instance method. See the documentation at https://docs.pydantic.dev/2.13/concepts/validators/#model-after-validator. Deprecated in Pydantic V2.12 to be removed in V3.0.
+    @model_validator(mode="after")
+
+deploy/verification/.cache/runtime/lib/python3.13/site-packages/langchain_classic/chains/api/base.py:57
+  /home/huangpan/github_repo/langflow/deploy/verification/.cache/runtime/lib/python3.13/site-packages/langchain_classic/chains/api/base.py:57: DeprecationWarning: `langchain-community` is being sunset and is no longer actively maintained. See https://github.com/langchain-ai/langchain-community/issues/674 for details and migration guidance toward standalone integration packages.
+    from langchain_community.utilities.requests import TextRequestsWrapper
+
+deploy/verification/.cache/runtime/lib/python3.13/site-packages/sqlmodel/main.py:619
+  /home/huangpan/github_repo/langflow/deploy/verification/.cache/runtime/lib/python3.13/site-packages/sqlmodel/main.py:619: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    "SQLModel", super().__new__(cls, name, bases, dict_used, **config_kwargs)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================== 32 passed, 6 warnings in 91.35s (0:01:31) ===================

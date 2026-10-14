@@ -58,7 +58,7 @@ jest.mock("@/stores/flowStore", () => {
     (selector?: (state: typeof mockFlowState) => unknown) =>
       selector ? selector(mockFlowState) : mockFlowState,
   );
-  useFlowStoreMock.getState = () => mockFlowState;
+  Object.assign(useFlowStoreMock, { getState: () => mockFlowState });
   return {
     __esModule: true,
     default: useFlowStoreMock,
@@ -122,7 +122,19 @@ describe("McpComponent", () => {
     editNode: false,
     nodeId: "MCPTools-1",
     nodeClass: {
-      template: { code: { value: "code" } },
+      documentation: "",
+      display_name: "Test component",
+      description: "",
+      template: {
+        code: {
+          readonly: false,
+          show: true,
+          list: false,
+          required: false,
+          type: "str",
+          value: "code",
+        },
+      },
       tool_mode: false,
     } as APIClassType,
     handleNodeClass: jest.fn(),
@@ -178,7 +190,19 @@ describe("McpComponent", () => {
   it("shows the MCP server error and refreshes the node on demand", async () => {
     const user = userEvent.setup();
     const nodeClass = {
-      template: { code: { value: "code" } },
+      documentation: "",
+      display_name: "Test component",
+      description: "",
+      template: {
+        code: {
+          readonly: false,
+          show: true,
+          list: false,
+          required: false,
+          type: "str",
+          value: "code",
+        },
+      },
       tool_mode: false,
     } as APIClassType;
 

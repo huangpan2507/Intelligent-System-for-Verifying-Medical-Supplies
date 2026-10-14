@@ -16,7 +16,7 @@ bash /home/huangpan/github_repo/langflow/scripts/verification/start_local.sh
 bash /home/huangpan/github_repo/langflow/scripts/verification/start_local.sh --restart
 ```
 
-脚本自动定位仓库目录，复用已有私有配置、Python 环境、前端依赖和数据库。在当前 Windows/WSL 环境中会自动启动 Docker Desktop，等待 PostgreSQL 就绪，再启动模拟上游、核验 API、平台后端、唯一 Worker 和前端，并检查 HTTP 服务与前端代理。重复执行普通启动命令会复用已启动进程；`--restart` 会先停止本脚本管理的应用进程，再启动，PostgreSQL 继续复用。重启会中断正在执行的任务，请在任务完成后使用。
+脚本自动定位仓库目录，复用已有私有配置、Python 环境、前端依赖和数据库。在当前 Windows/WSL 环境中会自动启动 Docker Desktop，等待 PostgreSQL 就绪，再启动旧模拟上游、新Business核心流程模拟API、核验 API、平台后端、唯一 Worker 和前端，并检查 HTTP 服务与前端代理。重复执行普通启动命令会复用已启动进程；`--restart` 会先停止本脚本管理的应用进程，再启动，PostgreSQL 继续复用。重启会中断正在执行的任务，请在任务完成后使用。
 
 进程保存在独立 `tmux` 会话中，关闭当前终端后仍会运行；主机／WSL 重启后重新执行启动命令即可。启动脚本不会重新生成凭据、初始化业务数据、导入流程、发布规则或提交模拟任务。前端入口：<http://localhost:3000/verification/tasks>；日志位于 `deploy/verification/.cache/source-ui/langflow-*.log`，可用 `tmux ls` 查看进程会话。
 
@@ -42,12 +42,13 @@ uv run --no-project --python deploy/verification/.cache/runtime/bin/python pytho
 uv run --no-project --python deploy/verification/.cache/runtime/bin/python python scripts/verification/run_local.py platform
 uv run --no-project --python deploy/verification/.cache/runtime/bin/python python scripts/verification/run_local.py api
 uv run --no-project --python deploy/verification/.cache/runtime/bin/python python scripts/verification/run_local.py demo
+uv run --no-project --python deploy/verification/.cache/runtime/bin/python python scripts/verification/run_local.py core-demo
 cd src/frontend
 npm run start -- --host 127.0.0.1 --port 3000 --strictPort
 ```
 
 - 前端：<http://127.0.0.1:3000/verification>，顶部“核验规则”按钮。
-- Langflow 平台 API：7860；业务 API 默认 8081，可由私有 `.env` 的 `VERIFICATION_SOURCE_API_PORT` 指定；模拟上游：8090。本机当前配置为 `18081`，业务接口文档：<http://127.0.0.1:18081/docs>。
+- Langflow 平台 API：7860；业务 API 默认 8081，可由私有 `.env` 的 `VERIFICATION_SOURCE_API_PORT` 指定；旧模拟上游：8090；本轮Business核心流程模拟API：8091（独立tmux会话`langflow-business-core-demo`）。本机当前配置为 `18081`，业务接口文档：<http://127.0.0.1:18081/docs>。
 - 登录 `verification-admin`，密码为私有 `deploy/verification/.env` 的 `LANGFLOW_SUPERUSER_PASSWORD`。
 - 业务库使用 `verification_scope` schema。初始化器拒绝旧试验表；不提供旧 `detail_ids` 任务契约兼容。源码平台继续使用 `.cache/source-ui/langflow.db`，保留用户画布。
 

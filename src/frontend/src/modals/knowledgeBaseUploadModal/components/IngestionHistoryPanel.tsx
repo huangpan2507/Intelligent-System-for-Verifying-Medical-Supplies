@@ -1,3 +1,4 @@
+import type en from "@/locales/en.json";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import ForwardedIconComponent from "@/components/common/genericIconComponent";
@@ -19,7 +20,10 @@ const STATUS_STYLES: Record<string, string> = {
   pending: "bg-muted text-muted-foreground border-border",
 };
 
-const SOURCE_TYPE_LABELS: Record<string, string> = {
+const SOURCE_TYPE_LABELS: Record<
+  string,
+  Extract<keyof typeof en, `knowledge.ingestionSource${string}`>
+> = {
   file_upload: "knowledge.ingestionSourceFileUpload",
   folder: "knowledge.ingestionSourceFolder",
   template: "knowledge.ingestionSourceTemplate",

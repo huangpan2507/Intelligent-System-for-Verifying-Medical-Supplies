@@ -1,0 +1,437 @@
+{
+  "cases": [
+    {
+      "case": "A01",
+      "kind": "ablation",
+      "mechanism": "三态筛选",
+      "baseline": {
+        "matched": 1,
+        "unmatched": 1,
+        "unknown": 1
+      },
+      "intervention": {
+        "matched": 1,
+        "unmatched": 2,
+        "unknown": 0
+      },
+      "conclusion": "将 NULL 当作 false 会把未知事实误判为明确不符合范围。"
+    },
+    {
+      "case": "A02",
+      "kind": "ablation",
+      "mechanism": "关联匹配关系约束",
+      "baseline": {
+        "result_rows": 0,
+        "issues": 3,
+        "equal_rows": 0
+      },
+      "intervention": {
+        "result_rows": 2,
+        "issues": 0,
+        "equal_rows": 2
+      },
+      "conclusion": "同一夹具业务要求一对一；去掉唯一性约束后出现两条伪正常匹配。多对多在其他业务中可以合法。"
+    },
+    {
+      "case": "A03",
+      "kind": "ablation",
+      "mechanism": "跨批次全局汇总",
+      "baseline": [
+        "100"
+      ],
+      "intervention": [
+        "60",
+        "40"
+      ],
+      "conclusion": "分批仅是物理取数策略，不能成为业务分组边界。局部汇总后还须全局归并。"
+    },
+    {
+      "case": "A04",
+      "kind": "ablation",
+      "mechanism": "精确数值",
+      "baseline": {
+        "a": "9007199254740992.01",
+        "b": "9007199254740992.02",
+        "_business_row_id": 0,
+        "comparison_0": "different",
+        "difference_0": "0.01",
+        "_comparison_status": "different"
+      },
+      "intervention": {
+        "a": 9007199254740992.0,
+        "b": 9007199254740992.0,
+        "_business_row_id": 0,
+        "comparison_0": "equal",
+        "difference_0": 0.0,
+        "_comparison_status": "equal"
+      },
+      "conclusion": "极值夹具中浮点数吞掉 0.01 差异；证明数值表示有约束，不代表所有金额范围均失败。"
+    },
+    {
+      "case": "A05",
+      "kind": "ablation",
+      "mechanism": "原始快照留存",
+      "baseline": {
+        "output": [
+          {
+            "key": "A",
+            "amount": 100,
+            "_business_row_id": 0
+          }
+        ],
+        "raw_evidence_available": true
+      },
+      "intervention": {
+        "output": [
+          {
+            "key": "A",
+            "amount": 100,
+            "_business_row_id": 0
+          }
+        ],
+        "raw_evidence_available": false
+      },
+      "conclusion": "数值结果不变，但未参与计算的证据不可追溯；快照的必要性来自审计要求。"
+    },
+    {
+      "case": "A13",
+      "kind": "ablation",
+      "mechanism": "声明式任务参数契约",
+      "baseline": "rejected",
+      "intervention": {
+        "days": "not-an-integer",
+        "unexpected_connection": "outside"
+      },
+      "conclusion": "删除参数结构校验后，错误类型和未声明字段进入任务参数。未声明字段被接收不等于它已获得修改数据库连接的能力。"
+    },
+    {
+      "case": "A06",
+      "kind": "ablation",
+      "mechanism": "受理版本固定",
+      "baseline": {
+        "status": "completed",
+        "rows": [
+          {
+            "code": "A",
+            "value": 1,
+            "_business_row_id": 0
+          },
+          {
+            "code": "B",
+            "value": 2,
+            "_business_row_id": 1
+          }
+        ]
+      },
+      "intervention": {
+        "status": "completed",
+        "rows": [
+          {
+            "code": "B",
+            "value": 2,
+            "_business_row_id": 1
+          }
+        ]
+      },
+      "conclusion": "受理同为 v1；只把执行时的版本来源改为当前启用版本，就丢掉 A 行。"
+    },
+    {
+      "case": "A07",
+      "kind": "ablation",
+      "mechanism": "结果来源隔离",
+      "baseline": 404,
+      "intervention": 200,
+      "conclusion": "真实 ASGI 查询；移除 task.source 判定后，来源 B 能读取来源 A 的任务。"
+    },
+    {
+      "case": "A08",
+      "kind": "ablation",
+      "mechanism": "已启动任务重入拦截",
+      "baseline": 1,
+      "intervention": 2,
+      "conclusion": "移除入口状态拦截后，相同任务重做取数。此实验不证明分布式 exactly-once 或远端模型幂等。"
+    },
+    {
+      "case": "C01",
+      "kind": "counterexample",
+      "mechanism": "运行版本校验边界",
+      "baseline": {
+        "unmodified_digest": "4bd5fb15d4c6cdd752d3d5da502e0fd0fbf0b17248ecc564ed2c17342a30267a"
+      },
+      "intervention": {
+        "comment_only_digest": "ef225b4785908a45a7091dba43b02192bacc6e61092dd5efac1061af932c0d3a",
+        "blocked": "Published runtime differs; publish against this runtime before submitting new tasks"
+      },
+      "conclusion": "只在内存模拟 demo.py 增加注释，文件不落盘；无关演示代码也阻断已发布任务。需要缩小构建依赖边界或保留旧运行包，不应删除版本约束。"
+    },
+    {
+      "case": "C02",
+      "kind": "counterexample",
+      "mechanism": "最终业务覆盖核对",
+      "baseline": {
+        "baseline_detail_ids": [
+          "A",
+          "B"
+        ]
+      },
+      "intervention": {
+        "status": "completed",
+        "rows": [
+          {
+            "code": "A",
+            "value": 1,
+            "_business_row_id": 0
+          }
+        ],
+        "unmatched_persisted": 1,
+        "final_disposition_missing": [
+          "B"
+        ]
+      },
+      "conclusion": "图合法且任务完成，中间快照保留 B，但最终业务去向未声明。本夹具要求两行均有去向；普通筛选业务只输出 A 可以合法，平台须让方案声明覆盖契约。"
+    },
+    {
+      "case": "A12",
+      "kind": "ablation",
+      "mechanism": "运行时字段类型契约",
+      "baseline": "failed",
+      "intervention": {
+        "status": "completed",
+        "rows": [
+          {
+            "code": "A",
+            "value": "one",
+            "_business_row_id": 0
+          },
+          {
+            "code": "B",
+            "value": "two",
+            "_business_row_id": 1
+          }
+        ]
+      },
+      "conclusion": "发布时 value 为整数，运行前改成文本；移除读取器类型检查后，任务完成并输出与发布声明不符的字段。使用文件隔离复现，未替代数据库字段漂移测试。"
+    },
+    {
+      "case": "A14",
+      "kind": "ablation",
+      "mechanism": "双重图遍历中的递归回溯",
+      "baseline": {
+        "outputs": [
+          [
+            "{\"_comparison_status\": \"different\", \"_match_status\": \"matched\", \"comparison_0\": \"different\", \"difference_0\": \"-20\", \"left__issue_reason\": \"\", \"left_amount\": 200, \"left_order_no\": \"B\", \"right_biz_no\": \"B\", \"right_paid_total\": \"180\"}",
+            "{\"_comparison_status\": \"equal\", \"_match_status\": \"matched\", \"comparison_0\": \"equal\", \"difference_0\": \"0\", \"left__issue_reason\": \"\", \"left_amount\": 100, \"left_order_no\": \"A\", \"right_biz_no\": \"A\", \"right_paid_total\": \"100\"}",
+            "{\"_comparison_status\": \"left_only\", \"_match_status\": \"left_only\", \"comparison_0\": \"unknown\", \"difference_0\": null, \"left__issue_reason\": \"\", \"left_amount\": 300, \"left_order_no\": \"C\", \"right_biz_no\": null, \"right_paid_total\": null}",
+            "{\"_comparison_status\": \"right_only\", \"_match_status\": \"right_only\", \"comparison_0\": \"unknown\", \"difference_0\": null, \"left__issue_reason\": null, \"left_amount\": null, \"left_order_no\": null, \"right_biz_no\": \"D\", \"right_paid_total\": \"50\"}"
+          ],
+          [],
+          [],
+          []
+        ],
+        "source_reads": 2,
+        "completed_nodes": 11
+      },
+      "intervention": {
+        "outputs": [
+          [
+            "{\"_comparison_status\": \"different\", \"_match_status\": \"matched\", \"comparison_0\": \"different\", \"difference_0\": \"-20\", \"left__issue_reason\": \"\", \"left_amount\": 200, \"left_order_no\": \"B\", \"right_biz_no\": \"B\", \"right_paid_total\": \"180\"}",
+            "{\"_comparison_status\": \"equal\", \"_match_status\": \"matched\", \"comparison_0\": \"equal\", \"difference_0\": \"0\", \"left__issue_reason\": \"\", \"left_amount\": 100, \"left_order_no\": \"A\", \"right_biz_no\": \"A\", \"right_paid_total\": \"100\"}",
+            "{\"_comparison_status\": \"left_only\", \"_match_status\": \"left_only\", \"comparison_0\": \"unknown\", \"difference_0\": null, \"left__issue_reason\": \"\", \"left_amount\": 300, \"left_order_no\": \"C\", \"right_biz_no\": null, \"right_paid_total\": null}",
+            "{\"_comparison_status\": \"right_only\", \"_match_status\": \"right_only\", \"comparison_0\": \"unknown\", \"difference_0\": null, \"left__issue_reason\": null, \"left_amount\": null, \"left_order_no\": null, \"right_biz_no\": \"D\", \"right_paid_total\": \"50\"}"
+          ],
+          [],
+          [],
+          []
+        ],
+        "source_reads": 2,
+        "completed_nodes": 11
+      },
+      "conclusion": "保留 Langflow 图调度，只把 Runtime 的递归找前驱改为读取已完成前驱输出；带分支、汇总、关联和多结果的对账图结果相同，两源各读取一次。支持删除重复依赖遍历；未证明所有子流程/并发/失败恢复场景等价。"
+    },
+    {
+      "case": "C03",
+      "kind": "counterexample",
+      "mechanism": "按键去重时的冲突语义",
+      "baseline": [
+        {
+          "uid": "same-uid",
+          "patient": "patient-B",
+          "_source_row_id": 0,
+          "_source_dataset_id": "7515cebb-9529-457e-998a-97e84d260159",
+          "_business_row_id": 0
+        }
+      ],
+      "intervention": [
+        {
+          "uid": "same-uid",
+          "patient": "patient-A",
+          "_source_row_id": 0,
+          "_source_dataset_id": "7515cebb-9529-457e-998a-97e84d260159",
+          "_business_row_id": 0
+        }
+      ],
+      "conclusion": "同 UID 关联不同患者，当前按数据集 UUID 保留一条。两份原始记录仍在，但没有冲突输出；换无业务含义的 ID 会改变被采信患者。"
+    },
+    {
+      "case": "A09",
+      "kind": "ablation",
+      "mechanism": "识别与覆盖依据门槛",
+      "baseline": {
+        "data": [],
+        "issues": [
+          {
+            "patient": "P",
+            "hospital": "H",
+            "encounter": "E",
+            "category": "hip",
+            "quantity": 1,
+            "unit": "set",
+            "_business_row_id": 0,
+            "recognized_quantity": "1.000000",
+            "observed_unit": "set",
+            "coverage_confirmed": false,
+            "recognition_confirmed": true,
+            "evidence_ref": "synthetic-evidence",
+            "simulated": true,
+            "_issue_reason": "recognition_or_coverage_unconfirmed",
+            "_model_response": "{\"recognized_quantity\": 1, \"observed_unit\": \"set\", \"coverage_confirmed\": false, \"recognition_confirmed\": true, \"evidence_ref\": \"synthetic-evidence\", \"simulated\": true}"
+          }
+        ]
+      },
+      "intervention": {
+        "data": [
+          {
+            "patient": "P",
+            "hospital": "H",
+            "encounter": "E",
+            "category": "hip",
+            "quantity": 1,
+            "unit": "set",
+            "_business_row_id": 0,
+            "recognized_quantity": "1.000000",
+            "observed_unit": "set",
+            "coverage_confirmed": false,
+            "recognition_confirmed": true,
+            "evidence_ref": "synthetic-evidence",
+            "simulated": true,
+            "_issue_reason": "",
+            "_model_response": "{\"recognized_quantity\": 1, \"observed_unit\": \"set\", \"coverage_confirmed\": false, \"recognition_confirmed\": true, \"evidence_ref\": \"synthetic-evidence\", \"simulated\": true}"
+          }
+        ],
+        "issues": []
+      },
+      "conclusion": "去掉依据判定后覆盖未确认也成为可用数据。证明判定责任不可省，不证明应放在模型调用器内，也不证明两个布尔值足以证明真实可比性。"
+    },
+    {
+      "case": "A11",
+      "kind": "ablation-and-relocation",
+      "mechanism": "调用与业务判定解耦",
+      "baseline": {
+        "usable_rows_per_fixture": [
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      "intervention": {
+        "remove_gate_only": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "relocate_to_existing_validate": [
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      "conclusion": "有效、覆盖不足、单位不符、无证据四个夹具：判定移到现有 Validate 后有效/无效划分不变。支持抽出纯规则责任；未证明完整医学可比性，未验证新接口协议，原因文案也未要求相同。"
+    },
+    {
+      "case": "C05",
+      "kind": "counterexample",
+      "mechanism": "专业输出有效性",
+      "baseline": {
+        "expected": "negative physical count must be invalid"
+      },
+      "intervention": {
+        "accepted_data_rows": 1,
+        "recognized_quantity": "-1.000000"
+      },
+      "conclusion": "当前 Imaging 接受负的实物识别数量；现有模板没有后置数量非负校验。布尔确认标记与证据引用并不构成完整有效性检查。"
+    },
+    {
+      "case": "C04",
+      "kind": "counterexample",
+      "mechanism": "外部模型请求关联",
+      "baseline": {
+        "remote_accepted_count": 1
+      },
+      "intervention": {
+        "local_issue": "model_response_invalid:ReadTimeout",
+        "saved_response": "{}",
+        "request_id_sent": false,
+        "remote_job_id_saved": false
+      },
+      "conclusion": "远端受理后响应超时，只保存本地错误，没有提交前的独立请求标识。不能据此判断远端失败，也无法按本次请求查询核实。此为故障注入，不是已实现机制的消融。"
+    },
+    {
+      "case": "A10",
+      "kind": "ablation",
+      "mechanism": "分批持久化而非整批 Python 对象",
+      "baseline": [
+        {
+          "mode": "batched",
+          "count": 100000,
+          "sum": 4999950000,
+          "seconds": 0.134,
+          "parquet_sha256": "645796f0167d6514401dc25c926dfded5c139f9f7e8fe9b55af053ab5d2a9694",
+          "baseline_peak_rss_mib": 289.2,
+          "peak_rss_mib": 310.5,
+          "parquet_bytes": 2403801
+        },
+        {
+          "mode": "batched",
+          "count": 1000000,
+          "sum": 499999500000,
+          "seconds": 1.022,
+          "parquet_sha256": "9772ce2e749c37c9e7ef7688ba7f499b630de13505e29ed3f2e1be197fc61280",
+          "baseline_peak_rss_mib": 289.3,
+          "peak_rss_mib": 315.4,
+          "parquet_bytes": 24036029
+        }
+      ],
+      "intervention": [
+        {
+          "mode": "materialized",
+          "count": 100000,
+          "sum": 4999950000,
+          "seconds": 0.17,
+          "parquet_sha256": "645796f0167d6514401dc25c926dfded5c139f9f7e8fe9b55af053ab5d2a9694",
+          "baseline_peak_rss_mib": 289.1,
+          "peak_rss_mib": 346.4,
+          "parquet_bytes": 2403801
+        },
+        {
+          "mode": "materialized",
+          "count": 1000000,
+          "sum": 499999500000,
+          "seconds": 1.37,
+          "parquet_sha256": "9772ce2e749c37c9e7ef7688ba7f499b630de13505e29ed3f2e1be197fc61280",
+          "baseline_peak_rss_mib": 289.0,
+          "peak_rss_mib": 703.2,
+          "parquet_bytes": 24036029
+        }
+      ],
+      "conclusion": "同一写入器、同一数据、相同 5000 行批次、输出文件 SHA256 相同，只改变是否预先构造全量行列表；峰值 RSS 包含进程基线。此为合成存储实验，不是跨数据库吞吐或真实影像压测。"
+    }
+  ],
+  "case_count": 19,
+  "production_modified": false,
+  "recorded_at": "2026-10-10T01:59:04.040334+00:00",
+  "runtime_digest": "4bd5fb15d4c6cdd752d3d5da502e0fd0fbf0b17248ecc564ed2c17342a30267a",
+  "python": "3.13.15 (main, Aug 25 2026, 14:01:07) [Clang 22.1.3 ]"
+}

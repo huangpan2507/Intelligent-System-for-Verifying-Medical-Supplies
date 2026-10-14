@@ -27,17 +27,21 @@ export const useGetIngestionJobStatus: useQueryFunctionType<
     return res.data;
   };
 
-  const queryResult: UseQueryResult<IngestionJobStatusResponse, any> = query(
+  const queryResult: UseQueryResult<IngestionJobStatusResponse> = query(
     ["useGetIngestionJobStatus", params?.job_id],
     getStatusFn,
     {
       enabled: !!params?.job_id,
       refetchInterval: (query) => {
         const data = query.state.data;
+        const status =
+          data && typeof data === "object" && "status" in data
+            ? data.status
+            : undefined;
         if (
-          data?.status === "completed" ||
-          data?.status === "failed" ||
-          data?.status === "cancelled"
+          status === "completed" ||
+          status === "failed" ||
+          status === "cancelled"
         ) {
           return false;
         }

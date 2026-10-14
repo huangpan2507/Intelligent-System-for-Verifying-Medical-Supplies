@@ -1,0 +1,677 @@
+{
+  "id": "11b692b5-45c3-4a2c-bb2c-b701208567a1",
+  "name": "Images",
+  "fields": [
+    {
+      "name": "_identity",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ORGAN_CODE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ORGAN_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ORGAN_ADMDVS",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ORGAN_LV",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "FIX_ORGAN_CODE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "FIX_ORGAN_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "DATA_SOURCE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "SETL_HOS_ID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "INIT_SETL_HOS_ID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "SETL_MED_ID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "INIT_SETL_MED_ID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MDTRT_SN",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MDTRT_ID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MED_PAY_FLAG",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "PSN_NO",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "PSN_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "PSN_CERT_TYPE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "CERTNO",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "SOC_SEC_CARD_NO",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "GEND",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "OP_EM_MARK",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "OP_EM_NO",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "RCD_DT",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "REFD_SETL_FLAG",
+      "type": "decimal128(1, 0)",
+      "nullable": true
+    },
+    {
+      "name": "MED_TYPE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MEDFEE_SUMAMT",
+      "type": "decimal128(16, 2)",
+      "nullable": true
+    },
+    {
+      "name": "FUND_PAY_SUMAMT",
+      "type": "decimal128(16, 2)",
+      "nullable": true
+    },
+    {
+      "name": "PSN_PART_AMT",
+      "type": "decimal128(16, 2)",
+      "nullable": true
+    },
+    {
+      "name": "ACCT_PAY",
+      "type": "decimal128(16, 2)",
+      "nullable": true
+    },
+    {
+      "name": "PSN_CASH_PAY",
+      "type": "decimal128(16, 2)",
+      "nullable": true
+    },
+    {
+      "name": "HOSP_PART_AMT",
+      "type": "decimal128(16, 2)",
+      "nullable": true
+    },
+    {
+      "name": "UPDATE_TIME",
+      "type": "timestamp[us, tz=UTC]",
+      "nullable": true
+    },
+    {
+      "name": "SETL_FEE_LIST_ID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "RPT_NO",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "FEEDETL_SN",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "INIT_FEEDETL_SN",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "HOS_PROJ_NO",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "HOS_PROJ_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "HILIST_CODE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "HILIST_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "LIST_TYPE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MED_LIST_CODG",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MEDINS_LIST_CODG",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MEDINS_LIST_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MED_CHRGITM_TYPE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "PRODNAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "SPEC",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "DOSFORM_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "CNT",
+      "type": "decimal128(10, 2)",
+      "nullable": true
+    },
+    {
+      "name": "PRIC",
+      "type": "decimal128(10, 2)",
+      "nullable": true
+    },
+    {
+      "name": "SYSTEM_ID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "target_category",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_method",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_reason",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_evidence_field",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_evidence_text",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_confidence",
+      "type": "decimal128(38, 6)",
+      "nullable": true
+    },
+    {
+      "name": "_representative_row_id",
+      "type": "int64",
+      "nullable": true
+    },
+    {
+      "name": "image_manifest_context",
+      "type": "extension<arrow.json>",
+      "nullable": true
+    },
+    {
+      "name": "image_manifest",
+      "type": "extension<arrow.json>",
+      "nullable": true
+    },
+    {
+      "name": "_issue_reason",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "_business_row_id",
+      "type": "int64",
+      "nullable": true
+    }
+  ],
+  "total": 2,
+  "offset": 0,
+  "limit": 50,
+  "rows": [
+    {
+      "_identity": "core-flow-v1:settlement_detail:{\"ORGAN_CODE\":\"MOCKHOSP0000000001\",\"DATA_SOURCE\":\"MOCK-HIS01\",\"SETL_FEE_LIST_ID\":\"MOCK-DETAIL-HIP\"}",
+      "ORGAN_CODE": "MOCKHOSP0000000001",
+      "ORGAN_NAME": "核心流程模拟医院",
+      "ORGAN_ADMDVS": "000000",
+      "ORGAN_LV": "MOCK",
+      "FIX_ORGAN_CODE": "H00000000001",
+      "FIX_ORGAN_NAME": "核心流程模拟医院",
+      "DATA_SOURCE": "MOCK-HIS01",
+      "SETL_HOS_ID": "MOCK-SETL-HIP",
+      "INIT_SETL_HOS_ID": null,
+      "SETL_MED_ID": "MOCK-MEDSETL-HIP",
+      "INIT_SETL_MED_ID": null,
+      "MDTRT_SN": "MOCK-MDTRTSN-HIP",
+      "MDTRT_ID": "MOCK-MDTRT-HIP",
+      "MED_PAY_FLAG": "1",
+      "PSN_NO": "MOCK-PATIENT-HIP",
+      "PSN_NAME": "模拟患者甲",
+      "PSN_CERT_TYPE": "99",
+      "CERTNO": "MOCK-CARD-HIP",
+      "SOC_SEC_CARD_NO": null,
+      "GEND": "9",
+      "OP_EM_MARK": "3",
+      "OP_EM_NO": "MOCK-VISIT-HIP",
+      "RCD_DT": "20250820100000",
+      "REFD_SETL_FLAG": "0",
+      "MED_TYPE": "MOCK-INPAT",
+      "MEDFEE_SUMAMT": "10000.00",
+      "FUND_PAY_SUMAMT": "10000.00",
+      "PSN_PART_AMT": "0.00",
+      "ACCT_PAY": "0.00",
+      "PSN_CASH_PAY": "0.00",
+      "HOSP_PART_AMT": "0.00",
+      "UPDATE_TIME": "2025-08-20T10:00:00+08:00",
+      "SETL_FEE_LIST_ID": "MOCK-DETAIL-HIP",
+      "RPT_NO": "MOCK-RPT-HIP",
+      "FEEDETL_SN": "MOCK-FEE-HIP",
+      "INIT_FEEDETL_SN": null,
+      "HOS_PROJ_NO": "MOCK-PROJ-HIP",
+      "HOS_PROJ_NAME": "人工髋关节（模拟A型号）",
+      "HILIST_CODE": "MOCK-HILIST-HIP",
+      "HILIST_NAME": "人工全髋关节置换术",
+      "LIST_TYPE": "301",
+      "MED_LIST_CODG": "MOCK-MEDLIST-HIP",
+      "MEDINS_LIST_CODG": "MOCK-MEDINS-HIP",
+      "MEDINS_LIST_NAME": "人工髋关节（模拟A型号）",
+      "MED_CHRGITM_TYPE": "MOCK-CONSUMABLE",
+      "PRODNAME": "人工髋关节（模拟A型号）",
+      "SPEC": "模拟规格一套",
+      "DOSFORM_NAME": null,
+      "CNT": "1.00",
+      "PRIC": "10000.00",
+      "SYSTEM_ID": "MOCK-RIS01",
+      "target_category": "人工髋关节",
+      "classification_method": "rule",
+      "classification_reason": "configured_rule",
+      "classification_evidence_field": "PRODNAME",
+      "classification_evidence_text": "人工髋关节（模拟A型号）",
+      "classification_confidence": null,
+      "_representative_row_id": 0,
+      "image_manifest_context": "[{\"address\":\"https://dicom.invalid/core-flow/MOCK-SERIES-HIP/2.dcm?signature=synthetic%2F2&expires=0\",\"study_primary_id\":\"f61b2a1bef738c6df829c55da8ae4a21\",\"study_ris_study_id\":\"MOCK-RIS-HIP\",\"series_id\":\"MOCK-SERIES-HIP\",\"series_modality\":\"DR\",\"study_exam_part\":\"BQ02ZZZ00\",\"study_relevance_code_name\":\"双侧髋关节前后位\",\"study_relevance_code_version\":\"WS/T 364.8-2023; CV04.30.002\",\"study_relevance_code_source\":\"{\\\"url\\\": \\\"https://www.nhc.gov.cn/wjw/s9497/202311/fedbd15e15514084b419e08a3e989dcd.shtml\\\", \\\"sha256\\\": \\\"30a8dad9640387f36389dfdd64df18a08810990948f123ae80ecc2cf3093a39c\\\", \\\"entries\\\": [{\\\"name\\\": \\\"双侧髋关节前后位\\\", \\\"pdf_page\\\": 13, \\\"printed_page\\\": 11}]}\",\"study_relevance\":\"候选相关\",\"study_relevance_method\":\"rule\",\"study_relevance_reason\":\"configured_rule\",\"study_relevance_evidence_text\":\"双侧髋关节前后位\",\"study_instance_uid\":\"2.25.20261012.1\",\"series_instance_uid\":\"2.25.20261012.1.1\",\"sop_instance_uid\":\"2.25.20261012.1.1.2\"},{\"address\":\"https://dicom.invalid/core-flow/MOCK-SERIES-HIP-NEAR/2.dcm?signature=synthetic%2F2&expires=0\",\"study_primary_id\":\"8afc8a56121e922c5f0f3f16e8edb913\",\"study_ris_study_id\":\"MOCK-RIS-HIP-NEAR\",\"series_id\":\"MOCK-SERIES-HIP-NEAR\",\"series_modality\":\"DR\",\"study_exam_part\":\"BQ03ZZ900\",\"study_relevance_code_name\":\"右侧股骨前后位(近髋)\",\"study_relevance_code_version\":\"WS/T 364.8-2023; CV04.30.002\",\"study_relevance_code_source\":\"{\\\"url\\\": \\\"https://www.nhc.gov.cn/wjw/s9497/202311/fedbd15e15514084b419e08a3e989dcd.shtml\\\", \\\"sha256\\\": \\\"30a8dad9640387f36389dfdd64df18a08810990948f123ae80ecc2cf3093a39c\\\", \\\"entries\\\": [{\\\"name\\\": \\\"右侧股骨前后位(近髋)\\\", \\\"pdf_page\\\": 13, \\\"printed_page\\\": 11}]}\",\"study_relevance\":\"候选相关\",\"study_relevance_method\":\"model\",\"study_relevance_reason\":\"检查描述明确写明采集范围包含髋关节，且检查部位为右侧股骨近端，与人工髋关节目标相关，故判为候选相关。\",\"study_relevance_evidence_text\":\"采集范围包含髋关节\",\"study_instance_uid\":\"2.25.20261012.5\",\"series_instance_uid\":\"2.25.20261012.5.1\",\"sop_instance_uid\":\"2.25.20261012.5.1.2\"},{\"address\":\"https://dicom.invalid/core-flow/MOCK-SERIES-HIP-CT/2.dcm?signature=synthetic%2F2&expires=0\",\"study_primary_id\":\"209e2a7e75d10b7ad2498f623cf209f9\",\"study_ris_study_id\":\"MOCK-RIS-HIP-CT\",\"series_id\":\"MOCK-SERIES-HIP-CT\",\"series_modality\":\"CT\",\"study_exam_part\":\"BQ20ZUZZZ\",\"study_relevance_code_name\":\"右侧髋关节 CT 薄层扫描(3D VR 处理)\",\"study_relevance_code_version\":\"WS/T 364.8-2023; CV04.30.002\",\"study_relevance_code_source\":\"{\\\"url\\\": \\\"https://www.nhc.gov.cn/wjw/s9497/202311/fedbd15e15514084b419e08a3e989dcd.shtml\\\", \\\"sha256\\\": \\\"30a8dad9640387f36389dfdd64df18a08810990948f123ae80ecc2cf3093a39c\\\", \\\"entries\\\": [{\\\"name\\\": \\\"右侧髋关节 CT 薄层扫描(3D VR 处理)\\\", \\\"pdf_page\\\": 14, \\\"printed_page\\\": 12}]}\",\"study_relevance\":\"候选相关\",\"study_relevance_method\":\"rule\",\"study_relevance_reason\":\"configured_rule\",\"study_relevance_evidence_text\":\"右侧髋关节 CT 薄层扫描(3D VR 处理)\",\"study_instance_uid\":\"2.25.20261012.3\",\"series_instance_uid\":\"2.25.20261012.3.1\",\"sop_instance_uid\":\"2.25.20261012.3.1.2\"},{\"address\":\"https://dicom.invalid/core-flow/MOCK-SERIES-HIP-NEAR/1.dcm?signature=synthetic%2F1&expires=0\",\"study_primary_id\":\"8afc8a56121e922c5f0f3f16e8edb913\",\"study_ris_study_id\":\"MOCK-RIS-HIP-NEAR\",\"series_id\":\"MOCK-SERIES-HIP-NEAR\",\"series_modality\":\"DR\",\"study_exam_part\":\"BQ03ZZ900\",\"study_relevance_code_name\":\"右侧股骨前后位(近髋)\",\"study_relevance_code_version\":\"WS/T 364.8-2023; CV04.30.002\",\"study_relevance_code_source\":\"{\\\"url\\\": \\\"https://www.nhc.gov.cn/wjw/s9497/202311/fedbd15e15514084b419e08a3e989dcd.shtml\\\", \\\"sha256\\\": \\\"30a8dad9640387f36389dfdd64df18a08810990948f123ae80ecc2cf3093a39c\\\", \\\"entries\\\": [{\\\"name\\\": \\\"右侧股骨前后位(近髋)\\\", \\\"pdf_page\\\": 13, \\\"printed_page\\\": 11}]}\",\"study_relevance\":\"候选相关\",\"study_relevance_method\":\"model\",\"study_relevance_reason\":\"检查描述明确写明采集范围包含髋关节，且检查部位为右侧股骨近端，与人工髋关节目标相关，故判为候选相关。\",\"study_relevance_evidence_text\":\"采集范围包含髋关节\",\"study_instance_uid\":\"2.25.20261012.5\",\"series_instance_uid\":\"2.25.20261012.5.1\",\"sop_instance_uid\":\"2.25.20261012.5.1.1\"},{\"address\":\"https://dicom.invalid/core-flow/MOCK-SERIES-HIP-CT/1.dcm?signature=synthetic%2F1&expires=0\",\"study_primary_id\":\"209e2a7e75d10b7ad2498f623cf209f9\",\"study_ris_study_id\":\"MOCK-RIS-HIP-CT\",\"series_id\":\"MOCK-SERIES-HIP-CT\",\"series_modality\":\"CT\",\"study_exam_part\":\"BQ20ZUZZZ\",\"study_relevance_code_name\":\"右侧髋关节 CT 薄层扫描(3D VR 处理)\",\"study_relevance_code_version\":\"WS/T 364.8-2023; CV04.30.002\",\"study_relevance_code_source\":\"{\\\"url\\\": \\\"https://www.nhc.gov.cn/wjw/s9497/202311/fedbd15e15514084b419e08a3e989dcd.shtml\\\", \\\"sha256\\\": \\\"30a8dad9640387f36389dfdd64df18a08810990948f123ae80ecc2cf3093a39c\\\", \\\"entries\\\": [{\\\"name\\\": \\\"右侧髋关节 CT 薄层扫描(3D VR 处理)\\\", \\\"pdf_page\\\": 14, \\\"printed_page\\\": 12}]}\",\"study_relevance\":\"候选相关\",\"study_relevance_method\":\"rule\",\"study_relevance_reason\":\"configured_rule\",\"study_relevance_evidence_text\":\"右侧髋关节 CT 薄层扫描(3D VR 处理)\",\"study_instance_uid\":\"2.25.20261012.3\",\"series_instance_uid\":\"2.25.20261012.3.1\",\"sop_instance_uid\":\"2.25.20261012.3.1.1\"},{\"address\":\"https://dicom.invalid/core-flow/MOCK-SERIES-HIP-CT/3.dcm?signature=synthetic%2F3&expires=0\",\"study_primary_id\":\"209e2a7e75d10b7ad2498f623cf209f9\",\"study_ris_study_id\":\"MOCK-RIS-HIP-CT\",\"series_id\":\"MOCK-SERIES-HIP-CT\",\"series_modality\":\"CT\",\"study_exam_part\":\"BQ20ZUZZZ\",\"study_relevance_code_name\":\"右侧髋关节 CT 薄层扫描(3D VR 处理)\",\"study_relevance_code_version\":\"WS/T 364.8-2023; CV04.30.002\",\"study_relevance_code_source\":\"{\\\"url\\\": \\\"https://www.nhc.gov.cn/wjw/s9497/202311/fedbd15e15514084b419e08a3e989dcd.shtml\\\", \\\"sha256\\\": \\\"30a8dad9640387f36389dfdd64df18a08810990948f123ae80ecc2cf3093a39c\\\", \\\"entries\\\": [{\\\"name\\\": \\\"右侧髋关节 CT 薄层扫描(3D VR 处理)\\\", \\\"pdf_page\\\": 14, \\\"printed_page\\\": 12}]}\",\"study_relevance\":\"候选相关\",\"study_relevance_method\":\"rule\",\"study_relevance_reason\":\"configured_rule\",\"study_relevance_evidence_text\":\"右侧髋关节 CT 薄层扫描(3D VR 处理)\",\"study_instance_uid\":\"2.25.20261012.3\",\"series_instance_uid\":\"2.25.20261012.3.1\",\"sop_instance_uid\":\"2.25.20261012.3.1.3\"},{\"address\":\"https://dicom.invalid/core-flow/MOCK-SERIES-HIP/1.dcm?signature=synthetic%2F1&expires=0\",\"study_primary_id\":\"f61b2a1bef738c6df829c55da8ae4a21\",\"study_ris_study_id\":\"MOCK-RIS-HIP\",\"series_id\":\"MOCK-SERIES-HIP\",\"series_modality\":\"DR\",\"study_exam_part\":\"BQ02ZZZ00\",\"study_relevance_code_name\":\"双侧髋关节前后位\",\"study_relevance_code_version\":\"WS/T 364.8-2023; CV04.30.002\",\"study_relevance_code_source\":\"{\\\"url\\\": \\\"https://www.nhc.gov.cn/wjw/s9497/202311/fedbd15e15514084b419e08a3e989dcd.shtml\\\", \\\"sha256\\\": \\\"30a8dad9640387f36389dfdd64df18a08810990948f123ae80ecc2cf3093a39c\\\", \\\"entries\\\": [{\\\"name\\\": \\\"双侧髋关节前后位\\\", \\\"pdf_page\\\": 13, \\\"printed_page\\\": 11}]}\",\"study_relevance\":\"候选相关\",\"study_relevance_method\":\"rule\",\"study_relevance_reason\":\"configured_rule\",\"study_relevance_evidence_text\":\"双侧髋关节前后位\",\"study_instance_uid\":\"2.25.20261012.1\",\"series_instance_uid\":\"2.25.20261012.1.1\",\"sop_instance_uid\":\"2.25.20261012.1.1.1\"}]",
+      "image_manifest": "[\"https://dicom.invalid/core-flow/MOCK-SERIES-HIP-CT/1.dcm?signature=synthetic%2F1&expires=0\",\"https://dicom.invalid/core-flow/MOCK-SERIES-HIP-CT/2.dcm?signature=synthetic%2F2&expires=0\",\"https://dicom.invalid/core-flow/MOCK-SERIES-HIP-CT/3.dcm?signature=synthetic%2F3&expires=0\",\"https://dicom.invalid/core-flow/MOCK-SERIES-HIP-NEAR/1.dcm?signature=synthetic%2F1&expires=0\",\"https://dicom.invalid/core-flow/MOCK-SERIES-HIP-NEAR/2.dcm?signature=synthetic%2F2&expires=0\",\"https://dicom.invalid/core-flow/MOCK-SERIES-HIP/1.dcm?signature=synthetic%2F1&expires=0\",\"https://dicom.invalid/core-flow/MOCK-SERIES-HIP/2.dcm?signature=synthetic%2F2&expires=0\"]",
+      "_issue_reason": "",
+      "_business_row_id": 0
+    },
+    {
+      "_identity": "core-flow-v1:settlement_detail:{\"ORGAN_CODE\":\"MOCKHOSP0000000001\",\"DATA_SOURCE\":\"MOCK-HIS01\",\"SETL_FEE_LIST_ID\":\"MOCK-DETAIL-KNEE\"}",
+      "ORGAN_CODE": "MOCKHOSP0000000001",
+      "ORGAN_NAME": "核心流程模拟医院",
+      "ORGAN_ADMDVS": "000000",
+      "ORGAN_LV": "MOCK",
+      "FIX_ORGAN_CODE": "H00000000001",
+      "FIX_ORGAN_NAME": "核心流程模拟医院",
+      "DATA_SOURCE": "MOCK-HIS01",
+      "SETL_HOS_ID": "MOCK-SETL-KNEE",
+      "INIT_SETL_HOS_ID": null,
+      "SETL_MED_ID": "MOCK-MEDSETL-KNEE",
+      "INIT_SETL_MED_ID": null,
+      "MDTRT_SN": "MOCK-MDTRTSN-KNEE",
+      "MDTRT_ID": "MOCK-MDTRT-KNEE",
+      "MED_PAY_FLAG": "1",
+      "PSN_NO": "MOCK-PATIENT-KNEE",
+      "PSN_NAME": "模拟患者乙",
+      "PSN_CERT_TYPE": "99",
+      "CERTNO": "MOCK-CARD-KNEE",
+      "SOC_SEC_CARD_NO": null,
+      "GEND": "9",
+      "OP_EM_MARK": "1",
+      "OP_EM_NO": "MOCK-VISIT-KNEE",
+      "RCD_DT": "20250820100000",
+      "REFD_SETL_FLAG": "0",
+      "MED_TYPE": "MOCK-INPAT",
+      "MEDFEE_SUMAMT": "5000.00",
+      "FUND_PAY_SUMAMT": "5000.00",
+      "PSN_PART_AMT": "0.00",
+      "ACCT_PAY": "0.00",
+      "PSN_CASH_PAY": "0.00",
+      "HOSP_PART_AMT": "0.00",
+      "UPDATE_TIME": "2025-08-20T10:00:00+08:00",
+      "SETL_FEE_LIST_ID": "MOCK-DETAIL-KNEE",
+      "RPT_NO": "MOCK-RPT-KNEE",
+      "FEEDETL_SN": "MOCK-FEE-KNEE",
+      "INIT_FEEDETL_SN": null,
+      "HOS_PROJ_NO": "MOCK-PROJ-KNEE",
+      "HOS_PROJ_NAME": "膝关节假体系统（模拟成套产品B）",
+      "HILIST_CODE": "MOCK-HILIST-KNEE",
+      "HILIST_NAME": "人工全膝关节置换术",
+      "LIST_TYPE": "301",
+      "MED_LIST_CODG": "MOCK-MEDLIST-KNEE",
+      "MEDINS_LIST_CODG": "MOCK-MEDINS-KNEE",
+      "MEDINS_LIST_NAME": "膝关节假体系统（模拟成套产品B）",
+      "MED_CHRGITM_TYPE": "MOCK-CONSUMABLE",
+      "PRODNAME": "膝关节假体系统（模拟成套产品B）",
+      "SPEC": "模拟规格一套",
+      "DOSFORM_NAME": null,
+      "CNT": "1.00",
+      "PRIC": "5000.00",
+      "SYSTEM_ID": "MOCK-RIS01",
+      "target_category": "人工膝关节",
+      "classification_method": "model",
+      "classification_reason": "产品名称明确为膝关节假体系统，符合人工膝关节定义",
+      "classification_evidence_field": "PRODNAME",
+      "classification_evidence_text": "膝关节假体系统（模拟成套产品B）",
+      "classification_confidence": "1.000000",
+      "_representative_row_id": 1,
+      "image_manifest_context": "[{\"address\":\"https://dicom.invalid/core-flow/MOCK-SERIES-KNEE-CT/3.dcm?signature=synthetic%2F3&expires=0\",\"study_primary_id\":\"38443664f92c220a2deb3ebfb04c8b8d\",\"study_ris_study_id\":\"MOCK-RIS-KNEE-CT\",\"series_id\":\"MOCK-SERIES-KNEE-CT\",\"series_modality\":\"CT\",\"study_exam_part\":\"BQ27ZUZZZ\",\"study_relevance_code_name\":\"右侧膝关节 CT 薄层扫描(3D VR 处理)\",\"study_relevance_code_version\":\"WS/T 364.8-2023; CV04.30.002\",\"study_relevance_code_source\":\"{\\\"url\\\": \\\"https://www.nhc.gov.cn/wjw/s9497/202311/fedbd15e15514084b419e08a3e989dcd.shtml\\\", \\\"sha256\\\": \\\"30a8dad9640387f36389dfdd64df18a08810990948f123ae80ecc2cf3093a39c\\\", \\\"entries\\\": [{\\\"name\\\": \\\"右侧膝关节 CT 薄层扫描(3D VR 处理)\\\", \\\"pdf_page\\\": 14, \\\"printed_page\\\": 12}]}\",\"study_relevance\":\"候选相关\",\"study_relevance_method\":\"rule\",\"study_relevance_reason\":\"configured_rule\",\"study_relevance_evidence_text\":\"右侧膝关节 CT 薄层扫描(3D VR 处理)\",\"study_instance_uid\":\"2.25.20261012.4\",\"series_instance_uid\":\"2.25.20261012.4.1\",\"sop_instance_uid\":\"2.25.20261012.4.1.3\"},{\"address\":\"https://dicom.invalid/core-flow/MOCK-SERIES-KNEE/2.dcm?signature=synthetic%2F2&expires=0\",\"study_primary_id\":\"12d251ed9f4ddc0e489d607f35c7ea59\",\"study_ris_study_id\":\"MOCK-RIS-KNEE\",\"series_id\":\"MOCK-SERIES-KNEE\",\"series_modality\":\"DR\",\"study_exam_part\":\"BQ07ZZZ00\",\"study_relevance_code_name\":\"右侧膝关节前后位\",\"study_relevance_code_version\":\"WS/T 364.8-2023; CV04.30.002\",\"study_relevance_code_source\":\"{\\\"url\\\": \\\"https://www.nhc.gov.cn/wjw/s9497/202311/fedbd15e15514084b419e08a3e989dcd.shtml\\\", \\\"sha256\\\": \\\"30a8dad9640387f36389dfdd64df18a08810990948f123ae80ecc2cf3093a39c\\\", \\\"entries\\\": [{\\\"name\\\": \\\"右侧膝关节前后位\\\", \\\"pdf_page\\\": 13, \\\"printed_page\\\": 11}]}\",\"study_relevance\":\"候选相关\",\"study_relevance_method\":\"rule\",\"study_relevance_reason\":\"configured_rule\",\"study_relevance_evidence_text\":\"右侧膝关节前后位\",\"study_instance_uid\":\"2.25.20261012.2\",\"series_instance_uid\":\"2.25.20261012.2.1\",\"sop_instance_uid\":\"2.25.20261012.2.1.2\"},{\"address\":\"https://dicom.invalid/core-flow/MOCK-SERIES-KNEE/1.dcm?signature=synthetic%2F1&expires=0\",\"study_primary_id\":\"12d251ed9f4ddc0e489d607f35c7ea59\",\"study_ris_study_id\":\"MOCK-RIS-KNEE\",\"series_id\":\"MOCK-SERIES-KNEE\",\"series_modality\":\"DR\",\"study_exam_part\":\"BQ07ZZZ00\",\"study_relevance_code_name\":\"右侧膝关节前后位\",\"study_relevance_code_version\":\"WS/T 364.8-2023; CV04.30.002\",\"study_relevance_code_source\":\"{\\\"url\\\": \\\"https://www.nhc.gov.cn/wjw/s9497/202311/fedbd15e15514084b419e08a3e989dcd.shtml\\\", \\\"sha256\\\": \\\"30a8dad9640387f36389dfdd64df18a08810990948f123ae80ecc2cf3093a39c\\\", \\\"entries\\\": [{\\\"name\\\": \\\"右侧膝关节前后位\\\", \\\"pdf_page\\\": 13, \\\"printed_page\\\": 11}]}\",\"study_relevance\":\"候选相关\",\"study_relevance_method\":\"rule\",\"study_relevance_reason\":\"configured_rule\",\"study_relevance_evidence_text\":\"右侧膝关节前后位\",\"study_instance_uid\":\"2.25.20261012.2\",\"series_instance_uid\":\"2.25.20261012.2.1\",\"sop_instance_uid\":\"2.25.20261012.2.1.1\"},{\"address\":\"https://dicom.invalid/core-flow/MOCK-SERIES-KNEE-CT/2.dcm?signature=synthetic%2F2&expires=0\",\"study_primary_id\":\"38443664f92c220a2deb3ebfb04c8b8d\",\"study_ris_study_id\":\"MOCK-RIS-KNEE-CT\",\"series_id\":\"MOCK-SERIES-KNEE-CT\",\"series_modality\":\"CT\",\"study_exam_part\":\"BQ27ZUZZZ\",\"study_relevance_code_name\":\"右侧膝关节 CT 薄层扫描(3D VR 处理)\",\"study_relevance_code_version\":\"WS/T 364.8-2023; CV04.30.002\",\"study_relevance_code_source\":\"{\\\"url\\\": \\\"https://www.nhc.gov.cn/wjw/s9497/202311/fedbd15e15514084b419e08a3e989dcd.shtml\\\", \\\"sha256\\\": \\\"30a8dad9640387f36389dfdd64df18a08810990948f123ae80ecc2cf3093a39c\\\", \\\"entries\\\": [{\\\"name\\\": \\\"右侧膝关节 CT 薄层扫描(3D VR 处理)\\\", \\\"pdf_page\\\": 14, \\\"printed_page\\\": 12}]}\",\"study_relevance\":\"候选相关\",\"study_relevance_method\":\"rule\",\"study_relevance_reason\":\"configured_rule\",\"study_relevance_evidence_text\":\"右侧膝关节 CT 薄层扫描(3D VR 处理)\",\"study_instance_uid\":\"2.25.20261012.4\",\"series_instance_uid\":\"2.25.20261012.4.1\",\"sop_instance_uid\":\"2.25.20261012.4.1.2\"},{\"address\":\"https://dicom.invalid/core-flow/MOCK-SERIES-KNEE-CT/1.dcm?signature=synthetic%2F1&expires=0\",\"study_primary_id\":\"38443664f92c220a2deb3ebfb04c8b8d\",\"study_ris_study_id\":\"MOCK-RIS-KNEE-CT\",\"series_id\":\"MOCK-SERIES-KNEE-CT\",\"series_modality\":\"CT\",\"study_exam_part\":\"BQ27ZUZZZ\",\"study_relevance_code_name\":\"右侧膝关节 CT 薄层扫描(3D VR 处理)\",\"study_relevance_code_version\":\"WS/T 364.8-2023; CV04.30.002\",\"study_relevance_code_source\":\"{\\\"url\\\": \\\"https://www.nhc.gov.cn/wjw/s9497/202311/fedbd15e15514084b419e08a3e989dcd.shtml\\\", \\\"sha256\\\": \\\"30a8dad9640387f36389dfdd64df18a08810990948f123ae80ecc2cf3093a39c\\\", \\\"entries\\\": [{\\\"name\\\": \\\"右侧膝关节 CT 薄层扫描(3D VR 处理)\\\", \\\"pdf_page\\\": 14, \\\"printed_page\\\": 12}]}\",\"study_relevance\":\"候选相关\",\"study_relevance_method\":\"rule\",\"study_relevance_reason\":\"configured_rule\",\"study_relevance_evidence_text\":\"右侧膝关节 CT 薄层扫描(3D VR 处理)\",\"study_instance_uid\":\"2.25.20261012.4\",\"series_instance_uid\":\"2.25.20261012.4.1\",\"sop_instance_uid\":\"2.25.20261012.4.1.1\"}]",
+      "image_manifest": "[\"https://dicom.invalid/core-flow/MOCK-SERIES-KNEE-CT/1.dcm?signature=synthetic%2F1&expires=0\",\"https://dicom.invalid/core-flow/MOCK-SERIES-KNEE-CT/2.dcm?signature=synthetic%2F2&expires=0\",\"https://dicom.invalid/core-flow/MOCK-SERIES-KNEE-CT/3.dcm?signature=synthetic%2F3&expires=0\",\"https://dicom.invalid/core-flow/MOCK-SERIES-KNEE/1.dcm?signature=synthetic%2F1&expires=0\",\"https://dicom.invalid/core-flow/MOCK-SERIES-KNEE/2.dcm?signature=synthetic%2F2&expires=0\"]",
+      "_issue_reason": "",
+      "_business_row_id": 1
+    }
+  ],
+  "raw": false,
+  "provenance": {
+    "lineage": "499042a4-f623-44af-98e1-8f915d652200",
+    "parents": [
+      "7577c6fb-3452-433a-8cd2-1f9a9e9869d9",
+      "f9b040b7-68d3-46ef-ab47-623e61e4aa8f",
+      "c92c612c-b7fc-4843-b408-2c9bed9f2c0c"
+    ],
+    "blockers": [],
+    "operation": "api_collection",
+    "completeness": {
+      "state": "complete"
+    },
+    "configuration": {
+      "body": {
+        "url_type": "3",
+        "series_id": {
+          "field": "series_id"
+        }
+      },
+      "path": "/api/v2/storage/dicom/sop-instance-uid",
+      "fields": [
+        {
+          "name": "domain",
+          "type": "text",
+          "nullable": false,
+          "required": true
+        },
+        {
+          "name": "file_path",
+          "type": "text",
+          "nullable": false,
+          "required": true
+        },
+        {
+          "name": "study_instance_uid",
+          "type": "text",
+          "nullable": false,
+          "required": true
+        },
+        {
+          "name": "series_instance_uid",
+          "type": "text",
+          "nullable": false,
+          "required": true
+        },
+        {
+          "name": "sop_instance_uid",
+          "type": "text",
+          "nullable": false,
+          "required": true
+        }
+      ],
+      "method": "GET",
+      "max_calls": 10,
+      "collection": {
+        "output": "image_manifest",
+        "group_by": [
+          "_identity"
+        ],
+        "item_keys": [
+          "study_instance_uid",
+          "series_instance_uid",
+          "sop_instance_uid"
+        ],
+        "item_context": [
+          "study_primary_id",
+          "study_ris_study_id",
+          "series_id",
+          "series_modality",
+          "study_exam_part",
+          "study_relevance_code_name",
+          "study_relevance_code_version",
+          "study_relevance_code_source",
+          "study_relevance",
+          "study_relevance_method",
+          "study_relevance_reason",
+          "study_relevance_evidence_text"
+        ],
+        "retain_fields": [
+          "ORGAN_CODE",
+          "ORGAN_NAME",
+          "ORGAN_ADMDVS",
+          "ORGAN_LV",
+          "FIX_ORGAN_CODE",
+          "FIX_ORGAN_NAME",
+          "DATA_SOURCE",
+          "SETL_HOS_ID",
+          "INIT_SETL_HOS_ID",
+          "SETL_MED_ID",
+          "INIT_SETL_MED_ID",
+          "MDTRT_SN",
+          "MDTRT_ID",
+          "MED_PAY_FLAG",
+          "PSN_NO",
+          "PSN_NAME",
+          "PSN_CERT_TYPE",
+          "CERTNO",
+          "SOC_SEC_CARD_NO",
+          "GEND",
+          "OP_EM_MARK",
+          "OP_EM_NO",
+          "RCD_DT",
+          "REFD_SETL_FLAG",
+          "MED_TYPE",
+          "MEDFEE_SUMAMT",
+          "FUND_PAY_SUMAMT",
+          "PSN_PART_AMT",
+          "ACCT_PAY",
+          "PSN_CASH_PAY",
+          "HOSP_PART_AMT",
+          "UPDATE_TIME",
+          "SETL_FEE_LIST_ID",
+          "RPT_NO",
+          "FEEDETL_SN",
+          "INIT_FEEDETL_SN",
+          "HOS_PROJ_NO",
+          "HOS_PROJ_NAME",
+          "HILIST_CODE",
+          "HILIST_NAME",
+          "LIST_TYPE",
+          "MED_LIST_CODG",
+          "MEDINS_LIST_CODG",
+          "MEDINS_LIST_NAME",
+          "MED_CHRGITM_TYPE",
+          "PRODNAME",
+          "SPEC",
+          "DOSFORM_NAME",
+          "CNT",
+          "PRIC",
+          "SYSTEM_ID",
+          "target_category",
+          "classification_method",
+          "classification_reason",
+          "classification_evidence_field",
+          "classification_evidence_text",
+          "classification_confidence",
+          "_representative_row_id"
+        ],
+        "address_fields": [
+          "domain",
+          "file_path"
+        ]
+      },
+      "connection": "bd965b78-e1c6-4553-b884-c78a807b67bc",
+      "items_path": "data",
+      "pagination": "none",
+      "completeness": {
+        "basis": "core-flow-v1 controlled mock returns the complete finite set for each request",
+        "scope": "object"
+      },
+      "field_evidence": {
+        "kind": "document",
+        "fields": [
+          {
+            "name": "domain",
+            "type": "text",
+            "nullable": false,
+            "required": true
+          },
+          {
+            "name": "file_path",
+            "type": "text",
+            "nullable": false,
+            "required": true
+          },
+          {
+            "name": "study_instance_uid",
+            "type": "text",
+            "nullable": false,
+            "required": true
+          },
+          {
+            "name": "series_instance_uid",
+            "type": "text",
+            "nullable": false,
+            "required": true
+          },
+          {
+            "name": "sop_instance_uid",
+            "type": "text",
+            "nullable": false,
+            "required": true
+          }
+        ],
+        "source": {
+          "body": {
+            "url_type": "3",
+            "series_id": {
+              "field": "series_id"
+            }
+          },
+          "path": "/api/v2/storage/dicom/sop-instance-uid",
+          "method": "GET",
+          "connection": "bd965b78-e1c6-4553-b884-c78a807b67bc",
+          "items_path": "data",
+          "response_conditions": [
+            {
+              "path": "code",
+              "equals": 200
+            },
+            {
+              "path": "error.error_code",
+              "equals": 0
+            }
+          ]
+        },
+        "reference": "https://docs.apipost.net/docs/detail/6dfaead25070000?target_id=11ffcb2c7120a1&locale=zh-cn — core-flow-v1 synthetic implementation"
+      },
+      "response_conditions": [
+        {
+          "path": "code",
+          "equals": 200
+        },
+        {
+          "path": "error.error_code",
+          "equals": 0
+        }
+      ]
+    }
+  }
+}

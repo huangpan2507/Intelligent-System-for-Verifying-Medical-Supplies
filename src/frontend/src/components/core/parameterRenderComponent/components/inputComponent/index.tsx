@@ -216,7 +216,7 @@ export default function InputComponent({
             // Content to render when isObjectOption is true
             <CustomInputPopoverObject
               refInput={refInput}
-              handleKeyDown={handleKeyDown}
+              handleKeyDown={(event) => handleKeyDown(event, value, "")}
               optionButton={optionButton}
               optionsButton={optionsButton}
               showOptions={showOptions}
@@ -245,7 +245,7 @@ export default function InputComponent({
           ) : (
             <CustomInputPopover
               refInput={refInput}
-              handleKeyDown={handleKeyDown}
+              handleKeyDown={(event) => handleKeyDown(event, value, "")}
               optionButton={optionButton}
               optionsButton={optionsButton}
               showOptions={showOptions}

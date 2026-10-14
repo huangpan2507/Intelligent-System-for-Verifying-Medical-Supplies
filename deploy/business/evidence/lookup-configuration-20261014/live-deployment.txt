@@ -1,0 +1,1 @@
+{"flow_id": "ce588a72-0614-4d84-badd-0e4355c427e6", "scheme": "core.normal.compact.v1", "node_count": 11, "activation": "active", "version": 5, "release_id": "5defdbf5-e615-4a9d-99bc-85664a713964", "runtime_digest": "31f780c2ce016aa684d9431980a82c262817c99bfd4794d4b61d13802fef734f"}

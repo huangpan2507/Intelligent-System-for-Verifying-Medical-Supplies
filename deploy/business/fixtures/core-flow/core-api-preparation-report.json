@@ -1,0 +1,151 @@
+{
+  "checked_at": "2026-10-12T10:08:49.795681+00:00",
+  "simulated": true,
+  "base_url": "http://127.0.0.1:8091",
+  "connection_id": "bd965b78-e1c6-4553-b884-c78a807b67bc",
+  "workflow_executed": false,
+  "checks": [
+    {
+      "detail_id": "MOCK-DETAIL-HIP",
+      "api_calls": [
+        {
+          "path": "/api/v2/study/list",
+          "http_status": 200,
+          "row_count": 1,
+          "missing_documented_fields": []
+        },
+        {
+          "path": "/api/v2/dicom/series-instance-uid",
+          "http_status": 200,
+          "row_count": 1,
+          "missing_documented_fields": []
+        },
+        {
+          "path": "/api/v2/storage/dicom/sop-instance-uid",
+          "http_status": 200,
+          "row_count": 2,
+          "missing_documented_fields": []
+        }
+      ],
+      "observation": {
+        "recognized_category": "人工髋关节",
+        "recognized_quantity": "1",
+        "observed_unit": "套",
+        "coverage_confirmed": true,
+        "recognition_confirmed": true,
+        "evidence_ref": "synthetic-core-observation:HIP:v1",
+        "simulated": true,
+        "independent_of_requested_category_quantity_unit": true
+      }
+    },
+    {
+      "detail_id": "MOCK-DETAIL-KNEE",
+      "api_calls": [
+        {
+          "path": "/api/v2/study/list",
+          "http_status": 200,
+          "row_count": 1,
+          "missing_documented_fields": []
+        },
+        {
+          "path": "/api/v2/dicom/series-instance-uid",
+          "http_status": 200,
+          "row_count": 1,
+          "missing_documented_fields": []
+        },
+        {
+          "path": "/api/v2/storage/dicom/sop-instance-uid",
+          "http_status": 200,
+          "row_count": 2,
+          "missing_documented_fields": []
+        }
+      ],
+      "observation": {
+        "recognized_category": "人工膝关节",
+        "recognized_quantity": "1",
+        "observed_unit": "套",
+        "coverage_confirmed": true,
+        "recognition_confirmed": true,
+        "evidence_ref": "synthetic-core-observation:KNEE:v1",
+        "simulated": true,
+        "independent_of_requested_category_quantity_unit": true
+      }
+    }
+  ],
+  "connection_revision": 2,
+  "platform_field_previews_without_workflow": [
+    {
+      "path": "/api/v2/study/list",
+      "field_names": [
+        "study_primary_id",
+        "ris_study_id",
+        "organ_code",
+        "organ_name",
+        "system_patient_id",
+        "name",
+        "sex",
+        "age",
+        "op_em_hp_ex_mark",
+        "op_em_hp_ex_no",
+        "chk_modality",
+        "chk_status",
+        "image_type",
+        "is_upload",
+        "is_report",
+        "proj_name",
+        "chk_methodname",
+        "ckpt_name",
+        "chk_dt",
+        "chk_doc_name",
+        "report_list",
+        "thumb_images"
+      ],
+      "uncertain_types": [
+        "report_list",
+        "thumb_images"
+      ],
+      "row_count": 1
+    },
+    {
+      "path": "/api/v2/dicom/series-instance-uid",
+      "field_names": [
+        "series_id",
+        "organ_code",
+        "pacs_study_id",
+        "pacs_series_id",
+        "series_number",
+        "chk_modality"
+      ],
+      "uncertain_types": [],
+      "row_count": 1
+    },
+    {
+      "path": "/api/v2/storage/dicom/sop-instance-uid",
+      "field_names": [
+        "image_instance_number",
+        "file_path",
+        "file_size",
+        "domain",
+        "study_instance_uid",
+        "series_instance_uid",
+        "sop_instance_uid",
+        "file_suffix"
+      ],
+      "uncertain_types": [],
+      "row_count": 2
+    }
+  ],
+  "validation": {
+    "pytest": "39 passed (core demo, imaging contract, legacy API pipeline)",
+    "ruff": "passed",
+    "startup_shell_syntax": "passed",
+    "test_log": "core-api-tests.txt"
+  },
+  "service_health": {
+    "frontend": 200,
+    "platform": 200,
+    "business-api": 200,
+    "legacy-demo": 200,
+    "core-demo": 200
+  }
+}

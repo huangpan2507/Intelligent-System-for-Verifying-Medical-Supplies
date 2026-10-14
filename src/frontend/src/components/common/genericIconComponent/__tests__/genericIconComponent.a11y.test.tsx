@@ -4,9 +4,8 @@ jest.unmock("@/components/common/genericIconComponent");
 
 // Icons load through lazy dynamic imports that never settle in jsdom;
 // resolve to a simple svg component so the loaded state is reachable.
-// Must be an object-style component (forwardRef): real icons are
-// lazy/forwardRef objects, and a plain function would be treated as a
-// setState updater by setTargetIcon.
+// Exercise the forwardRef shape used by many real icons. Plain function
+// icons are covered by genericIconComponent.test.tsx.
 jest.mock("@/utils/styleUtils", () => {
   const { forwardRef } = jest.requireActual("react");
   return {

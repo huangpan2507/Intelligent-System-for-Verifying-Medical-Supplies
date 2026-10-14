@@ -1,0 +1,10 @@
+
+> langflow@1.12.0 test
+> jest --runInBand --runTestsByPath src/CustomNodes/helpers/__tests__/check-code-validity.test.ts src/__tests__/i18n.test.ts src/stores/__tests__/messagesStore.test.ts src/pages/MainPage/pages/deploymentsPage/__tests__/deployment-stepper-payload-builders.test.tsx
+
+
+Test Suites: 4 passed, 4 total
+Tests:       89 passed, 89 total
+Snapshots:   0 total
+Time:        5.414 s
+Ran all test suites within paths "src/CustomNodes/helpers/__tests__/check-code-validity.test.ts", "src/__tests__/i18n.test.ts", "src/stores/__tests__/messagesStore.test.ts", "src/pages/MainPage/pages/deploymentsPage/__tests__/deployment-stepper-payload-builders.test.tsx".

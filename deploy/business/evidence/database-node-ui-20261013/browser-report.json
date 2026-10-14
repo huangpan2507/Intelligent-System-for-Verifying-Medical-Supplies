@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "checks": [
+    "Connection → Schema → Table",
+    "Three regulatory condition descriptions",
+    "Description is last in every condition card",
+    "Descriptions update for operator, parameter, field and constant; cleared parameter removes description",
+    "SQL mode still hides table, schema and conditions",
+    "Persisted core canvas unchanged"
+  ]
+}

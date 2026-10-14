@@ -1,0 +1,14 @@
+{"task_id": "02d4190e-4a71-47fb-b4bf-cbc2af378394", "status": "waiting"}
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/huangpan/github_repo/langflow/scripts/business/verify_compact_core.py", line 150, in <module>
+    main()
+    ~~~~^^
+  File "/home/huangpan/github_repo/langflow/scripts/business/verify_compact_core.py", line 72, in main
+    assert {r["SETL_FEE_LIST_ID"]: len(json.loads(r["image_manifest"])) for r in rows} == {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    }
+    ^
+AssertionError

@@ -58,7 +58,7 @@ export function FileContentModal({
               data-testid="file-content-modal-empty"
               className="rounded-md border border-border bg-muted/30 p-3 text-sm text-muted-foreground"
             >
-              {t("Preview not available for this file.", {
+              {t("assistant.files.previewUnavailable", {
                 defaultValue: "Preview not available for this file.",
               })}
             </div>
@@ -67,7 +67,9 @@ export function FileContentModal({
             <SanitizedMarkdown
               chatMessage={content as string}
               isEmpty={isEmpty}
-              emptyMessage={t("(empty file)", { defaultValue: "(empty file)" })}
+              emptyMessage={t("assistant.files.empty", {
+                defaultValue: "(empty file)",
+              })}
               className="max-w-full"
             />
           )}

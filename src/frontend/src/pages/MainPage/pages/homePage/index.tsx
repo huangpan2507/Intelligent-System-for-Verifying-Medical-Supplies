@@ -30,12 +30,12 @@ import { isFolderEmpty } from "./utils/isFolderEmpty";
 
 // Keyed by the active tab, not the route: Flows and Deployments share /flows
 // and only differ by which header tab is selected.
-const PAGE_TITLE_KEYS: Record<FlowTabType, string> = {
+const PAGE_TITLE_KEYS = {
   flows: "mainPage.tabFlows",
   deployments: "mainPage.tabDeployments",
   components: "mainPage.tabComponents",
   mcp: "mainPage.mcpServer",
-};
+} as const satisfies Record<FlowTabType, string>;
 
 const HomePage = ({ type }: { type: "flows" | "components" | "mcp" }) => {
   const { t } = useTranslation();

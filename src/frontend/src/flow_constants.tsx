@@ -1,10 +1,12 @@
+import en from "./locales/en.json";
+
 /**
  * i18n keys for random default flow descriptions.
  * Strings live in locales/en.json under flow.defaultDescription.*
  */
-export const DESCRIPTIONS: string[] = Array.from(
-  { length: 61 },
-  (_, i) => `flow.defaultDescription.${i}`,
+export const DESCRIPTIONS = Object.keys(en).filter(
+  (key): key is Extract<keyof typeof en, `flow.defaultDescription.${number}`> =>
+    key.startsWith("flow.defaultDescription."),
 );
 
 /**

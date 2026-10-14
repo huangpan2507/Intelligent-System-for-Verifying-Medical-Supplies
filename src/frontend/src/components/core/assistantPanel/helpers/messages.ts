@@ -13,7 +13,7 @@ const REASONING_HEADER_KEYS = [
   "assistant.thinking.5",
   "assistant.thinking.6",
   "assistant.thinking.7",
-];
+] as const;
 
 const ANALYZING_KEYS = [
   "assistant.progress.analyzing.0",
@@ -24,7 +24,7 @@ const ANALYZING_KEYS = [
   "assistant.progress.analyzing.5",
   "assistant.progress.analyzing.6",
   "assistant.progress.analyzing.7",
-];
+] as const;
 
 const IDENTIFYING_INPUTS_KEYS = [
   "assistant.progress.identifyingInputs.0",
@@ -35,7 +35,7 @@ const IDENTIFYING_INPUTS_KEYS = [
   "assistant.progress.identifyingInputs.5",
   "assistant.progress.identifyingInputs.6",
   "assistant.progress.identifyingInputs.7",
-];
+] as const;
 
 const CHECKING_DEPENDENCIES_KEYS = [
   "assistant.progress.checkingDeps.0",
@@ -46,7 +46,7 @@ const CHECKING_DEPENDENCIES_KEYS = [
   "assistant.progress.checkingDeps.5",
   "assistant.progress.checkingDeps.6",
   "assistant.progress.checkingDeps.7",
-];
+] as const;
 
 const GENERATING_CODE_KEYS = [
   "assistant.progress.generatingCode.0",
@@ -57,7 +57,7 @@ const GENERATING_CODE_KEYS = [
   "assistant.progress.generatingCode.5",
   "assistant.progress.generatingCode.6",
   "assistant.progress.generatingCode.7",
-];
+] as const;
 
 const VALIDATING_KEYS = [
   "assistant.progress.validating.0",
@@ -68,9 +68,18 @@ const VALIDATING_KEYS = [
   "assistant.progress.validating.5",
   "assistant.progress.validating.6",
   "assistant.progress.validating.7",
-];
+] as const;
 
-function getRandomMessage(keys: string[]): string {
+function getRandomMessage(
+  keys: readonly (
+    | typeof REASONING_HEADER_KEYS
+    | typeof ANALYZING_KEYS
+    | typeof IDENTIFYING_INPUTS_KEYS
+    | typeof CHECKING_DEPENDENCIES_KEYS
+    | typeof GENERATING_CODE_KEYS
+    | typeof VALIDATING_KEYS
+  )[number][],
+): string {
   const key = keys[Math.floor(Math.random() * keys.length)];
   return i18n.t(key);
 }
@@ -85,7 +94,7 @@ const PLACEHOLDER_PROGRESS_KEYS = [
   ...CHECKING_DEPENDENCIES_KEYS,
   ...GENERATING_CODE_KEYS,
   ...VALIDATING_KEYS,
-];
+] as const;
 
 export function getRandomPlaceholderMessage(): string {
   return getRandomMessage(PLACEHOLDER_PROGRESS_KEYS);

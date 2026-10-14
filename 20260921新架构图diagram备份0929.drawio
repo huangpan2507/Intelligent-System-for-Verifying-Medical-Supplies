@@ -1,0 +1,996 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mxfile host="Electron" pages="6" modified="2026-09-29T00:00:00.000Z">
+  <diagram id="overall-plan" name="智能体整体规划">
+    <mxGraphModel dx="2620" dy="1386" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1780" pageHeight="4371" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="input-suitability" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;③ 小模型能力｜本期核心与后期增强&lt;/div&gt;&lt;div&gt;本期验证CT／DR耗材种类、约定范围内的数量及证据；检查级计数的跨图关联去重必须验证。&lt;/div&gt;&lt;div&gt;后期可选：实际部位、覆盖及可计数性自动评估；本期未支持记未评估，依据不足记未比较。&lt;/div&gt;&lt;div&gt;本期比较前提由人工核实样本与固定规则确认并留痕。后台保存请求关联、状态和结果；服务负责下载、预处理、识别与计数。不建设自动恢复。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="179" width="1700" x="40" y="2282" as="geometry"/>
+        </mxCell>
+        <mxCell id="model-api-identities" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EDF5FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;小模型请求①｜本期提交、关联及查询&lt;/div&gt;&lt;div&gt;保存task_id、run_id、request_id、实际输入与配置；服务返回任务号时映射model_job_id。&lt;/div&gt;&lt;div&gt;同步接收结果，异步按服务任务号查询；状态未知人工核实，不自动重新提交。&lt;/div&gt;&lt;div&gt;结果、必要版本依据和证据经公共模块保存。节点检查点与完整尝试账本后期建设。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="205" width="1700" x="40" y="3418" as="geometry"/>
+        </mxCell>
+        <mxCell id="model-api-idempotency" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFF6DF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;小模型请求②｜本期留存与后期恢复&lt;/div&gt;&lt;div&gt;本期保存请求、输入、服务任务号、状态、结果及错误；同一请求查询读取已保存结果。&lt;/div&gt;&lt;div&gt;确认旧执行结束后人工整项重跑，新建run_id及request_id，保留历史，不自动引用旧运行结果。&lt;/div&gt;&lt;div&gt;后期建设幂等重提、自动重试、阶段复用及恢复调度；本地去重不能替服务方保证推理绝不重复。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="179" width="1700" x="40" y="3653" as="geometry"/>
+        </mxCell>
+        <mxCell id="model-api-status-errors" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EDF5FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;小模型请求③｜本期输入与返回要求&lt;/div&gt;&lt;div&gt;明确单图／序列／检查范围和计数单位；跨图关联去重未经验证不能直接累加。&lt;/div&gt;&lt;div&gt;保存实际处理、排除与失败清单、原始状态及原因；失败／无输入不补0，有效0保留。&lt;/div&gt;&lt;div&gt;保存种类、数量、证据及可取得的版本；是否比较由07判断。&lt;/div&gt;&lt;div&gt;本期固定低并发及查询频率；动态限流和自动恢复后期建设。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="204" width="1700" x="40" y="3862" as="geometry"/>
+        </mxCell>
+        <mxCell id="model-api-acceptance" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EAF7F3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;验收｜范围、版本、核验及追溯&lt;/div&gt;&lt;div&gt;以三项配置贯通受理、01范围查询、分批核验和结果展示；日期边界与范围外排除须验证。&lt;/div&gt;&lt;div&gt;验证未知医院／规则、空范围、分页完整性、跨页分组、规则版本固定、保存失败与人工重跑。&lt;/div&gt;&lt;div&gt;独立病例验证种类、计数及证据；不能以模拟或接口成功替代算法效果。&lt;/div&gt;&lt;div&gt;记录低并发资源；检查点、自动恢复、持续增量和峰值承载后期建设。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="235" width="1700" x="40" y="4096" as="geometry"/>
+        </mxCell>
+        <mxCell id="plan-title" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#DAE9F5;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:22px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;智能体整体规划｜2026-09-29修订&lt;/div&gt;&lt;div&gt;监管仅配置医院、医保结算时间范围、规则选择；平台维护具体规则并查询范围内明细。&lt;/div&gt;&lt;div&gt;本轮目标：版本绑定、分页分批、核验与汇总。节点恢复、持续增量和生产扩容后期建设。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="128" width="1700" x="40" y="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="plan-goal" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EDF5FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;① 业务目标与结算范围&lt;/div&gt;&lt;div&gt;仅核验所选医院、医保结算时间范围内的人工髋／膝耗材；范围外结算不纳入任务。&lt;/div&gt;&lt;div&gt;平台筛选并关联DR／CT证据，比较种类、数量和费用；差异为复核线索，不直接认定骗保。&lt;/div&gt;&lt;div&gt;SETL_TIME为医保结算时间，真实字段须补齐；UPDATE_TIME为新增条目时间，不能替代。&lt;/div&gt;&lt;div&gt;病例计数依据由平台关联，缺依据记未比较；规则配置不能代替病例核实。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="179" width="1700" x="40" y="183" as="geometry"/>
+        </mxCell>
+        <mxCell id="plan-components" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EDF5FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;② 智能体平台｜范围解析、规则管理与执行&lt;/div&gt;&lt;div&gt;监管提交三项业务配置；平台解析医院、绑定发布规则版本，Worker启动01—08。&lt;/div&gt;&lt;div&gt;01取得实际明细；按有界业务单元核验并汇总。具体规则不存储在监管系统。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="115" width="1700" x="40" y="392" as="geometry"/>
+        </mxCell>
+        <mxCell id="model-stack-resources" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFF6DF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;算法候选与试验资源参考&lt;/div&gt;&lt;div&gt;DR候选：先验证YOLO目标检测；需要精细轮廓或目标区分时再评估实例分割。无适用专用权重时用标注数据训练；自训或已有权重均须在独立患者病例上验证。&lt;/div&gt;&lt;div&gt;CT候选：二维路线采用切片检测或实例分割，配套跨切片关联与计数；三维路线可采用nnU-Net分割，再区分目标并计数。按检查级效果选型，不预设必须使用三维模型。&lt;/div&gt;&lt;div&gt;工具与口径：pydicom读取DICOM，压缩像素按编码配套解码组件；MONAI为可选医学影像工具。按结算单位验证组件归组和跨影像去重，分割块数不直接等于耗材数量。&lt;/div&gt;&lt;div&gt;试验资源：可先用单张24GB显存GPU开展受控试验；显存容量不代表计算速度。按模型、分辨率、批量和并发实测显存、内存及临时空间；训练与在线推理错峰或分开运行。&lt;/div&gt;&lt;div&gt;官方参考：docs.ultralytics.com/models/yolov8；github.com/MIC-DKFZ/nnUNet；github.com/Project-MONAI/MONAI。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="204" width="1700" x="40" y="2492" as="geometry"/>
+        </mxCell>
+        <mxCell id="plan-deploy" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EDF5FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;④ 运行支撑｜条件受理、范围发现与分批&lt;/div&gt;&lt;div&gt;API解析医院、绑定规则版本并保存条件后返回；同号同内容返回原任务，不因规则更新重建。&lt;/div&gt;&lt;div&gt;Worker调用绑定流程；01分页读取并保存实际清单／快照，范围内按完整业务单元分批核验。&lt;/div&gt;&lt;div&gt;08及公共模块保存批次和任务汇总；查询不触发重新执行，未知状态先人工核实。&lt;/div&gt;&lt;div&gt;重跑明确数据重取及版本依据；节点恢复、跨运行复用、持续增量和扩容后期建设。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="250" width="1700" x="40" y="2728" as="geometry"/>
+        </mxCell>
+        <mxCell id="plan-interface-header" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#DAE9F5;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;⑤ 本期接口与验收&lt;/div&gt;&lt;div&gt;监管系统→核验API；Worker→智能体运行API；流程→状态／结果保存接口；06→小模型API。&lt;/div&gt;&lt;div&gt;核验运行与模型请求分别编号。接口成功不等于业务结果已保存；路径及字段按实际版本验证。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="115" width="1700" x="40" y="3008" as="geometry"/>
+        </mxCell>
+        <mxCell id="arch-backend" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fontColor=#243B53;align=left;verticalAlign=top;spacing=16;strokeWidth=1.5;fillColor=#F5F8FC;strokeColor=#839DB7;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;智能体后台｜公共模块与核验流程&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="880" width="850" x="440" y="820" as="geometry"/>
+        </mxCell>
+        <mxCell id="arch-e-sql" edge="1" parent="1" source="arch-access" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#526D82;strokeWidth=1.6;fontColor=#334E68;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.35;entryX=1;entryY=0.30434782608695654;jumpStyle=arc;jumpSize=8;fontSize=17;fontFamily=Microsoft YaHei;" target="arch-settlement" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;按范围读取&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="arch-e-imageapi" edge="1" parent="1" source="arch-access" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#526D82;strokeWidth=1.6;fontColor=#334E68;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.85;entryX=1;entryY=0.35;jumpStyle=arc;jumpSize=8;fontSize=17;fontFamily=Microsoft YaHei;" target="arch-cloud" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;API&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="415" y="1310"/>
+              <mxPoint x="415" y="1520"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arch-e-dispatch" edge="1" parent="1" source="arch-orchestrator" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#526D82;strokeWidth=1.6;fontColor=#334E68;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.35;entryX=1;entryY=0.35;jumpStyle=arc;jumpSize=8;fontSize=17;fontFamily=Microsoft YaHei;" target="arch-access" value="">
+          <mxGeometry relative="1" x="0.1328" y="-19" as="geometry">
+            <mxPoint x="-19" y="18" as="offset"/>
+            <Array as="points">
+              <mxPoint x="883.06" y="1213.12"/>
+              <mxPoint x="861.53" y="1213.12"/>
+              <mxPoint x="861.53" y="1210.06"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arch-e-rule" edge="1" parent="1" source="arch-orchestrator" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#526D82;strokeWidth=1.6;fontColor=#334E68;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.85;entryX=1;entryY=0.325;jumpStyle=arc;jumpSize=8;fontSize=17;fontFamily=Microsoft YaHei;" target="arch-rules" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;规则&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="860" y="1310"/>
+              <mxPoint x="860" y="1515"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arch-e-infer" edge="1" parent="1" source="arch-orchestrator" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#526D82;strokeWidth=1.6;fontColor=#334E68;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;jumpStyle=arc;jumpSize=8;entryDx=0;entryDy=0;fontSize=17;fontFamily=Microsoft YaHei;" target="arch-adapter" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;提交／查询识别&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="arch-e-llm" edge="1" parent="1" source="arch-orchestrator" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#526D82;strokeWidth=1.6;fontColor=#334E68;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.4;entryX=0;entryY=0.4444444444444444;jumpStyle=arc;jumpSize=8;dashed=1;dashPattern=5 4;fontSize=17;fontFamily=Microsoft YaHei;" target="arch-llm" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;按需调用&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" x="-0.1622" y="24" as="geometry">
+            <mxPoint x="-1" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arch-e-model" edge="1" parent="1" source="arch-adapter" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#526D82;strokeWidth=1.6;fontColor=#334E68;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.375;jumpStyle=arc;jumpSize=8;entryX=0.004;entryY=0.392;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=17;fontFamily=Microsoft YaHei;" target="arch-small-model" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;提交影像引用&lt;/div&gt;&lt;div&gt;与识别配置&lt;/div&gt;&lt;div&gt;／查询状态&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" x="0.0122" y="34" as="geometry">
+            <mxPoint as="offset"/>
+            <Array as="points">
+              <mxPoint x="1268" y="1540.65"/>
+            </Array>
+            <mxPoint x="1344.12" y="1533.82" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arch-e-download" edge="1" parent="1" source="arch-small-model" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#526D82;strokeWidth=1.6;fontColor=#334E68;labelBackgroundColor=#FFFFFF;exitX=0.25;exitY=1;entryX=0.5;entryY=1;jumpStyle=arc;jumpSize=8;exitDx=0;exitDy=0;fontSize=17;fontFamily=Microsoft YaHei;" target="arch-cloud" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;DICOM原始影像下载&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" x="0.0006" as="geometry">
+            <mxPoint as="offset"/>
+            <Array as="points">
+              <mxPoint x="1454" y="1738.29"/>
+              <mxPoint x="204.94" y="1738.29"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arch-e-db" edge="1" parent="1" source="arch-backend" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#526D82;strokeWidth=1.6;fontColor=#334E68;labelBackgroundColor=#FFFFFF;exitX=0.894117647;exitY=1;entryX=0.82;entryY=0;jumpStyle=arc;jumpSize=8;fontSize=17;fontFamily=Microsoft YaHei;" target="arch-db" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;读写任务、结果与审计&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="95" as="offset"/>
+            <Array as="points">
+              <mxPoint x="1200" y="1775"/>
+              <mxPoint x="1117.8" y="1775"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arch-e-review" edge="1" parent="1" source="arch-review" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#526D82;strokeWidth=1.6;fontColor=#334E68;labelBackgroundColor=#FFFFFF;exitX=0.924;exitY=1;entryX=0.924;entryY=0;jumpStyle=arc;jumpSize=8;fontSize=17;fontFamily=Microsoft YaHei;" target="arch-task-manager" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;提交：医院／医保结算时间／规则选择&lt;/div&gt;&lt;div&gt;查询：进度／汇总／明细证据&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-165" y="-20" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arch-settlement" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fontColor=#243B53;align=left;verticalAlign=top;spacing=16;strokeWidth=1.5;fillColor=#E8F4F0;strokeColor=#A6BED3;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;结算数据源&lt;/div&gt;&lt;div&gt;dwd_dp_settlement_info／约定接口&lt;/div&gt;&lt;div&gt;按医院及医保结算时间范围读取。&lt;/div&gt;&lt;div&gt;保存明细键、数量、单价与费用。&lt;/div&gt;&lt;div&gt;SETL_TIME须落实；不用UPDATE_TIME替代。源数据只读。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="230" width="330" x="40" y="1140" as="geometry"/>
+        </mxCell>
+        <mxCell id="arch-cloud" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fontColor=#243B53;align=left;verticalAlign=top;spacing=16;strokeWidth=1.5;fillColor=#E8F4F0;strokeColor=#A6BED3;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;现有影像云&lt;/div&gt;&lt;div&gt;通过检查API → 序列API→ 影像地址API&lt;/div&gt;&lt;div&gt;提供原始DICOM下载&lt;/div&gt;&lt;div&gt;长期保留原片及历史访问&lt;/div&gt;&lt;div&gt;按云端标识和UID反查&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="200" width="330" x="40" y="1450" as="geometry"/>
+        </mxCell>
+        <mxCell id="arch-access" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fontColor=#243B53;align=left;verticalAlign=top;spacing=16;strokeWidth=1.5;fillColor=#EDF5FC;strokeColor=#A6BED3;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;结算范围与检查接口&lt;/div&gt;&lt;div&gt;01按医院＋医保结算时间分页取数，保存实际清单／快照；不纳入范围外结算。&lt;/div&gt;&lt;div&gt;03查检查记录；05查序列与地址。&lt;/div&gt;&lt;div&gt;03／05不下载DICOM；持续增量后期建设。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="200" width="370" x="470" y="1140" as="geometry"/>
+        </mxCell>
+        <mxCell id="arch-orchestrator" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fontColor=#243B53;align=left;verticalAlign=top;spacing=16;strokeWidth=1.5;fillColor=#DAE9F5;strokeColor=#A6BED3;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;智能体核验流程｜00＋01—08&lt;/div&gt;&lt;div&gt;00加载受理条件及已绑定版本。&lt;/div&gt;&lt;div&gt;01发现范围内明细，02—07分组核验。&lt;/div&gt;&lt;div&gt;08保存明细结果及任务汇总。&lt;/div&gt;&lt;div&gt;不扩大结算范围；节点自动恢复后期建设。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="208" width="398" x="878" y="1132" as="geometry"/>
+        </mxCell>
+        <mxCell id="arch-rules" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fontColor=#243B53;align=left;verticalAlign=top;spacing=16;strokeWidth=1.5;fillColor=#EDF5FC;strokeColor=#A6BED3;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;平台规则目录、版本与执行&lt;/div&gt;&lt;div&gt;规则选择→已发布流程与规则版本。&lt;/div&gt;&lt;div&gt;平台维护筛选、关联、部位与比较参数。&lt;/div&gt;&lt;div&gt;同一任务各批次使用同一版本。&lt;/div&gt;&lt;div&gt;病例计数依据另存，缺失不默认通过。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="200" width="370" x="470" y="1450" as="geometry"/>
+        </mxCell>
+        <mxCell id="arch-adapter" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fontColor=#243B53;align=left;verticalAlign=top;spacing=16;strokeWidth=1.5;fillColor=#EEE7F5;strokeColor=#A6BED3;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;06 小模型识别请求管理与适配&lt;/div&gt;&lt;div&gt;管理request_id及服务任务号映射。&lt;/div&gt;&lt;div&gt;提交影像地址或清单引用、目标范围及识别配置。&lt;/div&gt;&lt;div&gt;查询或接收识别状态、结果和证据。&lt;/div&gt;&lt;div&gt;关联实际处理、排除及失败清单，经公共模块保存。&lt;/div&gt;&lt;div&gt;耗材种类、数量及费用比对由07完成。&lt;/div&gt;&lt;div&gt;按自研或外购契约接入模型。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="242" width="388" x="880" y="1443" as="geometry"/>
+        </mxCell>
+        <mxCell id="arch-llm" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fontColor=#243B53;align=left;verticalAlign=top;spacing=16;strokeWidth=1.5;fillColor=#FFF6DF;strokeColor=#A6BED3;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;大模型文本辅助&lt;/div&gt;&lt;div&gt;本期规则不能确认时保留待验证。&lt;/div&gt;&lt;div&gt;后期返回原文依据并由程序校验。&lt;/div&gt;&lt;div&gt;主键始终由程序保管。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="180" width="340" x="1360" y="1140" as="geometry"/>
+        </mxCell>
+        <mxCell id="arch-small-model" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fontColor=#243B53;align=left;verticalAlign=top;spacing=16;strokeWidth=1.5;fillColor=#EEE7F5;strokeColor=#A6BED3;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;小模型识别服务（CT／DR）&lt;/div&gt;&lt;div&gt;按地址从影像云下载DICOM；完成筛选、解码、预处理。&lt;/div&gt;&lt;div&gt;识别种类及约定范围数量；验证跨图关联去重。&lt;/div&gt;&lt;div&gt;返回状态、原始结果、证据及实际处理／排除／失败清单。&lt;/div&gt;&lt;div&gt;管理本次临时文件及服务并发。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="262" width="340" x="1369" y="1438" as="geometry"/>
+        </mxCell>
+        <mxCell id="arch-db" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fontColor=#243B53;align=left;verticalAlign=top;spacing=16;strokeWidth=1.5;fillColor=#DFF0F5;strokeColor=#A6BED3;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;PostgreSQL｜任务、范围、版本与证据&lt;/div&gt;&lt;div&gt;原始三项条件、标准医院集合、医保结算边界、规则／流程版本。&lt;/div&gt;&lt;div&gt;实际明细／快照、批次进度、task_id→run_id→request_id。&lt;/div&gt;&lt;div&gt;保存逐明细结果、汇总、错误与证据；节点检查点与自动恢复后期建设。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="175" width="790" x="470" y="1810" as="geometry"/>
+        </mxCell>
+        <mxCell id="arch-review" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fontColor=#243B53;align=left;verticalAlign=top;spacing=16;strokeWidth=1.5;fillColor=#E7F5EC;strokeColor=#A6BED3;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;原监管系统｜业务配置与人工复核&lt;/div&gt;&lt;div&gt;仅配置：医院范围、医保结算时间范围、规则选择。&lt;/div&gt;&lt;div&gt;后端自动处理监管编号／去重标识；提交并查询进度、汇总与明细证据。&lt;/div&gt;&lt;div&gt;不维护具体规则；人工复核、业务处置及显式重新核验保留在监管系统。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="160" width="790" x="470" y="550" as="geometry"/>
+        </mxCell>
+        <mxCell id="arch-boundary" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fontColor=#243B53;align=left;verticalAlign=top;spacing=16;strokeWidth=1.5;fillColor=#F5F7FA;strokeColor=#A6BED3;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;本期边界与后期建设&lt;/div&gt;&lt;div&gt;监管只选医院、医保结算时间和规则；具体规则在平台维护，受理时绑定版本。&lt;/div&gt;&lt;div&gt;01只查范围内结算，03查关联检查记录，05取地址，06调用模型下载／识别，07比较，08保存并汇总。&lt;/div&gt;&lt;div&gt;检查证据不扩大结算范围；不为补齐分组加入范围外结算，依据不足记未比较。&lt;/div&gt;&lt;div&gt;失败或未知状态先人工核实；重跑明确数据／规则版本，保留历史。节点恢复、持续增量与扩容后期建设。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="222" width="1265" x="40" y="2015" as="geometry"/>
+        </mxCell>
+        <mxCell id="arch-task-manager" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fontColor=#243B53;align=left;verticalAlign=top;spacing=16;strokeWidth=1.5;fillColor=#DAE9F5;strokeColor=#A6BED3;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;核验API与任务级Worker｜目标设计&lt;/div&gt;&lt;div&gt;API：解析医院与规则选择，绑定发布版本；保存三项条件及task_id／run_id。&lt;/div&gt;&lt;div&gt;单Worker：领取运行，调用绑定流程；01发现实际明细并按业务单元分批。&lt;/div&gt;&lt;div&gt;公共模块：保存清单、进度、结果与汇总；未知状态先核实，不自动重提。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="175" width="790" x="470" y="885" as="geometry"/>
+        </mxCell>
+        <mxCell id="arch-e-start" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#526D82;strokeWidth=1.6;fontColor=#334E68;labelBackgroundColor=#FFFFFF;entryX=0.5;entryY=0;jumpStyle=arc;jumpSize=8;fontSize=17;fontFamily=Microsoft YaHei;" target="arch-orchestrator" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;Worker内部HTTP&lt;/div&gt;&lt;div&gt;启动整条流程&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1077" y="1061.59" as="sourcePoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="regulator-api" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EDF5FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;监管对接｜三个业务配置&lt;/div&gt;&lt;div&gt;输入：医院范围（string）、医保结算时间范围、规则选择（string）；编号／鉴权由后端协议管理。&lt;/div&gt;&lt;div&gt;示例：常州市第一人民医院／2024年6月—2025年8月／高值耗材智能体。&lt;/div&gt;&lt;div&gt;平台查询实际明细并保存清单；监管不必传detail_ids，不存具体筛选／比较规则。&lt;/div&gt;&lt;div&gt;返回受理、扫描／核验进度、汇总与分页明细证据；无数据不表示核验一致。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="235" width="1700" x="40" y="3153" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="implementation" name="业务流程与节点说明">
+    <mxGraphModel dx="3275" dy="1733" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1780" pageHeight="4862" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EDF5FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:26px;line-height:1.25;&quot;&gt;&lt;div&gt;业务流程与节点说明｜一笔耗材核验任务怎样执行&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="65" width="1700" x="40" y="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EDF5FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:26px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;本期输入与范围&lt;/div&gt;&lt;div&gt;监管仅配置医院、医保结算时间和规则选择；平台维护具体规则并绑定版本。&lt;/div&gt;&lt;div&gt;01发现范围内明细，02—07按业务单元核验，08保存与汇总；结算范围不自动扩大。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="133" width="1700" x="40" y="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="integration" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFF5E3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;范围示例与平台规则&lt;/div&gt;&lt;div&gt;医院：常州市第一人民医院；医保结算：2024年6月—2025年8月；规则：高值耗材智能体。&lt;/div&gt;&lt;div&gt;01仅纳入该医院、该结算时间内的明细；03仅为这些明细查关联检查。&lt;/div&gt;&lt;div&gt;规则字符串选择平台已发布方案；具体筛选与比较规则不由监管保存。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="231" width="820" x="920" y="2031" as="geometry"/>
+        </mxCell>
+        <mxCell id="contract" link="https://docs.apipost.net/docs/detail/6dfae9144079000?target_id=1204a95cb12101&amp;locale=zh-cn" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EDF5FF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;已核实的接口链｜按此参数衔接&lt;/div&gt;&lt;div&gt;检查：GET /api/v2/study/list → study_primary_id&lt;/div&gt;&lt;div&gt;序列：GET /api/v2/dicom/series-instance-uid → series_id&lt;/div&gt;&lt;div&gt;影像地址：GET /api/v2/storage/dicom/sop-instance-uid&lt;/div&gt;&lt;div&gt;传 series_id（可选 url_type）→ domain、file_path 与影像 UID&lt;/div&gt;&lt;div&gt;影像地址接口返回下载信息，需再请求下载地址才能取得文件。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="205" width="820" x="920" y="2369" as="geometry"/>
+        </mxCell>
+        <mxCell id="access-output" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EDF5FF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;01输出｜范围内实际明细与快照&lt;/div&gt;&lt;div&gt;输入：标准医院集合、医保结算时间起止和任务／规则版本引用。&lt;/div&gt;&lt;div&gt;按审核后的参数化SQL或接口分页取数；稳定排序与数据快照／批次依据须约定。&lt;/div&gt;&lt;div&gt;保存实际detail_ids、来源键、患者、医院、就诊、SETL_TIME、CNT、PRIC及费用。&lt;/div&gt;&lt;div&gt;医院或时间越界不得进入本次清单；缺真实结算时间记录数据问题，不用UPDATE_TIME替代。&lt;/div&gt;&lt;div&gt;读取页与比较分组分开；不得为补齐分组扩大结算范围，依据不足留未比较原因。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="308" width="820" x="40" y="2031" as="geometry"/>
+        </mxCell>
+        <mxCell id="request-map" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EDF5FF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;03 查询参数来源｜按更新后的字段清单&lt;/div&gt;&lt;div&gt;结算表 name → name；cardno → cardno；organ_code → organ_code&lt;/div&gt;&lt;div&gt;结算时间 SETL_TIME + 窗口配置 → begin_time、end_time（必填）。&lt;/div&gt;&lt;div&gt;SETL_TIME暂缺：记录待补充，暂停该时间窗口查询；UPDATE_TIME不作替代。&lt;/div&gt;&lt;div&gt;证件类型配置 → cardtype；确认为身份证时传 01&lt;/div&gt;&lt;div&gt;模态配置 → chk_modality，CT／DR 分别查询&lt;/div&gt;&lt;div&gt;就诊类型 op_em_hp_ex_mark → 同名参数（3 住院／1 门诊）&lt;/div&gt;&lt;div&gt;就诊编号 op_em_hp_ex_no → 同名参数；需核实实表存在且口径一致。&lt;/div&gt;&lt;div&gt;缺少可靠就诊编号时，仅作候选查询；不能用患者相同直接证明本次就诊。&lt;/div&gt;&lt;div&gt;RPT_NO 不作接口入参；organ_name 用于展示、核验。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="308" width="820" x="40" y="2369" as="geometry"/>
+        </mxCell>
+        <mxCell id="handoff-04" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EDF5FF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;后期大模型分支→05｜本期规则不明直接标待验证交05&lt;/div&gt;&lt;div&gt;分支输入：原检查记录（study_primary_id、proj_name、ckpt_name）、目标关节及任务／结算关联。&lt;/div&gt;&lt;div&gt;模型返回：部位判定、原文依据和无法判断原因；检查主键由程序保管，不让模型生成或改写。&lt;/div&gt;&lt;div&gt;程序处理：复核字段、原文引用及已核实的词典映射，回填对应的原检查记录。&lt;/div&gt;&lt;div&gt;分支输出：保留的检查记录列表。每项含 study_primary_id、target_joint、task_id、run_id、结算快照引用及判定依据。&lt;/div&gt;&lt;div&gt;05 第一步：读取 study_primary_id，调用序列列表 API，取得 series_id 列表。&lt;/div&gt;&lt;div&gt;05 第二步：逐个以 series_id 调用影像地址 API，保留检查→序列→影像关联。&lt;/div&gt;&lt;div&gt;去向：相关／待验证交 05；大模型调用失败保留待验证；仅可靠确认整项无关才排除并留痕。&lt;/div&gt;&lt;div&gt;部位和依据用于内部筛选与审计，不代替 API 主键；只使用已核实的映射配置。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="308" width="820" x="40" y="2802" as="geometry"/>
+        </mxCell>
+        <mxCell id="handoff-05" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EDF5FF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;05 输出｜影像地址清单及关联信息&lt;/div&gt;&lt;div&gt;清单：manifest_id；每项含 study_primary_id、series_id、影像 UID、原始 DICOM 地址。&lt;/div&gt;&lt;div&gt;关联：task_id、run_id、target_joint、结算快照引用（可多条）；保留序列结构及影像云来源。&lt;/div&gt;&lt;div&gt;清单校验：检查接口响应、必要字段、地址格式及返回 UID 的关联一致性；按影像 UID 去重。&lt;/div&gt;&lt;div&gt;职责边界：不下载文件、不读取 DICOM 头、不解码；不据此判断实际部位、质量或可解码性。&lt;/div&gt;&lt;div&gt;异常处理：接口失败、字段缺失或关联冲突，本期记录待核查；不记作植入物数量 0。&lt;/div&gt;&lt;div&gt;持久化：保存云端稳定引用、UID 及任务关联；06 另存实际输入清单并关联本清单，登记下载与处理状态。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="257" width="820" x="920" y="2802" as="geometry"/>
+        </mxCell>
+        <mxCell id="quality-owner" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFF5E3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;06 服务端处理｜本期基础识别&lt;/div&gt;&lt;div&gt;小模型服务下载DICOM、筛选元数据、解码预处理并按约定范围识别。&lt;/div&gt;&lt;div&gt;跨图关联去重及计数必须验证；本期未支持的实际部位、覆盖／可计数增强记未评估。&lt;/div&gt;&lt;div&gt;后台保存request_id、实际输入、服务任务号、原始结果、处理清单及必要版本。&lt;/div&gt;&lt;div&gt;同次执行临时文件可复用；执行结束、记录保存后清理。跨运行结果复用后期建设。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="205" width="1700" x="40" y="3140" as="geometry"/>
+        </mxCell>
+        <mxCell id="audit-strip" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EAF7F3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;范围、版本与计数依据&lt;/div&gt;&lt;div&gt;三项受理条件→标准医院与绑定版本→实际明细／快照→检查／影像→模型请求→比较结果与汇总。&lt;/div&gt;&lt;div&gt;各批次使用同一规则版本；计数核实依据另行关联，不能默认成立；范围外结算不纳入。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="129" width="1700" x="40" y="1777" as="geometry"/>
+        </mxCell>
+        <mxCell id="model-response-contract" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFF5E3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;06 返回约定｜任务状态、输入完整性、比较适用性分开&lt;/div&gt;&lt;div&gt;关联：request_id标识我方逻辑识别请求，关联业务编号与提交配置；本期保存实际输入和结果，完整尝试账本后期建设。服务任务编号有则映射model_job_id；我方补齐内部关联，不要求算法或厂商返回全部业务编号。&lt;/div&gt;&lt;div&gt;执行：我方统一记录status／stage与逐计数单元状态，保留服务原始返回；本期保存原始状态，未知字段如实标记；完整attempt管理后期建设。错误由实际执行组件报告，调用超时不等于远端失败。&lt;/div&gt;&lt;div&gt;完整性：返回约定输入、实际处理、失败及排除清单；按算法计数单元判断，不用文件成功率代替。全部排除记无适用输入，不记植入数量0。&lt;/div&gt;&lt;div&gt;原始结果：raw_type、raw_count、计数粒度及依据；原始0保留，失败／未返回不补0；元数据与像素判定分别保存。&lt;/div&gt;&lt;div&gt;适用性：部位、覆盖、可计数性按实际能力返回；未支持记not_evaluated，仍无法判断记unknown。由07结合业务条件决定是否比较。&lt;/div&gt;&lt;div&gt;版本：模型来源、可核实的模型／预处理／接口版本、能力配置及验证依据；未提供记未知。以上为我方记录要求，对外按已验证契约映射，不能假定厂商全部返回。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="261" width="1700" x="40" y="3375" as="geometry"/>
+        </mxCell>
+        <mxCell id="comparison-eligibility" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFF5E3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;07 比较条件与输出｜数量关系不等于植入归属&lt;/div&gt;&lt;div&gt;类别对齐：依据已确认的结算目录与模型标签对应关系，使用统一耗材类别；映射不明则不比较该项，不临时猜测。&lt;/div&gt;&lt;div&gt;本期受控样本由业务／影像人员核实部位、覆盖和计数条件，结合规则保留依据；自动评估后期建设。&lt;br/&gt;比较范围：确认患者、任务关联、目标关节、检查时序（chk_dt对照SETL_TIME）与计数口径；按类别分别比较，有可靠侧别时按约定分组，不跨类别抵扣。&lt;/div&gt;&lt;div&gt;条件分开：种类和数量分别判断能否比较；适用输入与去重规则须明确。未支持能力记未评估，不默认通过，也不按自研／外购分层。&lt;/div&gt;&lt;div&gt;结果：种类＝一致／不一致／未比较；数量＝识别量大于／等于／小于结算量／未比较。可比时差值＝识别量－结算量。&lt;/div&gt;&lt;div&gt;疑点：目标部位未确认、关联不明或计数问题阻断相应比较；保留原始数值，未比较不填差值0。&lt;/div&gt;&lt;div&gt;少量判断：输入覆盖不足、处理不完整或证据不足时，不以较小数量直接告警；模型0不能自动证明未植入。&lt;/div&gt;&lt;div&gt;归属边界：识别更多可能含既往植入物（本院或外院）；数量关系不要求先分离既往植入物，也不能证明本次新增植入。&lt;/div&gt;&lt;div&gt;费用衔接：仅采用可比较的数量和能够对应的结算单价，规则计算折算金额；费用条件、公式与未比较原因见下方费用框。&lt;/div&gt;&lt;div&gt;留痕：原始结果与比较用数量分存，保存单位、去重依据、结算／影像关联、规则与模型版本。07不重新读片。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="308" width="1700" x="40" y="3761.0" as="geometry"/>
+        </mxCell>
+        <mxCell id="result-disposition-closure" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFF5E3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;08结果交接与重新核验&lt;/div&gt;&lt;div&gt;保存范围内逐明细结果、未比较原因、证据、run_id、规则及结果版本；公共模块汇总进度。&lt;/div&gt;&lt;div&gt;查询失败仅重新读取已保存结果，不重新识别；空范围、无适用耗材和无法比较分别表达。&lt;/div&gt;&lt;div&gt;差异为人工复核线索，识别更多可能含既往植入；金额差额不直接认定基金损失。&lt;/div&gt;&lt;div&gt;监管组织业务／影像复核，数据缺项交数据人员，技术失败交开发运维。&lt;/div&gt;&lt;div&gt;人工确认旧执行结束后新run_id从01重跑，明确数据重取与规则版本，保留清单差异及历史。&lt;/div&gt;&lt;div&gt;原医院和医保结算时间范围不自动扩大；节点续跑、自动恢复与跨运行复用后期建设。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="360" width="1700" x="40" y="4462.0" as="geometry"/>
+        </mxCell>
+        <mxCell id="fee-comparison-rules" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EAF7F3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;07 费用计算与比较｜按结算单价折算，08保存，监管系统处置&lt;/div&gt;&lt;div&gt;读取与传递：01读取PRIC、DET_ITEM_FEE_SUMAMT和CNT；02保留逐明细金额、单价、计价单位及快照关联，作为07的结算基准。小模型只提供识别种类和数量，不产生价格。&lt;/div&gt;&lt;div&gt;比较单元：同一任务、同类耗材、同计数／计价单位且能够明确对应的明细或同价组；先去重与确认数量口径，再折算金额，不能把同一识别总量重复用于多条结算明细。&lt;/div&gt;&lt;div&gt;结算基准：结算金额＝对应明细DET_ITEM_FEE_SUMAMT（同价组按唯一明细求和）。按约定精度校验原明细费用是否等于CNT×PRIC；不符时保留原值，费用记未比较并交数据核查。&lt;/div&gt;&lt;div&gt;计算：折算金额＝用于比较的影像识别数量×对应PRIC；金额差额＝折算金额－结算金额。识别更多时照实折算，不将数量截断到结算数量。&lt;/div&gt;&lt;div&gt;结果：按约定金额精度／容差记录折算金额大于／等于／小于结算金额，或未比较；负差额表示结算金额更高，正差额表示折算金额更高。&lt;/div&gt;&lt;div&gt;价格限制：同类存在不同单价、组件／整套无法对应或识别结果无法分配到价格时，费用未比较；不擅自取平均价、最高价，也不按结算数量强行分配识别数量。&lt;/div&gt;&lt;div&gt;独立状态：缺单价／源金额／计价单位或数量不可比时，费用未比较并留原因；原始数量0保留，只有有效且可比的0才折算为0。费用失败不抹去已完成的种类／数量结果。&lt;/div&gt;&lt;div&gt;金额运算：程序使用十进制定点数，配置币种、单价精度、金额舍入与容差并保存版本；退费／冲销须按已确认口径处理，未确认前不按普通正向费用比较。&lt;/div&gt;&lt;div&gt;示例：结算数量2、PRIC＝10,000元、源金额20,000元；可比识别数量1→折算10,000元、差额－10,000元。证据充分时形成费用差异线索，不能直接认定损失10,000元。&lt;/div&gt;&lt;div&gt;解释边界：这是用结算单价对影像识别数量作金额换算，不是影像测得的价格或实际新增植入费用；可能包含既往植入。明细项目费用不自动等于医保基金实际支付额。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="333" width="1700" x="40" y="4099.0" as="geometry"/>
+        </mxCell>
+        <mxCell id="detail-input" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#DAE9F5;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:26px;line-height:1.25;&quot;&gt;&lt;div&gt;节点详情①｜01—03：读取结算、筛选基准、查询候选检查&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="65" width="1700" x="40" y="1936" as="geometry"/>
+        </mxCell>
+        <mxCell id="detail-images" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#DAE9F5;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:26px;line-height:1.25;&quot;&gt;&lt;div&gt;节点详情②｜04—06：检查初筛、影像地址、模型输入与输出&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="65" width="1700" x="40" y="2707" as="geometry"/>
+        </mxCell>
+        <mxCell id="detail-results" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#DAE9F5;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:26px;line-height:1.25;&quot;&gt;&lt;div&gt;节点详情③｜07—08：比较条件、费用规则与异常闭环&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="65" width="1700" x="40" y="3666.0" as="geometry"/>
+        </mxCell>
+        <mxCell id="m0Uqv87WW3kWX2MK9X65-25" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=1.5;align=left;verticalAlign=top;spacing=12;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;01 按医院与医保结算时间查询&lt;/div&gt;&lt;div&gt;只读参数化SQL或范围查询接口。&lt;/div&gt;&lt;div&gt;分页读取范围内结算，保存实际清单、来源键、快照与分页依据。&lt;/div&gt;&lt;div&gt;范围外明细不纳入；缺SETL_TIME不能默认入选，也不用UPDATE_TIME替代。&lt;/div&gt;&lt;div&gt;范围内完整分组后交02；不建设持续增量。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="260" width="430" x="8" y="494" as="geometry"/>
+        </mxCell>
+        <mxCell id="m0Uqv87WW3kWX2MK9X65-26" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=1.5;align=left;verticalAlign=top;spacing=16;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;02 结算筛选｜规则&lt;/div&gt;&lt;div&gt;筛选医保支付的医用耗材，按目录/名称映射筛选人工髋／膝关节。&lt;/div&gt;&lt;div&gt;统一类别、CNT和单位，保留逐明细PRIC与费用总额。&lt;/div&gt;&lt;div&gt;传递患者、医院、就诊、目标关节、SETL_TIME及缺失状态。&lt;/div&gt;&lt;div&gt;保留明细／任务／快照关联；价格缺失只阻断费用比较。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="260" width="358" x="483" y="509" as="geometry"/>
+        </mxCell>
+        <mxCell id="m0Uqv87WW3kWX2MK9X65-27" link="https://docs.apipost.net/docs/detail/6dfae7d97c79000?locale=zh-cn&amp;target_id=444ee13" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=1.5;align=left;verticalAlign=top;spacing=16;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;03 获取关联检查列表&lt;/div&gt;&lt;div&gt;仅为02入选结算查询检查记录。&lt;/div&gt;&lt;div&gt;按患者、医院、就诊及检查窗口查询；核对身份、模态和时间。&lt;/div&gt;&lt;div&gt;输出study_primary_id、检查时间及部位原文；不下载影像，不扩大结算范围。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="215" width="375" x="889" y="532" as="geometry"/>
+        </mxCell>
+        <mxCell id="m0Uqv87WW3kWX2MK9X65-28" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=1.5;align=left;verticalAlign=top;spacing=16;fontStyle=0;fontColor=default;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;04 检查部位初筛｜规则&lt;/div&gt;&lt;div&gt;输入检查记录、部位原文与目标关节。&lt;/div&gt;&lt;div&gt;确认相关：保留并交05。&lt;/div&gt;&lt;div&gt;确认整项无关：排除并留依据。&lt;/div&gt;&lt;div&gt;语义歧义／缺信息：待验证交05。&lt;/div&gt;&lt;div&gt;本期保留主键与任务关联。&lt;/div&gt;&lt;div&gt;大模型辅助为后期可选分支。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="250" width="385" x="1305.5" y="530" as="geometry"/>
+        </mxCell>
+        <mxCell id="m0Uqv87WW3kWX2MK9X65-29" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=1.5;align=left;verticalAlign=top;spacing=16;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;后期可选｜大模型解释文本&lt;/div&gt;&lt;div&gt;本期不启用该增强分支。&lt;/div&gt;&lt;div&gt;规则不能确认时，原记录标待验证交05。&lt;/div&gt;&lt;div&gt;后期返回部位判定与原文依据，由程序校验；主键保持不变。&lt;/div&gt;&lt;div&gt;仅可靠确认整项无关才排除并留痕。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="235" width="350" x="1323" y="845" as="geometry"/>
+        </mxCell>
+        <mxCell id="m0Uqv87WW3kWX2MK9X65-30" link="https://docs.apipost.net/docs/detail/6dfaead25070000?target_id=11ffcb2c7120a1&amp;locale=zh-cn" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=1.5;align=left;verticalAlign=top;spacing=16;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;05 获取影像地址与清单校验&lt;/div&gt;&lt;div&gt;以study_primary_id取序列列表，再以series_id取影像地址。&lt;/div&gt;&lt;div&gt;校验响应、地址及标识，按UID去重。&lt;/div&gt;&lt;div&gt;保留检查→序列→影像及结算任务关联，交06。&lt;/div&gt;&lt;div&gt;本节点不下载、不解码、不判实际部位或质量。&lt;/div&gt;&lt;div&gt;地址失效记录待核查；自动刷新重试后期建设。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="300" width="350" x="1323" y="1173" as="geometry"/>
+        </mxCell>
+        <mxCell id="m0Uqv87WW3kWX2MK9X65-31" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=1.5;align=left;verticalAlign=top;spacing=16;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;06 小模型识别调用与结果整理&lt;/div&gt;&lt;div&gt;程序保存request_id、输入与业务关联；调用小模型API，接收或查询结果。&lt;/div&gt;&lt;div&gt;小模型服务下载DICOM，筛选元数据、解码、预处理、识别及已验证计数。&lt;/div&gt;&lt;div&gt;返回原始种类／数量、状态、实际处理／排除／失败清单与证据。&lt;/div&gt;&lt;div&gt;本期验证跨图关联去重；失败不补0，未评估不默认通过，交07。&lt;/div&gt;&lt;div&gt;部位／覆盖／可计数性自动评估为后期增强。&lt;/div&gt;&lt;div&gt;服务管理同次临时文件；执行结束且留痕后清理，跨运行复用后期建设。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="461" width="368" x="897" y="1150" as="geometry"/>
+        </mxCell>
+        <mxCell id="m0Uqv87WW3kWX2MK9X65-32" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=1.5;align=left;verticalAlign=top;spacing=16;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;07 种类、数量与费用比对&lt;/div&gt;&lt;div&gt;核对关联、部位、时序、类别、处理状态及计数口径。&lt;/div&gt;&lt;div&gt;种类：一致／不一致／未比较。&lt;/div&gt;&lt;div&gt;数量：大于／等于／小于结算量，或未比较。&lt;/div&gt;&lt;div&gt;费用：可比识别量×对应单价，与结算金额比较。&lt;/div&gt;&lt;div&gt;输出结果、数值、差额、依据及未比较原因；失败不补0。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="300" width="350" x="462" y="1173" as="geometry"/>
+        </mxCell>
+        <mxCell id="m0Uqv87WW3kWX2MK9X65-33" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=1.5;align=left;verticalAlign=top;spacing=16;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;08 逐明细保存与任务汇总&lt;/div&gt;&lt;div&gt;保存范围内明细的种类、数量、费用结果及证据；关联run_id和规则版本。&lt;/div&gt;&lt;div&gt;记录批次进度，汇总完成、差异、失败和未比较；空范围不等于核验一致。&lt;/div&gt;&lt;div&gt;必要结果全部保存后才完成；监管查询展示并人工复核。&lt;/div&gt;&lt;div&gt;未知状态先核实；重跑明确数据与版本依据，旧结果保留。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="357" width="350" x="37" y="1173" as="geometry"/>
+        </mxCell>
+        <mxCell id="m0Uqv87WW3kWX2MK9X65-34" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#F5F7FA;strokeColor=#B7C6D7;strokeWidth=1.5;fontColor=#263C53;align=left;verticalAlign=top;spacing=16;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;实现分工｜范围与规则均由平台落实&lt;/div&gt;&lt;div&gt;API：三项配置受理、医院解析、规则版本绑定与去重。&lt;/div&gt;&lt;div&gt;Worker：启动绑定流程；01发现明细，按范围内业务单元分批。&lt;/div&gt;&lt;div&gt;平台规则：维护筛选、关联和比较参数，病例依据另行关联。&lt;/div&gt;&lt;div&gt;公共模块：保存清单、状态、证据、逐明细结果与汇总。&lt;/div&gt;&lt;div&gt;小模型：下载、处理、识别和已验证计数；自动恢复后期建设。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="250" width="790" x="14" y="820" as="geometry"/>
+        </mxCell>
+        <mxCell id="m0Uqv87WW3kWX2MK9X65-35" edge="1" parent="1" source="m0Uqv87WW3kWX2MK9X65-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeWidth=2;strokeColor=#5B7691;fontFamily=Microsoft YaHei;fontSize=16;fontColor=#3C5269;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="m0Uqv87WW3kWX2MK9X65-26" value="">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="m0Uqv87WW3kWX2MK9X65-36" edge="1" parent="1" source="m0Uqv87WW3kWX2MK9X65-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeWidth=2;strokeColor=#5B7691;fontFamily=Microsoft YaHei;fontSize=16;fontColor=#3C5269;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="m0Uqv87WW3kWX2MK9X65-27" value="">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="m0Uqv87WW3kWX2MK9X65-37" edge="1" parent="1" source="m0Uqv87WW3kWX2MK9X65-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeWidth=2;strokeColor=#5B7691;fontFamily=Microsoft YaHei;fontSize=16;fontColor=#3C5269;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="m0Uqv87WW3kWX2MK9X65-28" value="">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="m0Uqv87WW3kWX2MK9X65-38" edge="1" parent="1" source="m0Uqv87WW3kWX2MK9X65-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeWidth=2;fontColor=#3C5269;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;fontSize=17;fontFamily=Microsoft YaHei;dashed=1;strokeColor=#b3a074;" target="m0Uqv87WW3kWX2MK9X65-29" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;后期可选分支&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" x="-0.0667" as="geometry">
+            <mxPoint as="offset"/>
+            <mxPoint x="1498" y="848" as="sourcePoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m0Uqv87WW3kWX2MK9X65-39" edge="1" parent="1" source="m0Uqv87WW3kWX2MK9X65-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeWidth=2;fontColor=#3C5269;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;fontSize=17;fontFamily=Microsoft YaHei;dashed=1;strokeColor=#b3a074;" target="m0Uqv87WW3kWX2MK9X65-30" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;相关／待验证&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" x="0.0476" as="geometry">
+            <mxPoint as="offset"/>
+            <mxPoint x="1498" y="1138" as="sourcePoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m0Uqv87WW3kWX2MK9X65-40" edge="1" parent="1" source="m0Uqv87WW3kWX2MK9X65-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeWidth=2;strokeColor=#46A08E;fontColor=#3C5269;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=1;entryY=0.3;fontSize=17;fontFamily=Microsoft YaHei;" target="m0Uqv87WW3kWX2MK9X65-30" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;相关／待验证&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" x="-0.0007" as="geometry">
+            <mxPoint as="offset"/>
+            <Array as="points">
+              <mxPoint x="1727" y="655"/>
+              <mxPoint x="1727" y="1307"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m0Uqv87WW3kWX2MK9X65-41" edge="1" parent="1" source="m0Uqv87WW3kWX2MK9X65-30" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeWidth=2;strokeColor=#5B7691;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;entryX=1;entryY=0.5;fontSize=17;fontFamily=Microsoft YaHei;" target="m0Uqv87WW3kWX2MK9X65-31" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;地址清单&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" x="-0.0066" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m0Uqv87WW3kWX2MK9X65-42" edge="1" parent="1" source="m0Uqv87WW3kWX2MK9X65-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeWidth=2;strokeColor=#5B7691;fontColor=#3C5269;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;entryX=1;entryY=0.5;fontSize=17;fontFamily=Microsoft YaHei;" target="m0Uqv87WW3kWX2MK9X65-32" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;结果＋状态&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" x="0.5388" y="-28" as="geometry">
+            <mxPoint x="9" y="1" as="offset"/>
+            <Array as="points">
+              <mxPoint x="851.2" y="1327"/>
+              <mxPoint x="851.2" y="1323"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m0Uqv87WW3kWX2MK9X65-43" edge="1" parent="1" source="m0Uqv87WW3kWX2MK9X65-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeWidth=2;strokeColor=#5B7691;fontColor=#3C5269;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;entryX=1;entryY=0.5;fontSize=17;fontFamily=Microsoft YaHei;" target="m0Uqv87WW3kWX2MK9X65-33" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;判定结果&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="m0Uqv87WW3kWX2MK9X65-44" edge="1" parent="1" source="m0Uqv87WW3kWX2MK9X65-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeWidth=2;strokeColor=#46A08E;fontColor=#3C5269;labelBackgroundColor=#FFFFFF;exitX=0.381;exitY=1.008;entryX=0.5;entryY=0;dashed=1;fontSize=17;fontFamily=Microsoft YaHei;exitDx=0;exitDy=0;exitPerimeter=0;" target="m0Uqv87WW3kWX2MK9X65-32" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;结算基准（含单价／费用）&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" x="-0.4633" y="-16" as="geometry">
+            <mxPoint as="offset"/>
+            <Array as="points">
+              <mxPoint x="619.5" y="799"/>
+              <mxPoint x="857" y="799"/>
+              <mxPoint x="857" y="1126.75"/>
+              <mxPoint x="637" y="1126.75"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m0Uqv87WW3kWX2MK9X65-45" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=1.5;align=left;verticalAlign=top;spacing=12;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;小模型服务｜本期识别核心&lt;/div&gt;&lt;div&gt;下载、元数据筛选、解码、预处理。&lt;/div&gt;&lt;div&gt;识别耗材种类、约定范围数量及证据；验证跨图关联去重。&lt;/div&gt;&lt;div&gt;返回实际处理／排除／失败清单。&lt;/div&gt;&lt;div&gt;本期固定低并发；自动部位／覆盖评估、扩容及自动恢复后期建设。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="250" width="417" x="883" y="835" as="geometry"/>
+        </mxCell>
+        <mxCell id="m0Uqv87WW3kWX2MK9X65-46" edge="1" parent="1" source="m0Uqv87WW3kWX2MK9X65-45" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;dashed=1;strokeColor=#D3A04B;labelBackgroundColor=#FFFFFF;exitX=0.461;exitY=1.002;entryX=0.5;entryY=0;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=17;fontFamily=Microsoft YaHei;" target="m0Uqv87WW3kWX2MK9X65-31" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;能力前提&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" x="0.0162" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m0Uqv87WW3kWX2MK9X65-47" edge="1" parent="1" source="m0Uqv87WW3kWX2MK9X65-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="254.86" y="494.67" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m0Uqv87WW3kWX2MK9X65-48" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EAF7F3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;流程入口｜三项条件受理，加载绑定版本&lt;/div&gt;&lt;div&gt;API解析医院与规则选择，保存医保结算时间范围、规则／流程版本及任务编号后返回。&lt;/div&gt;&lt;div&gt;Worker启动绑定流程；00加载并核对受理上下文，实际明细由01查询产生。&lt;/div&gt;&lt;div&gt;未知状态先人工核实；确认结束后新run_id重跑，明确数据与版本依据。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="170" width="939" x="20" y="270" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="scope-relations" name="数据关联与影像筛选范围">
+    <mxGraphModel dx="5284" dy="2832" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1780" pageHeight="2632" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="scope-title" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#F5F7FA;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:26px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;数据关联与影像筛选范围｜先关联，再逐层筛选&lt;/div&gt;&lt;div&gt;按同一任务、同一次运行说明。左侧沿数据链阅读，右侧解释边界与分流；业务处置细节见第2页，反查字段见第4页。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="103" width="1700" x="40" y="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="s0" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;01｜医院＋医保结算时间→实际明细&lt;/div&gt;&lt;div&gt;平台按三项受理条件查询结算；仅纳入所选医院和结算时间内记录。&lt;/div&gt;&lt;div&gt;保存实际明细／快照、来源键及SETL_TIME；范围外结算不纳入。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="129" width="820" x="40" y="158" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EAF7F3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;02｜待核验耗材明细&lt;/div&gt;&lt;div&gt;医保＋医用耗材＋人工髋／膝关节。&lt;/div&gt;&lt;div&gt;保留种类、数量／单位、单价、明细费用、目标关节及查询信息。&lt;/div&gt;&lt;div&gt;是本次任务结算明细的子集；保留来源关联。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="154" width="820" x="920" y="158" as="geometry"/>
+        </mxCell>
+        <mxCell id="data-boundary" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFF5E3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;核验目标｜医保耗材结算 ↔ 真实影像&lt;/div&gt;&lt;div&gt;结算明细与候选检查是查询关联，不是集合包含。&lt;/div&gt;&lt;div&gt;02提供医保耗材种类、数量、单价及明细费用基准。&lt;/div&gt;&lt;div&gt;后续查找相关 DICOM，比较植入物识别结果；不筛检查费的支付方式。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="154" width="1700" x="40" y="526" as="geometry"/>
+        </mxCell>
+        <mxCell id="c0" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EDF5FF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;03｜关联检查记录（元数据）&lt;/div&gt;&lt;div&gt;仅为02入选的结算，按患者、医院、就诊及检查关联窗口查询。&lt;/div&gt;&lt;div&gt;返回study_primary_id、检查时间、项目和部位等信息；不下载DICOM，不增加结算对象。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="154" width="820" x="40" y="710" as="geometry"/>
+        </mxCell>
+        <mxCell id="candidate-note" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#F5F7FA;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;接口候选检查可能包含的范围&lt;/div&gt;&lt;div&gt;查询范围内可能还有其他部位、其他次就诊的检查。&lt;/div&gt;&lt;div&gt;名称含髋／膝也不保证所有下属影像均覆盖目标。&lt;/div&gt;&lt;div&gt;03 没有按“结算耗材种类／数量”直接筛影像的接口参数。&lt;/div&gt;&lt;div&gt;接口筛选过的条件仍应与任务核对，避免错误关联。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="180" width="820" x="920" y="710" as="geometry"/>
+        </mxCell>
+        <mxCell id="c1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EAF7F3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;03 后置校验｜符合任务约束的检查&lt;/div&gt;&lt;div&gt;校验患者、医院、就诊类型／编号、CT／DR与检查时间。&lt;/div&gt;&lt;div&gt;住院：chk_dt &amp;lt; SETL_TIME；普通门诊：chk_dt &amp;gt; SETL_TIME。&lt;/div&gt;&lt;div&gt;SETL_TIME为结算时间（暂缺），另受配置窗口约束；其他就诊类型不套用门诊规则。&lt;/div&gt;&lt;div&gt;通过者是候选检查的子集；SETL_TIME缺失不能用UPDATE_TIME代替，相关查询与时序核对待补充。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="180" width="820" x="40" y="920" as="geometry"/>
+        </mxCell>
+        <mxCell id="association-review" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFF5E3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;关联／数据异常分流&lt;/div&gt;&lt;div&gt;明确无关 → 排除并留痕。关联不明／候选为空 → 核查。&lt;/div&gt;&lt;div&gt;SETL_TIME缺失 → 数据对接人员补充；当前查询窗口不成立。&lt;/div&gt;&lt;div&gt;保留结算任务及原因，不把未查询或无影像记为数量0。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="154" width="820" x="920" y="920" as="geometry"/>
+        </mxCell>
+        <mxCell id="c2" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EAF7F3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;04｜检查级部位初筛 → 保留的检查记录&lt;/div&gt;&lt;div&gt;输入：03 校验后的检查记录（study_primary_id、proj_name、ckpt_name）及 02 的目标关节。&lt;/div&gt;&lt;div&gt;相关：保留；可靠确认整项无关：排除并留痕；文本有歧义本期保留待验证；大模型辅助后期建设。&lt;/div&gt;&lt;div&gt;大模型未启用／调用失败、缺信息或仍有歧义：保留待验证，不因缺少髋／膝关键词直接排除。&lt;/div&gt;&lt;div&gt;输出：相关和待验证的检查记录；保留主键、目标关节、任务／结算关联及判定依据。&lt;/div&gt;&lt;div&gt;CKPT_CODE 如后续确认可用再接入规则；当前不假设检查列表 API 已返回该字段。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="205" width="820" x="40" y="1130" as="geometry"/>
+        </mxCell>
+        <mxCell id="excluded" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FDEDED;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;排除：可靠确认不覆盖目标部位&lt;/div&gt;&lt;div&gt;排除当前检查，记录理由；不据此判定结算异常。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="103" width="1700" x="40" y="1365" as="geometry"/>
+        </mxCell>
+        <mxCell id="optional-llm" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#F3EDFD;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;后期可选｜大模型文本辅助&lt;/div&gt;&lt;div&gt;本期规则不能确定时保留待验证及原文，不默认排除或通过。&lt;/div&gt;&lt;div&gt;后期由模型返回判定及依据，经程序校验后回填，主键不变。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="154" width="820" x="920" y="1130" as="geometry"/>
+        </mxCell>
+        <mxCell id="i2" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EDF5FF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;05｜获取影像地址与清单校验&lt;/div&gt;&lt;div&gt;输入：保留的检查记录；study_primary_id → series_id → 原始 DICOM 地址。&lt;/div&gt;&lt;div&gt;程序校验接口响应、必要字段、地址格式与 UID 关联；按影像 UID 去重。&lt;/div&gt;&lt;div&gt;不下载、不读文件头、不解码；不做实际部位或质量筛选。&lt;/div&gt;&lt;div&gt;输出：候选影像地址清单；保留检查／序列／影像标识、目标关节、任务关联与校验状态。&lt;/div&gt;&lt;div&gt;清单可交接，不代表影像覆盖目标、可以解码或质量合格。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="205" width="820" x="40" y="1498" as="geometry"/>
+        </mxCell>
+        <mxCell id="coverage-review" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFF5E3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;05 异常分流｜接口、地址与关联&lt;/div&gt;&lt;div&gt;接口失败、字段缺失或关联冲突本期记录待核查；自动重试后期建设。&lt;/div&gt;&lt;div&gt;部位待验证项继续交 06；05 不按文件内容排除影像。&lt;/div&gt;&lt;div&gt;无可用清单不代表植入物数量 0。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="154" width="820" x="920" y="1498" as="geometry"/>
+        </mxCell>
+        <mxCell id="sets" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#F5F7FA;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;集合关系｜使用具体名称，不再使用集合代号&lt;/div&gt;&lt;div&gt;结算：待核验耗材明细 ⊆ 本次任务结算明细 ⊆ 数据源结算明细。检查：保留的检查记录 ⊆ 符合任务约束的检查 ⊆ 接口候选检查。&lt;/div&gt;&lt;div&gt;跨类型：结算与检查是任务关联；检查向下属影像一对多展开，不把结算记录当成影像集合。&lt;/div&gt;&lt;div&gt;影像：实际推理影像 ⊆ 元数据初筛后候选影像 ⊆ 候选影像地址清单所指影像 ⊆ 保留检查下属影像 ⊆ 接口候选检查下属影像。&lt;/div&gt;&lt;div&gt;上述包含关系按同一次运行、同一批候选数据和影像 UID 计；尚未展开的下属影像范围是逻辑范围，不代表已下载或已枚举。&lt;/div&gt;&lt;div&gt;自研／外购运行的输入不预设互为子集；原始影像与预处理派生输入分别关联。集合为空不代表植入物数量为 0。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="205" width="1700" x="40" y="1993" as="geometry"/>
+        </mxCell>
+        <mxCell id="example" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFF5E3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;示例｜原始数量、比较条件与告警分别记录&lt;/div&gt;&lt;div&gt;① 结算人工膝关节1，识别1，但目标部位仅写“下肢”且无其他确认依据：保存原始数量，数量记未比较（目标部位未确认），交影像复核任务。&lt;/div&gt;&lt;div&gt;② 同类、同口径且比较条件满足，结算1、识别2：记识别数量大于结算数量，差值＋1；不触发少量告警，可能含既往植入但不据此确认归属。&lt;/div&gt;&lt;div&gt;③ 同类、同口径，结算2、识别1：证据支持目标范围内的少量判断时形成风险线索；覆盖不足或计数依据不明时，记录未比较及原因。&lt;/div&gt;&lt;div&gt;④ 无候选影像、全部排除或处理失败：不补0，保存具体原因；按数据、影像或技术问题交对应责任人处理。&lt;/div&gt;&lt;div&gt;原始0保留；数量与种类分别比较，自研／外购采用同一规则，未评估不默认通过。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="205" width="1700" x="40" y="2387" as="geometry"/>
+        </mxCell>
+        <mxCell id="scope-suitability" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFF5E3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;06｜本期模型服务下载与基础识别&lt;/div&gt;&lt;div&gt;小模型服务下载、筛选元数据并解码预处理，按约定计数范围识别。&lt;/div&gt;&lt;div&gt;后台以request_id保存实际输入、服务任务号、原始结果及处理清单。&lt;/div&gt;&lt;div&gt;实际部位、覆盖与可计数自动评估后期建设；本期未支持记未评估。&lt;/div&gt;&lt;div&gt;本期用人工核实的样本和固定规则确认比较前提并留痕，交07核对；证据不足保留未比较原因。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="230" width="820" x="40" y="1733" as="geometry"/>
+        </mxCell>
+        <mxCell id="scope-quality-note" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFF5E3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;07—08｜范围内核验与任务汇总&lt;/div&gt;&lt;div&gt;07按同一绑定规则版本比较；08保存逐明细结果与批次进度，汇总供监管查询。&lt;/div&gt;&lt;div&gt;无输入／失败不补0；依据不足记未比较。&lt;/div&gt;&lt;div&gt;检查证据、业务分组和重新核验不自动扩大医保结算范围。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="180" width="820" x="920" y="1733" as="geometry"/>
+        </mxCell>
+        <mxCell id="scope-fee-note" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EAF7F3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;费用属性不改变影像集合&lt;/div&gt;&lt;div&gt;PRIC、DET_ITEM_FEE_SUMAMT和CNT来自结算快照，随任务保留；不传给检查／序列／影像API，也不用于筛除影像。&lt;/div&gt;&lt;div&gt;07用可比识别数量和明确对应的结算单价折算金额；同一识别数量不重复分配到多条明细。费用公式、异常处理见第2页，复算字段见第4页。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="129" width="1700" x="40" y="2228" as="geometry"/>
+        </mxCell>
+        <mxCell id="scope-time-rules" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EAF7F3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;医保结算时间是本次核验边界&lt;/div&gt;&lt;div&gt;例：2024年6月—2025年8月，仅查SETL_TIME处于[2024-06-01, 2025-09-01)的结算。&lt;/div&gt;&lt;div&gt;03查关联检查记录：检查时间是证据字段，不改变医保结算范围，也不新增范围外结算。&lt;/div&gt;&lt;div&gt;SETL_TIME缺失须补真实字段；UPDATE_TIME不可替代。业务分组及规则不能扩大结算范围。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="154" width="1700" x="40" y="342" as="geometry"/>
+        </mxCell>
+        <mxCell id="scope-set-filter" edge="1" parent="1" source="s0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeWidth=2;strokeColor=#64839D;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontSize=17;fontFamily=Microsoft YaHei;" target="s1" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;筛选后子集&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="audit-persistence" name="数据存储与阶段建设安排">
+    <mxGraphModel dx="1308" dy="693" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1780" pageHeight="3459" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="audit-title" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EAF7F3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:22px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;数据存储与阶段建设安排&lt;/div&gt;&lt;div&gt;本期：任务、范围、基本状态、必要证据和结果可追溯。&lt;/div&gt;&lt;div&gt;后期：逐节点检查点、自动续跑、跨运行结果复用、自动恢复调度及持续增量；本期不实施。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="129" width="1700" x="40" y="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="section-1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#DDEBF7;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:26px;line-height:1.25;&quot;&gt;&lt;div&gt;① 存储分工｜正式记录、原片与临时文件分开&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="65" width="1700" x="40" y="184" as="geometry"/>
+        </mxCell>
+        <mxCell id="db-role" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#F4F8FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;PostgreSQL｜任务、范围与发布版本&lt;/div&gt;&lt;div&gt;受理：原始医院／医保结算时间／规则选择，标准机构与绑定版本。&lt;/div&gt;&lt;div&gt;运行：task_id／run_id、实际明细／快照、批次进度与清单依据。&lt;/div&gt;&lt;div&gt;证据：检查／影像引用、模型请求及原始结果、比较和任务汇总。&lt;/div&gt;&lt;div&gt;节点恢复与自动重试队列后期建设。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="205" width="820" x="40" y="279" as="geometry"/>
+        </mxCell>
+        <mxCell id="storage-boundary" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFF6DF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;存储原则｜本期必要留痕，后期自动恢复&lt;/div&gt;&lt;div&gt;保留核验依据与结果，按run_id关联；不要求逐节点保存可恢复现场。人工复核由监管系统记录。&lt;/div&gt;&lt;div&gt;保存证据不等于自动续跑，读取同次结果不等于跨运行复用。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="103" width="1700" x="40" y="514" as="geometry"/>
+        </mxCell>
+        <mxCell id="section-2" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#DDEBF7;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:26px;line-height:1.25;&quot;&gt;&lt;div&gt;② 记录如何关联｜监管任务 → 核验范围／快照 → 运行／节点 → 影像与结果&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="65" width="1700" x="40" y="647" as="geometry"/>
+        </mxCell>
+        <mxCell id="identity" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#F4F8FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;稳定来源与不可混淆的时间&lt;/div&gt;&lt;div&gt;来源：source_system＋source_table＋source_row_id；费用明细稳定唯一键须落实。MDTRT_ID用于约定的就诊／结算关联，不能替代费用明细唯一键；RPT_NO为申请单关联。&lt;/div&gt;&lt;div&gt;快照：snapshot_id保存当时原始字段、缺失项、读取批次及时间，后续以引用访问。&lt;/div&gt;&lt;div&gt;UPDATE_TIME＝新增条目时间，用于后期增量接入；SETL_TIME＝医保结算时间（暂缺），用于检查窗口与时序，不能互相替代。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="154" width="1700" x="40" y="742" as="geometry"/>
+        </mxCell>
+        <mxCell id="identity-chain" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#F4F8FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;任务条件与实际范围分别保存&lt;/div&gt;&lt;div&gt;来源＋监管编号↔task_id↔run_id。&lt;/div&gt;&lt;div&gt;保存医院、医保结算时间及规则版本。&lt;/div&gt;&lt;div&gt;01发现实际明细／快照，关联批次与结果。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="180" width="510" x="40" y="926" as="geometry"/>
+        </mxCell>
+        <mxCell id="manifest-chain" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#F4F8FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;检查与实际模型输入&lt;/div&gt;&lt;div&gt;study_primary_id → series_id → 影像UID／云端引用。&lt;/div&gt;&lt;div&gt;manifest_id：清单，关联request_id识别请求。&lt;/div&gt;&lt;div&gt;ris_study_id另存，不替代API主键。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="154" width="510" x="635" y="926" as="geometry"/>
+        </mxCell>
+        <mxCell id="result-chain" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#F4F8FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;结果与人工处置关联&lt;/div&gt;&lt;div&gt;result_id＋版本关联run_id、结算基准&lt;/div&gt;&lt;div&gt;与request_id对应的识别结果。&lt;/div&gt;&lt;div&gt;监管系统按任务／结果／版本保存复核。&lt;/div&gt;&lt;div&gt;任务与快照、影像通过关联表连接。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="180" width="510" x="1230" y="926" as="geometry"/>
+        </mxCell>
+        <mxCell id="section-3" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#DDEBF7;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:26px;line-height:1.25;&quot;&gt;&lt;div&gt;③ 本期必要证据｜记录依据，不建设逐节点检查点&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="65" width="1700" x="40" y="1136" as="geometry"/>
+        </mxCell>
+        <mxCell id="steps-early" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#F4F8FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;00—04｜范围与关联依据&lt;/div&gt;&lt;div&gt;00加载受理条件、当前运行及绑定规则版本。&lt;/div&gt;&lt;div&gt;01按医院／医保结算时间分页取数，校验范围并保存清单、来源键、快照。&lt;/div&gt;&lt;div&gt;02保存平台筛选规则、分组及排除依据。&lt;/div&gt;&lt;div&gt;03保存检查记录与身份／时间关联；不下载影像，不新增范围外结算。&lt;/div&gt;&lt;div&gt;04保存部位判断与原文；计数依据由平台另行关联。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="257" width="820" x="40" y="1231" as="geometry"/>
+        </mxCell>
+        <mxCell id="steps-late" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#F4F8FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;05—08｜本期输入、识别与比较证据&lt;/div&gt;&lt;div&gt;05保存检查→序列→影像UID、地址清单及校验依据。&lt;/div&gt;&lt;div&gt;06保存request_id、服务任务号（如有）、实际处理／排除／失败清单、原始种类／数量、计数范围、证据及可取得版本。&lt;/div&gt;&lt;div&gt;07保存三项比较结果、两侧数值、差额、规则依据及未比较原因。&lt;/div&gt;&lt;div&gt;08保存run_id／结果版本及证据引用，必要结果落库后标记完成。&lt;/div&gt;&lt;div&gt;不要求每个节点形成可恢复快照；高级尝试账本后期建设。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="320" width="820" x="920" y="1231" as="geometry"/>
+        </mxCell>
+        <mxCell id="fee-audit-fields" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFF6DF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;07费用复算与结果口径｜作为节点档案的一部分，不再重复存一套全流程数据&lt;/div&gt;&lt;div&gt;基准：关联原始CNT、PRIC、DET_ITEM_FEE_SUMAMT、币种／单位与唯一明细；保存比较分组、价格对应关系、识别数量来源及去重依据。&lt;/div&gt;&lt;div&gt;公式：折算金额＝可比识别数量×对应结算单价；金额差额＝折算金额－结算金额。保存原金额与CNT×PRIC的校验状态、十进制精度、舍入、容差及规则版本；不覆盖原值。&lt;/div&gt;&lt;div&gt;状态：种类一致／不一致／未比较；数量和费用分别记录识别量／折算额相对结算基准的大于／等于／小于／未比较。原始0保留；失败不补0；不可比数值与差额为null。&lt;/div&gt;&lt;div&gt;限制：多价无法对应、单位不明或输入证据不足时记录未比较原因；未评估不当通过。识别更多可能含既往植入，金额差额不等于已认定基金损失。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="180" width="1700" x="40" y="1581" as="geometry"/>
+        </mxCell>
+        <mxCell id="section-4" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#DDEBF7;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:26px;line-height:1.25;&quot;&gt;&lt;div&gt;④ 本期写入与交接｜先保存任务，再启动；结果落库后完成&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="65" width="1700" x="40" y="1791" as="geometry"/>
+        </mxCell>
+        <mxCell id="write-commit" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#F4F8FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;本期写入｜条件受理与实际范围&lt;/div&gt;&lt;div&gt;API：解析医院与方案、绑定版本；保存条件及待执行记录后返回。&lt;/div&gt;&lt;div&gt;Worker：领取运行，事务外HTTP启动绑定流程。&lt;/div&gt;&lt;div&gt;01：保存范围内实际明细、快照与分页依据；任务记录扫描／核验进度。&lt;/div&gt;&lt;div&gt;06：先保存请求关联，再调用模型。&lt;/div&gt;&lt;div&gt;08：保存批次／明细结果并汇总，必要结果全部落库后整项完成。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="257" width="820" x="40" y="1886" as="geometry"/>
+        </mxCell>
+        <mxCell id="recovery" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#F4F8FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;异常与人工整项重跑&lt;/div&gt;&lt;div&gt;捕获错误记失败或待确认；进程突退由人员核实，超时不自动重提。&lt;/div&gt;&lt;div&gt;确认旧执行结束后新run_id从01重跑；明确沿用／重取的数据依据与规则版本，保存实际清单差异。&lt;/div&gt;&lt;div&gt;保留原医院和医保结算时间条件，不自动扩大范围；旧结果不覆盖新运行。&lt;/div&gt;&lt;div&gt;检查点、节点续跑、跨运行复用与自动恢复后期建设。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="180" width="1700" x="40" y="2529" as="geometry"/>
+        </mxCell>
+        <mxCell id="ingestion-checkpoint" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFF6DF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;本期基本去重与后期增强&lt;/div&gt;&lt;div&gt;本期以来源系统＋监管编号防重复建单；固定范围、run_id、request_id和结果版本保持关联。&lt;/div&gt;&lt;div&gt;同一请求结果查询只读取已有数据；人工整项重跑是新的运行。&lt;/div&gt;&lt;div&gt;后期：到期重试扫描、超时自动接管、节点尝试账本、跨运行复用及完整恢复策略。&lt;/div&gt;&lt;div&gt;本地去重不保证远端推理绝不重复；状态未知先核实。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="180" width="1700" x="40" y="2739" as="geometry"/>
+        </mxCell>
+        <mxCell id="section-5" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#DDEBF7;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:26px;line-height:1.25;&quot;&gt;&lt;div&gt;⑤ 后期建设｜自动恢复、节点检查点及持续增量&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="65" width="1700" x="40" y="2173" as="geometry"/>
+        </mxCell>
+        <mxCell id="object-role" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#F4F8FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;本期影像与临时文件&lt;/div&gt;&lt;div&gt;原始DICOM留影像云，业务库保存UID、来源引用、实际输入及必要证据。&lt;/div&gt;&lt;div&gt;小模型服务管理本次执行的临时文件；执行结束、留痕完成且无人使用后清理。&lt;/div&gt;&lt;div&gt;同次执行可复用临时文件；跨运行缓存／结果复用及自动清理调度后期建设。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="205" width="820" x="40" y="3044" as="geometry"/>
+        </mxCell>
+        <mxCell id="review-refetch" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#F4F8FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;复核时如何重新查看&lt;/div&gt;&lt;div&gt;根据保存的云端引用与当时的SOP UID定位原片；下载后可用校验和核对文件一致性。&lt;/div&gt;&lt;div&gt;从任一识别结果或影像，可沿下方关联回到当时结算快照。复核更正追加记录；源影像继续由影像云留存。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="154" width="820" x="920" y="3044" as="geometry"/>
+        </mxCell>
+        <mxCell id="rev-image" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EAF7F3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;影像／识别&lt;/div&gt;&lt;div&gt;云来源＋影像UID／校验和&lt;/div&gt;&lt;div&gt;manifest_id → request_id（我方识别请求）&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="129" width="510" x="40" y="3279" as="geometry"/>
+        </mxCell>
+        <mxCell id="rev-run" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EAF7F3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;运行／监管任务&lt;/div&gt;&lt;div&gt;run_id → task_id → 来源系统／监管任务编号。&lt;/div&gt;&lt;div&gt;关联节点依据、结果版本与监管处置记录。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="140" width="510" x="635" y="3279" as="geometry"/>
+        </mxCell>
+        <mxCell id="rev-source" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EAF7F3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;当时的结算&lt;/div&gt;&lt;div&gt;任务明细关联 → snapshot_id&lt;/div&gt;&lt;div&gt;source_row_id、MDTRT_ID、RPT_NO&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="129" width="510" x="1230" y="3279" as="geometry"/>
+        </mxCell>
+        <mxCell id="section-6" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#DDEBF7;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:26px;line-height:1.25;&quot;&gt;&lt;div&gt;⑥ 原片反查与历史审计｜结果可回到当时结算和实际输入&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="65" width="1700" x="40" y="2949" as="geometry"/>
+        </mxCell>
+        <mxCell id="time-ingestion-rules" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EAF7F3;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;范围查询与持续增量分别管理&lt;/div&gt;&lt;div&gt;本期：监管选择医院及医保结算时间范围，平台分页取得实际清单／快照。&lt;/div&gt;&lt;div&gt;分页顺序与数据快照／批次依据须约定；记录查询时间本身不保证多页数据一致。&lt;/div&gt;&lt;div&gt;后期持续增量可使用UPDATE_TIME＋唯一键维护接入进度，但不能代替本次医保结算范围。&lt;/div&gt;&lt;div&gt;SETL_TIME始终表示医保结算时间；范围外结算不纳入，缺字段记录数据问题。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="231" width="1700" x="40" y="2268" as="geometry"/>
+        </mxCell>
+        <mxCell id="storage-files" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EDF5FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;本期影像云与临时空间&lt;/div&gt;&lt;div&gt;影像云长期保留原片；业务库保存输入关联和结果证据。&lt;/div&gt;&lt;div&gt;小模型服务在本次执行期间下载、解码、预处理；结束并留痕后清理。&lt;/div&gt;&lt;div&gt;不永久复制全量原片；跨运行复用后期建设。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="205" width="820" x="920" y="279" as="geometry"/>
+        </mxCell>
+        <mxCell id="commit-example" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EDF5FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;范围任务交接示例&lt;/div&gt;&lt;div&gt;受理：三项业务配置，同号同内容返回原任务及绑定版本。&lt;/div&gt;&lt;div&gt;查询：01分页发现范围内明细并保存快照；空范围单独记录。&lt;/div&gt;&lt;div&gt;核验：按范围内完整业务单元分批，避免计数重复分配。&lt;/div&gt;&lt;div&gt;结果：保存明细与汇总；失败留痕，未知状态先核实。&lt;/div&gt;&lt;div&gt;重跑：明确数据／版本依据并保留历史，不能自动扩大范围。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="220" width="820" x="920" y="1886" as="geometry"/>
+        </mxCell>
+        <mxCell id="audit-assoc-1" edge="1" parent="1" source="identity-chain" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeWidth=2;strokeColor=#64839D;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontSize=17;fontFamily=Microsoft YaHei;" target="manifest-chain" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;关联&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="audit-assoc-2" edge="1" parent="1" source="manifest-chain" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeWidth=2;strokeColor=#64839D;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontSize=17;fontFamily=Microsoft YaHei;" target="result-chain" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;关联&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="reverse-1" edge="1" parent="1" source="rev-image" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeWidth=2;strokeColor=#64839D;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontSize=17;fontFamily=Microsoft YaHei;" target="rev-run" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;反查&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="reverse-2" edge="1" parent="1" source="rev-run" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeWidth=2;strokeColor=#64839D;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontSize=17;fontFamily=Microsoft YaHei;" target="rev-source" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;反查&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="regulator-integration" name="监管系统对接与总体架构">
+    <mxGraphModel dx="2183" dy="1155" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1842" pageHeight="2707" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="integration-title" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F0F5FA;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:22px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;监管系统对接与总体架构｜三项配置&lt;/div&gt;&lt;div&gt;监管仅配置医院范围、医保结算时间范围、规则选择；平台维护具体规则及发布版本。&lt;/div&gt;&lt;div&gt;API受理→01范围查询→分组核验→08结果与汇总；范围外结算不纳入。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="1700" x="40" y="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="architecture-heading" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontStyle=1;verticalAlign=middle;spacing=14;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:26px;line-height:1.25;&quot;&gt;&lt;div&gt;① 智能核验系统总体架构与交互图&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="1700" x="40" y="175" as="geometry"/>
+        </mxCell>
+        <mxCell id="backend-boundary" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F7FAFD;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;dashed=1;strokeColor=#7899B5;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;智能体后台&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="660" width="840" x="550" y="275" as="geometry"/>
+        </mxCell>
+        <mxCell id="regulator" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F1F4F7;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;原监管系统&lt;/div&gt;&lt;div&gt;医院范围（string）&lt;/div&gt;&lt;div&gt;医保结算时间范围&lt;/div&gt;&lt;div&gt;规则选择（string）&lt;/div&gt;&lt;div&gt;查询结果、证据与人工复核&lt;/div&gt;&lt;div&gt;不保存具体规则&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="185" width="310" x="60" y="445" as="geometry"/>
+        </mxCell>
+        <mxCell id="common" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#E3EFF9;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;平台公共模块｜目标设计&lt;/div&gt;&lt;div&gt;医院解析、规则选择与版本绑定&lt;/div&gt;&lt;div&gt;条件受理、基本去重与查询&lt;/div&gt;&lt;div&gt;单Worker启动绑定流程&lt;/div&gt;&lt;div&gt;保存实际清单、批次与汇总&lt;/div&gt;&lt;div&gt;未知状态人工核实&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="225" width="350" x="590" y="410" as="geometry"/>
+        </mxCell>
+        <mxCell id="verification-flow" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF3FA;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;智能体核验流程｜01—08&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="483" width="340" x="1010" y="385" as="geometry"/>
+        </mxCell>
+        <mxCell id="flow-steps" parent="verification-flow" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;范围查询与规则核验&lt;/div&gt;&lt;div&gt;00加载上下文；01按医院与医保结算时间分页取数。&lt;/div&gt;&lt;div&gt;02—07分组核验；08保存明细并汇总。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="161.00000000000003" width="300" x="20" y="80.00103448275863" as="geometry"/>
+        </mxCell>
+        <mxCell id="model-adapter" parent="verification-flow" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;06 影像处理与耗材识别&lt;/div&gt;&lt;div&gt;整理影像清单、目标范围及任务关联；提交影像引用与识别配置&lt;/div&gt;&lt;div&gt;查询状态，整理识别结果及证据&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="167.9489677419355" width="300" x="20" y="289.99619354838717" as="geometry"/>
+        </mxCell>
+        <mxCell id="model-service" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F1F4F7;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;小模型识别服务&lt;/div&gt;&lt;div&gt;按地址获取影像，按约定完成元数据筛选、解码与预处理；&lt;/div&gt;&lt;div&gt;识别耗材种类与数量，返回实际处理清单、状态、结果及证据&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="190" width="290" x="1512" y="675" as="geometry"/>
+        </mxCell>
+        <mxCell id="database" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#E8F3ED;strokeColor=#A6BED3;strokeWidth=1.2;fontFamily=Microsoft YaHei;fontColor=#243B53;fontSize=18;align=left;verticalAlign=top;spacing=18;shape=cylinder3;size=16;boundedLbl=1;" value="" vertex="1">
+          <mxGeometry height="170" width="350" x="590" y="735" as="geometry"/>
+        </mxCell>
+        <mxCell id="database-caption" parent="database" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;strokeColor=none;spacing=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;PostgreSQL&lt;/div&gt;&lt;div&gt;三项条件、医院与规则版本&lt;/div&gt;&lt;div&gt;实际清单／快照、运行／批次&lt;/div&gt;&lt;div&gt;结果、汇总与证据引用&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="110" width="314" x="18" y="42" as="geometry"/>
+        </mxCell>
+        <mxCell id="submit-query" edge="1" parent="1" source="regulator" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#315D82;strokeWidth=1.7;dashed=0;fontColor=#243B53;labelBackgroundColor=#FFFFFF;verticalLabelPosition=top;verticalAlign=bottom;spacingBottom=7;exitX=1;exitY=0.1892;entryX=0;entryY=0.3111;fontSize=17;fontFamily=Microsoft YaHei;" target="common" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;三项配置／查询&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="480" as="sourcePoint"/>
+            <mxPoint x="590" y="480" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="response" edge="1" parent="1" source="common" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#315D82;strokeWidth=1.7;dashed=1;fontColor=#243B53;labelBackgroundColor=#FFFFFF;verticalLabelPosition=top;verticalAlign=bottom;spacingBottom=7;exitX=0;exitY=0.7111;entryX=1;entryY=0.6757;fontSize=17;fontFamily=Microsoft YaHei;" target="regulator" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;受理／进度／结果&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="590" y="570" as="sourcePoint"/>
+            <mxPoint x="370" y="570" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dispatch" edge="1" parent="1" source="common" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#315D82;strokeWidth=1.7;dashed=0;fontFamily=Microsoft YaHei;fontSize=17;fontColor=#243B53;labelBackgroundColor=#FFFFFF;verticalLabelPosition=top;verticalAlign=bottom;spacingBottom=7;exitX=1;exitY=0.2222;entryX=0.5;entryY=0;" target="verification-flow" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="975" y="460"/>
+              <mxPoint x="975" y="365"/>
+              <mxPoint x="1180" y="365"/>
+            </Array>
+            <mxPoint x="940" y="460" as="sourcePoint"/>
+            <mxPoint x="1180" y="385" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dispatch-label" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;strokeColor=none;rounded=0;spacing=0;verticalAlign=middle;align=center;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;启动绑定版本流程&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="32" width="180" x="1000" y="326" as="geometry"/>
+        </mxCell>
+        <mxCell id="flow-return" edge="1" parent="1" source="verification-flow" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#315D82;strokeWidth=1.7;dashed=1;fontFamily=Microsoft YaHei;fontSize=17;fontColor=#243B53;labelBackgroundColor=#FFFFFF;verticalLabelPosition=top;verticalAlign=bottom;spacingBottom=7;exitX=0;exitY=0.4828;entryX=0.7857;entryY=1;" target="common" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="980" y="618.19"/>
+              <mxPoint x="980" y="677"/>
+              <mxPoint x="865" y="677"/>
+            </Array>
+            <mxPoint x="1010" y="595" as="sourcePoint"/>
+            <mxPoint x="865" y="635" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-return-label" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;strokeColor=none;rounded=0;spacing=0;verticalAlign=middle;align=center;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;基本状态、证据与08结果&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="28" width="205" x="800" y="693" as="geometry"/>
+        </mxCell>
+        <mxCell id="persist" edge="1" parent="1" source="common" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#315D82;strokeWidth=1.7;dashed=0;fontColor=#243B53;labelBackgroundColor=#FFFFFF;verticalLabelPosition=top;verticalAlign=bottom;spacingBottom=7;startArrow=block;startFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;fontSize=17;fontFamily=Microsoft YaHei;" target="database" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;统一读写&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="765" y="635" as="sourcePoint"/>
+            <mxPoint x="765" y="735" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="model-request" edge="1" parent="1" source="model-adapter" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#315D82;strokeWidth=1.7;dashed=0;fontColor=#243B53;labelBackgroundColor=#FFFFFF;verticalLabelPosition=top;verticalAlign=bottom;spacingBottom=7;exitX=1;exitY=0.28;entryX=0;entryY=0.25;entryDx=0;entryDy=0;fontSize=17;fontFamily=Microsoft YaHei;" target="model-service" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;提交／查询识别任务&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" x="-0.0036" as="geometry">
+            <mxPoint as="offset"/>
+            <mxPoint x="1330" y="700" as="sourcePoint"/>
+            <mxPoint x="1450" y="700" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="model-response" edge="1" parent="1" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#315D82;strokeWidth=1.7;dashed=1;fontColor=#243B53;labelBackgroundColor=#FFFFFF;verticalLabelPosition=top;verticalAlign=bottom;spacingBottom=7;entryX=0.993;entryY=0.679;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=17;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;状态／结果／证据&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" x="-0.0006" as="geometry">
+            <mxPoint as="offset"/>
+            <mxPoint x="1508" y="786" as="sourcePoint"/>
+            <mxPoint x="1330.0000000000005" y="786.0035426451614" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-internal-order" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;strokeColor=none;rounded=0;spacing=0;verticalAlign=middle;align=center;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;按01—08顺序与分支执行&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="28" width="300" x="1030" y="625" as="geometry"/>
+        </mxCell>
+        <mxCell id="architecture-note" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;图示职责与范围&lt;/div&gt;&lt;div&gt;监管配置医院、医保结算时间和规则；具体规则、发布版本及机构映射由平台管理。&lt;/div&gt;&lt;div&gt;03查检查记录，05查序列和地址；06提交引用，由小模型直接从影像云下载DICOM。&lt;/div&gt;&lt;div&gt;07比较，08保存范围内明细结果并汇总；检查证据和业务分组不得扩大结算范围。&lt;/div&gt;&lt;div&gt;人工复核留监管系统；自动恢复、持续增量及生产扩容后期建设。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="161" width="1700" x="40" y="960" as="geometry"/>
+        </mxCell>
+        <mxCell id="roles-heading" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontStyle=1;verticalAlign=middle;spacing=14;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:26px;line-height:1.25;&quot;&gt;&lt;div&gt;② 双方职责&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="1700" x="40" y="1230" as="geometry"/>
+        </mxCell>
+        <mxCell id="roles-r0-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;组成部分&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="330" x="40" y="1300" as="geometry"/>
+        </mxCell>
+        <mxCell id="roles-r0-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;主要职责&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="1370" x="370" y="1300" as="geometry"/>
+        </mxCell>
+        <mxCell id="roles-r1-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;监管系统前端&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="58" width="330" x="40" y="1352" as="geometry"/>
+        </mxCell>
+        <mxCell id="roles-r1-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;仅配置医院、医保结算时间范围、规则选择；展示进度、汇总、明细证据并人工复核。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="58" width="1370" x="370" y="1352" as="geometry"/>
+        </mxCell>
+        <mxCell id="roles-r2-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;监管系统后端&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="58" width="330" x="40" y="1410" as="geometry"/>
+        </mxCell>
+        <mxCell id="roles-r2-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;提交三项配置，自动处理编号与鉴权；查询结果并关联原业务，不存储具体规则。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="58" width="1370" x="370" y="1410" as="geometry"/>
+        </mxCell>
+        <mxCell id="roles-r3-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;智能体后台公共模块&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="58" width="330" x="40" y="1468" as="geometry"/>
+        </mxCell>
+        <mxCell id="roles-r3-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;解析医院与规则选择、绑定发布版本；受理去重，单Worker启动，保存清单、批次及汇总。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="58" width="1370" x="370" y="1468" as="geometry"/>
+        </mxCell>
+        <mxCell id="roles-r4-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;智能体核验流程&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="58" width="330" x="40" y="1526" as="geometry"/>
+        </mxCell>
+        <mxCell id="roles-r4-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;00加载上下文，01查范围内结算，02—07分组核验，08保存；各批次使用同一绑定版本。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="58" width="1370" x="370" y="1526" as="geometry"/>
+        </mxCell>
+        <mxCell id="roles-r5-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;小模型服务&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="58" width="330" x="40" y="1584" as="geometry"/>
+        </mxCell>
+        <mxCell id="roles-r5-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;识别耗材种类和数量，返回状态、结果及证据；由智能体统一关联和保存。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="58" width="1370" x="370" y="1584" as="geometry"/>
+        </mxCell>
+        <mxCell id="reuse-note" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div&gt;本期API与Worker可同项目、同机分进程实现，采用智能体执行流程；已有能力须核实后复用，不预设后台已建成。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="61" width="1700" x="40" y="1662" as="geometry"/>
+        </mxCell>
+        <mxCell id="api-heading" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontStyle=1;verticalAlign=middle;spacing=14;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:26px;line-height:1.25;&quot;&gt;&lt;div&gt;③ 对外接口能力｜路径与字段由双方约定&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="1700" x="40" y="1753" as="geometry"/>
+        </mxCell>
+        <mxCell id="api-r0-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;接口能力&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="260" x="40" y="1823" as="geometry"/>
+        </mxCell>
+        <mxCell id="api-r0-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;监管系统传入&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="660" x="300" y="1823" as="geometry"/>
+        </mxCell>
+        <mxCell id="api-r0-c2" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;智能体返回&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="780" x="960" y="1823" as="geometry"/>
+        </mxCell>
+        <mxCell id="api-r1-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;提交核验任务&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="94" width="260" x="40" y="1875" as="geometry"/>
+        </mxCell>
+        <mxCell id="api-r1-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;医院范围（string）、医保结算时间范围、规则选择（string）。编号／鉴权为后端协议元数据。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="94" width="660" x="300" y="1875" as="geometry"/>
+        </mxCell>
+        <mxCell id="api-r1-c2" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;任务编号及受理状态；重复提交返回原任务和原绑定版本。实际明细由平台查询产生。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="94" width="780" x="960" y="1875" as="geometry"/>
+        </mxCell>
+        <mxCell id="api-r2-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;查询任务状态&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="94" width="260" x="40" y="1969" as="geometry"/>
+        </mxCell>
+        <mxCell id="api-r2-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;智能体任务编号，或来源系统＋监管任务编号；必要时指定run_id。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="94" width="660" x="300" y="1969" as="geometry"/>
+        </mxCell>
+        <mxCell id="api-r2-c2" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;任务状态、扫描／核验阶段、已知总量、完成量及原因；总量未知时不伪报完成比例。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="94" width="780" x="960" y="1969" as="geometry"/>
+        </mxCell>
+        <mxCell id="api-r3-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;获取核验结果&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="94" width="260" x="40" y="2063" as="geometry"/>
+        </mxCell>
+        <mxCell id="api-r3-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;智能体任务编号；必要时指定run_id及结果版本。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="94" width="660" x="300" y="2063" as="geometry"/>
+        </mxCell>
+        <mxCell id="api-r3-c2" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;任务汇总、分页逐明细结果、证据及未比较原因；关联实际范围、规则和结果版本。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="94" width="780" x="960" y="2063" as="geometry"/>
+        </mxCell>
+        <mxCell id="security-note" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div&gt;两个后台配置服务鉴权及任务访问权限；监管系统使用业务任务编号，无须处理内部流程运行、节点或模型任务编号。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="62" width="1700" x="40" y="2177" as="geometry"/>
+        </mxCell>
+        <mxCell id="scope-heading" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontStyle=1;verticalAlign=middle;spacing=14;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:26px;line-height:1.25;&quot;&gt;&lt;div&gt;④ 核验范围与追溯关联&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="1700" x="40" y="2269" as="geometry"/>
+        </mxCell>
+        <mxCell id="scope-r0-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;管理对象&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="340" x="40" y="2339" as="geometry"/>
+        </mxCell>
+        <mxCell id="scope-r0-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;约定&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="1360" x="380" y="2339" as="geometry"/>
+        </mxCell>
+        <mxCell id="scope-r1-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;任务范围&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="84" width="340" x="40" y="2391" as="geometry"/>
+        </mxCell>
+        <mxCell id="scope-r1-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;仅核验所选医院及医保结算时间内明细；01分页查询并保存实际清单／快照。03检查证据、业务分组和规则不得扩大结算范围。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="84" width="1360" x="380" y="2391" as="geometry"/>
+        </mxCell>
+        <mxCell id="scope-r2-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;持续增量（后期）&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="76" width="340" x="40" y="2475" as="geometry"/>
+        </mxCell>
+        <mxCell id="scope-r2-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;本期按固定任务范围读取。后期增量游标仅表示接入进度，不代替核验范围；游标恢复与自动接入留待后期。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="76" width="1360" x="380" y="2475" as="geometry"/>
+        </mxCell>
+        <mxCell id="scope-r3-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;编号与证据关联&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="76" width="340" x="40" y="2551" as="geometry"/>
+        </mxCell>
+        <mxCell id="scope-r3-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;监管编号↔task_id／run_id→原始条件＋绑定版本→实际明细／快照／批次→检查与模型请求→明细结果与汇总。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="76" width="1360" x="380" y="2551" as="geometry"/>
+        </mxCell>
+        <mxCell id="detail-note" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;strokeColor=none;rounded=0;spacing=0;verticalAlign=middle;align=left;fontStyle=0;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:26px;line-height:1.25;&quot;&gt;&lt;div&gt;医保结算时间决定核验对象；03只查关联检查记录、不下载影像；明细唯一键不能用MDTRT_ID代替。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="1700" x="40" y="2637" as="geometry"/>
+        </mxCell>
+        <mxCell id="image-cloud-download" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F1F4F7;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fillColor=#E8F3ED;strokeColor=#79A68A;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;现有影像云&lt;/div&gt;&lt;div&gt;保存原始DICOM&lt;/div&gt;&lt;div&gt;提供影像下载&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="123" width="202" x="1512" y="476" as="geometry"/>
+        </mxCell>
+        <mxCell id="cloud-model-dicom" edge="1" parent="1" source="image-cloud-download" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#2F855A;strokeWidth=2;fontColor=#2F855A;labelBackgroundColor=#FFFFFF;exitX=0.362;exitY=1.011;entryX=0.25;entryY=0;exitPerimeter=0;entryPerimeter=0;exitDx=0;exitDy=0;fontSize=17;fontFamily=Microsoft YaHei;" target="model-service" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;DICOM数据&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"/>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="regulator-sequence" name="任务时序异常处理与联调">
+    <mxGraphModel dx="1871" dy="990" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1780" pageHeight="2877" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="sequence-title" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F0F5FA;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:22px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;任务时序、异常处理与联调｜范围任务&lt;/div&gt;&lt;div&gt;三项配置受理并绑定版本；01发现范围内明细，按业务单元核验，08保存并汇总。&lt;/div&gt;&lt;div&gt;范围外结算不纳入；状态未知人工核实，重跑明确数据及规则版本，自动恢复后期建设。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="112" width="1700" x="40" y="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="sequence-heading" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontStyle=1;verticalAlign=middle;spacing=14;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:26px;line-height:1.25;&quot;&gt;&lt;div&gt;① 核验任务处理时序图&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="1700" x="40" y="167" as="geometry"/>
+        </mxCell>
+        <mxCell id="sequence-note" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;查询、重跑与范围&lt;/div&gt;&lt;div&gt;查询只读取结果；重跑明确数据与版本依据，不扩大医保结算范围；节点续跑后期建设。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="85" width="1700" x="40" y="1280" as="geometry"/>
+        </mxCell>
+        <mxCell id="reliability-heading" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontStyle=1;verticalAlign=middle;spacing=14;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:26px;line-height:1.25;&quot;&gt;&lt;div&gt;② 重复提交与异常处理&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="1700" x="40" y="1375" as="geometry"/>
+        </mxCell>
+        <mxCell id="reliability-r0-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;场景&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="450" x="40" y="1445" as="geometry"/>
+        </mxCell>
+        <mxCell id="reliability-r0-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;处理方式&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="1250" x="490" y="1445" as="geometry"/>
+        </mxCell>
+        <mxCell id="reliability-r1-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;同一任务重复提交，内容相同&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="68" width="450" x="40" y="1497" as="geometry"/>
+        </mxCell>
+        <mxCell id="reliability-r1-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;按来源＋监管编号及三项配置判重，返回原任务和原绑定版本；数据库唯一约束防并发建单。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="68" width="1250" x="490" y="1497" as="geometry"/>
+        </mxCell>
+        <mxCell id="reliability-r2-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;同一任务编号，核验内容不同&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="68" width="450" x="40" y="1565" as="geometry"/>
+        </mxCell>
+        <mxCell id="reliability-r2-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;返回冲突，由调用方明确创建新任务，不覆盖原任务内容。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="68" width="1250" x="490" y="1565" as="geometry"/>
+        </mxCell>
+        <mxCell id="reliability-r3-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;任务已受理，提交响应丢失&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="68" width="450" x="40" y="1633" as="geometry"/>
+        </mxCell>
+        <mxCell id="reliability-r3-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;通过监管任务编号查询，或使用原编号再次提交，找回已受理任务。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="68" width="1250" x="490" y="1633" as="geometry"/>
+        </mxCell>
+        <mxCell id="reliability-r4-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;监管系统暂时不可用&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="68" width="450" x="40" y="1701" as="geometry"/>
+        </mxCell>
+        <mxCell id="reliability-r4-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;智能体继续执行并保存结果；监管系统恢复后继续查询。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="68" width="1250" x="490" y="1701" as="geometry"/>
+        </mxCell>
+        <mxCell id="reliability-r5-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;查询结果时网络失败&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="68" width="450" x="40" y="1769" as="geometry"/>
+        </mxCell>
+        <mxCell id="reliability-r5-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;重新获取已保存的结果，不重新运行模型。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="68" width="1250" x="490" y="1769" as="geometry"/>
+        </mxCell>
+        <mxCell id="reliability-r6-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;明确要求重新核验&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="68" width="450" x="40" y="1837" as="geometry"/>
+        </mxCell>
+        <mxCell id="reliability-r6-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;旧执行结束后新run_id从01重跑；明确数据重取及规则版本，保留清单差异和旧结果，不自动扩大范围。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="68" width="1250" x="490" y="1837" as="geometry"/>
+        </mxCell>
+        <mxCell id="idempotency-note" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;范围与版本异常&lt;/div&gt;&lt;div&gt;未知／重名医院、未发布规则拒绝受理；无匹配结算单独记录，不能显示核验一致；分页失败记录未完成范围。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="85" width="1700" x="40" y="2007" as="geometry"/>
+        </mxCell>
+        <mxCell id="result-heading" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontStyle=1;verticalAlign=middle;spacing=14;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:26px;line-height:1.25;&quot;&gt;&lt;div&gt;③ 执行状态与比较结论分别展示&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="1700" x="40" y="2103" as="geometry"/>
+        </mxCell>
+        <mxCell id="result-r0-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;执行状态&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="300" x="40" y="2173" as="geometry"/>
+        </mxCell>
+        <mxCell id="result-r0-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;比较结论&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="300" x="340" y="2173" as="geometry"/>
+        </mxCell>
+        <mxCell id="result-r0-c2" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;展示示例&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="1100" x="640" y="2173" as="geometry"/>
+        </mxCell>
+        <mxCell id="result-r1-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;已完成&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="300" x="40" y="2225" as="geometry"/>
+        </mxCell>
+        <mxCell id="result-r1-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;一致&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="300" x="340" y="2225" as="geometry"/>
+        </mxCell>
+        <mxCell id="result-r1-c2" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;在约定核验范围内，相关比较项一致；关联具体明细和证据。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="1100" x="640" y="2225" as="geometry"/>
+        </mxCell>
+        <mxCell id="result-r2-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;已完成&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="300" x="40" y="2285" as="geometry"/>
+        </mxCell>
+        <mxCell id="result-r2-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;存在差异&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="300" x="340" y="2285" as="geometry"/>
+        </mxCell>
+        <mxCell id="result-r2-c2" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;结算数量为1，识别数量为2；展示具体差异及对应影像证据。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="1100" x="640" y="2285" as="geometry"/>
+        </mxCell>
+        <mxCell id="result-r3-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;已完成&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="300" x="40" y="2345" as="geometry"/>
+        </mxCell>
+        <mxCell id="result-r3-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;无法比较&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="300" x="340" y="2345" as="geometry"/>
+        </mxCell>
+        <mxCell id="result-r3-c2" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;输入影像不足以支持约定范围的计数；保存未比较原因。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="1100" x="640" y="2345" as="geometry"/>
+        </mxCell>
+        <mxCell id="result-r4-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;部分失败或失败&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="68" width="300" x="40" y="2405" as="geometry"/>
+        </mxCell>
+        <mxCell id="result-r4-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;按明细保留已有结论&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="68" width="300" x="340" y="2405" as="geometry"/>
+        </mxCell>
+        <mxCell id="result-r4-c2" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#F6F9FC;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;展示受影响明细及技术失败原因；失败不补0，不显示为核验通过。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="68" width="1100" x="640" y="2405" as="geometry"/>
+        </mxCell>
+        <mxCell id="result-note" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;strokeColor=none;rounded=0;spacing=0;verticalAlign=middle;align=left;fontStyle=0;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div&gt;接口调用成功、任务执行完成、比较一致分别表达；识别数量更多不直接认定为违规，人工复核在监管系统完成。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="42" width="1700" x="40" y="2493" as="geometry"/>
+        </mxCell>
+        <mxCell id="effort-heading" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;fontStyle=1;verticalAlign=middle;spacing=14;fontSize=26;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:26px;line-height:1.25;&quot;&gt;&lt;div&gt;④ 监管系统对接与联调&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="1700" x="40" y="2565" as="geometry"/>
+        </mxCell>
+        <mxCell id="effort-r0-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;事项&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="280" x="40" y="2635" as="geometry"/>
+        </mxCell>
+        <mxCell id="effort-r0-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;待完成内容&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="740" x="320" y="2635" as="geometry"/>
+        </mxCell>
+        <mxCell id="effort-r0-c2" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;所需岗位／协同支持&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="410" x="1060" y="2635" as="geometry"/>
+        </mxCell>
+        <mxCell id="effort-r0-c3" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;预估工作量&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="52" width="270" x="1470" y="2635" as="geometry"/>
+        </mxCell>
+        <mxCell id="effort-r1-c0" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;监管系统对接与联调&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="98" width="280" x="40" y="2687" as="geometry"/>
+        </mxCell>
+        <mxCell id="effort-r1-c1" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;验证三项配置受理、版本绑定、范围边界、分页分组、明细／汇总结果和证据，以及部分失败和人工重跑。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="98" width="740" x="320" y="2687" as="geometry"/>
+        </mxCell>
+        <mxCell id="effort-r1-c2" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;智能体后端、监管系统团队；页面调整需监管系统前端支持。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="98" width="410" x="1060" y="2687" as="geometry"/>
+        </mxCell>
+        <mxCell id="effort-r1-c3" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;rounded=0;spacing=14;verticalAlign=middle;fontStyle=0;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;原估5—10人天，按范围与版本改造重新评估。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="98" width="270" x="1470" y="2687" as="geometry"/>
+        </mxCell>
+        <mxCell id="effort-note" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#A6BED3;strokeWidth=1.2;fontColor=#243B53;align=left;verticalAlign=top;spacing=18;strokeColor=none;rounded=0;spacing=0;verticalAlign=middle;align=left;fontStyle=0;fontSize=20;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div&gt;原工作量按本期范围复核；API／Worker与节点开发避免重复计入。自动恢复、跨运行复用和峰值压测后期单独估算。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="32" width="1700" x="40" y="2805" as="geometry"/>
+        </mxCell>
+        <mxCell id="participant-mvp-0" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;strokeColor=#6c8ebf;fillColor=#dae8fc;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;监管系统后端&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="65" width="270" x="55" y="250" as="geometry"/>
+        </mxCell>
+        <mxCell id="lifeline-mvp-0" edge="1" parent="1" style="html=1;fontFamily=Microsoft YaHei;fontSize=16;strokeColor=#37658b;endArrow=none;endFill=1;labelBackgroundColor=#ffffff;dashed=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="190" y="315" as="sourcePoint"/>
+            <mxPoint x="190" y="1185" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="participant-mvp-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;strokeColor=#6c8ebf;fillColor=#dae8fc;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;核验API／公共模块&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="65" width="270" x="375" y="250" as="geometry"/>
+        </mxCell>
+        <mxCell id="lifeline-mvp-1" edge="1" parent="1" style="html=1;fontFamily=Microsoft YaHei;fontSize=16;strokeColor=#37658b;endArrow=none;endFill=1;labelBackgroundColor=#ffffff;dashed=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="510" y="315" as="sourcePoint"/>
+            <mxPoint x="510" y="1185" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="participant-mvp-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;strokeColor=#6c8ebf;fillColor=#dae8fc;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;PostgreSQL&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="65" width="270" x="695" y="250" as="geometry"/>
+        </mxCell>
+        <mxCell id="lifeline-mvp-2" edge="1" parent="1" style="html=1;fontFamily=Microsoft YaHei;fontSize=16;strokeColor=#37658b;endArrow=none;endFill=1;labelBackgroundColor=#ffffff;dashed=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="830" y="315" as="sourcePoint"/>
+            <mxPoint x="830" y="1185" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="participant-mvp-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;strokeColor=#6c8ebf;fillColor=#dae8fc;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;后台Worker&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="65" width="270" x="1015" y="250" as="geometry"/>
+        </mxCell>
+        <mxCell id="lifeline-mvp-3" edge="1" parent="1" style="html=1;fontFamily=Microsoft YaHei;fontSize=16;strokeColor=#37658b;endArrow=none;endFill=1;labelBackgroundColor=#ffffff;dashed=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1150" y="315" as="sourcePoint"/>
+            <mxPoint x="1150" y="1185" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="participant-mvp-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;strokeColor=#6c8ebf;fillColor=#dae8fc;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;智能体 01—08&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="65" width="270" x="1375" y="250" as="geometry"/>
+        </mxCell>
+        <mxCell id="lifeline-mvp-4" edge="1" parent="1" style="html=1;fontFamily=Microsoft YaHei;fontSize=16;strokeColor=#37658b;endArrow=none;endFill=1;labelBackgroundColor=#ffffff;dashed=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1510" y="315" as="sourcePoint"/>
+            <mxPoint x="1510" y="1185" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="seq-mvp-0" edge="1" parent="1" style="html=1;strokeColor=#37658b;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;fontSize=17;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;医院／医保结算时间／规则选择&lt;/div&gt;&lt;div&gt;＋后端监管编号&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="190" y="370" as="sourcePoint"/>
+            <mxPoint x="510" y="370" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="seq-mvp-1" edge="1" parent="1" style="html=1;strokeColor=#37658b;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;fontSize=17;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;解析医院、绑定发布版本&lt;/div&gt;&lt;div&gt;保存条件与待执行记录；提交&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="510" y="425" as="sourcePoint"/>
+            <mxPoint x="830" y="425" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="seq-mvp-2" edge="1" parent="1" style="html=1;strokeColor=#37658b;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;dashed=1;fontSize=17;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;返回task_id及受理状态&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="510" y="480" as="sourcePoint"/>
+            <mxPoint x="190" y="480" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="seq-mvp-3" edge="1" parent="1" style="html=1;strokeColor=#37658b;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;fontSize=17;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;领取未启动run_id，更新状态并提交&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1150" y="550" as="sourcePoint"/>
+            <mxPoint x="830" y="550" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="seq-mvp-4" edge="1" parent="1" style="html=1;strokeColor=#37658b;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;dashed=1;fontSize=17;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;返回受理条件与绑定版本&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="830" y="600" as="sourcePoint"/>
+            <mxPoint x="1150" y="600" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="seq-mvp-5" edge="1" parent="1" style="html=1;strokeColor=#37658b;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;fontSize=17;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;HTTP启动绑定版本的流程&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1150" y="665" as="sourcePoint"/>
+            <mxPoint x="1510" y="665" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="seq-mvp-6" edge="1" parent="1" style="html=1;strokeColor=#37658b;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;fontSize=17;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:20px;line-height:1.25;&quot;&gt;&lt;div&gt;保存实际清单、批次状态、证据与08结果&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1510" y="790" as="sourcePoint"/>
+            <mxPoint x="510" y="790" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="seq-mvp-7" edge="1" parent="1" style="html=1;strokeColor=#37658b;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;fontSize=17;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;必要结果及汇总落库后完成&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="510" y="850" as="sourcePoint"/>
+            <mxPoint x="830" y="850" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="seq-mvp-8" edge="1" parent="1" style="html=1;strokeColor=#37658b;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;dashed=1;fontSize=17;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;返回流程执行情况&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1510" y="910" as="sourcePoint"/>
+            <mxPoint x="1150" y="910" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="seq-mvp-9" edge="1" parent="1" style="html=1;strokeColor=#37658b;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;fontSize=17;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;查询状态／已保存结果&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="190" y="990" as="sourcePoint"/>
+            <mxPoint x="510" y="990" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="seq-mvp-10" edge="1" parent="1" style="html=1;strokeColor=#37658b;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;fontSize=17;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;读取任务状态与结果&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="510" y="1045" as="sourcePoint"/>
+            <mxPoint x="830" y="1045" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="seq-mvp-11" edge="1" parent="1" style="html=1;strokeColor=#37658b;endArrow=block;endFill=1;labelBackgroundColor=#ffffff;dashed=1;fontSize=17;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:17px;line-height:1.25;&quot;&gt;&lt;div&gt;返回状态、结果与证据&lt;/div&gt;&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="510" y="1120" as="sourcePoint"/>
+            <mxPoint x="190" y="1120" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="seq-mvp-execute" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;strokeColor=#6c8ebf;fillColor=#dae8fc;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;01范围查询／快照&lt;/div&gt;&lt;div&gt;02—07分组核验&lt;/div&gt;&lt;div&gt;08保存并汇总&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="240" x="1390" y="700" as="geometry"/>
+        </mxCell>
+        <mxCell id="seq-mvp-note" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;strokeColor=#6c8ebf;fillColor=#dae8fc;fillColor=#f5f5f5;strokeColor=#b3b3b3;fontSize=18;fontFamily=Microsoft YaHei;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div style=&quot;font-weight:bold;margin-bottom:6px;&quot;&gt;医保结算范围固定；实际明细由01发现，各批次规则版本一致&lt;/div&gt;&lt;div&gt;03只查关联检查记录，不增加范围外结算；未知执行状态先人工核实。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="64" width="1620" x="80" y="1200" as="geometry"/>
+        </mxCell>
+        <mxCell id="reliability-r7-c0" parent="1" style="whiteSpace=wrap;html=1;align=left;spacing=12;fillColor=#fff2cc;strokeColor=#c8c8c8;fontFamily=Microsoft YaHei;fontSize=18;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;执行中断或调用超时&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="82" width="450" x="40" y="1905" as="geometry"/>
+        </mxCell>
+        <mxCell id="reliability-r7-c1" parent="1" style="whiteSpace=wrap;html=1;align=left;spacing=12;fillColor=#fff2cc;strokeColor=#c8c8c8;fontFamily=Microsoft YaHei;fontSize=18;" value="&lt;div style=&quot;font-size:18px;line-height:1.25;&quot;&gt;&lt;div&gt;可捕获错误记失败或待确认；进程突退由人员核实最后状态。确认旧执行结束后新run_id从01重跑，不自动重提。&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="82" width="1250" x="490" y="1905" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

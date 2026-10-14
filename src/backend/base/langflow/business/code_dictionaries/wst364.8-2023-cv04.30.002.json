@@ -1,0 +1,5287 @@
+{
+  "id": "wst364.8-2023-cv04.30.002",
+  "version": "WS/T 364.8-2023; CV04.30.002",
+  "source": "https://www.nhc.gov.cn/wjw/s9497/202311/fedbd15e15514084b419e08a3e989dcd.shtml",
+  "source_sha256": "30a8dad9640387f36389dfdd64df18a08810990948f123ae80ecc2cf3093a39c",
+  "records": [
+    {
+      "code": "B020ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "颅脑 CT 普通扫描(平扫)",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B02010ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "颅脑 CT 平扫加增强扫描",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B029ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "垂体 CT 普通扫描(平扫)",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B02910ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "垂体 CT 平扫加增强扫描",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B02CZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "内听道 CT 普通扫描(平扫)",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B02C10ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "内听道 CT 平扫加增强扫描",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B030ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "颅脑 MRI 普通扫描(平扫)",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B03050ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "颅脑 MRI 平扫加增强扫描",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B039ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "垂体 MRI 普通扫描(平扫)",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B03950ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "垂体 MRI 平扫加增强扫描",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B03CZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "听神经 MRI 普通扫描(平扫)",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B03C50ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "听神经 MRI 平扫加增强扫描",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B03DZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "三叉神经 MRI 普通扫描(平扫)",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B03D50ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "三叉神经 MRI 平扫加增强扫描",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B03BZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "脊髓 MRI 普通扫描(平扫)",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B030ZGZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "颅脑 MRI 波谱成像(MRS)",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B0305FZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "颅脑 MRI 灌注成像",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B030ZHZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "颅脑 MRI 扩散加权成像",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B030ZJZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "颅脑 MRI 扩散张量成像",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B206ZZZZ1",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线心脏后前位",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B206ZZZ4Z",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线心脏左前斜位",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B2063ZZ5Z",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线心脏右前斜位(吞钡)",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B206ZZZZ6",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线心脏左侧位",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B206ZZZZ7",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线心脏右侧位",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B226ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "心脏 CT 普通扫描",
+          "pdf_page": 4,
+          "printed_page": 2
+        }
+      ]
+    },
+    {
+      "code": "B2261XZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "心脏 CT 增强扫描",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B2211WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "心脏 CT 冠状动脉造影",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B236ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "心脏 MRI 普通扫描",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B2365XZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "心脏 MRI 增强扫描",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B2365WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "心脏 MRI 冠状动脉造影",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B32R1WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "颅脑 CT 血管造影",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B3251WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "颈部 CT 血管造影",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B3201WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "胸部及纵膈血管 CT 血管造影",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B32G1WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "椎动脉 CT 血管造影",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B32P1WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "胸、腹主动脉 CT 血管造影",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B32W1WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肺动脉 CT 血管造影",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B32H1WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧上肢动脉 CT 血管造影",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B32J1WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧上肢动脉 CT 血管造影",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B33RZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "颅脑血管造影(不用造影剂)，MRI",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B33R5WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "颅脑血管造影(用造影剂)，MRI",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B335ZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "颈动脉 MRI 血管造影(不用造影剂)",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B3355WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "颈动脉 MRI 血管造影(用造影剂)",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B330ZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "胸部及纵膈血管 MRI 血管造影(不用造影剂)",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B3305WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "胸部及纵膈血管 MRI 血管造影(用造影剂)",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B33GZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "椎动脉 MRI 血管造影(不用造影剂)",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B33PZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "胸、腹主动脉 MRI 血管造影(不用造影剂)",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B33WZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肺动脉 MRI 血管造影(不用造影剂)",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B33HZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧上肢动脉 MRI 血管造影(不用造影剂)",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B33JZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧上肢动脉 MRI 血管造影(不用造影剂)",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B33G5WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "椎动脉 MRI 血管造影(用造影剂)",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B33P5WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "胸、腹主动脉 MRI 血管造影(用造影剂)",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B33W5WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肺动脉 MRI 血管造影(用造影剂)",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B33H5WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧上肢动脉 MRI 血管造影(用造影剂)",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B33J5WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧上肢动脉 MRI 血管造影(用造影剂)",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B4201WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "腹主动脉 CT 造影",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B4211WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "腹腔干 腹腔动脉 CT 造影",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B4221WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肝动脉 CT 造影",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B4231WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "脾动脉 CT 造影",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B4241WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肠系膜上动脉 CT 造影",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B4251WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肠系膜下动脉 CT 造影",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B4281WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "两侧肾动脉 CT 造影",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B42M1WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "移植肾动脉 CT 造影",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B42P1WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "髂动脉 CT 造影",
+          "pdf_page": 5,
+          "printed_page": 3
+        }
+      ]
+    },
+    {
+      "code": "B42H1WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "两侧下肢动脉 CT 造影",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B4305WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "腹主动脉 MRI 造影(用造影剂)",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B4315WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "腹腔干 腹腔动脉 MRI 造影(用造影剂)",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B4325WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肝动脉 MRI 造影(用造影剂)",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B4335WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "脾动脉 MRI 造影(用造影剂)",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B4345WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肠系膜上动脉 MRI 造影(用造影剂)",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B4355WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肠系膜下动脉 MRI 造影(用造影剂)",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B4385WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "两侧肾动脉 MRI 造影(用造影剂)",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B43M5WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "移植肾动脉 MRI 造影(用造影剂)",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B43P5WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "髂动脉 MRI 造影(用造影剂)",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B43H5WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "两侧下肢动脉 MRI 造影(用造影剂)",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B430ZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "腹主动脉 MRI 造影(不用造影剂)",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B431ZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "腹腔干 腹腔动脉 MRI 造影(不用造影剂)",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B432ZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肝动脉 MRI 造影(不用造影剂)",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B433ZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "脾动脉 MRI 造影(不用造影剂)",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B434ZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肠系膜上动脉 MRI 造影(不用造影剂)",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B435ZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肠系膜下动脉 MRI 造影(不用造影剂)",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B438ZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "两侧肾动脉 MRI 造影(不用造影剂)",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B43MZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "移植肾动脉 MRI 造影(不用造影剂)",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B43PZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "髂动脉 MRI 造影(不用造影剂)",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B43HZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "两侧下肢动脉 MRI 造影(不用造影剂)",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B50B0ZZZ",
+      "status": "invalid_source_code",
+      "citations": [
+        {
+          "name": "右侧 X 线下肢静脉造影",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B50C0ZZZ",
+      "status": "invalid_source_code",
+      "citations": [
+        {
+          "name": "左侧 X 线下肢静脉造影",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B50D0ZZZ",
+      "status": "invalid_source_code",
+      "citations": [
+        {
+          "name": "两侧 X 线下肢静脉造影",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B52T1WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "门静脉和脾静脉 CT 血管造影",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B531Z",
+      "status": "invalid_source_code",
+      "citations": [
+        {
+          "name": "大脑和小脑静脉 MRI 成像（SWI）",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B532ZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "脑内静脉窦 MRI 成像",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B533ZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧颈静脉 MRI 造影",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B534ZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧颈静脉 MRI 造影",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B535ZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "两侧颈静脉 MRI 造影",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B538ZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "上腔静脉 MRI 造影",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B539ZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "下腔静脉 MRI 造影",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B5375WZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "门静脉和脾静脉 MRI 造影",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B53HZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "两侧盆（髂）静脉 MRI 造影",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B536ZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧锁骨下静脉 MRI 造影",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B537ZWZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧锁骨下静脉 MRI 造影",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B8020ZZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线泪管造影",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B835ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右眼部 MRI 普通扫描",
+          "pdf_page": 6,
+          "printed_page": 4
+        }
+      ]
+    },
+    {
+      "code": "B83550ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右眼部 MRI 平扫加增强扫描",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "B836ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左眼部 MRI 普通扫描",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "B83650ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左眼部 MRI 平扫加增强扫描",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "B837ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "双眼部 MRI 普通扫描",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "B83750ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "双眼部 MRI 平扫加增强扫描",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "B902AZZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线副鼻窦华氏位(Water)",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "B902BZZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线副鼻窦柯氏位(Caldwell)",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "B902ZZZ1Z",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线副鼻窦侧位",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "B922ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "CT 鼻旁窦普通扫描(平扫)",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "B92210ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "CT 鼻旁窦平扫加增强扫描",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "B92BZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "唾液腺 CT 普通扫描(平扫)",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "B92B10ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "唾液腺 CT 平扫加增强扫描",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "B92FZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "鼻咽部 CT 普通扫描(平扫)",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "B92F10ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "鼻咽部 CT 平扫加增强扫描",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "B92JZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "喉部 CT 普通扫描(平扫)",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "B92J10ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "喉部 CT 平扫加增强扫描",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "B930ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "耳部 MRI 普通扫描",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "B93050ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "耳部 MRI 平扫加增强扫描",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "B93FZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "鼻咽口咽部 MRI 普通扫描",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "B93F50ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "鼻咽口咽部 MRI 平扫加增强扫描",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "B93JZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "喉部 MRI 普通扫描",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "B93J50ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "喉部 MRI 平扫加增强扫描",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "BB04ZZZZ1",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线胸部后前位",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "BB04ZZZ21",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线胸部侧卧后前位",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "BB0GZZZZ0",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线胸部肺尖前后位",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "BB04ZZZZ6",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线胸部左侧位",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "BB04ZZZZ7",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线胸部右侧位",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "BB04ZZZ4Z",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线胸部左前斜位",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "BB04ZZZ5Z",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线胸部右前斜位",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "BB04ZZZSZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线胸部前弓位",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "BB24ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肺部 CT 普通扫描",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "BB2410ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肺部 CT 平扫加增强扫描",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "BB24ZBZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肺部 CT 高分辨率扫描",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "BB3CZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "纵膈 MRI 普通扫描",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "BB3C50ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "纵膈 MRI 平扫加增强扫描",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "BD013ZZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "食道钡餐",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "BD053ZZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "上消化道造影",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "BD033Z3ZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "小肠钡剂灌肠造影",
+          "pdf_page": 7,
+          "printed_page": 5
+        }
+      ]
+    },
+    {
+      "code": "BD033Z2ZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "口服钡餐+双向注气法小肠双对比造影",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BD033ZZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "口服钡餐追踪小肠造影",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BD043Z4ZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "双对比结肠钡灌肠造影",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BD0433ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "急诊结肠钡剂灌肠造影",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BD0C3ZZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "直肠排便钡剂造影",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BD0",
+      "status": "invalid_source_code",
+      "citations": [
+        {
+          "name": "结肠运行试验",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BD22ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "胃普通扫描，CT",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BD2210ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "胃平扫加增强扫描，CT",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BD29ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "十二指肠普通扫描，CT",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BD2910ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "十二指肠平扫加增强扫描，CT",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BD23ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "小肠普通扫描，CT",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BD2310ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "小肠平扫加增强扫描，CT",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BD24ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "结肠普通扫描，CT",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BD241YZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "结肠平扫加增强扫描，CT",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BD2CZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "直肠普通扫描，CT",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BD2C1YZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "直肠平扫加增强扫描，CT",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BF000ZRZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "经引流管(T 字管)胆道造影",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BF000ZPZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "经皮穿刺胆道造影",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BF00QZQZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "经内镜逆行胆胰管造影",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BF25ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肝脏 CT 普通扫描",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BF251YZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肝脏 CT 平扫加增强扫描",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BF27ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "胰腺 CT 普通扫描",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BF271YZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "胰腺 CT 平扫加增强扫描",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BF22ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "胆囊 CT 普通扫描",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BF221YZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "胆囊 CT 平扫加增强扫描",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BF2",
+      "status": "invalid_source_code",
+      "citations": [
+        {
+          "name": "口服 CT 胆囊造影",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BF26ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "脾脏 CT 普通扫描",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BF261YZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "脾脏 CT 平扫加增强扫描",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BF35ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肝脏 MRI 普通扫描",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BF3550ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肝脏 MRI 平扫加增强扫描",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BF37ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "胰腺 MRI 普通扫描",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BF3750ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "胰腺 MRI 平扫加增强扫描",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BF34",
+      "status": "invalid_source_code",
+      "citations": [
+        {
+          "name": "胆囊、胆管和胰管 MRI 水成像(MRCP)",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BG20ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肾上腺 CT 普通扫描",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BG201YZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肾上腺 CT 平扫加增强扫描",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BG24ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "甲状腺 CT 普通扫描",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BG241YZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "甲状腺 CT 增强扫描",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BG3ZYZZZ",
+      "status": "invalid_source_code",
+      "citations": [
+        {
+          "name": "肾上腺 MRI 普通扫描",
+          "pdf_page": 8,
+          "printed_page": 6
+        }
+      ]
+    },
+    {
+      "code": "BG350ZZZ",
+      "status": "invalid_source_code",
+      "citations": [
+        {
+          "name": "肾上腺 MRI 平扫加增强扫描",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BH01ZZZZG",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧 X 线乳腺摄影",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BH00ZZZZG",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧 X 线乳腺摄影",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BH02ZZZZG",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "双侧 X 线乳腺摄影",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BH010ZFZG",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧乳腺导管造影",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BH000ZFZG",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧乳腺导管造影",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BH020ZFZG",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "双侧乳腺导管造影",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BH32ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "双侧乳腺 MRI 普通扫描",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BH325AZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "双侧乳腺 MRI 平扫加（动态）增强扫描",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN00ZZZ11",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线头颅后前位",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN00ZZZ1A",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线头颅侧位",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN00ZZZ03",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线头颅前后轴位（头颅汤氏位）",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN0MZZZ02",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线颅底轴位 submentovertical(SMV)",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN0LZZZ1A",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线蝶鞍侧位 Sella Turcica",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN0LZZZ11",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线蝶鞍后前位",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN0LZZZ03",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线蝶鞍前后轴位",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN03ZZZ11",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线眼眶后前位",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN03ZZZ1A",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线眼眶侧位",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN09ZZ51A",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线颞颌关节张口闭口位",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN06ZZZ1A",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线下颌骨侧位",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN04ZZZ1A",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线鼻骨侧位",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN0PZZZFZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线颞骨乳突许氏位",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN0PZZZDZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线颞骨乳突伦氏位",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN0NZZZGZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "颞骨岩部轴位，X 线",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN0NZZZHZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "颞骨岩部后前斜位，X 线",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN0NZZZCZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "颞骨岩部前后位，X 线",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN0QZZZ00",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "颞骨茎突前后位，X 线",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN0QZZZ1A",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "颞骨茎突侧位(张口) ，X 线",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN25ZUZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "CT 颅面骨薄层扫描(3D VR)",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN26ZUZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "CT 下颌骨薄层扫描(3D VR)",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN2JZUZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "CT 牙齿薄层扫描(3D VR)",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN2LZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "CT 蝶鞍普通扫描(平扫)",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN2L10ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "CT 蝶鞍平扫加增强扫描",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN23ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "CT 眼眶普通扫描(平扫)",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN2310ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "CT 眼眶平扫加增强扫描",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN2FZUZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "CT 颞骨高分辨率扫描",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BN39ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "颞下颌关节 MRI 普通扫描",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BP02ZZZ01",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线双侧胸锁关节后前位",
+          "pdf_page": 9,
+          "printed_page": 7
+        }
+      ]
+    },
+    {
+      "code": "BP02ZZZ07",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线双侧胸锁关节后前斜位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP03ZZZ11",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线双侧肩锁关节后前位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP07ZZZ80",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧肩胛骨前后位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP06ZZZ80",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧肩胛骨前后位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP07ZZZZA",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧肩胛骨侧位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP06ZZZZA",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧肩胛骨侧位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP08ZZZ80",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧肩关节前后位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP08ZZZ02",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧肩关节仰卧轴位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP08ZZZZD",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧肩关节穿胸位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP08ZZZVZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧肩关节冈上肌出口位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP09ZZZ80",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧肩关节前后位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP09ZZZ02",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧肩关节仰卧轴位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP09ZZZZD",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧肩关节穿胸位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP09ZZZVZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧肩关节冈上肌出口位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP0AZZZ80",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧肱骨前后位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP0AZZZ8A",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧肱骨侧位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP0BZZZ80",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧肱骨前后位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP0BZZZ8A",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧肱骨侧位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP0GZZZZ0",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧肘关节前后位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP0GZZZZA",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧肘关节侧位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP0GZZZZ2",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧肘关节轴位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP0HZZZZ0",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧肘关节前后位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP0HZZZZA",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧肘关节侧位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP0HZZZZ2",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧肘关节轴位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP0JZZZZ0",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧尺桡骨前后位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP0JZZZZA",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧尺桡骨侧位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP0KZZZZ0",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧尺桡骨前后位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP0KZZZZA",
+      "status": "ambiguous_source_code",
+      "citations": [
+        {
+          "name": "X 线左侧尺桡骨侧位",
+          "pdf_page": 10,
+          "printed_page": 8
+        },
+        {
+          "name": "X 线左侧腕关节侧位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP0LZZZZ1",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧腕关节后前位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP0LZZZZA",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧腕关节侧位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP0LZZZZ7",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧腕关节后前斜位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP0LZZZZ2",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧腕关节轴位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP0LZZZM1",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧腕关节尺侧偏展位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP0KZZZZ1",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧腕关节后前位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP0KZZZZ7",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧腕关节后前斜位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP0KZZZZ2",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧腕关节轴位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP0KZZZM1",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧腕关节尺侧偏展位",
+          "pdf_page": 10,
+          "printed_page": 8
+        }
+      ]
+    },
+    {
+      "code": "BP0NZZZZ1",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧手后前位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0NZZZZA",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧手侧位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0NZZZZ7",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧手后前斜位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0NZZZZ6",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧手前后斜位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0PZZZZ1",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧手后前位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0PZZZZA",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧手侧位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0PZZZZ7",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧手后前斜位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0PZZZZ6",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧手前后斜位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0WZZZ81",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线肋骨后前位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0WZZZ80",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线肋骨前后位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0WZZZ86",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线肋骨前后斜位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0WZZZ87",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线肋骨后前斜位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0XZZC81",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧膈上肋骨后前位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0XZZC80",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧膈上肋骨前后位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0XZZC86",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧膈上肋骨前后斜位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0XZZC87",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧膈上肋骨后前斜位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0YZZC81",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧膈上肋骨后前位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0YZZC80",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧膈上肋骨前后位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0YZZC86",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧膈上肋骨前后斜位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0YZZC87",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧膈上肋骨后前斜位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0XZZD81",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧膈下肋骨后前位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0XZZD80",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧膈下肋骨前后位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0XZZD86",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧膈下肋骨前后斜位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0XZZD87",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线右侧膈下肋骨后前斜位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0YZZD81",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧膈下肋骨后前位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0YZZD80",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧膈下肋骨前后位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0YZZD86",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧膈下肋骨前后斜位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP0YZZD87",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线左侧膈下肋骨后前斜位",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP2NZUZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧手 CT 薄层扫描(3D VR 处理)",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP2N10ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧手 CT 平扫加增强扫描",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP2LZUZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧腕关节 CT 薄层扫描(3D VR 处理)",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP2L10ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧腕关节 CT 平扫加增强扫描",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP2GZUZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧肘关节 CT 薄层扫描(3D VR 处理)",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP2G10ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧肘关节 CT 平扫加增强扫描",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP28ZUZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧肩关节 CT 薄层扫描(3D VR 处理)",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP2810ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧肩关节 CT 平扫加增强扫描",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP2PZUZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧手 CT 薄层扫描(3D VR 处理)",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP2P10ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧手平扫加 CT 增强扫描",
+          "pdf_page": 11,
+          "printed_page": 9
+        }
+      ]
+    },
+    {
+      "code": "BP2MZUZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧腕关节 CT 薄层扫描(3D VR 处理)",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP2M10ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧腕关节平扫加 CT 增强扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP2HZUZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧肘关节 CT 薄层扫描(3D VR 处理)",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP2H10ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧肘关节 CT 平扫加增强扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP29ZUZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧肩关节 CT 薄层扫描(3D VR 处理)",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP2910ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧肩关节 CT 平扫加增强扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP2J10ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧前臂 CT 平扫加增强扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP2E10ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧上臂 CT 平扫加增强扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP2K10ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧前臂 CT 平扫加增强扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP2F10ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧上臂 CT 平扫加增强扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP2JZUZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧前臂 CT 薄层扫描(3D VR 处理)",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP2EZUZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧上臂 CT 薄层扫描(3D VR 处理)",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP2KZUZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧前臂 CT 薄层扫描(3D VR 处理)",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP2FZUZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧上臂 CT 薄层扫描(3D VR 处理)",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP3NZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧手 MRI 普通扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP3N50ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧手 MRI 平扫加增强扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP3LZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧腕关节 MRI 普通扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP3L50ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧腕关节 MRI 平扫加增强扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP3GZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧肘关节 MRI 普通扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP3G50ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧肘关节 MRI 平扫加增强扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP38ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧肩关节 MRI 普通扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP3850ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧肩关节 MRI 平扫加增强扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP3JZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧前臂 MRI 普通扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP3J50ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧前臂 MRI 平扫加增强扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP3EZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧上臂 MRI 普通扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP3E50ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧上臂 MRI 平扫加增强扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP3PZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧手 MRI 普通扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP3P50ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧手 MRI 平扫加增强扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP3MZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧腕关节 MRI 普通扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP3M50ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧腕关节 MRI 平扫加增强扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP3HZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧肘关节 MRI 普通扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP3H50ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧肘关节 MRI 平扫加增强扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP39ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧肩关节 MRI 普通扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP3950ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧肩关节 MRI 平扫加增强扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP3KZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧前臂 MRI 普通扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP3K50ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧前臂 MRI 平扫加增强扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP3FZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧上臂 MRI 普通扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BP3F50ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧上臂 MRI 平扫加增强扫描",
+          "pdf_page": 12,
+          "printed_page": 10
+        }
+      ]
+    },
+    {
+      "code": "BQ02ZZZ00",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "双侧髋关节前后位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ02ZZZT0",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "双侧髋关节(股骨颈)蛙形位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ00ZZZZA",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧髋关节侧位(股骨颈蛙形位)",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ01ZZZZA",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧髋关节侧位(股骨颈蛙形位)",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ03ZZ800",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧股骨前后位(近膝)",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ03ZZ900",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧股骨前后位(近髋)",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ03ZZZZB",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧股骨侧卧侧位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ04ZZ800",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧股骨前后位(近膝)",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ04ZZ900",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧股骨前后位(近髋)",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ04ZZZZB",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧股骨侧卧侧位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ07ZZZ00",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧膝关节前后位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ07ZZZZA",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧膝关节外侧位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0VZZZ11",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧髌骨后前位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0VZZZZA",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧髌骨外侧位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0VZZZZ2",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧髌骨轴位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ08ZZZ00",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧膝关节前后位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ08ZZZA",
+      "status": "invalid_source_code",
+      "citations": [
+        {
+          "name": "左侧膝关节外侧位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0WZZZ11",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧髌骨后前位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0WZZZZA",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧髌骨外侧位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0WZZZZ2",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧髌骨轴位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0BZZZ00",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧胫腓骨前后位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0BZZZZA",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧胫腓骨侧位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0CZZZ00",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧胫腓骨前后位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0CZZZZA",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧胫腓骨侧位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0GZZZ00",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧踝关节前后位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0GZZZZA",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧踝关节外侧位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0HZZZ00",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧踝关节前后位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0HZZZZA",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧踝关节外侧位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0JZZZZ2",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧跟骨轴位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0JZZZZA",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧跟骨外侧位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0KZZZZ2",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧跟骨轴位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0KZZZZA",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧跟骨外侧位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0LZZZZ0",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧足前后位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0LZZZN0",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧足内斜位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0LZZZK0",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧足外斜位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0LZZZZA",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧足外侧位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0LZZGZA",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧足负重侧位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0MZZZZ0",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧足前后位",
+          "pdf_page": 13,
+          "printed_page": 11
+        }
+      ]
+    },
+    {
+      "code": "BQ0MZZZN0",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧足内斜位",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ0MZZZK0",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧足外斜位",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ0MZZZZA",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧足外侧位",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ0MZZGZA",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧足负重侧位",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ2XZUZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧足及踝关节 CT 薄层扫描(3D VR 处理)",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ2X10ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧足及踝关节 CT 平扫加增强扫描",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ27ZUZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧膝关节 CT 薄层扫描(3D VR 处理)",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ2710ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧膝关节 CT 平扫加增强扫描",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ20ZUZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧髋关节 CT 薄层扫描(3D VR 处理)",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ2010ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧髋关节 CT 平扫加增强扫描",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ2YZUZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧足及踝关节 CT 薄层扫描(3D VR 处理)",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ2Y10ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧足及踝关节 CT 平扫加增强扫描",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ28ZUZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧膝关节 CT 薄层扫描(3D VR 处理)",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ2810ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧膝关节 CT 平扫加增强扫描",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ21ZUZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧髋关节 CT 薄层扫描(3D VR 处理)",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ2110ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧髋关节 CT 平扫加增强扫描",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ2DZUZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧小腿 CT 薄层扫描(3D VR 处理)",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ2D10ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧小腿 CT 平扫加增强扫描",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ2FZUZZZ",
+      "status": "ambiguous_source_code",
+      "citations": [
+        {
+          "name": "左侧小腿 CT 薄层扫描(3D VR 处理)",
+          "pdf_page": 14,
+          "printed_page": 12
+        },
+        {
+          "name": "左侧小腿 CT 平扫加增强扫描",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ3XZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧足及踝关节 MRI 普通扫描",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ3X50ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧足及踝关节 MRI 平扫加增强扫描",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ37ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧膝关节 MRI 普通扫描",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ3750ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧膝关节 MRI 平扫加增强扫描",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ30ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧髋关节 MRI 普通扫描",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ3050ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧髋关节 MRI 平扫加增强扫描",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ3YZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧足及踝关节 MRI 普通扫描",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ3Y50ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧足及踝关节 MRI 平扫加增强扫描",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ38ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧膝关节 MRI 普通扫描",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ3850ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧膝关节 MRI 平扫加增强扫描",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ31ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧髋关节 MRI 普通扫描",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ3150ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧髋关节 MRI 平扫加增强扫描",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ3DZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧小腿 MRI 普通扫描",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ3D50ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "右侧小腿 MRI 平扫加增强扫描",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ3FZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧小腿 MRI 普通扫描",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BQ3F50ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "左侧小腿 MRI 平扫加增强扫描",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BR00ZZZZ0",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线颈椎前后位",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BR00ZZZ2Z",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线颈椎侧位",
+          "pdf_page": 14,
+          "printed_page": 12
+        }
+      ]
+    },
+    {
+      "code": "BR00ZZZ5Z",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线颈椎右前斜位",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR00ZZZ4Z",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线颈椎左前斜位",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR00ZZZP2",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线颈椎过伸侧位",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR00ZZZQ2",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线颈椎过屈侧位",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR0LZZZR0",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线寰椎和枢椎前后张口位",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR07ZZZZ0",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线胸椎前后位",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR07ZZZ2Z",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线胸椎侧位",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR09ZZZZ0",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线腰椎前后位",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR09ZZZ2Z",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线腰椎侧位",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR09ZZZ5Z",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线腰椎右前斜位",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR09ZZZ6Z",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线腰椎左前斜位",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR0FZZZZ0",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线骶尾椎前后位",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR0FZZZ0Z",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线骶尾椎侧位",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR0DZZZ00",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线骶髂关节前后位",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR0DZZZ06",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线骶髂关节前后斜位",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR0CZZZZ0",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线骨盆前后位",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR0HZZZ17",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线胸骨后前斜位",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR0HZZZ2Z",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线胸骨侧位",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR20ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "颈椎 CT 普通扫描",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR21ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "颈椎间盘 CT 普通扫描",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR27ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "胸椎 CT 普通扫描",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR22ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "胸椎间盘 CT 普通扫描",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR29ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "腰椎 CT 普通扫描",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR23ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "腰椎间盘 CT 普通扫描",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR2FZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "骶尾椎 CT 普通扫描",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR2CZUZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "骨盆 CT 薄层扫描(3D VR 处理)",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR2CZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "骨盆 CT 普通扫描",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR2DZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "骶髂关节 CT 普通扫描",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR30ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "颈椎 MRI 普通扫描",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR31ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "颈椎间盘 MRI 普通扫描",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR37ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "胸椎 MRI 普通扫描",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR32ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "胸椎间盘 MRI 普通扫描",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR39ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "腰椎 MRI 普通扫描",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR33ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "腰椎间盘 MRI 普通扫描",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR3FZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "骶尾椎 MRI 普通扫描",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BR3DZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "骶髂关节 MRI 普通扫描",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BT00ZZZZ",
+      "status": "invalid_source_code",
+      "citations": [
+        {
+          "name": "静脉肾盂造影(IVP)",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BTO0ZZZZ",
+      "status": "invalid_source_code",
+      "citations": [
+        {
+          "name": "膀胱造影",
+          "pdf_page": 15,
+          "printed_page": 13
+        }
+      ]
+    },
+    {
+      "code": "BT05ZZZZ",
+      "status": "invalid_source_code",
+      "citations": [
+        {
+          "name": "男性尿道造影",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BT23ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肾脏 CT 普通扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BT2310ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肾脏 CT 平扫加增强扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BT28ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "双侧输尿管 CT 普通扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BT2810ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "双侧输尿管 CT 平扫加增强扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BT20ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "膀胱 CT 普通扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BT2010ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "膀胱 CT 平扫加增强扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BT33ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肾脏 MRI 普通扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BT3350ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "肾脏 MRI 平扫加增强扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BT39ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "移植肾 MRI 普通扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BT39ZHZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "移植肾 MRI DWI 成像",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BU080ZZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "子宫、输卵管造影",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BU090ZZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "阴道造影",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BU3DZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "子宫及附件 MRI 普通扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BU3D50ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "子宫及附件 MRI 平扫加增强扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BV29ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "前列腺 CT 普通扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BV2910ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "前列腺 CT 平扫加增强扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BV39ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "前列腺 MRI 普通扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BV3950ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "前列腺 MRI 平扫加增强扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BW00ZZZ00",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线全腹部仰卧前后位",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BW00ZZZ80",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线全腹部前后立位",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BW00ZZZ20",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线全腹部，侧卧水平前后位",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BW0QZZZ90",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "X 线小儿腹部，倒立前后位",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BW2GZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "盆腔 CT 普通扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BW2G10ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "盆腔 CT 平扫加增强扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BW2HZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "后腹膜区 CT 普通扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BW2H10ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "后腹膜区 CT 平扫加增强扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BW25ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "胸、腹、盆部 CT 普通扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BW2510ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "胸、腹、盆部 CT 平扫加增强扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BW21ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "腹盆部 CT 普通扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BW2110ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "腹盆部 CT 平扫加增强扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BW23ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "胸部 CT 普通扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BW2310ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "胸部 CT 平扫加增强扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BW3GZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "盆腔 MRI 普通扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BW3G50ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "盆腔 MRI 平扫加增强扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BW3MZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "臂丛神经 MRI 普通扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BW33ZYZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "胸部 MRI 普通扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    },
+    {
+      "code": "BW3350ZZZ",
+      "status": "resolved",
+      "citations": [
+        {
+          "name": "胸部 MRI 平扫加增强扫描",
+          "pdf_page": 16,
+          "printed_page": 14
+        }
+      ]
+    }
+  ]
+}

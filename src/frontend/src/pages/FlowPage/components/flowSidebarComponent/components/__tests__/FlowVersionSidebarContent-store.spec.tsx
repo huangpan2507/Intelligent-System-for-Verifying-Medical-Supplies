@@ -94,7 +94,8 @@ const setStateMock = jest.fn((partial: any) => {
 jest.mock("@/stores/flowStore", () => {
   const store: any = (selector: any) => selector(storeState);
   store.getState = () => storeState;
-  store.setState = (...args: any[]) => setStateMock(...args);
+  store.setState = (...args: Parameters<typeof setStateMock>) =>
+    setStateMock(...args);
   store.subscribe = jest.fn((cb: any) => {
     storeSubscribers.add(cb);
     return () => storeSubscribers.delete(cb);
@@ -313,7 +314,9 @@ describe("FlowVersionSidebarContent store behavior", () => {
 
     // Click on a version entry to trigger selection
     const user = userEvent.setup();
-    const entryRow = screen.getByText("v1").closest("[class*=cursor-pointer]");
+    const entryRow = screen
+      .getByText("v1")
+      .closest<HTMLElement>("[class*=cursor-pointer]");
     if (entryRow) {
       act(() => {
         entryRow.click();
@@ -349,7 +352,9 @@ describe("FlowVersionSidebarContent store behavior", () => {
     render(<FlowVersionSidebarContent flowId="flow-1" />);
 
     // Click entry to trigger selection
-    const entryRow = screen.getByText("v1").closest("[class*=cursor-pointer]");
+    const entryRow = screen
+      .getByText("v1")
+      .closest<HTMLElement>("[class*=cursor-pointer]");
     if (entryRow) {
       act(() => {
         entryRow.click();
@@ -384,7 +389,9 @@ describe("FlowVersionSidebarContent store behavior", () => {
 
     render(<FlowVersionSidebarContent flowId="flow-1" />);
 
-    const entryRow = screen.getByText("v1").closest("[class*=cursor-pointer]");
+    const entryRow = screen
+      .getByText("v1")
+      .closest<HTMLElement>("[class*=cursor-pointer]");
     if (entryRow) {
       act(() => {
         entryRow.click();
@@ -406,7 +413,9 @@ describe("FlowVersionSidebarContent store behavior", () => {
     render(<FlowVersionSidebarContent flowId="flow-1" />);
 
     // Click version entry — this sets store nodes to version-node via layoutEffect
-    const entryRow = screen.getByText("v1").closest("[class*=cursor-pointer]");
+    const entryRow = screen
+      .getByText("v1")
+      .closest<HTMLElement>("[class*=cursor-pointer]");
     if (entryRow) {
       act(() => {
         entryRow.click();
@@ -419,7 +428,7 @@ describe("FlowVersionSidebarContent store behavior", () => {
     // Click Current row
     const draftRow = screen
       .getByText("Current")
-      .closest("[class*=cursor-pointer]");
+      .closest<HTMLElement>("[class*=cursor-pointer]");
     if (draftRow) {
       act(() => {
         draftRow.click();

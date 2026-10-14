@@ -1,0 +1,58 @@
+{
+  "verified_at": "2026-10-14T16:43:50.756762+08:00",
+  "simulated": true,
+  "connection_id": "fb22b9dd-11b7-4650-b86d-78332de3e2ec",
+  "connection_name": "模拟检查与序列 MySQL (核心流程)",
+  "field_counts": {
+    "INSPECTION_INFO_RECORD": 95,
+    "SERIES_INFO": 164,
+    "core_flow_settlement_v1": 51
+  },
+  "settlement_count": 2,
+  "joined_check_series_count": 5,
+  "image_count": 12,
+  "links": [
+    {
+      "rpt_no": "MOCK-RPT-HIP",
+      "ris_study_id": "MOCK-RIS-HIP",
+      "chk_dt": "2025-08-19 10:00:00",
+      "inspection_link_id": "f61b2a1bef738c6df829c55da8ae4a21",
+      "series_link_id": "f61b2a1bef738c6df829c55da8ae4a21",
+      "global_id": "MOCK-SERIES-HIP"
+    },
+    {
+      "rpt_no": "MOCK-RPT-HIP",
+      "ris_study_id": "MOCK-RIS-HIP-CT",
+      "chk_dt": "2025-08-19 10:00:00",
+      "inspection_link_id": "209e2a7e75d10b7ad2498f623cf209f9",
+      "series_link_id": "209e2a7e75d10b7ad2498f623cf209f9",
+      "global_id": "MOCK-SERIES-HIP-CT"
+    },
+    {
+      "rpt_no": "MOCK-RPT-HIP",
+      "ris_study_id": "MOCK-RIS-HIP-NEAR",
+      "chk_dt": "2025-08-19 10:00:00",
+      "inspection_link_id": "8afc8a56121e922c5f0f3f16e8edb913",
+      "series_link_id": "8afc8a56121e922c5f0f3f16e8edb913",
+      "global_id": "MOCK-SERIES-HIP-NEAR"
+    },
+    {
+      "rpt_no": "MOCK-RPT-KNEE",
+      "ris_study_id": "MOCK-RIS-KNEE",
+      "chk_dt": "2025-08-19 10:00:00",
+      "inspection_link_id": "12d251ed9f4ddc0e489d607f35c7ea59",
+      "series_link_id": "12d251ed9f4ddc0e489d607f35c7ea59",
+      "global_id": "MOCK-SERIES-KNEE"
+    },
+    {
+      "rpt_no": "MOCK-RPT-KNEE",
+      "ris_study_id": "MOCK-RIS-KNEE-CT",
+      "chk_dt": "2025-08-19 10:00:00",
+      "inspection_link_id": "38443664f92c220a2deb3ebfb04c8b8d",
+      "series_link_id": "38443664f92c220a2deb3ebfb04c8b8d",
+      "global_id": "MOCK-SERIES-KNEE-CT"
+    }
+  ],
+  "md5_verified_in_mysql": true,
+  "workflow_executed": false
+}

@@ -1,0 +1,56 @@
+[
+  {
+    "name": "typescript",
+    "command": "./node_modules/.bin/tsc --noEmit --pretty false --extendedDiagnostics",
+    "cwd": "/home/huangpan/github_repo/langflow/src/frontend",
+    "environment": {
+      "NODE_OPTIONS": "--max-old-space-size=4096"
+    },
+    "exitCode": 0,
+    "signal": null,
+    "seconds": 372.71,
+    "log": "deploy/business/evidence/typecheck-fix-20261012/typescript-final.txt"
+  },
+  {
+    "name": "build",
+    "command": "npm run build",
+    "cwd": "/home/huangpan/github_repo/langflow/src/frontend",
+    "environment": {
+      "NODE_OPTIONS": "--max-old-space-size=4096"
+    },
+    "exitCode": 0,
+    "signal": null,
+    "seconds": 79.591,
+    "log": "deploy/business/evidence/typecheck-fix-20261012/build-final.txt"
+  },
+  {
+    "name": "jest",
+    "command": "npm test -- --maxWorkers=2 --workerIdleMemoryLimit=512MB --json --outputFile=/tmp/langflow-jest-final.json",
+    "cwd": "/home/huangpan/github_repo/langflow/src/frontend",
+    "environment": {},
+    "exitCode": 0,
+    "signal": null,
+    "seconds": 159.057,
+    "log": "deploy/business/evidence/typecheck-fix-20261012/jest-final.txt"
+  },
+  {
+    "name": "format",
+    "command": "node /tmp/langflow-format-changed.cjs",
+    "cwd": "/home/huangpan/github_repo/langflow",
+    "environment": {},
+    "exitCode": 0,
+    "signal": null,
+    "seconds": 1.023,
+    "log": "deploy/business/evidence/typecheck-fix-20261012/format-final.txt"
+  },
+  {
+    "name": "diff-check",
+    "command": "git diff --check",
+    "cwd": "/home/huangpan/github_repo/langflow",
+    "environment": {},
+    "exitCode": 0,
+    "signal": null,
+    "seconds": 0.067,
+    "log": "deploy/business/evidence/typecheck-fix-20261012/diff-check-final.txt"
+  }
+]

@@ -87,18 +87,18 @@ export default function AppHeader(): JSX.Element {
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => navigate("/verification/tasks")}
+            onClick={() => navigate("/business/tasks")}
           >
-            {t("verificationTasks.title")}
+            {t("business.tasks")}
           </Button>
         )}
         {userData?.is_superuser && (
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => navigate("/verification")}
+            onClick={() => navigate("/business")}
           >
-            {t("verification.title")}
+            {t("business.schemes")}
           </Button>
         )}
         {false && <ModelProviderCount />}

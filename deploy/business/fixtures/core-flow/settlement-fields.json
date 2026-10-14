@@ -1,0 +1,1164 @@
+{
+  "source_file": "mock结算信息数据库.docx",
+  "source_sha256": "f39b15eb2a232b6af69f6f1cc0c934e1168cb99aaa0ae2868c054696a765c493",
+  "source_view_name": "SETL_INFO",
+  "definition_count": 54,
+  "distinct_field_count": 50,
+  "target_table": "public.core_flow_settlement_v1",
+  "grain": "one synthetic settlement detail per row; header fields repeated",
+  "definitions": [
+    {
+      "name": "ORGAN_CODE",
+      "label": "采集医疗机构代码",
+      "description": "对接的医疗机构代码，采用18位“统一社会信用代码”",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "18",
+      "word_row": 3
+    },
+    {
+      "name": "ORGAN_NAME",
+      "label": "采集医疗机构名称",
+      "description": "医疗机构第一执业许可名称",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "80",
+      "word_row": 4
+    },
+    {
+      "name": "ORGAN_ADMDVS",
+      "label": "医疗机构医保区划",
+      "description": "医疗机构所属医保区划",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "6",
+      "word_row": 5
+    },
+    {
+      "name": "ORGAN_LV",
+      "label": "医疗机构等级",
+      "description": "医疗机构等级",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "6",
+      "word_row": 6
+    },
+    {
+      "name": "FIX_ORGAN_CODE",
+      "label": "定点医药机构编号",
+      "description": "医疗机构医保定点编号，采用12位的H码",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "12",
+      "word_row": 7
+    },
+    {
+      "name": "FIX_ORGAN_NAME",
+      "label": "定点医药机构名称",
+      "description": "定点医药机构名称",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "80",
+      "word_row": 8
+    },
+    {
+      "name": "DATA_SOURCE",
+      "label": "信息系统院内唯一ID",
+      "description": "信息系统在医疗机构的唯一ID，该字段用来解决同一家医疗机构有多个系统，造成部分ID重复问题，建议从HIS01开始。",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "16",
+      "word_row": 9
+    },
+    {
+      "name": "SETL_HOS_ID",
+      "label": "院内结算id",
+      "description": "主键，院内结算唯一号",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "80",
+      "word_row": 10
+    },
+    {
+      "name": "INIT_SETL_HOS_ID",
+      "label": "原院内结算id",
+      "description": "原院内结算id，退费时必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "80",
+      "word_row": 11
+    },
+    {
+      "name": "SETL_MED_ID",
+      "label": "医保结算id",
+      "description": "医保结算id，医保结算时必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "80",
+      "word_row": 12
+    },
+    {
+      "name": "INIT_SETL_MED_ID",
+      "label": "原医保结算id",
+      "description": "原医保结算id，医保退费时必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "80",
+      "word_row": 13
+    },
+    {
+      "name": "MDTRT_SN",
+      "label": "就医流水号",
+      "description": "机构内生成唯一就诊流水号",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "100",
+      "word_row": 14
+    },
+    {
+      "name": "MDTRT_ID",
+      "label": "就诊id",
+      "description": "医保病人必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "30",
+      "word_row": 15
+    },
+    {
+      "name": "MED_PAY_FLAG",
+      "label": "医保结算标识",
+      "description": "是否医保结算，0：否，1：是",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "2",
+      "word_row": 16
+    },
+    {
+      "name": "PSN_NO",
+      "label": "患者人员编号",
+      "description": "医保患者必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "64",
+      "word_row": 17
+    },
+    {
+      "name": "PSN_NAME",
+      "label": "患者姓名",
+      "description": "居民本人正式登记注册的姓名",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "40",
+      "word_row": 18
+    },
+    {
+      "name": "PSN_CERT_TYPE",
+      "label": "患者证件类型",
+      "description": "详见“RC038-国家公立医院绩效考核患者证件类别”码表（表5）",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "2",
+      "word_row": 19
+    },
+    {
+      "name": "CERTNO",
+      "label": "患者证件号码",
+      "description": "卡证号码应与卡证类型相匹配",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "24",
+      "word_row": 20
+    },
+    {
+      "name": "SOC_SEC_CARD_NO",
+      "label": "社会保障卡卡号",
+      "description": "就诊时的社会保障卡卡号（社会保障卡就诊时必填）",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 21
+    },
+    {
+      "name": "GEND",
+      "label": "性别代码",
+      "description": "0、未知的性别，1、男性，2、女性，9、未说明的性别",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "1",
+      "word_row": 22
+    },
+    {
+      "name": "OP_EM_MARK",
+      "label": "门诊/急诊/住院/体检标识",
+      "description": "1、普通门诊、2急诊，3、住院，4、体检",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "12",
+      "word_row": 23
+    },
+    {
+      "name": "OP_EM_NO",
+      "label": "门诊/急诊/住院/体检编号",
+      "description": "同门诊/急诊/住院/体检关联",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 24
+    },
+    {
+      "name": "RCD_DT",
+      "label": "收费/退费日期时间",
+      "description": "收费/退费日期时间",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "15",
+      "word_row": 25
+    },
+    {
+      "name": "REFD_SETL_FLAG",
+      "label": "退费结算标志",
+      "description": "收费或退费的标志，0、正常；1、退费",
+      "required": true,
+      "source_type": "数字",
+      "source_size": "1",
+      "word_row": 26
+    },
+    {
+      "name": "MED_TYPE",
+      "label": "医疗类别",
+      "description": "详见附录表13，医保结算时必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "12",
+      "word_row": 27
+    },
+    {
+      "name": "MEDFEE_SUMAMT",
+      "label": "医疗费总额",
+      "description": "医疗费总额，医保结算时必填",
+      "required": true,
+      "source_type": "数字",
+      "source_size": "16，2",
+      "word_row": 28
+    },
+    {
+      "name": "FUND_PAY_SUMAMT",
+      "label": "基金支付总额",
+      "description": "基金支付总额，医保结算时必填",
+      "required": false,
+      "source_type": "数字",
+      "source_size": "16，2",
+      "word_row": 29
+    },
+    {
+      "name": "PSN_PART_AMT",
+      "label": "个人负担总金额",
+      "description": "个人负担总金额，医保结算时必填",
+      "required": false,
+      "source_type": "数字",
+      "source_size": "16，2",
+      "word_row": 30
+    },
+    {
+      "name": "ACCT_PAY",
+      "label": "个人账户支出",
+      "description": "个人账户支出，医保结算时必填",
+      "required": false,
+      "source_type": "数字",
+      "source_size": "16，2",
+      "word_row": 31
+    },
+    {
+      "name": "PSN_CASH_PAY",
+      "label": "个人现金支出",
+      "description": "个人现金支出，医保结算时必填",
+      "required": false,
+      "source_type": "数字",
+      "source_size": "16，2",
+      "word_row": 32
+    },
+    {
+      "name": "HOSP_PART_AMT",
+      "label": "医院负担金额",
+      "description": "医院负担金额，医保结算时必填",
+      "required": false,
+      "source_type": "数字",
+      "source_size": "16，2",
+      "word_row": 33
+    },
+    {
+      "name": "UPDATE_TIME",
+      "label": "最终结算时间",
+      "description": "最终结算时间（精确到秒），采集按照该字段定时采集",
+      "required": true,
+      "source_type": "日期时间",
+      "source_size": "15",
+      "word_row": 34
+    },
+    {
+      "name": "SETL_FEE_LIST_ID",
+      "label": "结算明细id",
+      "description": "主键，院内结算明细id",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "80",
+      "word_row": 35
+    },
+    {
+      "name": "SETL_HOS_ID",
+      "label": "院内结算id",
+      "description": "院内结算id",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "80",
+      "word_row": 36
+    },
+    {
+      "name": "SETL_MED_ID",
+      "label": "医保结算id",
+      "description": "医保结算id，医保结算时必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "80",
+      "word_row": 37
+    },
+    {
+      "name": "MDTRT_SN",
+      "label": "就医流水号",
+      "description": "机构内生成唯一就诊流水号",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "100",
+      "word_row": 38
+    },
+    {
+      "name": "MDTRT_ID",
+      "label": "就诊id",
+      "description": "医保病人必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "30",
+      "word_row": 39
+    },
+    {
+      "name": "RPT_NO",
+      "label": "申请单编号",
+      "description": "院内申请单编号，检查检验必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "512",
+      "word_row": 40
+    },
+    {
+      "name": "FEEDETL_SN",
+      "label": "费用明细流水号",
+      "description": "费用明细流水号",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 41
+    },
+    {
+      "name": "INIT_FEEDETL_SN",
+      "label": "原费用明细流水号",
+      "description": "原费用明细流水号，退费时必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "80",
+      "word_row": 42
+    },
+    {
+      "name": "HOS_PROJ_NO",
+      "label": "院内项目编码",
+      "description": "该项目在医疗机构中的编码",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "200",
+      "word_row": 43
+    },
+    {
+      "name": "HOS_PROJ_NAME",
+      "label": "院内项目名称",
+      "description": "该项目在医疗机构中的名称",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "1000",
+      "word_row": 44
+    },
+    {
+      "name": "HILIST_CODE",
+      "label": "医保目录编码",
+      "description": "医保服务项目价格目录编码，医保结算时必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 45
+    },
+    {
+      "name": "HILIST_NAME",
+      "label": "医保目录名称",
+      "description": "医保服务项目价格目录名称，医保结算时必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 46
+    },
+    {
+      "name": "LIST_TYPE",
+      "label": "目录类别",
+      "description": "详见附录表14，医保结算时必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 47
+    },
+    {
+      "name": "MED_LIST_CODG",
+      "label": "医疗目录编码",
+      "description": "药剂或者耗材的医疗目录编码，医保结算时必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 48
+    },
+    {
+      "name": "MEDINS_LIST_CODG",
+      "label": "医药机构目录编码",
+      "description": "院内收费目录编码 ",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 49
+    },
+    {
+      "name": "MEDINS_LIST_NAME",
+      "label": "医药机构目录名称",
+      "description": "院内收费目录名称",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 50
+    },
+    {
+      "name": "MED_CHRGITM_TYPE",
+      "label": "医疗收费项目类别",
+      "description": "详见附录表16",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 51
+    },
+    {
+      "name": "PRODNAME",
+      "label": "商品名",
+      "description": "商品名",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 52
+    },
+    {
+      "name": "SPEC",
+      "label": "规格",
+      "description": "规格",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 53
+    },
+    {
+      "name": "DOSFORM_NAME",
+      "label": "剂型名称",
+      "description": "剂型名称",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 54
+    },
+    {
+      "name": "CNT",
+      "label": "项目数量",
+      "description": "项目数量",
+      "required": true,
+      "source_type": "数字",
+      "source_size": "10.2",
+      "word_row": 55
+    },
+    {
+      "name": "PRIC",
+      "label": "项目单价（元）",
+      "description": "项目单价（元）",
+      "required": true,
+      "source_type": "数字",
+      "source_size": "10.2",
+      "word_row": 56
+    }
+  ],
+  "fields": [
+    {
+      "name": "ORGAN_CODE",
+      "label": "采集医疗机构代码",
+      "description": "对接的医疗机构代码，采用18位“统一社会信用代码”",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "18",
+      "word_row": 3,
+      "word_rows": [
+        3
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"ORGAN_CODE\") <= 18)"
+    },
+    {
+      "name": "ORGAN_NAME",
+      "label": "采集医疗机构名称",
+      "description": "医疗机构第一执业许可名称",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "80",
+      "word_row": 4,
+      "word_rows": [
+        4
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"ORGAN_NAME\") <= 80)"
+    },
+    {
+      "name": "ORGAN_ADMDVS",
+      "label": "医疗机构医保区划",
+      "description": "医疗机构所属医保区划",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "6",
+      "word_row": 5,
+      "word_rows": [
+        5
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"ORGAN_ADMDVS\") <= 6)"
+    },
+    {
+      "name": "ORGAN_LV",
+      "label": "医疗机构等级",
+      "description": "医疗机构等级",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "6",
+      "word_row": 6,
+      "word_rows": [
+        6
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"ORGAN_LV\") <= 6)"
+    },
+    {
+      "name": "FIX_ORGAN_CODE",
+      "label": "定点医药机构编号",
+      "description": "医疗机构医保定点编号，采用12位的H码",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "12",
+      "word_row": 7,
+      "word_rows": [
+        7
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"FIX_ORGAN_CODE\") <= 12)"
+    },
+    {
+      "name": "FIX_ORGAN_NAME",
+      "label": "定点医药机构名称",
+      "description": "定点医药机构名称",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "80",
+      "word_row": 8,
+      "word_rows": [
+        8
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"FIX_ORGAN_NAME\") <= 80)"
+    },
+    {
+      "name": "DATA_SOURCE",
+      "label": "信息系统院内唯一ID",
+      "description": "信息系统在医疗机构的唯一ID，该字段用来解决同一家医疗机构有多个系统，造成部分ID重复问题，建议从HIS01开始。",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "16",
+      "word_row": 9,
+      "word_rows": [
+        9
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"DATA_SOURCE\") <= 16)"
+    },
+    {
+      "name": "SETL_HOS_ID",
+      "label": "院内结算id",
+      "description": "主键，院内结算唯一号",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "80",
+      "word_row": 10,
+      "word_rows": [
+        10,
+        36
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"SETL_HOS_ID\") <= 80)"
+    },
+    {
+      "name": "INIT_SETL_HOS_ID",
+      "label": "原院内结算id",
+      "description": "原院内结算id，退费时必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "80",
+      "word_row": 11,
+      "word_rows": [
+        11
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"INIT_SETL_HOS_ID\") <= 80)"
+    },
+    {
+      "name": "SETL_MED_ID",
+      "label": "医保结算id",
+      "description": "医保结算id，医保结算时必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "80",
+      "word_row": 12,
+      "word_rows": [
+        12,
+        37
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"SETL_MED_ID\") <= 80)"
+    },
+    {
+      "name": "INIT_SETL_MED_ID",
+      "label": "原医保结算id",
+      "description": "原医保结算id，医保退费时必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "80",
+      "word_row": 13,
+      "word_rows": [
+        13
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"INIT_SETL_MED_ID\") <= 80)"
+    },
+    {
+      "name": "MDTRT_SN",
+      "label": "就医流水号",
+      "description": "机构内生成唯一就诊流水号",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "100",
+      "word_row": 14,
+      "word_rows": [
+        14,
+        38
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"MDTRT_SN\") <= 100)"
+    },
+    {
+      "name": "MDTRT_ID",
+      "label": "就诊id",
+      "description": "医保病人必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "30",
+      "word_row": 15,
+      "word_rows": [
+        15,
+        39
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"MDTRT_ID\") <= 30)"
+    },
+    {
+      "name": "MED_PAY_FLAG",
+      "label": "医保结算标识",
+      "description": "是否医保结算，0：否，1：是",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "2",
+      "word_row": 16,
+      "word_rows": [
+        16
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"MED_PAY_FLAG\") <= 2)"
+    },
+    {
+      "name": "PSN_NO",
+      "label": "患者人员编号",
+      "description": "医保患者必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "64",
+      "word_row": 17,
+      "word_rows": [
+        17
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"PSN_NO\") <= 64)"
+    },
+    {
+      "name": "PSN_NAME",
+      "label": "患者姓名",
+      "description": "居民本人正式登记注册的姓名",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "40",
+      "word_row": 18,
+      "word_rows": [
+        18
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"PSN_NAME\") <= 40)"
+    },
+    {
+      "name": "PSN_CERT_TYPE",
+      "label": "患者证件类型",
+      "description": "详见“RC038-国家公立医院绩效考核患者证件类别”码表（表5）",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "2",
+      "word_row": 19,
+      "word_rows": [
+        19
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"PSN_CERT_TYPE\") <= 2)"
+    },
+    {
+      "name": "CERTNO",
+      "label": "患者证件号码",
+      "description": "卡证号码应与卡证类型相匹配",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "24",
+      "word_row": 20,
+      "word_rows": [
+        20
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"CERTNO\") <= 24)"
+    },
+    {
+      "name": "SOC_SEC_CARD_NO",
+      "label": "社会保障卡卡号",
+      "description": "就诊时的社会保障卡卡号（社会保障卡就诊时必填）",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 21,
+      "word_rows": [
+        21
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"SOC_SEC_CARD_NO\") <= 36)"
+    },
+    {
+      "name": "GEND",
+      "label": "性别代码",
+      "description": "0、未知的性别，1、男性，2、女性，9、未说明的性别",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "1",
+      "word_row": 22,
+      "word_rows": [
+        22
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"GEND\") <= 1)"
+    },
+    {
+      "name": "OP_EM_MARK",
+      "label": "门诊/急诊/住院/体检标识",
+      "description": "1、普通门诊、2急诊，3、住院，4、体检",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "12",
+      "word_row": 23,
+      "word_rows": [
+        23
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"OP_EM_MARK\") <= 12)"
+    },
+    {
+      "name": "OP_EM_NO",
+      "label": "门诊/急诊/住院/体检编号",
+      "description": "同门诊/急诊/住院/体检关联",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 24,
+      "word_rows": [
+        24
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"OP_EM_NO\") <= 36)"
+    },
+    {
+      "name": "RCD_DT",
+      "label": "收费/退费日期时间",
+      "description": "收费/退费日期时间",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "15",
+      "word_row": 25,
+      "word_rows": [
+        25
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"RCD_DT\") <= 15)"
+    },
+    {
+      "name": "REFD_SETL_FLAG",
+      "label": "退费结算标志",
+      "description": "收费或退费的标志，0、正常；1、退费",
+      "required": true,
+      "source_type": "数字",
+      "source_size": "1",
+      "word_row": 26,
+      "word_rows": [
+        26
+      ],
+      "postgresql_type": "NUMERIC(1,0)"
+    },
+    {
+      "name": "MED_TYPE",
+      "label": "医疗类别",
+      "description": "详见附录表13，医保结算时必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "12",
+      "word_row": 27,
+      "word_rows": [
+        27
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"MED_TYPE\") <= 12)"
+    },
+    {
+      "name": "MEDFEE_SUMAMT",
+      "label": "医疗费总额",
+      "description": "医疗费总额，医保结算时必填",
+      "required": true,
+      "source_type": "数字",
+      "source_size": "16，2",
+      "word_row": 28,
+      "word_rows": [
+        28
+      ],
+      "postgresql_type": "NUMERIC(16,2)"
+    },
+    {
+      "name": "FUND_PAY_SUMAMT",
+      "label": "基金支付总额",
+      "description": "基金支付总额，医保结算时必填",
+      "required": false,
+      "source_type": "数字",
+      "source_size": "16，2",
+      "word_row": 29,
+      "word_rows": [
+        29
+      ],
+      "postgresql_type": "NUMERIC(16,2)"
+    },
+    {
+      "name": "PSN_PART_AMT",
+      "label": "个人负担总金额",
+      "description": "个人负担总金额，医保结算时必填",
+      "required": false,
+      "source_type": "数字",
+      "source_size": "16，2",
+      "word_row": 30,
+      "word_rows": [
+        30
+      ],
+      "postgresql_type": "NUMERIC(16,2)"
+    },
+    {
+      "name": "ACCT_PAY",
+      "label": "个人账户支出",
+      "description": "个人账户支出，医保结算时必填",
+      "required": false,
+      "source_type": "数字",
+      "source_size": "16，2",
+      "word_row": 31,
+      "word_rows": [
+        31
+      ],
+      "postgresql_type": "NUMERIC(16,2)"
+    },
+    {
+      "name": "PSN_CASH_PAY",
+      "label": "个人现金支出",
+      "description": "个人现金支出，医保结算时必填",
+      "required": false,
+      "source_type": "数字",
+      "source_size": "16，2",
+      "word_row": 32,
+      "word_rows": [
+        32
+      ],
+      "postgresql_type": "NUMERIC(16,2)"
+    },
+    {
+      "name": "HOSP_PART_AMT",
+      "label": "医院负担金额",
+      "description": "医院负担金额，医保结算时必填",
+      "required": false,
+      "source_type": "数字",
+      "source_size": "16，2",
+      "word_row": 33,
+      "word_rows": [
+        33
+      ],
+      "postgresql_type": "NUMERIC(16,2)"
+    },
+    {
+      "name": "UPDATE_TIME",
+      "label": "最终结算时间",
+      "description": "最终结算时间（精确到秒），采集按照该字段定时采集",
+      "required": true,
+      "source_type": "日期时间",
+      "source_size": "15",
+      "word_row": 34,
+      "word_rows": [
+        34
+      ],
+      "postgresql_type": "TIMESTAMPTZ"
+    },
+    {
+      "name": "SETL_FEE_LIST_ID",
+      "label": "结算明细id",
+      "description": "主键，院内结算明细id",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "80",
+      "word_row": 35,
+      "word_rows": [
+        35
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"SETL_FEE_LIST_ID\") <= 80)"
+    },
+    {
+      "name": "RPT_NO",
+      "label": "申请单编号",
+      "description": "院内申请单编号，检查检验必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "512",
+      "word_row": 40,
+      "word_rows": [
+        40
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"RPT_NO\") <= 512)"
+    },
+    {
+      "name": "FEEDETL_SN",
+      "label": "费用明细流水号",
+      "description": "费用明细流水号",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 41,
+      "word_rows": [
+        41
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"FEEDETL_SN\") <= 36)"
+    },
+    {
+      "name": "INIT_FEEDETL_SN",
+      "label": "原费用明细流水号",
+      "description": "原费用明细流水号，退费时必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "80",
+      "word_row": 42,
+      "word_rows": [
+        42
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"INIT_FEEDETL_SN\") <= 80)"
+    },
+    {
+      "name": "HOS_PROJ_NO",
+      "label": "院内项目编码",
+      "description": "该项目在医疗机构中的编码",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "200",
+      "word_row": 43,
+      "word_rows": [
+        43
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"HOS_PROJ_NO\") <= 200)"
+    },
+    {
+      "name": "HOS_PROJ_NAME",
+      "label": "院内项目名称",
+      "description": "该项目在医疗机构中的名称",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "1000",
+      "word_row": 44,
+      "word_rows": [
+        44
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"HOS_PROJ_NAME\") <= 1000)"
+    },
+    {
+      "name": "HILIST_CODE",
+      "label": "医保目录编码",
+      "description": "医保服务项目价格目录编码，医保结算时必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 45,
+      "word_rows": [
+        45
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"HILIST_CODE\") <= 36)"
+    },
+    {
+      "name": "HILIST_NAME",
+      "label": "医保目录名称",
+      "description": "医保服务项目价格目录名称，医保结算时必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 46,
+      "word_rows": [
+        46
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"HILIST_NAME\") <= 36)"
+    },
+    {
+      "name": "LIST_TYPE",
+      "label": "目录类别",
+      "description": "详见附录表14，医保结算时必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 47,
+      "word_rows": [
+        47
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"LIST_TYPE\") <= 36)"
+    },
+    {
+      "name": "MED_LIST_CODG",
+      "label": "医疗目录编码",
+      "description": "药剂或者耗材的医疗目录编码，医保结算时必填",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 48,
+      "word_rows": [
+        48
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"MED_LIST_CODG\") <= 36)"
+    },
+    {
+      "name": "MEDINS_LIST_CODG",
+      "label": "医药机构目录编码",
+      "description": "院内收费目录编码 ",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 49,
+      "word_rows": [
+        49
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"MEDINS_LIST_CODG\") <= 36)"
+    },
+    {
+      "name": "MEDINS_LIST_NAME",
+      "label": "医药机构目录名称",
+      "description": "院内收费目录名称",
+      "required": true,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 50,
+      "word_rows": [
+        50
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"MEDINS_LIST_NAME\") <= 36)"
+    },
+    {
+      "name": "MED_CHRGITM_TYPE",
+      "label": "医疗收费项目类别",
+      "description": "详见附录表16",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 51,
+      "word_rows": [
+        51
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"MED_CHRGITM_TYPE\") <= 36)"
+    },
+    {
+      "name": "PRODNAME",
+      "label": "商品名",
+      "description": "商品名",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 52,
+      "word_rows": [
+        52
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"PRODNAME\") <= 36)"
+    },
+    {
+      "name": "SPEC",
+      "label": "规格",
+      "description": "规格",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 53,
+      "word_rows": [
+        53
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"SPEC\") <= 36)"
+    },
+    {
+      "name": "DOSFORM_NAME",
+      "label": "剂型名称",
+      "description": "剂型名称",
+      "required": false,
+      "source_type": "字符串",
+      "source_size": "36",
+      "word_row": 54,
+      "word_rows": [
+        54
+      ],
+      "postgresql_type": "TEXT CHECK (char_length(\"DOSFORM_NAME\") <= 36)"
+    },
+    {
+      "name": "CNT",
+      "label": "项目数量",
+      "description": "项目数量",
+      "required": true,
+      "source_type": "数字",
+      "source_size": "10.2",
+      "word_row": 55,
+      "word_rows": [
+        55
+      ],
+      "postgresql_type": "NUMERIC(10,2)"
+    },
+    {
+      "name": "PRIC",
+      "label": "项目单价（元）",
+      "description": "项目单价（元）",
+      "required": true,
+      "source_type": "数字",
+      "source_size": "10.2",
+      "word_row": 56,
+      "word_rows": [
+        56
+      ],
+      "postgresql_type": "NUMERIC(10,2)"
+    }
+  ],
+  "pending_additional_fields": [],
+  "confirmed_business_conventions": {
+    "settlement_time_field": "UPDATE_TIME",
+    "fee_basis": "CNT * PRIC vs independently observed quantity * same PRIC",
+    "quantity_unit": "套",
+    "price_unit": "元/套",
+    "category_source": "HILIST_NAME name matching; no catalog-code mapping",
+    "timezone": "Asia/Shanghai",
+    "study_query_range": "same start/end as the regulator task (Q8 supersedes Q6)",
+    "category_comparison": "same hip or knee scope; model/variant name equality not required"
+  }
+}

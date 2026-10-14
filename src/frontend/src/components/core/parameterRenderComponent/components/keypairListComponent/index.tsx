@@ -10,6 +10,7 @@ import {
 } from "@/utils/reactflowUtils";
 import { cn } from "@/utils/utils";
 import IconComponent from "../../../../common/genericIconComponent";
+import type { InputProps, KeyPairListComponentType } from "../../types";
 
 const KeypairListComponent = ({
   value,
@@ -20,7 +21,7 @@ const KeypairListComponent = ({
   id,
   showParameter = true,
   ariaLabelledBy,
-}) => {
+}: InputProps<unknown, KeyPairListComponentType>) => {
   const { t } = useTranslation();
   const getTestId = (prefix, index) =>
     `${editNode ? "editNode" : ""}${prefix}${index}`;

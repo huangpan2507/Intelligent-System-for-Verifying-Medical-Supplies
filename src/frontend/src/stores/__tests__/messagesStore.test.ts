@@ -2,7 +2,7 @@ import { act, renderHook } from "@testing-library/react";
 import type { Message } from "../../types/messages";
 import { useMessagesStore } from "../messagesStore";
 
-const mockMessage: Message = {
+const mockMessage: Message & { id: string } = {
   id: "msg-1",
   text: "Hello world",
   sender: "User",
@@ -16,7 +16,7 @@ const mockMessage: Message = {
   flow_id: "flow-1",
 };
 
-const mockMachineMessage: Message = {
+const mockMachineMessage: Message & { id: string } = {
   id: "msg-2",
   text: "Machine response",
   sender: "Machine",
@@ -32,7 +32,7 @@ const mockMachineMessage: Message = {
   properties: { type: "ai" },
 };
 
-const mockMessage2: Message = {
+const mockMessage2: Message & { id: string } = {
   id: "msg-3",
   text: "Another message",
   sender: "User",
@@ -114,6 +114,18 @@ describe("useMessagesStore", () => {
   });
 
   describe("addMessage", () => {
+    it("keeps messages without persistent IDs separate", () => {
+      const first = { ...mockMessage, id: null };
+      const second: Message = {
+        ...mockMachineMessage,
+        id: null,
+        properties: { state: "partial" },
+      };
+      useMessagesStore.getState().addMessage(first);
+      useMessagesStore.getState().addMessage(second);
+      expect(useMessagesStore.getState().messages).toEqual([first, second]);
+    });
+
     it("should add new message to empty list", () => {
       const { result } = renderHook(() => useMessagesStore());
 

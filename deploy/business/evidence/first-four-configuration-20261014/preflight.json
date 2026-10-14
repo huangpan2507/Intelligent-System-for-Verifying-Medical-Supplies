@@ -1,0 +1,15 @@
+{
+  "errors": {},
+  "node_count": 11,
+  "business_config_unchanged": true,
+  "edges_unchanged": true,
+  "identity": {
+    "name": "settlement_detail",
+    "namespace": "core-flow-v1",
+    "keys": [
+      "ORGAN_CODE",
+      "DATA_SOURCE",
+      "SETL_FEE_LIST_ID"
+    ]
+  }
+}

@@ -1,0 +1,383 @@
+{
+  "id": "493bbbdd-66bb-4202-bb82-a1f13b25dc54",
+  "name": "Observation",
+  "fields": [
+    {
+      "name": "_identity",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ORGAN_CODE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ORGAN_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ORGAN_ADMDVS",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ORGAN_LV",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "FIX_ORGAN_CODE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "FIX_ORGAN_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "DATA_SOURCE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "SETL_HOS_ID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "INIT_SETL_HOS_ID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "SETL_MED_ID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "INIT_SETL_MED_ID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MDTRT_SN",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MDTRT_ID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MED_PAY_FLAG",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "PSN_NO",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "PSN_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "PSN_CERT_TYPE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "CERTNO",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "SOC_SEC_CARD_NO",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "GEND",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "OP_EM_MARK",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "OP_EM_NO",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "RCD_DT",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "REFD_SETL_FLAG",
+      "type": "decimal128(1, 0)",
+      "nullable": true
+    },
+    {
+      "name": "MED_TYPE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MEDFEE_SUMAMT",
+      "type": "decimal128(16, 2)",
+      "nullable": true
+    },
+    {
+      "name": "FUND_PAY_SUMAMT",
+      "type": "decimal128(16, 2)",
+      "nullable": true
+    },
+    {
+      "name": "PSN_PART_AMT",
+      "type": "decimal128(16, 2)",
+      "nullable": true
+    },
+    {
+      "name": "ACCT_PAY",
+      "type": "decimal128(16, 2)",
+      "nullable": true
+    },
+    {
+      "name": "PSN_CASH_PAY",
+      "type": "decimal128(16, 2)",
+      "nullable": true
+    },
+    {
+      "name": "HOSP_PART_AMT",
+      "type": "decimal128(16, 2)",
+      "nullable": true
+    },
+    {
+      "name": "UPDATE_TIME",
+      "type": "timestamp[us, tz=UTC]",
+      "nullable": true
+    },
+    {
+      "name": "SETL_FEE_LIST_ID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "RPT_NO",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "FEEDETL_SN",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "INIT_FEEDETL_SN",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "HOS_PROJ_NO",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "HOS_PROJ_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "HILIST_CODE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "HILIST_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "LIST_TYPE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MED_LIST_CODG",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MEDINS_LIST_CODG",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MEDINS_LIST_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MED_CHRGITM_TYPE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "PRODNAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "SPEC",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "DOSFORM_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "CNT",
+      "type": "decimal128(10, 2)",
+      "nullable": true
+    },
+    {
+      "name": "PRIC",
+      "type": "decimal128(10, 2)",
+      "nullable": true
+    },
+    {
+      "name": "SYSTEM_ID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "target_category",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_method",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_reason",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_evidence_field",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_evidence_text",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_confidence",
+      "type": "decimal128(38, 6)",
+      "nullable": true
+    },
+    {
+      "name": "_representative_row_id",
+      "type": "int64",
+      "nullable": true
+    },
+    {
+      "name": "image_manifest_context",
+      "type": "extension<arrow.json>",
+      "nullable": true
+    },
+    {
+      "name": "image_manifest",
+      "type": "extension<arrow.json>",
+      "nullable": true
+    },
+    {
+      "name": "_business_row_id",
+      "type": "int64",
+      "nullable": true
+    },
+    {
+      "name": "recognized_category",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "recognized_quantity",
+      "type": "decimal128(38, 6)",
+      "nullable": true
+    },
+    {
+      "name": "observed_unit",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "coverage_confirmed",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "evidence_ref",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "recognition_confirmed",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "simulated",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "_issue_reason",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "_model_response",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "_request_id",
+      "type": "string",
+      "nullable": true
+    }
+  ],
+  "total": 0,
+  "offset": 0,
+  "limit": 50,
+  "rows": [],
+  "raw": false,
+  "provenance": {
+    "lineage": "4ba6925a-106f-4c50-bb60-9af30db55bbf",
+    "parents": [
+      "29c63d35-d8a2-42bf-a5b8-f3287a3f488f",
+      "4fce2b4a-18f6-4635-828b-16b6a168fb63",
+      "8d00e3ac-0fc2-4d7d-8101-97e449f61e48"
+    ],
+    "blockers": [],
+    "completeness": {
+      "state": "complete"
+    }
+  }
+}

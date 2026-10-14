@@ -340,7 +340,7 @@ class BackgroundExecutionService(Service):
         )
 
         async def _coro() -> None:
-            if request.get("verification_run_id") and not await job_service.claim_queued_job(job_id):
+            if (request.get("verification_run_id") or request.get("business_task_id")) and not await job_service.claim_queued_job(job_id):
                 return
             # job_id reaches the frame source via source_kwargs so the default
             # build-loop source can tag its memory-base hook with the run's job.

@@ -1,11 +1,12 @@
 import type { SidebarSection } from "@/components/ui/sidebar";
+import type en from "@/locales/en.json";
 
 /**
  * Source of truth for the FlowPage's segmented sidebar nav items. Used by
  * both the real ``SidebarSegmentedNav`` and the FlowBuilderWelcome's faux
  * rail so they can never drift apart.
  *
- * Keep this file free of imports beyond the ``SidebarSection`` type — the
+ * Keep this file free of runtime imports — the
  * welcome's component test imports from here and can't tolerate transitive
  * dependencies that pull in ESM-only modules (nanoid, react-i18next, etc.).
  */
@@ -13,9 +14,15 @@ export interface SidebarNavItem {
   id: SidebarSection;
   icon: string;
   /** i18n key — feed through ``t(...)`` at the call site. */
-  label: string;
+  label: Extract<
+    keyof typeof en,
+    `sidebar.nav.${string}` | "memory.sidebarTitle"
+  >;
   /** i18n key — feed through ``t(...)`` at the call site. */
-  tooltip: string;
+  tooltip: Extract<
+    keyof typeof en,
+    `sidebar.nav.${string}` | "memory.sidebarTitle"
+  >;
 }
 
 export const NAV_ITEMS: SidebarNavItem[] = [

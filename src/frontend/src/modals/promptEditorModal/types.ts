@@ -1,3 +1,4 @@
+import type { InvalidVariableMessageKey } from "@/utils/promptVariables";
 import type { APIClassType } from "@/types/api";
 
 export type PromptSyntaxKind = "fstring" | "mustache";
@@ -26,7 +27,7 @@ export interface PromptSyntaxStrategy {
    */
   renderColoredContent(
     inputValue: string,
-    translate: (key: string) => string,
+    translate: (key: InvalidVariableMessageKey) => string,
   ): string;
   /** Builds the validate-prompt mutation payload (mustache adds `mustache: true`). */
   buildValidatePayload(
@@ -35,7 +36,7 @@ export interface PromptSyntaxStrategy {
     nodeClass: APIClassType,
   ): ValidatePromptPayload;
   /** i18n key for the modal header description (mustache only). */
-  headerDescriptionKey?: string;
+  headerDescriptionKey?: "dialog.mustachePrompt";
   /** Extra class applied to the preview wrapper (`" m-0"` vs `" bg-muted"`). */
   previewClassName: string;
 }

@@ -9,6 +9,15 @@
 jest.unmock("react-i18next");
 import i18n, { loadLanguage } from "./i18n";
 
+describe("flat translation keys", () => {
+  it("resolves dotted keys and interpolated plural forms", () => {
+    const t = i18n.getFixedT("en");
+    expect(t("assistant.files.empty")).toBe("(empty file)");
+    expect(t("mainPage.timeElapsed.year", { count: 1 })).toBe("1 year");
+    expect(t("mainPage.timeElapsed.year", { count: 2 })).toBe("2 years");
+  });
+});
+
 describe("loadLanguage", () => {
   beforeEach(() => {
     // Clear cached non-English bundles between tests

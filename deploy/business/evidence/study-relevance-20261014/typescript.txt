@@ -1,0 +1,2 @@
+Full TypeScript check: exit 0
+Final incremental check after the last UI change: exit 0

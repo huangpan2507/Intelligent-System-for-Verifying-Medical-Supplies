@@ -1,0 +1,609 @@
+src/CustomNodes/GenericNode/components/NodeOutputfield/index.tsx(425,15): error TS2322: Type '{ proxy: OutputFieldProxyType | undefined; outputs: any; idx: number; types: string[]; selected: string; nodeId: string; frozen: boolean | undefined; name: string; isToolMode: boolean; handleSelectOutput: ((output: any) => void) | undefined; outputName: string; }' is not assignable to type 'IntrinsicAttributes & outputComponentType'.
+  Property 'idx' does not exist on type 'IntrinsicAttributes & outputComponentType'.
+src/CustomNodes/helpers/__tests__/check-code-validity.test.ts(4,31): error TS2352: Conversion of type '{ type: string; node: { edited: false; template: { code: { value: string; }; }; }; }' to type 'NodeDataType' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Property 'id' is missing in type '{ type: string; node: { edited: false; template: { code: { value: string; }; }; }; }' but required in type 'NodeDataType'.
+src/CustomNodes/helpers/__tests__/check-code-validity.test.ts(16,21): error TS2352: Conversion of type '{ CustomComponent: { template: { code: { value: string; }; }; outputs: never[]; }; }' to type '{ [key: string]: APIClassType; }' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Property 'CustomComponent' is incompatible with index signature.
+    Type '{ template: { code: { value: string; }; }; outputs: never[]; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/CustomNodes/helpers/__tests__/check-code-validity.test.ts(64,27): error TS2352: Conversion of type '{ type: string; node: { edited: false; outputs: never[]; template: { code: { value: string; }; _frontend_node_flow_id: { value: string; }; _frontend_node_folder_id: { value: string; }; is_refresh: boolean; tools_metadata: { ...; }; }; }; }' to type 'NodeDataType' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Property 'id' is missing in type '{ type: string; node: { edited: false; outputs: never[]; template: { code: { value: string; }; _frontend_node_flow_id: { value: string; }; _frontend_node_folder_id: { value: string; }; is_refresh: boolean; tools_metadata: { ...; }; }; }; }' but required in type 'NodeDataType'.
+src/CustomNodes/helpers/__tests__/check-code-validity.test.ts(78,30): error TS2352: Conversion of type '{ LanguageModelComponent: { template: { code: { value: string; }; }; outputs: never[]; }; }' to type '{ [key: string]: APIClassType; }' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Property 'LanguageModelComponent' is incompatible with index signature.
+    Type '{ template: { code: { value: string; }; }; outputs: never[]; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/CustomNodes/helpers/__tests__/check-code-validity.test.ts(96,27): error TS2352: Conversion of type '{ type: string; node: { edited: false; outputs: never[]; template: { code: { value: string; }; _frontend_node_flow_id: { value: string; }; is_refresh: boolean; }; }; }' to type 'NodeDataType' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Property 'id' is missing in type '{ type: string; node: { edited: false; outputs: never[]; template: { code: { value: string; }; _frontend_node_flow_id: { value: string; }; is_refresh: boolean; }; }; }' but required in type 'NodeDataType'.
+src/CustomNodes/helpers/__tests__/check-code-validity.test.ts(108,30): error TS2352: Conversion of type '{ LanguageModelComponent: { template: { code: { value: string; }; api_key: { value: string; required: true; }; }; outputs: never[]; }; }' to type '{ [key: string]: APIClassType; }' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Property 'LanguageModelComponent' is incompatible with index signature.
+    Type '{ template: { code: { value: string; }; api_key: { value: string; required: true; }; }; outputs: never[]; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/CustomNodes/helpers/__tests__/check-code-validity.test.ts(132,5): error TS2352: Conversion of type '{ type: string; node: { edited: false; outputs: never[]; template: Record<string, unknown>; }; }' to type 'NodeDataType' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Property 'id' is missing in type '{ type: string; node: { edited: false; outputs: never[]; template: Record<string, unknown>; }; }' but required in type 'NodeDataType'.
+src/CustomNodes/helpers/__tests__/check-code-validity.test.ts(142,5): error TS2352: Conversion of type '{ LanguageModelComponent: { template: Record<string, unknown>; outputs: never[]; }; }' to type '{ [key: string]: APIClassType; }' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Property 'LanguageModelComponent' is incompatible with index signature.
+    Type '{ template: Record<string, unknown>; outputs: never[]; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/CustomNodes/helpers/__tests__/check-code-validity.test.ts(279,5): error TS2352: Conversion of type '{ URLComponent: { template: Record<string, unknown>; outputs: { name: string; display_name: string; types: string[]; method: string; }[]; }; }' to type '{ [key: string]: APIClassType; }' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Property 'URLComponent' is incompatible with index signature.
+    Type '{ template: Record<string, unknown>; outputs: { name: string; display_name: string; types: string[]; method: string; }[]; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/components/common/genericIconComponent/index.tsx(63,31): error TS2345: Argument of type 'ComponentType<{}> | undefined' is not assignable to parameter of type 'SetStateAction<IconComponentType | null>'.
+  Type 'undefined' is not assignable to type 'SetStateAction<IconComponentType | null>'.
+src/components/core/assistantPanel/components/__tests__/assistant-message-body-flow-proposal.test.tsx(129,7): error TS2322: Type 'undefined' is not assignable to type 'boolean'.
+src/components/core/assistantPanel/components/assistant-component-result.tsx(36,78): error TS1501: This regular expression flag is only available when targeting 'es2018' or later.
+src/components/core/assistantPanel/components/assistant-component-result.tsx(53,87): error TS1501: This regular expression flag is only available when targeting 'es2018' or later.
+src/components/core/assistantPanel/components/assistant-flow-edit-card.tsx(178,21): error TS2698: Spread types may only be created from object types.
+src/components/core/assistantPanel/helpers/apply-flow-proposal.ts(73,7): error TS2345: Argument of type 'PositionedNode[]' is not assignable to parameter of type 'CanvasNode[]'.
+  Type 'PositionedNode' is not assignable to type 'CanvasNode'.
+    Index signature for type 'string' is missing in type 'PositionedNode'.
+src/components/core/assistantPanel/hooks/__tests__/use-assistant-chat-file-events.test.ts(31,66): error TS2556: A spread argument must either have a tuple type or be passed to a rest parameter.
+src/components/core/assistantPanel/hooks/__tests__/use-assistant-chat.test.ts(147,11): error TS2353: Object literal may only specify known properties, and 'internal' does not exist in type '{ silent?: boolean | undefined; }'.
+src/components/core/dropdownComponent/hooks/useDropdownMutations.ts(34,5): error TS2322: Type 'string | undefined' is not assignable to type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/components/core/dropdownComponent/hooks/useDropdownMutations.ts(35,5): error TS2322: Type 'string | undefined' is not assignable to type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/components/core/dropdownComponent/hooks/useDropdownMutations.ts(36,5): error TS2322: Type 'APIClassType | undefined' is not assignable to type 'APIClassType'.
+  Type 'undefined' is not assignable to type 'APIClassType'.
+src/components/core/dropdownComponent/hooks/useDropdownMutations.ts(46,7): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/components/core/dropdownComponent/hooks/useDropdownMutations.ts(63,7): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/components/core/flowToolbarComponent/components/deploy-choice-dialog/__tests__/index.test.tsx(522,55): error TS2554: Expected 0-2 arguments, but got 4.
+src/components/core/flowToolbarComponent/components/deploy-choice-dialog/__tests__/index.test.tsx(584,55): error TS2554: Expected 0-2 arguments, but got 4.
+src/components/core/folderSidebarComponent/components/sideBarFolderButtons/index.tsx(180,44): error TS2339: Property 'data' does not exist on type 'UploadedFlowFile'.
+  Property 'data' does not exist on type '{ flows: FlowType[]; }'.
+src/components/core/parameterRenderComponent/components/inputComponent/components/popoverObject/__tests__/popoverObject.test.tsx(40,16): error TS2741: Property 'ariaLabelledBy' is missing in type '{ id: string; refInput: RefObject<HTMLInputElement | null>; onInputLostFocus: () => void; selectedOption: string; setSelectedOption: undefined; selectedOptions: undefined; ... 17 more ...; inspectionPanel: boolean; }' but required in type '{ id: any; nodeId?: undefined; refInput: any; onInputLostFocus: any; selectedOption: any; setSelectedOption: any; selectedOptions: any; setSelectedOptions: any; value: any; autoFocus: any; disabled: any; ... 14 more ...; ariaLabelledBy: any; }'.
+src/components/core/parameterRenderComponent/components/inputComponent/index.tsx(225,15): error TS2322: Type 'string | undefined' is not assignable to type 'undefined'.
+  Type 'string' is not assignable to type 'undefined'.
+src/components/core/parameterRenderComponent/components/mcpComponent/__tests__/McpComponent.test.tsx(61,20): error TS2339: Property 'getState' does not exist on type 'Mock<unknown, [selector?: ((state: { updateBuildStatus: Mock<any, any, any>; }) => unknown) | undefined], any>'.
+src/components/core/parameterRenderComponent/components/mcpComponent/__tests__/McpComponent.test.tsx(124,16): error TS2352: Conversion of type '{ template: { code: { value: string; }; }; tool_mode: false; }' to type 'APIClassType' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type '{ template: { code: { value: string; }; }; tool_mode: false; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/components/core/parameterRenderComponent/components/mcpComponent/__tests__/McpComponent.test.tsx(180,23): error TS2352: Conversion of type '{ template: { code: { value: string; }; }; tool_mode: false; }' to type 'APIClassType' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type '{ template: { code: { value: string; }; }; tool_mode: false; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/components/core/parameterRenderComponent/components/modelInputComponent/__tests__/modelListboxLabel.a11y.test.tsx(17,3): error TS2352: Conversion of type '{ name: string; provider: string; enabled: boolean; }' to type 'ModelOption' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Property 'icon' is missing in type '{ name: string; provider: string; enabled: boolean; }' but required in type 'ModelOption'.
+src/components/core/parameterRenderComponent/components/sliderComponent/__tests__/slider-node-selection.test.tsx(28,12): error TS2339: Property 'PointerEvent' does not exist on type 'never'.
+src/components/core/parameterRenderComponent/components/sliderComponent/__tests__/slider-node-selection.test.tsx(28,34): error TS2339: Property 'MouseEvent' does not exist on type 'never'.
+src/components/core/parameterRenderComponent/components/sortableListComponent/reproduce_issue.test.tsx(45,13): error TS2741: Property 'editNode' is missing in type '{ tooltip: string; name: string; value: { name: string; }[]; handleOnNewValue: Mock<any, any, any>; disabled: boolean; recommended: boolean; placeholder: string; isList: boolean; fileTypes: never[]; onDelete: Mock<...>; id: string; limit: number; }' but required in type 'BaseInputProps<SortableListItemType[]>'.
+src/components/core/parameterRenderComponent/components/tableComponent/components/tableNodeCellRender/index.tsx(63,10): error TS2739: Type '{ nodeId: any; handleOnNewValue: handleOnNewValueType; placeholder: any; templateData: any; name: any; templateValue: any; editNode: true; handleNodeClass: (newNodeClass: any, type?: string | undefined) => void; nodeClass: APIClassType | noteClassType; disabled: boolean; nodeInformationMetadata: NodeInfoType; }' is missing the following properties from type '{ handleOnNewValue: handleOnNewValueType | ((value: string, key: string) => void); name: string; nodeId: string; templateData: Partial<InputFieldType>; ... 10 more ...; ariaLabelledBy?: string | undefined; }': showParameter, inspectionPanel
+src/components/core/parameterRenderComponent/index.tsx(151,12): error TS2322: Type '{ isList: boolean; id: string; value: any; editNode: boolean; handleOnNewValue: handleOnNewValueType; disabled: boolean; nodeClass?: APIClassType | undefined; ... 17 more ...; ariaLabelledBy?: string | undefined; }' is not assignable to type '{ value: any; handleOnNewValue: any; disabled: any; editNode?: boolean | undefined; isList?: boolean | undefined; id: any; showParameter?: boolean | undefined; ariaLabelledBy: any; }'.
+  Property 'ariaLabelledBy' is optional in type '{ isList: boolean; id: string; value: any; editNode: boolean; handleOnNewValue: handleOnNewValueType; disabled: boolean; nodeClass?: APIClassType | undefined; ... 17 more ...; ariaLabelledBy?: string | undefined; }' but required in type '{ value: any; handleOnNewValue: any; disabled: any; editNode?: boolean | undefined; isList?: boolean | undefined; id: any; showParameter?: boolean | undefined; ariaLabelledBy: any; }'.
+src/components/core/parameterRenderComponent/index.tsx(266,13): error TS2322: Type 'unknown' is not assignable to type '(string[] | number[]) & string'.
+src/components/core/playgroundComponent/chat-view/chat-messages/components/__tests__/chat-message.test.tsx(261,13): error TS2322: Type '{ lastMessage: boolean; chat: { isSend: boolean; message: string; files: never[]; content_blocks: { title: string; contents: { type: string; text: string; }[]; }[]; properties: { state: string; source: { id: string; display_name: string; source: string; }; }; ... 4 more ...; category: string; }; updateChat: Mock<......' is not assignable to type 'chatMessagePropsType'.
+  The types of 'chat.content_blocks' are incompatible between these types.
+    Type '{ title: string; contents: { type: string; text: string; }[]; }[]' is not assignable to type 'ContentBlockItem[]'.
+      Type '{ title: string; contents: { type: string; text: string; }[]; }' is not assignable to type 'ContentBlockItem'.
+        Property 'type' is missing in type '{ title: string; contents: { type: string; text: string; }[]; }' but required in type 'ContentBlock'.
+src/components/core/playgroundComponent/chat-view/chat-messages/components/__tests__/error-message.test.tsx(48,59): error TS2741: Property 'type' is missing in type '{ title: string; allow_markdown: true; component: string; contents: { type: "error"; reason: string; component: string; field: string; duration: number; header: { title: string; icon: string; }; }[]; }' but required in type 'ContentBlock'.
+src/components/core/playgroundComponent/chat-view/utils/__tests__/message-utils.test.ts(259,19): error TS2352: Conversion of type '{ id: string; flow_id: string; session_id: string; text: string; sender: string; sender_name: string; timestamp: string; files: never[]; properties: Message["properties"]; }' to type 'Message' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type '{ id: string; flow_id: string; session_id: string; text: string; sender: string; sender_name: string; timestamp: string; files: never[]; properties: { [key: string]: unknown; state?: "partial" | "complete" | undefined; ... 9 more ...; usage?: UsageType | ... 1 more ... | undefined; } | undefined; }' is missing the following properties from type 'Message': edit, background_color, text_color
+src/components/core/playgroundComponent/chat-view/utils/__tests__/message-utils.test.ts(299,19): error TS2352: Conversion of type '{ id: string; flow_id: string; session_id: string; text: string; sender: string; sender_name: string; timestamp: string; files: never[]; properties: Message["properties"]; }' to type 'Message' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type '{ id: string; flow_id: string; session_id: string; text: string; sender: string; sender_name: string; timestamp: string; files: never[]; properties: { [key: string]: unknown; state?: "partial" | "complete" | undefined; ... 9 more ...; usage?: UsageType | ... 1 more ... | undefined; } | undefined; }' is missing the following properties from type 'Message': edit, background_color, text_color
+src/components/ui/__tests__/sidebar.test.tsx(19,19): error TS2345: Argument of type '(prev: any) => boolean' is not assignable to parameter of type 'boolean'.
+src/components/ui/accordion.tsx(39,7): error TS2322: Type 'ReactI18NextChildren | Iterable<ReactI18NextChildren>' is not assignable to type 'string | number | bigint | boolean | Record<string, unknown> | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...> | null | undefined'.
+  Type 'Iterable<ReactI18NextChildren>' is not assignable to type 'string | number | bigint | boolean | Record<string, unknown> | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...> | null | undefined'.
+    Type 'Iterable<ReactI18NextChildren>' is not assignable to type 'Iterable<ReactNode>'.
+      The types returned by '[Symbol.iterator]().next(...)' are incompatible between these types.
+        Type 'IteratorResult<ReactI18NextChildren, any>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+          Type 'IteratorYieldResult<ReactI18NextChildren>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+            Type 'IteratorYieldResult<ReactI18NextChildren>' is not assignable to type 'IteratorYieldResult<ReactNode>'.
+              Type 'ReactI18NextChildren' is not assignable to type 'ReactNode'.
+                Type 'Record<string, unknown>' is not assignable to type 'ReactNode'.
+                  Type 'Record<string, unknown>' is missing the following properties from type 'ReactPortal': children, type, props, key
+src/components/ui/context-menu.tsx(73,7): error TS2322: Type 'ReactI18NextChildren | Iterable<ReactI18NextChildren>' is not assignable to type 'string | number | bigint | boolean | Record<string, unknown> | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...> | null | undefined'.
+  Type 'Iterable<ReactI18NextChildren>' is not assignable to type 'string | number | bigint | boolean | Record<string, unknown> | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...> | null | undefined'.
+    Type 'Iterable<ReactI18NextChildren>' is not assignable to type 'Iterable<ReactNode>'.
+      The types returned by '[Symbol.iterator]().next(...)' are incompatible between these types.
+        Type 'IteratorResult<ReactI18NextChildren, any>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+          Type 'IteratorYieldResult<ReactI18NextChildren>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+            Type 'IteratorYieldResult<ReactI18NextChildren>' is not assignable to type 'IteratorYieldResult<ReactNode>'.
+              Type 'ReactI18NextChildren' is not assignable to type 'ReactNode'.
+                Type 'Record<string, unknown>' is not assignable to type 'ReactNode'.
+                  Type 'Record<string, unknown>' is missing the following properties from type 'ReactPortal': children, type, props, key
+src/components/ui/context-menu.tsx(157,7): error TS2322: Type 'ReactI18NextChildren | Iterable<ReactI18NextChildren>' is not assignable to type 'string | number | bigint | boolean | Record<string, unknown> | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...> | null | undefined'.
+  Type 'Iterable<ReactI18NextChildren>' is not assignable to type 'string | number | bigint | boolean | Record<string, unknown> | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...> | null | undefined'.
+    Type 'Iterable<ReactI18NextChildren>' is not assignable to type 'Iterable<ReactNode>'.
+      The types returned by '[Symbol.iterator]().next(...)' are incompatible between these types.
+        Type 'IteratorResult<ReactI18NextChildren, any>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+          Type 'IteratorYieldResult<ReactI18NextChildren>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+            Type 'IteratorYieldResult<ReactI18NextChildren>' is not assignable to type 'IteratorYieldResult<ReactNode>'.
+              Type 'ReactI18NextChildren' is not assignable to type 'ReactNode'.
+                Type 'Record<string, unknown>' is not assignable to type 'ReactNode'.
+                  Type 'Record<string, unknown>' is missing the following properties from type 'ReactPortal': children, type, props, key
+src/components/ui/context-menu.tsx(181,7): error TS2322: Type 'ReactI18NextChildren | Iterable<ReactI18NextChildren>' is not assignable to type 'string | number | bigint | boolean | Record<string, unknown> | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...> | null | undefined'.
+  Type 'Iterable<ReactI18NextChildren>' is not assignable to type 'string | number | bigint | boolean | Record<string, unknown> | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...> | null | undefined'.
+    Type 'Iterable<ReactI18NextChildren>' is not assignable to type 'Iterable<ReactNode>'.
+      The types returned by '[Symbol.iterator]().next(...)' are incompatible between these types.
+        Type 'IteratorResult<ReactI18NextChildren, any>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+          Type 'IteratorYieldResult<ReactI18NextChildren>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+            Type 'IteratorYieldResult<ReactI18NextChildren>' is not assignable to type 'IteratorYieldResult<ReactNode>'.
+              Type 'ReactI18NextChildren' is not assignable to type 'ReactNode'.
+                Type 'Record<string, unknown>' is not assignable to type 'ReactNode'.
+                  Type 'Record<string, unknown>' is missing the following properties from type 'ReactPortal': children, type, props, key
+src/components/ui/dialog.tsx(107,56): error TS2345: Argument of type 'ReactI18NextChildren | Iterable<ReactI18NextChildren>' is not assignable to parameter of type 'ReactNode'.
+  Type 'Record<string, unknown>' is not assignable to type 'ReactNode'.
+    Type 'Record<string, unknown>' is missing the following properties from type 'ReactPortal': children, type, props, key
+src/components/ui/dialog.tsx(109,41): error TS2345: Argument of type 'ReactI18NextChildren | Iterable<ReactI18NextChildren>' is not assignable to parameter of type 'ReactNode'.
+  Type 'Record<string, unknown>' is not assignable to type 'ReactNode'.
+    Type 'Record<string, unknown>' is missing the following properties from type 'ReactPortal': children, type, props, key
+src/components/ui/dialog.tsx(173,11): error TS2322: Type 'ReactI18NextChildren | Iterable<ReactI18NextChildren>' is not assignable to type 'string | number | bigint | boolean | Record<string, unknown> | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...> | null | undefined'.
+  Type 'Iterable<ReactI18NextChildren>' is not assignable to type 'string | number | bigint | boolean | Record<string, unknown> | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...> | null | undefined'.
+    Type 'Iterable<ReactI18NextChildren>' is not assignable to type 'Iterable<ReactNode>'.
+      The types returned by '[Symbol.iterator]().next(...)' are incompatible between these types.
+        Type 'IteratorResult<ReactI18NextChildren, any>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+          Type 'IteratorYieldResult<ReactI18NextChildren>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+            Type 'IteratorYieldResult<ReactI18NextChildren>' is not assignable to type 'IteratorYieldResult<ReactNode>'.
+              Type 'ReactI18NextChildren' is not assignable to type 'ReactNode'.
+                Type 'Record<string, unknown>' is not assignable to type 'ReactNode'.
+                  Type 'Record<string, unknown>' is missing the following properties from type 'ReactPortal': children, type, props, key
+src/components/ui/dropdown-menu.tsx(35,5): error TS2322: Type 'ReactI18NextChildren | Iterable<ReactI18NextChildren>' is not assignable to type 'string | number | bigint | boolean | Record<string, unknown> | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...> | null | undefined'.
+  Type 'Iterable<ReactI18NextChildren>' is not assignable to type 'string | number | bigint | boolean | Record<string, unknown> | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...> | null | undefined'.
+    Type 'Iterable<ReactI18NextChildren>' is not assignable to type 'Iterable<ReactNode>'.
+      The types returned by '[Symbol.iterator]().next(...)' are incompatible between these types.
+        Type 'IteratorResult<ReactI18NextChildren, any>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+          Type 'IteratorYieldResult<ReactI18NextChildren>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+            Type 'IteratorYieldResult<ReactI18NextChildren>' is not assignable to type 'IteratorYieldResult<ReactNode>'.
+              Type 'ReactI18NextChildren' is not assignable to type 'ReactNode'.
+                Type 'Record<string, unknown>' is not assignable to type 'ReactNode'.
+                  Type 'Record<string, unknown>' is missing the following properties from type 'ReactPortal': children, type, props, key
+src/components/ui/dropdown-menu.tsx(120,5): error TS2322: Type 'ReactI18NextChildren | Iterable<ReactI18NextChildren>' is not assignable to type 'string | number | bigint | boolean | Record<string, unknown> | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...> | null | undefined'.
+  Type 'Iterable<ReactI18NextChildren>' is not assignable to type 'string | number | bigint | boolean | Record<string, unknown> | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...> | null | undefined'.
+    Type 'Iterable<ReactI18NextChildren>' is not assignable to type 'Iterable<ReactNode>'.
+      The types returned by '[Symbol.iterator]().next(...)' are incompatible between these types.
+        Type 'IteratorResult<ReactI18NextChildren, any>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+          Type 'IteratorYieldResult<ReactI18NextChildren>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+            Type 'IteratorYieldResult<ReactI18NextChildren>' is not assignable to type 'IteratorYieldResult<ReactNode>'.
+              Type 'ReactI18NextChildren' is not assignable to type 'ReactNode'.
+                Type 'Record<string, unknown>' is not assignable to type 'ReactNode'.
+                  Type 'Record<string, unknown>' is missing the following properties from type 'ReactPortal': children, type, props, key
+src/components/ui/dropdown-menu.tsx(143,5): error TS2322: Type 'ReactI18NextChildren | Iterable<ReactI18NextChildren>' is not assignable to type 'string | number | bigint | boolean | Record<string, unknown> | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...> | null | undefined'.
+  Type 'Iterable<ReactI18NextChildren>' is not assignable to type 'string | number | bigint | boolean | Record<string, unknown> | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...> | null | undefined'.
+    Type 'Iterable<ReactI18NextChildren>' is not assignable to type 'Iterable<ReactNode>'.
+      The types returned by '[Symbol.iterator]().next(...)' are incompatible between these types.
+        Type 'IteratorResult<ReactI18NextChildren, any>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+          Type 'IteratorYieldResult<ReactI18NextChildren>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+            Type 'IteratorYieldResult<ReactI18NextChildren>' is not assignable to type 'IteratorYieldResult<ReactNode>'.
+              Type 'ReactI18NextChildren' is not assignable to type 'ReactNode'.
+                Type 'Record<string, unknown>' is not assignable to type 'ReactNode'.
+                  Type 'Record<string, unknown>' is missing the following properties from type 'ReactPortal': children, type, props, key
+src/components/ui/select.tsx(38,7): error TS2322: Type 'ReactI18NextChildren | Iterable<ReactI18NextChildren>' is not assignable to type 'string | number | bigint | boolean | Record<string, unknown> | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...> | null | undefined'.
+  Type 'Iterable<ReactI18NextChildren>' is not assignable to type 'string | number | bigint | boolean | Record<string, unknown> | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...> | null | undefined'.
+    Type 'Iterable<ReactI18NextChildren>' is not assignable to type 'Iterable<ReactNode>'.
+      The types returned by '[Symbol.iterator]().next(...)' are incompatible between these types.
+        Type 'IteratorResult<ReactI18NextChildren, any>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+          Type 'IteratorYieldResult<ReactI18NextChildren>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+            Type 'IteratorYieldResult<ReactI18NextChildren>' is not assignable to type 'IteratorYieldResult<ReactNode>'.
+              Type 'ReactI18NextChildren' is not assignable to type 'ReactNode'.
+                Type 'Record<string, unknown>' is not assignable to type 'ReactNode'.
+                  Type 'Record<string, unknown>' is missing the following properties from type 'ReactPortal': children, type, props, key
+src/components/ui/sidebar.tsx(432,9): error TS2322: Type 'string | number | bigint | true | Record<string, unknown> | Promise<AwaitedReactNode> | Element | Iterable<ReactI18NextChildren>' is not assignable to type 'string | number | bigint | boolean | Record<string, unknown> | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...> | null | undefined'.
+  Type 'Iterable<ReactI18NextChildren>' is not assignable to type 'string | number | bigint | boolean | Record<string, unknown> | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...> | null | undefined'.
+    Type 'Iterable<ReactI18NextChildren>' is not assignable to type 'Iterable<ReactNode>'.
+      The types returned by '[Symbol.iterator]().next(...)' are incompatible between these types.
+        Type 'IteratorResult<ReactI18NextChildren, any>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+          Type 'IteratorYieldResult<ReactI18NextChildren>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+            Type 'IteratorYieldResult<ReactI18NextChildren>' is not assignable to type 'IteratorYieldResult<ReactNode>'.
+              Type 'ReactI18NextChildren' is not assignable to type 'ReactNode'.
+                Type 'Record<string, unknown>' is not assignable to type 'ReactNode'.
+                  Type 'Record<string, unknown>' is missing the following properties from type 'ReactPortal': children, type, props, key
+src/components/ui/sidebar.tsx(597,8): error TS2322: Type '{ id?: string | undefined; hidden?: boolean | undefined; draggable?: Booleanish | undefined; title?: string | undefined; onError?: ReactEventHandler<HTMLDivElement> | undefined; ... 275 more ...; className: string; }' is not assignable to type 'SlotProps'.
+  Types of property 'children' are incompatible.
+    Type 'ReactI18NextChildren | Iterable<ReactI18NextChildren>' is not assignable to type 'ReactNode'.
+      Type 'Record<string, unknown>' is not assignable to type 'ReactNode'.
+        Type 'Record<string, unknown>' is missing the following properties from type 'ReactPortal': children, type, props, key
+src/components/ui/sidebar.tsx(619,6): error TS2322: Type '{ id?: string | undefined; type?: "button" | "reset" | "submit" | undefined; form?: string | undefined; hidden?: boolean | undefined; draggable?: Booleanish | undefined; ... 285 more ...; className: string; }' is not assignable to type 'SlotProps'.
+  Types of property 'children' are incompatible.
+    Type 'ReactI18NextChildren | Iterable<ReactI18NextChildren>' is not assignable to type 'ReactNode'.
+      Type 'Record<string, unknown>' is not assignable to type 'ReactNode'.
+        Type 'Record<string, unknown>' is missing the following properties from type 'ReactPortal': children, type, props, key
+src/components/ui/sidebar.tsx(722,8): error TS2322: Type '{ id?: string | undefined; type?: "button" | "reset" | "submit" | undefined; form?: string | undefined; hidden?: boolean | undefined; draggable?: Booleanish | undefined; ... 287 more ...; className: string; }' is not assignable to type 'SlotProps'.
+  Types of property 'children' are incompatible.
+    Type 'ReactI18NextChildren | Iterable<ReactI18NextChildren>' is not assignable to type 'ReactNode'.
+      Type 'Record<string, unknown>' is not assignable to type 'ReactNode'.
+        Type 'Record<string, unknown>' is missing the following properties from type 'ReactPortal': children, type, props, key
+src/components/ui/sidebar.tsx(758,6): error TS2322: Type '{ id?: string | undefined; type?: "button" | "reset" | "submit" | undefined; form?: string | undefined; hidden?: boolean | undefined; draggable?: Booleanish | undefined; ... 285 more ...; className: string; }' is not assignable to type 'SlotProps'.
+  Types of property 'children' are incompatible.
+    Type 'ReactI18NextChildren | Iterable<ReactI18NextChildren>' is not assignable to type 'ReactNode'.
+      Type 'Record<string, unknown>' is not assignable to type 'ReactNode'.
+        Type 'Record<string, unknown>' is missing the following properties from type 'ReactPortal': children, type, props, key
+src/components/ui/sidebar.tsx(872,6): error TS2322: Type '{ id?: string | undefined; type?: string | undefined; target?: HTMLAttributeAnchorTarget | undefined; hidden?: boolean | undefined; draggable?: Booleanish | undefined; ... 285 more ...; className: string; }' is not assignable to type 'SlotProps'.
+  Types of property 'children' are incompatible.
+    Type 'ReactI18NextChildren | Iterable<ReactI18NextChildren>' is not assignable to type 'ReactNode'.
+      Type 'Record<string, unknown>' is not assignable to type 'ReactNode'.
+        Type 'Record<string, unknown>' is missing the following properties from type 'ReactPortal': children, type, props, key
+src/components/ui/simple-sidebar.tsx(524,13): error TS2322: Type 'ReactI18NextChildren | Iterable<ReactI18NextChildren>' is not assignable to type 'string | number | bigint | boolean | Record<string, unknown> | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...> | null | undefined'.
+  Type 'Iterable<ReactI18NextChildren>' is not assignable to type 'string | number | bigint | boolean | Record<string, unknown> | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...> | null | undefined'.
+    Type 'Iterable<ReactI18NextChildren>' is not assignable to type 'Iterable<ReactNode>'.
+      The types returned by '[Symbol.iterator]().next(...)' are incompatible between these types.
+        Type 'IteratorResult<ReactI18NextChildren, any>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+          Type 'IteratorYieldResult<ReactI18NextChildren>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+            Type 'IteratorYieldResult<ReactI18NextChildren>' is not assignable to type 'IteratorYieldResult<ReactNode>'.
+              Type 'ReactI18NextChildren' is not assignable to type 'ReactNode'.
+                Type 'Record<string, unknown>' is not assignable to type 'ReactNode'.
+                  Type 'Record<string, unknown>' is missing the following properties from type 'ReactPortal': children, type, props, key
+src/components/ui/simple-sidebar.tsx(565,7): error TS2322: Type 'ReactI18NextChildren | Iterable<ReactI18NextChildren>' is not assignable to type 'string | number | bigint | boolean | Record<string, unknown> | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...> | null | undefined'.
+  Type 'Iterable<ReactI18NextChildren>' is not assignable to type 'string | number | bigint | boolean | Record<string, unknown> | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...> | null | undefined'.
+    Type 'Iterable<ReactI18NextChildren>' is not assignable to type 'Iterable<ReactNode>'.
+      The types returned by '[Symbol.iterator]().next(...)' are incompatible between these types.
+        Type 'IteratorResult<ReactI18NextChildren, any>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+          Type 'IteratorYieldResult<ReactI18NextChildren>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+            Type 'IteratorYieldResult<ReactI18NextChildren>' is not assignable to type 'IteratorYieldResult<ReactNode>'.
+              Type 'ReactI18NextChildren' is not assignable to type 'ReactNode'.
+                Type 'Record<string, unknown>' is not assignable to type 'ReactNode'.
+                  Type 'Record<string, unknown>' is missing the following properties from type 'ReactPortal': children, type, props, key
+src/controllers/API/queries/flows/__tests__/use-get-types.test.ts(38,11): error TS2322: Type 'unknown' is not assignable to type 'null'.
+src/controllers/API/queries/flows/__tests__/use-get-types.test.ts(41,11): error TS2322: Type 'unknown' is not assignable to type 'null'.
+src/controllers/API/queries/knowledge-bases/use-get-ingestion-job-status.ts(38,17): error TS2339: Property 'status' does not exist on type '{}'.
+src/controllers/API/queries/knowledge-bases/use-get-ingestion-job-status.ts(39,17): error TS2339: Property 'status' does not exist on type '{}'.
+src/controllers/API/queries/knowledge-bases/use-get-ingestion-job-status.ts(40,17): error TS2339: Property 'status' does not exist on type '{}'.
+src/controllers/API/queries/models/use-get-provider-variables.ts(23,14): error TS2322: Type '(_: any, options: any) => UseQueryResult<any>' is not assignable to type '(options?: Omit<UseQueryOptions<unknown, Error, unknown, readonly unknown[]>, "queryFn" | "queryKey"> | undefined) => UseQueryResult<ProviderVariablesMapping>'.
+  Target signature provides too few arguments. Expected 2 or more, but got 1.
+src/hooks/__tests__/use-document-title.test.ts(36,16): error TS2322: Type 'string' is not assignable to type 'undefined'.
+src/hooks/flows/__tests__/use-delete-flow.test.ts(36,3): error TS2352: Conversion of type '{ id: string; name: string; data: { nodes: never[]; edges: never[]; viewport: {}; }; }' to type 'FlowType' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Property 'description' is missing in type '{ id: string; name: string; data: { nodes: never[]; edges: never[]; viewport: {}; }; }' but required in type 'FlowType'.
+src/hooks/flows/use-flow-events.ts(38,19): error TS2554: Expected 1 arguments, but got 0.
+src/hooks/use-webhook-events.ts(136,31): error TS2345: Argument of type 'FlowType | undefined' is not assignable to parameter of type '{ data?: { nodes?: { id: string; }[] | undefined; } | undefined; } | null'.
+  Type 'undefined' is not assignable to type '{ data?: { nodes?: { id: string; }[] | undefined; } | undefined; } | null'.
+src/i18n.ts(47,22): error TS2339: Property 'createInstance' does not exist on type 'typeof import("/home/huangpan/github_repo/langflow/src/frontend/src/i18next")'.
+src/icons/AIML/index.tsx(9,11): error TS2322: Type '{ className?: string | undefined; children?: ReactNode; ref: ForwardedRef<SVGSVGElement>; }' is not assignable to type '{ [x: string]: any; className: any; }'.
+  Property 'className' is optional in type '{ className?: string | undefined; children?: ReactNode; ref: ForwardedRef<SVGSVGElement>; }' but required in type '{ [x: string]: any; className: any; }'.
+src/icons/Confluent/index.tsx(9,11): error TS2322: Type '{ isDark?: boolean | undefined; children?: ReactNode; ref: ForwardedRef<SVGSVGElement>; }' is not assignable to type '{ [x: string]: any; isDark: any; }'.
+  Property 'isDark' is optional in type '{ isDark?: boolean | undefined; children?: ReactNode; ref: ForwardedRef<SVGSVGElement>; }' but required in type '{ [x: string]: any; isDark: any; }'.
+src/icons/Indicator/index.tsx(9,11): error TS2322: Type '{ className?: string | undefined; children?: ReactNode; ref: ForwardedRef<SVGSVGElement>; }' is not assignable to type '{ [x: string]: any; className: any; }'.
+  Property 'className' is optional in type '{ className?: string | undefined; children?: ReactNode; ref: ForwardedRef<SVGSVGElement>; }' but required in type '{ [x: string]: any; className: any; }'.
+src/icons/athena/index.tsx(10,11): error TS2322: Type '{ className?: string | undefined; children?: ReactNode; ref: ForwardedRef<SVGSVGElement>; }' is not assignable to type '{ [x: string]: any; className: any; }'.
+  Property 'className' is optional in type '{ className?: string | undefined; children?: ReactNode; ref: ForwardedRef<SVGSVGElement>; }' but required in type '{ [x: string]: any; className: any; }'.
+src/icons/freezeAll/index.tsx(9,11): error TS2322: Type '{ className?: string | undefined; children?: ReactNode; ref: ForwardedRef<SVGSVGElement>; }' is not assignable to type '{ [x: string]: any; className: any; }'.
+  Property 'className' is optional in type '{ className?: string | undefined; children?: ReactNode; ref: ForwardedRef<SVGSVGElement>; }' but required in type '{ [x: string]: any; className: any; }'.
+src/modals/EmbedModal/embed-modal.tsx(42,35): error TS2345: Argument of type '{ copy: false; flowId: string; flowName: string; isAuth: boolean; tweaksBuildedObject: {}; activeTweaks: boolean; }' is not assignable to parameter of type 'GetCodeType'.
+  Property 'webhookAuthEnable' is missing in type '{ copy: false; flowId: string; flowName: string; isAuth: boolean; tweaksBuildedObject: {}; activeTweaks: boolean; }' but required in type 'GetCodeType'.
+src/modals/EmbedModal/embed-modal.tsx(43,34): error TS2345: Argument of type '{ copy: true; flowId: string; flowName: string; isAuth: boolean; tweaksBuildedObject: {}; activeTweaks: boolean; }' is not assignable to parameter of type 'GetCodeType'.
+  Property 'webhookAuthEnable' is missing in type '{ copy: true; flowId: string; flowName: string; isAuth: boolean; tweaksBuildedObject: {}; activeTweaks: boolean; }' but required in type 'GetCodeType'.
+src/modals/IOModal/components/chatView/chatMessage/chat-message.tsx(79,24): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/modals/IOModal/components/chatView/chatMessage/chat-message.tsx(82,31): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/modals/IOModal/components/chatView/chatMessage/chat-message.tsx(85,9): error TS2722: Cannot invoke an object which is possibly 'undefined'.
+src/modals/IOModal/components/chatView/chatMessage/chat-message.tsx(157,11): error TS2722: Cannot invoke an object which is possibly 'undefined'.
+src/modals/IOModal/components/chatView/chatMessage/chat-message.tsx(180,11): error TS2322: Type '{ positive_feedback: boolean | null; source?: SourceType; icon?: string; background_color?: string; text_color?: string; targets?: string[]; edited?: boolean; allow_markdown?: boolean; state?: string; build_duration?: number | null; usage?: UsageType | null; }' is not assignable to type '{ [key: string]: unknown; state?: "partial" | "complete" | undefined; source?: { id?: string | undefined; display_name?: string | undefined; source?: string | undefined; } | undefined; icon?: string | undefined; ... 7 more ...; usage?: UsageType | ... 1 more ... | undefined; }'.
+  Types of property 'state' are incompatible.
+    Type 'string | undefined' is not assignable to type '"partial" | "complete" | undefined'.
+      Type 'string' is not assignable to type '"partial" | "complete" | undefined'.
+src/modals/IOModal/components/chatView/chatMessage/chat-message.tsx(312,21): error TS2322: Type 'number | null | undefined' is not assignable to type 'number | undefined'.
+  Type 'null' is not assignable to type 'number | undefined'.
+src/modals/IOModal/components/chatView/chatMessage/chat-message.tsx(313,21): error TS2322: Type 'UsageType | null | undefined' is not assignable to type '{ total_tokens?: number | null | undefined; input_tokens?: number | null | undefined; output_tokens?: number | null | undefined; } | undefined'.
+  Type 'null' is not assignable to type '{ total_tokens?: number | null | undefined; input_tokens?: number | null | undefined; output_tokens?: number | null | undefined; } | undefined'.
+src/modals/IOModal/components/chatView/components/chat-view.tsx(70,11): error TS2322: Type '{ isSend: boolean; message: string; sender_name: string; files: string[]; id: string; timestamp: string; session: string; edit: boolean; background_color: string; text_color: string; content_blocks: ContentBlockItem[]; category: string; properties: { ...; }; }[]' is not assignable to type 'ChatMessageType[]'.
+  Type '{ isSend: boolean; message: string; sender_name: string; files: string[]; id: string; timestamp: string; session: string; edit: boolean; background_color: string; text_color: string; content_blocks: ContentBlockItem[]; category: string; properties: { ...; }; }' is not assignable to type 'ChatMessageType'.
+    The types of 'properties.source' are incompatible between these types.
+      Type '{ id?: string | undefined; display_name?: string | undefined; source?: string | undefined; } | undefined' is not assignable to type 'SourceType | undefined'.
+        Type '{ id?: string | undefined; display_name?: string | undefined; source?: string | undefined; }' is not assignable to type 'SourceType'.
+          Types of property 'id' are incompatible.
+            Type 'string | undefined' is not assignable to type 'string'.
+              Type 'undefined' is not assignable to type 'string'.
+src/modals/IOModal/components/session-view.tsx(75,21): error TS2345: Argument of type 'unknown[]' is not assignable to parameter of type 'Message[]'.
+  Type 'unknown' is not assignable to type 'Message'.
+src/modals/IOModal/components/session-view.tsx(141,25): error TS2345: Argument of type '{ [x: string]: unknown; }' is not assignable to parameter of type 'Message'.
+  Type '{ [x: string]: unknown; }' is missing the following properties from type 'Message': flow_id, text, sender, sender_name, and 7 more.
+src/modals/IOModal/playground-modal.tsx(486,19): error TS2322: Type 'AllNodeType[]' is not assignable to type 'Node[]'.
+  Type 'AllNodeType' is not assignable to type 'Node'.
+    Type 'GenericNodeType' is not assignable to type 'Node'.
+      Types of property 'extent' are incompatible.
+        Type 'CoordinateExtent | "parent" | null | undefined' is not assignable to type '"parent" | CoordinateExtent | undefined'.
+          Type 'null' is not assignable to type '"parent" | CoordinateExtent | undefined'.
+src/modals/__tests__/prompt-modal-parity.test.tsx(238,17): error TS2322: Type '{ field_name: string; value: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(243,17): error TS2322: Type '{ field_name: string; value: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(253,17): error TS2322: Type '{ field_name: string; value: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(262,17): error TS2322: Type '{ value: string; field_name: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(273,12): error TS2322: Type '{ value: string; field_name: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(286,12): error TS2322: Type '{ value: string; field_name: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(299,17): error TS2322: Type '{ value: string; field_name: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(308,17): error TS2322: Type '{ field_name: string; value: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(321,17): error TS2322: Type '{ field_name: string; value: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(336,17): error TS2322: Type '{ value: string; field_name: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(372,12): error TS2322: Type '{ value: string; setValue: Mock<any, any, any>; setNodeClass: Mock<any, any, any>; field_name: string; nodeClass: { template: { template: { value: string; }; }; }; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(399,17): error TS2322: Type '{ value: string; field_name: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(420,17): error TS2322: Type '{ value: string; field_name: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(439,17): error TS2322: Type '{ value: string; field_name: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(451,17): error TS2322: Type '{ readonly: true; field_name: string; value: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(461,17): error TS2322: Type '{ value: string; field_name: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(469,17): error TS2322: Type '{ value: string; field_name: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(481,17): error TS2322: Type '{ value: string; field_name: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(502,12): error TS2322: Type '{ value: string; field_name: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(517,17): error TS2322: Type '{ value: string; field_name: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(528,12): error TS2322: Type '{ value: string; field_name: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(535,19): error TS2322: Type '{ value: string; field_name: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(566,13): error TS2322: Type '{ value: string; field_name: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(574,13): error TS2322: Type '{ value: string; field_name: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(604,8): error TS2322: Type '{ value: string; field_name: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/__tests__/prompt-modal-parity.test.tsx(616,13): error TS2322: Type '{ value: string; field_name: string; setValue: Mock<any, any, any>; nodeClass: { template: { template: { value: string; }; }; }; setNodeClass: Mock<any, any, any>; children: Element; disabled: boolean; id: string; readonly: boolean; }' is not assignable to type 'PromptModalType'.
+  Types of property 'nodeClass' are incompatible.
+    Type '{ template: { template: { value: string; }; }; }' is missing the following properties from type 'APIClassType': description, display_name, documentation
+src/modals/fileManagerModal/components/importButtonComponent/index.tsx(1,30): error TS2307: Cannot find module '@/components/ui/morphing-menu' or its corresponding type declarations.
+src/modals/fileManagerModal/components/recentFilesComponent/index.tsx(222,26): error TS2339: Property 'message' does not exist on type '{}'.
+src/modals/knowledgeBaseUploadModal/KnowledgeBaseUploadModal.tsx(182,41): error TS2339: Property 'toggleAdvanced' does not exist on type '{ isAddSourcesMode: boolean; currentStep: WizardStep; handleNext: () => void; handleBack: () => void; sourceName: string; setSourceName: Dispatch<SetStateAction<string>>; ... 39 more ...; resetForm: () => void; }'.
+src/modals/knowledgeBaseUploadModal/components/StepConfiguration.tsx(6,8): error TS2614: Module '"@/components/core/parameterRenderComponent/components/modelInputComponent"' has no exported member 'ModelOption'. Did you mean to use 'import ModelOption from "@/components/core/parameterRenderComponent/components/modelInputComponent"' instead?
+src/modals/knowledgeBaseUploadModal/components/StepReview.tsx(4,15): error TS2614: Module '"@/components/core/parameterRenderComponent/components/modelInputComponent"' has no exported member 'ModelOption'. Did you mean to use 'import ModelOption from "@/components/core/parameterRenderComponent/components/modelInputComponent"' instead?
+src/modals/knowledgeBaseUploadModal/hooks/useKnowledgeBaseForm.ts(4,15): error TS2614: Module '"@/components/core/parameterRenderComponent/components/modelInputComponent"' has no exported member 'ModelOption'. Did you mean to use 'import ModelOption from "@/components/core/parameterRenderComponent/components/modelInputComponent"' instead?
+src/modals/knowledgeBaseUploadModal/hooks/useKnowledgeBaseForm.ts(259,31): error TS2339: Property 'chunkSize' does not exist on type 'never'.
+src/modals/knowledgeBaseUploadModal/hooks/useKnowledgeBaseForm.ts(260,31): error TS2339: Property 'chunkOverlap' does not exist on type 'never'.
+src/modals/knowledgeBaseUploadModal/hooks/useKnowledgeBaseForm.ts(261,31): error TS2339: Property 'separator' does not exist on type 'never'.
+src/modals/knowledgeBaseUploadModal/types.ts(1,15): error TS2614: Module '"@/components/core/parameterRenderComponent/components/modelInputComponent"' has no exported member 'ModelOption'. Did you mean to use 'import ModelOption from "@/components/core/parameterRenderComponent/components/modelInputComponent"' instead?
+src/modals/secretKeyModal/components/__tests__/FormKeyRender.test.tsx(18,13): error TS2352: Conversion of type '{ current: null; }' to type 'RefObject<HTMLInputElement>' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Types of property 'current' are incompatible.
+    Type 'null' is not comparable to type 'HTMLInputElement'.
+src/modals/secretKeyModal/index.tsx(162,13): error TS2322: Type 'RefObject<HTMLInputElement | null>' is not assignable to type 'RefObject<HTMLInputElement>'.
+  Type 'HTMLInputElement | null' is not assignable to type 'HTMLInputElement'.
+    Type 'null' is not assignable to type 'HTMLInputElement'.
+src/modals/secretKeyModal/index.tsx(172,13): error TS2322: Type 'ModalConfigProps | ({ title?: string | undefined; description?: string | HTMLElement | ReactElement<unknown, string | JSXElementConstructor<any>> | undefined; ... 5 more ...; size?: "small" | ... 11 more ... | undefined; } & SecretKeyModalProps)' is not assignable to type 'ModalConfigProps | undefined'.
+  Type '{ title?: string | undefined; description?: string | HTMLElement | ReactElement<unknown, string | JSXElementConstructor<any>> | undefined; ... 5 more ...; size?: "small" | ... 11 more ... | undefined; } & SecretKeyModalProps' is not assignable to type 'ModalConfigProps | undefined'.
+    Type '{ title?: string | undefined; description?: string | HTMLElement | ReactElement<unknown, string | JSXElementConstructor<any>> | undefined; ... 5 more ...; size?: "small" | ... 11 more ... | undefined; } & SecretKeyModalProps' is not assignable to type 'ModalConfigProps'.
+      Types of property 'description' are incompatible.
+        Type 'string | HTMLElement | ReactElement<unknown, string | JSXElementConstructor<any>> | undefined' is not assignable to type 'ReactNode'.
+          Type 'HTMLElement' is not assignable to type 'ReactNode'.
+            Type 'HTMLElement' is missing the following properties from type 'ReactPortal': type, props, key
+src/modals/secretKeyModal/index.tsx(174,13): error TS2322: Type 'RefObject<HTMLInputElement | null>' is not assignable to type 'RefObject<HTMLInputElement>'.
+  Type 'HTMLInputElement | null' is not assignable to type 'HTMLInputElement'.
+    Type 'null' is not assignable to type 'HTMLInputElement'.
+src/pages/AppInitPage/__tests__/app-init-page-session-ready.test.tsx(182,18): error TS2322: Type 'true' is not assignable to type 'undefined'.
+src/pages/AppInitPage/__tests__/app-init-page-session-ready.test.tsx(223,18): error TS2322: Type 'false' is not assignable to type 'undefined'.
+src/pages/AppInitPage/__tests__/app-init-page-session-ready.test.tsx(228,18): error TS2322: Type 'false' is not assignable to type 'undefined'.
+src/pages/AppInitPage/index.tsx(59,19): error TS2345: Argument of type '{ [key: string]: any; id: string; username: string; is_active: boolean; is_superuser: boolean; }' is not assignable to parameter of type 'Users'.
+  Type '{ [key: string]: any; id: string; username: string; is_active: boolean; is_superuser: boolean; }' is missing the following properties from type 'Users': profile_image, create_at, updated_at
+src/pages/FlowPage/components/TraceComponent/__tests__/useSpanTree.test.ts(379,33): error TS2322: Type 'string' is not assignable to type 'null'.
+src/pages/FlowPage/components/flowSidebarComponent/components/FlowVersionSidebar/use-flow-version-sidebar.ts(137,9): error TS2322: Type 'any[] | null' is not assignable to type 'AllNodeType[] | undefined'.
+  Type 'null' is not assignable to type 'AllNodeType[] | undefined'.
+src/pages/FlowPage/components/flowSidebarComponent/components/FlowVersionSidebar/use-flow-version-sidebar.ts(138,9): error TS2322: Type 'any[] | null' is not assignable to type 'EdgeType[] | undefined'.
+  Type 'null' is not assignable to type 'EdgeType[] | undefined'.
+src/pages/FlowPage/components/flowSidebarComponent/components/FlowVersionSidebar/use-flow-version-sidebar.ts(174,9): error TS2345: Argument of type 'any[] | null' is not assignable to parameter of type 'AllNodeType[]'.
+  Type 'null' is not assignable to type 'AllNodeType[]'.
+src/pages/FlowPage/components/flowSidebarComponent/components/FlowVersionSidebar/use-flow-version-sidebar.ts(217,13): error TS2322: Type 'any[] | null' is not assignable to type 'AllNodeType[] | undefined'.
+  Type 'null' is not assignable to type 'AllNodeType[] | undefined'.
+src/pages/FlowPage/components/flowSidebarComponent/components/FlowVersionSidebar/use-flow-version-sidebar.ts(218,13): error TS2322: Type 'any[] | null' is not assignable to type 'EdgeType[] | undefined'.
+  Type 'null' is not assignable to type 'EdgeType[] | undefined'.
+src/pages/FlowPage/components/flowSidebarComponent/components/__tests__/FlowVersionSidebarContent-store.spec.tsx(97,53): error TS2556: A spread argument must either have a tuple type or be passed to a rest parameter.
+src/pages/FlowPage/components/flowSidebarComponent/components/__tests__/FlowVersionSidebarContent-store.spec.tsx(319,18): error TS2339: Property 'click' does not exist on type 'Element'.
+src/pages/FlowPage/components/flowSidebarComponent/components/__tests__/FlowVersionSidebarContent-store.spec.tsx(355,18): error TS2339: Property 'click' does not exist on type 'Element'.
+src/pages/FlowPage/components/flowSidebarComponent/components/__tests__/FlowVersionSidebarContent-store.spec.tsx(390,18): error TS2339: Property 'click' does not exist on type 'Element'.
+src/pages/FlowPage/components/flowSidebarComponent/components/__tests__/FlowVersionSidebarContent-store.spec.tsx(412,18): error TS2339: Property 'click' does not exist on type 'Element'.
+src/pages/FlowPage/components/flowSidebarComponent/components/__tests__/FlowVersionSidebarContent-store.spec.tsx(425,18): error TS2339: Property 'click' does not exist on type 'Element'.
+src/pages/FlowPage/components/nodeToolbarComponent/__tests__/minimal-condition.test.tsx(34,23): error TS2353: Object literal may only specify known properties, and 'group_outputs' does not exist in type '{ name: string; }'.
+src/pages/FlowPage/components/nodeToolbarComponent/__tests__/minimal-condition.test.tsx(35,23): error TS2353: Object literal may only specify known properties, and 'group_outputs' does not exist in type '{ name: string; }'.
+src/pages/FlowPage/components/nodeToolbarComponent/__tests__/minimal-condition.test.tsx(42,23): error TS2353: Object literal may only specify known properties, and 'group_outputs' does not exist in type '{ name: string; }'.
+src/pages/FlowPage/components/nodeToolbarComponent/__tests__/minimal-condition.test.tsx(43,23): error TS2353: Object literal may only specify known properties, and 'group_outputs' does not exist in type '{ name: string; }'.
+src/pages/MainPage/pages/deploymentsPage/__tests__/deployment-stepper-payload-builders.test.tsx(79,32): error TS2322: Type '{ editingDeployment: Deployment; selectedVersionByFlow: Map<string, { versionId: string; versionTag: string; }>; initialLlm: string; initialToolNameByFlow: Map<string, string>; initialConnectionsByFlow: Map<string, string[]>; }' is not assignable to type 'DeploymentStepperInitialState'.
+  Types of property 'selectedVersionByFlow' are incompatible.
+    Type 'Map<string, { versionId: string; versionTag: string; }>' is not assignable to type 'Map<string, SelectedFlowVersion>'.
+      Type '{ versionId: string; versionTag: string; }' is missing the following properties from type 'SelectedFlowVersion': key, flowId
+src/pages/MainPage/pages/deploymentsPage/hooks/__tests__/use-connection-panel-state.test.ts(84,7): error TS2322: Type 'null' is not assignable to type 'string'.
+src/pages/MainPage/pages/deploymentsPage/hooks/__tests__/use-connection-panel-state.test.ts(504,7): error TS2322: Type 'null' is not assignable to type 'string'.
+src/pages/MainPage/pages/deploymentsPage/hooks/__tests__/use-provider-filter.test.ts(92,25): error TS2322: Type 'ProviderAccount' is not assignable to type 'never'.
+src/pages/MainPage/pages/enchanced-beam-effect.tsx(3,28): error TS2307: Cannot find module '../../../components/ui/border-beams' or its corresponding type declarations.
+src/pages/MainPage/pages/filesPage/components/FilesTab.tsx(59,7): error TS2322: Type 'string | null | undefined' is not assignable to type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/pages/MainPage/pages/filesPage/components/FilesTab.tsx(320,35): error TS18046: 'data' is of type 'unknown'.
+src/pages/MainPage/pages/filesPage/components/FilesTab.tsx(453,7): error TS2322: Type 'RefObject<AgGridReact<FileType> | null>' is not assignable to type 'Ref<AgGridReact<unknown>> | undefined'.
+  Type 'RefObject<AgGridReact<FileType> | null>' is not assignable to type 'RefObject<AgGridReact<unknown> | null>'.
+    Type 'AgGridReact<FileType> | null' is not assignable to type 'AgGridReact<unknown> | null'.
+      Type 'AgGridReact<FileType>' is not assignable to type 'AgGridReact<unknown>'.
+        The types returned by 'api.getColumnDef(...)' are incompatible between these types.
+          Type 'ColDef<FileType, any> | null' is not assignable to type 'ColDef<unknown, any> | null'.
+            Type 'ColDef<FileType, any>' is not assignable to type 'ColDef<unknown, any>'.
+              Types of property 'field' are incompatible.
+                Type 'NestedFieldPaths<FileType, any, []> | undefined' is not assignable to type 'undefined'.
+                  Type '"file"' is not assignable to type 'undefined'.
+src/pages/MainPage/pages/homePage/components/__tests__/McpJsonContent.test.tsx(134,13): error TS2322: Type '{ selectedPlatform: string; setSelectedPlatform: Mock<any, any, any>; selectedTransport: string; setSelectedTransport: Mock<any, any, any>; isDarkMode: boolean; isCopied: boolean; ... 5 more ...; generateApiKey: Mock<...>; }' is not assignable to type 'McpJsonContentProps'.
+  Types of property 'selectedTransport' are incompatible.
+    Type 'string' is not assignable to type 'MCPTransport'.
+src/pages/MainPage/pages/homePage/components/__tests__/McpJsonContent.test.tsx(139,13): error TS2322: Type '{ selectedPlatform: string; setSelectedPlatform: Mock<any, any, any>; selectedTransport: string; setSelectedTransport: Mock<any, any, any>; isDarkMode: boolean; isCopied: boolean; ... 5 more ...; generateApiKey: Mock<...>; }' is not assignable to type 'McpJsonContentProps'.
+  Types of property 'selectedTransport' are incompatible.
+    Type 'string' is not assignable to type 'MCPTransport'.
+src/pages/MainPage/pages/homePage/components/__tests__/McpJsonContent.test.tsx(146,13): error TS2322: Type '{ selectedPlatform: string; setSelectedPlatform: Mock<any, any, any>; selectedTransport: string; setSelectedTransport: Mock<any, any, any>; isDarkMode: boolean; isCopied: boolean; ... 5 more ...; generateApiKey: Mock<...>; }' is not assignable to type 'McpJsonContentProps'.
+  Types of property 'selectedTransport' are incompatible.
+    Type 'string' is not assignable to type 'MCPTransport'.
+src/pages/MainPage/pages/homePage/components/__tests__/McpJsonContent.test.tsx(155,13): error TS2322: Type '{ selectedPlatform: string; setSelectedPlatform: Mock<any, any, any>; selectedTransport: string; setSelectedTransport: Mock<any, any, any>; isDarkMode: boolean; isCopied: boolean; ... 5 more ...; generateApiKey: Mock<...>; }' is not assignable to type 'McpJsonContentProps'.
+  Types of property 'selectedTransport' are incompatible.
+    Type 'string' is not assignable to type 'MCPTransport'.
+src/pages/MainPage/pages/homePage/components/__tests__/McpJsonContent.test.tsx(160,13): error TS2322: Type '{ isDarkMode: true; selectedPlatform: string; setSelectedPlatform: Mock<any, any, any>; selectedTransport: string; setSelectedTransport: Mock<any, any, any>; isCopied: boolean; ... 5 more ...; generateApiKey: Mock<...>; }' is not assignable to type 'McpJsonContentProps'.
+  Types of property 'selectedTransport' are incompatible.
+    Type 'string' is not assignable to type 'MCPTransport'.
+src/pages/MainPage/pages/homePage/components/__tests__/McpJsonContent.test.tsx(166,13): error TS2322: Type '{ mcpJson: string; selectedPlatform: string; setSelectedPlatform: Mock<any, any, any>; selectedTransport: string; setSelectedTransport: Mock<any, any, any>; isDarkMode: boolean; ... 5 more ...; generateApiKey: Mock<...>; }' is not assignable to type 'McpJsonContentProps'.
+  Types of property 'selectedTransport' are incompatible.
+    Type 'string' is not assignable to type 'MCPTransport'.
+src/pages/MainPage/pages/homePage/components/__tests__/McpJsonContent.test.tsx(173,13): error TS2322: Type '{ isCopied: false; selectedPlatform: string; setSelectedPlatform: Mock<any, any, any>; selectedTransport: string; setSelectedTransport: Mock<any, any, any>; isDarkMode: boolean; ... 5 more ...; generateApiKey: Mock<...>; }' is not assignable to type 'McpJsonContentProps'.
+  Types of property 'selectedTransport' are incompatible.
+    Type 'string' is not assignable to type 'MCPTransport'.
+src/pages/MainPage/pages/homePage/components/__tests__/McpJsonContent.test.tsx(180,13): error TS2322: Type '{ isCopied: true; selectedPlatform: string; setSelectedPlatform: Mock<any, any, any>; selectedTransport: string; setSelectedTransport: Mock<any, any, any>; isDarkMode: boolean; ... 5 more ...; generateApiKey: Mock<...>; }' is not assignable to type 'McpJsonContentProps'.
+  Types of property 'selectedTransport' are incompatible.
+    Type 'string' is not assignable to type 'MCPTransport'.
+src/pages/MainPage/pages/homePage/components/__tests__/McpJsonContent.test.tsx(189,8): error TS2322: Type '{ setSelectedPlatform: Mock<any, any, any>; selectedPlatform: string; selectedTransport: string; setSelectedTransport: Mock<any, any, any>; isDarkMode: boolean; isCopied: boolean; ... 5 more ...; generateApiKey: Mock<...>; }' is not assignable to type 'McpJsonContentProps'.
+  Types of property 'selectedTransport' are incompatible.
+    Type 'string' is not assignable to type 'MCPTransport'.
+src/pages/MainPage/pages/homePage/components/__tests__/McpJsonContent.test.tsx(199,13): error TS2322: Type '{ selectedPlatform: string; setSelectedPlatform: Mock<any, any, any>; selectedTransport: string; setSelectedTransport: Mock<any, any, any>; isDarkMode: boolean; isCopied: boolean; ... 5 more ...; generateApiKey: Mock<...>; }' is not assignable to type 'McpJsonContentProps'.
+  Types of property 'selectedTransport' are incompatible.
+    Type 'string' is not assignable to type 'MCPTransport'.
+src/pages/MainPage/pages/homePage/hooks/__tests__/useMcpServer.test.tsx(68,64): error TS2556: A spread argument must either have a tuple type or be passed to a rest parameter.
+src/pages/MainPage/pages/homePage/utils/__tests__/mcpServerUtils.test.ts(109,39): error TS2345: Argument of type '{ folderName: string; selectedPlatform: string; apiUrl: string; isOAuthProject: false; authHeadersFragment: string; }' is not assignable to parameter of type '{ folderName?: string | undefined; selectedPlatform?: string | undefined; apiUrl: string; isOAuthProject: boolean; authHeadersFragment: string; transport: MCPTransport; maxNameLength?: number | undefined; }'.
+  Property 'transport' is missing in type '{ folderName: string; selectedPlatform: string; apiUrl: string; isOAuthProject: false; authHeadersFragment: string; }' but required in type '{ folderName?: string | undefined; selectedPlatform?: string | undefined; apiUrl: string; isOAuthProject: boolean; authHeadersFragment: string; transport: MCPTransport; maxNameLength?: number | undefined; }'.
+src/pages/MainPage/pages/homePage/utils/__tests__/mcpServerUtils.test.ts(124,39): error TS2345: Argument of type '{ folderName: string; selectedPlatform: string; apiUrl: string; isOAuthProject: false; authHeadersFragment: string; }' is not assignable to parameter of type '{ folderName?: string | undefined; selectedPlatform?: string | undefined; apiUrl: string; isOAuthProject: boolean; authHeadersFragment: string; transport: MCPTransport; maxNameLength?: number | undefined; }'.
+  Property 'transport' is missing in type '{ folderName: string; selectedPlatform: string; apiUrl: string; isOAuthProject: false; authHeadersFragment: string; }' but required in type '{ folderName?: string | undefined; selectedPlatform?: string | undefined; apiUrl: string; isOAuthProject: boolean; authHeadersFragment: string; transport: MCPTransport; maxNameLength?: number | undefined; }'.
+src/pages/MainPage/pages/homePage/utils/__tests__/mcpServerUtils.test.ts(137,39): error TS2345: Argument of type '{ folderName: string; selectedPlatform: string; apiUrl: string; isOAuthProject: false; authHeadersFragment: string; }' is not assignable to parameter of type '{ folderName?: string | undefined; selectedPlatform?: string | undefined; apiUrl: string; isOAuthProject: boolean; authHeadersFragment: string; transport: MCPTransport; maxNameLength?: number | undefined; }'.
+  Property 'transport' is missing in type '{ folderName: string; selectedPlatform: string; apiUrl: string; isOAuthProject: false; authHeadersFragment: string; }' but required in type '{ folderName?: string | undefined; selectedPlatform?: string | undefined; apiUrl: string; isOAuthProject: boolean; authHeadersFragment: string; transport: MCPTransport; maxNameLength?: number | undefined; }'.
+src/pages/MainPage/pages/homePage/utils/__tests__/mcpServerUtils.test.ts(151,39): error TS2345: Argument of type '{ folderName: string; selectedPlatform: string; apiUrl: string; isOAuthProject: true; authHeadersFragment: string; }' is not assignable to parameter of type '{ folderName?: string | undefined; selectedPlatform?: string | undefined; apiUrl: string; isOAuthProject: boolean; authHeadersFragment: string; transport: MCPTransport; maxNameLength?: number | undefined; }'.
+  Property 'transport' is missing in type '{ folderName: string; selectedPlatform: string; apiUrl: string; isOAuthProject: true; authHeadersFragment: string; }' but required in type '{ folderName?: string | undefined; selectedPlatform?: string | undefined; apiUrl: string; isOAuthProject: boolean; authHeadersFragment: string; transport: MCPTransport; maxNameLength?: number | undefined; }'.
+src/pages/MainPage/pages/homePage/utils/__tests__/mcpServerUtils.test.ts(167,39): error TS2345: Argument of type '{ folderName: string; selectedPlatform: string; apiUrl: string; isOAuthProject: false; authHeadersFragment: string; }' is not assignable to parameter of type '{ folderName?: string | undefined; selectedPlatform?: string | undefined; apiUrl: string; isOAuthProject: boolean; authHeadersFragment: string; transport: MCPTransport; maxNameLength?: number | undefined; }'.
+  Property 'transport' is missing in type '{ folderName: string; selectedPlatform: string; apiUrl: string; isOAuthProject: false; authHeadersFragment: string; }' but required in type '{ folderName?: string | undefined; selectedPlatform?: string | undefined; apiUrl: string; isOAuthProject: boolean; authHeadersFragment: string; transport: MCPTransport; maxNameLength?: number | undefined; }'.
+src/pages/Playground/index.tsx(107,9): error TS2820: Type '"Strict"' is not assignable to type '"none" | "strict" | "lax" | undefined'. Did you mean '"strict"'?
+src/pages/SettingsPage/pages/ApiKeysPage/components/ExpiryDateCellRender/__tests__/ExpiryDateCellRender.test.tsx(18,58): error TS2322: Type 'undefined' is not assignable to type 'IRowNode<any>'.
+src/pages/SettingsPage/pages/ApiKeysPage/components/ExpiryDateCellRender/__tests__/ExpiryDateCellRender.test.tsx(27,59): error TS2322: Type 'undefined' is not assignable to type 'IRowNode<any>'.
+src/pages/SettingsPage/pages/ApiKeysPage/components/ExpiryDateCellRender/__tests__/ExpiryDateCellRender.test.tsx(34,47): error TS2322: Type 'undefined' is not assignable to type 'IRowNode<any>'.
+src/pages/SettingsPage/pages/ApiKeysPage/components/ExpiryDateCellRender/__tests__/ExpiryDateCellRender.test.tsx(41,55): error TS2322: Type 'undefined' is not assignable to type 'IRowNode<any>'.
+src/pages/SettingsPage/pages/GlobalVariablesPage/index.tsx(107,8): error TS2739: Type '{ children: Element; options: any; value: any; onSelect: any; }' is missing the following properties from type 'BaseInputProps': id, editNode, handleOnNewValue, disabled
+src/reportWebVitals.ts(1,15): error TS2305: Module '"web-vitals"' has no exported member 'ReportHandler'.
+src/reportWebVitals.ts(5,34): error TS2339: Property 'getCLS' does not exist on type 'typeof import("/home/huangpan/github_repo/langflow/src/frontend/node_modules/web-vitals/dist/modules/index")'.
+src/reportWebVitals.ts(5,42): error TS2339: Property 'getFID' does not exist on type 'typeof import("/home/huangpan/github_repo/langflow/src/frontend/node_modules/web-vitals/dist/modules/index")'.
+src/reportWebVitals.ts(5,50): error TS2339: Property 'getFCP' does not exist on type 'typeof import("/home/huangpan/github_repo/langflow/src/frontend/node_modules/web-vitals/dist/modules/index")'.
+src/reportWebVitals.ts(5,58): error TS2339: Property 'getLCP' does not exist on type 'typeof import("/home/huangpan/github_repo/langflow/src/frontend/node_modules/web-vitals/dist/modules/index")'.
+src/reportWebVitals.ts(5,66): error TS2339: Property 'getTTFB' does not exist on type 'typeof import("/home/huangpan/github_repo/langflow/src/frontend/node_modules/web-vitals/dist/modules/index")'.
+src/stores/__tests__/darkStore.test.ts(165,51): error TS2345: Argument of type '(key: any) => "true" | "1500" | null' is not assignable to parameter of type '() => null'.
+  Target signature provides too few arguments. Expected 1 or more, but got 0.
+src/stores/__tests__/darkStore.test.ts(179,39): error TS2554: Expected 0 arguments, but got 1.
+src/stores/__tests__/darkStore.test.ts(180,39): error TS2554: Expected 0 arguments, but got 1.
+src/stores/__tests__/flowStore.test.ts(347,34): error TS2345: Argument of type '{ name: string; type: string; }[]' is not assignable to parameter of type '{ type: string; id: string; displayName: string; }[]'.
+  Type '{ name: string; type: string; }' is missing the following properties from type '{ type: string; id: string; displayName: string; }': id, displayName
+src/stores/__tests__/flowStore.test.ts(358,35): error TS2345: Argument of type '{ name: string; type: string; }[]' is not assignable to parameter of type '{ type: string; id: string; displayName: string; }[]'.
+  Type '{ name: string; type: string; }' is missing the following properties from type '{ type: string; id: string; displayName: string; }': id, displayName
+src/stores/__tests__/flowStore.test.ts(387,36): error TS2345: Argument of type '{ flow1: { id: string; data: {}; }; }' is not assignable to parameter of type 'FlowPoolType'.
+  Property 'flow1' is incompatible with index signature.
+    Type '{ id: string; data: {}; }' is missing the following properties from type 'VertexBuildTypeAPI[]': length, pop, push, concat, and 35 more.
+src/stores/__tests__/flowStore.test.ts(409,11): error TS2741: Property 'signal' is missing in type '{ abort: jest.Mock<any, any, any>; }' but required in type 'AbortController'.
+src/stores/__tests__/flowStore.test.ts(456,11): error TS2322: Type '{ fitView: jest.Mock<any, any, any>; }' is not assignable to type 'ReactFlowInstance<AllNodeType, EdgeType>'.
+  Type '{ fitView: Mock<any, any, any>; }' is missing the following properties from type 'GeneralHelpers<AllNodeType, EdgeType>': getNodes, setNodes, addNodes, getNode, and 16 more.
+src/stores/__tests__/flowStore.test.ts(509,37): error TS2353: Object literal may only specify known properties, and 'name' does not exist in type '{ type: string; id: string; displayName: string; }'.
+src/stores/__tests__/flowStore.test.ts(510,38): error TS2353: Object literal may only specify known properties, and 'name' does not exist in type '{ type: string; id: string; displayName: string; }'.
+src/stores/__tests__/flowStore.test.ts(594,37): error TS2353: Object literal may only specify known properties, and 'name' does not exist in type '{ type: string; id: string; displayName: string; }'.
+src/stores/__tests__/flowStore.test.ts(596,13): error TS2353: Object literal may only specify known properties, and 'name' does not exist in type '{ type: string; id: string; displayName: string; }'.
+src/stores/__tests__/flowStore.test.ts(1591,9): error TS2740: Type '{ id: string; }' is missing the following properties from type 'Users': username, is_active, is_superuser, profile_image, and 2 more.
+src/stores/__tests__/flowsManagerStore.test.ts(39,31): error TS2352: Conversion of type '{ id: string; name: string; description: string; data: { nodes: never[]; edges: never[]; }; is_component: false; }' to type 'FlowType' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Types of property 'data' are incompatible.
+    Property 'viewport' is missing in type '{ nodes: never[]; edges: never[]; }' but required in type 'ReactFlowJsonObject<AllNodeType, EdgeType>'.
+src/stores/__tests__/flowsManagerStore.test.ts(47,31): error TS2352: Conversion of type '{ id: string; name: string; description: string; data: { nodes: never[]; edges: never[]; }; is_component: false; }' to type 'FlowType' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Types of property 'data' are incompatible.
+    Property 'viewport' is missing in type '{ nodes: never[]; edges: never[]; }' but required in type 'ReactFlowJsonObject<AllNodeType, EdgeType>'.
+src/stores/__tests__/flowsManagerStore.test.ts(297,17): error TS2322: Type '{ id: string; data: {}; }' is not assignable to type 'never'.
+src/stores/__tests__/flowsManagerStore.test.ts(298,17): error TS2322: Type '{ id: string; }' is not assignable to type 'never'.
+src/stores/__tests__/flowsManagerStore.test.ts(335,17): error TS2322: Type '{ id: string; data: {}; }' is not assignable to type 'never'.
+src/stores/__tests__/flowsManagerStore.test.ts(336,17): error TS2322: Type '{ id: string; }' is not assignable to type 'never'.
+src/stores/__tests__/flowsManagerStore.test.ts(349,17): error TS2322: Type '{ id: string; data: {}; }' is not assignable to type 'never'.
+src/stores/__tests__/flowsManagerStore.test.ts(350,17): error TS2322: Type '{ id: string; }' is not assignable to type 'never'.
+src/stores/__tests__/flowsManagerStore.test.ts(368,17): error TS2322: Type '{ id: string; data: {}; }' is not assignable to type 'never'.
+src/stores/__tests__/flowsManagerStore.test.ts(369,17): error TS2322: Type '{ id: string; }' is not assignable to type 'never'.
+src/stores/__tests__/foldersStore.test.ts(27,9): error TS2353: Object literal may only specify known properties, and 'loadingById' does not exist in type 'FoldersStoreType | Partial<FoldersStoreType> | ((state: FoldersStoreType) => FoldersStoreType | Partial<...>)'.
+src/stores/__tests__/foldersStore.test.ts(42,29): error TS2339: Property 'loadingById' does not exist on type 'FoldersStoreType'.
+src/stores/__tests__/foldersStore.test.ts(330,35): error TS2353: Object literal may only specify known properties, and 'loadingById' does not exist in type 'FoldersStoreType | Partial<FoldersStoreType> | ((state: FoldersStoreType) => FoldersStoreType | Partial<...>)'.
+src/stores/__tests__/foldersStore.test.ts(334,29): error TS2339: Property 'loadingById' does not exist on type 'FoldersStoreType'.
+src/stores/__tests__/messagesStore.test.ts(397,42): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
+  Type 'null' is not assignable to type 'string'.
+src/stores/__tests__/messagesStore.test.ts(411,42): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
+  Type 'null' is not assignable to type 'string'.
+src/stores/__tests__/messagesStore.test.ts(416,42): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
+  Type 'null' is not assignable to type 'string'.
+src/stores/__tests__/messagesStore.test.ts(467,42): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
+  Type 'null' is not assignable to type 'string'.
+src/stores/__tests__/messagesStore.test.ts(533,11): error TS2322: Type 'string | null' is not assignable to type 'string'.
+  Type 'null' is not assignable to type 'string'.
+src/stores/__tests__/messagesStore.test.ts(534,11): error TS2322: Type 'string | null' is not assignable to type 'string'.
+  Type 'null' is not assignable to type 'string'.
+src/stores/__tests__/messagesStore.test.ts(575,11): error TS2322: Type 'string | null' is not assignable to type 'string'.
+  Type 'null' is not assignable to type 'string'.
+src/stores/__tests__/messagesStore.test.ts(576,11): error TS2322: Type 'string | null' is not assignable to type 'string'.
+  Type 'null' is not assignable to type 'string'.
+src/stores/__tests__/messagesStore.test.ts(609,64): error TS2322: Type 'string | null' is not assignable to type 'string'.
+  Type 'null' is not assignable to type 'string'.
+src/stores/__tests__/messagesStore.test.ts(672,42): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
+  Type 'null' is not assignable to type 'string'.
+src/stores/__tests__/messagesStore.test.ts(689,44): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
+  Type 'null' is not assignable to type 'string'.
+src/stores/__tests__/tweaksStore.test.ts(35,9): error TS2352: Conversion of type '{ node: { template: { param1: { type: string; advanced: boolean; api_editable: true; value: string; }; param2: { type: string; advanced: boolean; api_editable: false; value: string; }; }; frozen: false; }; type: string; }' to type 'NodeDataType' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Property 'id' is missing in type '{ node: { template: { param1: { type: string; advanced: boolean; api_editable: true; value: string; }; param2: { type: string; advanced: boolean; api_editable: false; value: string; }; }; frozen: false; }; type: string; }' but required in type 'NodeDataType'.
+src/stores/__tests__/tweaksStore.test.ts(61,9): error TS2352: Conversion of type '{ node: { template: { param3: { type: string; advanced: boolean; api_editable: true; value: string; }; }; frozen: false; }; type: string; }' to type 'NodeDataType' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Property 'id' is missing in type '{ node: { template: { param3: { type: string; advanced: boolean; api_editable: true; value: string; }; }; frozen: false; }; type: string; }' but required in type 'NodeDataType'.
+src/stores/__tests__/tweaksStore.test.ts(81,9): error TS2352: Conversion of type '{ node: { template: { param4: { type: string; advanced: boolean; api_editable: true; value: string; }; }; frozen: true; }; type: string; }' to type 'NodeDataType' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Property 'id' is missing in type '{ node: { template: { param4: { type: string; advanced: boolean; api_editable: true; value: string; }; }; frozen: true; }; type: string; }' but required in type 'NodeDataType'.
+src/stores/__tests__/tweaksStore.test.ts(378,19): error TS2322: Type '{ type: string; id: string; position: XYPosition; data: NodeDataType; sourcePosition?: Position; targetPosition?: Position; ... 25 more ...; domAttributes?: Omit<HTMLAttributes<HTMLDivElement>, "id" | "style" | "className" | "draggable" | "role" | "aria-label" | "defaultValue" | "dangerouslySetInnerHTML" | keyof DOM...' is not assignable to type 'AllNodeType'.
+  Type '{ type: string; id: string; position: XYPosition; data: NodeDataType; sourcePosition?: Position; targetPosition?: Position; ... 25 more ...; domAttributes?: Omit<HTMLAttributes<HTMLDivElement>, "id" | "style" | "className" | "draggable" | "role" | "aria-label" | "defaultValue" | "dangerouslySetInnerHTML" | keyof DOM...' is not assignable to type 'NoteNodeType'.
+    Type '{ type: string; id: string; position: XYPosition; data: NodeDataType; sourcePosition?: Position; targetPosition?: Position; ... 25 more ...; domAttributes?: Omit<HTMLAttributes<HTMLDivElement>, "id" | "style" | "className" | "draggable" | "role" | "aria-label" | "defaultValue" | "dangerouslySetInnerHTML" | keyof DOM...' is not assignable to type '{ type: "noteNode"; }'.
+      Types of property 'type' are incompatible.
+        Type 'string' is not assignable to type '"noteNode"'.
+src/stores/__tests__/tweaksStore.test.ts(399,19): error TS2322: Type '{ data: { node: { template: undefined; base_classes?: Array<string>; description: string; display_name: string; icon?: string; edited?: boolean; is_input?: boolean; is_output?: boolean; conditional_paths?: Array<string>; ... 16 more ...; last_updated?: string; }; ... 7 more ...; _connectionMode?: boolean; }; ... 30 ...' is not assignable to type 'AllNodeType'.
+  Type '{ data: { node: { template: undefined; base_classes?: Array<string>; description: string; display_name: string; icon?: string; edited?: boolean; is_input?: boolean; is_output?: boolean; conditional_paths?: Array<string>; ... 16 more ...; last_updated?: string; }; ... 7 more ...; _connectionMode?: boolean; }; ... 30 ...' is not assignable to type 'GenericNodeType'.
+    Type '{ data: { node: { template: undefined; base_classes?: Array<string>; description: string; display_name: string; icon?: string; edited?: boolean; is_input?: boolean; is_output?: boolean; conditional_paths?: Array<string>; ... 16 more ...; last_updated?: string; }; ... 7 more ...; _connectionMode?: boolean; }; ... 30 ...' is not assignable to type '{ id: string; position: XYPosition; data: NodeDataType; sourcePosition?: Position | undefined; targetPosition?: Position | undefined; ... 19 more ...; measured?: { ...; } | undefined; }'.
+      The types of 'data.node.template' are incompatible between these types.
+        Type 'undefined' is not assignable to type 'APITemplateType'.
+src/stores/__tests__/tweaksStore.test.ts(543,17): error TS2352: Conversion of type '{ node: { template: { param1: { advanced: boolean; value: string; }; } | { param1: { advanced: boolean; value: string; }; backgroundColor?: string | undefined; }; base_classes?: string[] | undefined; ... 23 more ...; last_updated?: string | undefined; } | { ...; }; ... 7 more ...; _connectionMode?: boolean | undefin...' to type 'NodeDataType' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type '{ node: { template: { param1: { advanced: boolean; value: string; }; } | { param1: { advanced: boolean; value: string; }; backgroundColor?: string; }; base_classes?: Array<string>; description: string; ... 22 more ...; last_updated?: string; } | { ...; }; showNode?: boolean; type: string; id: string; }' is not comparable to type 'NodeDataType'.
+    Types of property 'node' are incompatible.
+      Type '{ template: { param1: { advanced: boolean; value: string; }; } | { param1: { advanced: boolean; value: string; }; backgroundColor?: string | undefined; }; base_classes?: string[] | undefined; description: string; ... 22 more ...; last_updated?: string | undefined; } | { ...; }' is not comparable to type 'APIClassType'.
+        Type '{ template: { param1: { advanced: boolean; value: string; }; } | { param1: { advanced: boolean; value: string; }; backgroundColor?: string; }; description: string; display_name: string; documentation: string; tool_mode?: boolean | undefined; frozen?: boolean | undefined; outputs?: OutputFieldType[]; i18n_key?: strin...' is not comparable to type 'APIClassType'.
+          Types of property 'template' are incompatible.
+            Type '{ param1: { advanced: boolean; value: string; }; } | { param1: { advanced: boolean; value: string; }; backgroundColor?: string | undefined; }' is not comparable to type 'APITemplateType'.
+              Type '{ param1: { advanced: boolean; value: string; }; backgroundColor?: string; }' is not comparable to type 'APITemplateType'.
+                Property 'param1' is incompatible with index signature.
+                  Type '{ advanced: boolean; value: string; }' is missing the following properties from type 'InputFieldType': type, required, list, show, readonly
+src/stores/__tests__/typesStore.test.ts(36,7): error TS2322: Type '{ type: string; required: true; placeholder: string; }' is not assignable to type 'string | boolean | string[] | FlowType | APITemplateType | CustomFieldsType | { types: string[]; selected?: string | undefined; }[] | undefined'.
+  Types of property 'type' are incompatible.
+    Type 'string' is not assignable to type 'string[] | InputFieldType | undefined'.
+src/stores/__tests__/typesStore.test.ts(42,5): error TS2322: Type 'string' is not assignable to type 'APIClassType'.
+src/stores/__tests__/typesStore.test.ts(46,7): error TS2322: Type '{ type: string; required: false; placeholder: string; }' is not assignable to type 'string | boolean | string[] | FlowType | APITemplateType | CustomFieldsType | { types: string[]; selected?: string | undefined; }[] | undefined'.
+  Types of property 'type' are incompatible.
+    Type 'string' is not assignable to type 'string[] | InputFieldType | undefined'.
+src/stores/__tests__/typesStore.test.ts(52,5): error TS2322: Type 'string' is not assignable to type 'APIClassType'.
+src/stores/__tests__/typesStore.test.ts(59,7): error TS2322: Type '{ type: string; required: true; }' is not assignable to type 'string | boolean | string[] | FlowType | APITemplateType | CustomFieldsType | { types: string[]; selected?: string | undefined; }[] | undefined'.
+  Types of property 'type' are incompatible.
+    Type 'string' is not assignable to type 'string[] | InputFieldType | undefined'.
+src/stores/__tests__/typesStore.test.ts(64,5): error TS2322: Type 'string' is not assignable to type 'APIClassType'.
+src/stores/__tests__/typesStore.test.ts(144,43): error TS2345: Argument of type 'Set<unknown>' is not assignable to parameter of type 'Set<string>'.
+  Type 'unknown' is not assignable to type 'string'.
+src/stores/__tests__/typesStore.test.ts(533,43): error TS2345: Argument of type 'Set<unknown>' is not assignable to parameter of type 'Set<string>'.
+  Type 'unknown' is not assignable to type 'string'.
+src/stores/__tests__/utilityStore.test.ts(213,41): error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.
+src/stores/__tests__/utilityStore.test.ts(214,41): error TS2345: Argument of type '{ id: string; }' is not assignable to parameter of type 'string'.
+src/stores/__tests__/utilityStore.test.ts(544,59): error TS2339: Property 'WEBHOOK' does not exist on type 'typeof EventDeliveryType'.
+src/stores/__tests__/utilityStore.test.ts(547,67): error TS2339: Property 'WEBHOOK' does not exist on type 'typeof EventDeliveryType'.
+src/stores/__tests__/utilityStore.test.ts(554,59): error TS2339: Property 'WEBHOOK' does not exist on type 'typeof EventDeliveryType'.
+src/stores/__tests__/utilityStore.test.ts(556,67): error TS2339: Property 'WEBHOOK' does not exist on type 'typeof EventDeliveryType'.
+src/stores/__tests__/utilityStore.test.ts(726,41): error TS2345: Argument of type '{ id: string; nested: { prop: string; }; array: number[]; }' is not assignable to parameter of type 'string'.
+src/stores/messagesStore.ts(34,33): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
+  Type 'null' is not assignable to type 'string'.
+src/stores/messagesStore.ts(98,36): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
+  Type 'null' is not assignable to type 'string'.
+src/utils/__tests__/buildUtils.test.ts(45,68): error TS2556: A spread argument must either have a tuple type or be passed to a rest parameter.
+src/utils/__tests__/buildUtils.test.ts(60,58): error TS2556: A spread argument must either have a tuple type or be passed to a rest parameter.
+src/utils/__tests__/buildUtils.test.ts(65,54): error TS2556: A spread argument must either have a tuple type or be passed to a rest parameter.
+src/utils/__tests__/buildUtils.test.ts(331,44): error TS2345: Argument of type '{ message: { id: string; properties: {}; }; queryKey: string[]; }' is not assignable to parameter of type 'null'.

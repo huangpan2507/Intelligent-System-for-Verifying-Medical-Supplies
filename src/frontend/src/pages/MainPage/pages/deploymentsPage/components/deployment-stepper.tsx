@@ -83,7 +83,9 @@ export default function DeploymentStepper({
                 activeStep >= step.number && "font-medium",
               )}
             >
-              {t(STEP_LABEL_KEYS[step.label] ?? step.label)}
+              {t(STEP_LABEL_KEYS[step.label] ?? step.label, {
+                defaultValue: step.label,
+              })}
             </span>
           </div>
         ))}

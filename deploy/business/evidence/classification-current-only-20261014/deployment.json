@@ -1,0 +1,14 @@
+{
+  "flow_id": "ce588a72-0614-4d84-badd-0e4355c427e6",
+  "scheme": "core.normal.compact.v1",
+  "release_id": "2f030872-24a4-4d02-8e1c-da9d01245d0b",
+  "version": 3,
+  "nodes": 10,
+  "edges": 9,
+  "ports": [
+    "data",
+    "issues"
+  ],
+  "current_contract_only": true,
+  "errors": {}
+}

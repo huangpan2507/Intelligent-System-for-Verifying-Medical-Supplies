@@ -10,7 +10,7 @@ import type { AllNodeType, EdgeType } from "@/types/flow";
 export function getEdgeAriaLabel(
   edge: EdgeType,
   getNode: (id: string) => AllNodeType | undefined,
-  t: (key: string, options?: Record<string, unknown>) => string,
+  t: (key: "edge.ariaLabel", options?: Record<string, unknown>) => string,
 ): string {
   const sourceNode = getNode(edge.source);
   const targetNode = getNode(edge.target);

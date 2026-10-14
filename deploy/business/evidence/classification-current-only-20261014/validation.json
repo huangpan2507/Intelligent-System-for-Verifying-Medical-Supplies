@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-14",
+  "scope": "Classification current contract only",
+  "compatibility_adapters_removed": true,
+  "backend_business_regression": {
+    "passed": 135,
+    "skipped": 0,
+    "real_databases_enabled": true
+  },
+  "frontend_business_regression": {
+    "suites": 7,
+    "passed": 23
+  },
+  "browser_core_acceptance": {
+    "passed": 1
+  },
+  "typescript_full": {
+    "status": "passed",
+    "exit_code": 0
+  },
+  "ruff": "passed",
+  "biome": "passed",
+  "deployment": {
+    "flow_id": "ce588a72-0614-4d84-badd-0e4355c427e6",
+    "scheme": "core.normal.compact.v1",
+    "release_id": "2f030872-24a4-4d02-8e1c-da9d01245d0b",
+    "version": 3,
+    "nodes": 10,
+    "edges": 9,
+    "ports": [
+      "data",
+      "issues"
+    ],
+    "current_contract_only": true,
+    "errors": {}
+  },
+  "task_id": "dda92490-dced-4144-aded-f73b2bd0ad2d",
+  "task_status": "completed",
+  "coverage_gaps": 0,
+  "matches_expected_samples": true,
+  "real_text_model_calls": 1,
+  "image_observation_simulated": true,
+  "cross_business_acceptance": "deferred_by_Q24"
+}

@@ -33,15 +33,27 @@ const mockNode: AllNodeType = {
   type: "genericNode",
   position: { x: 0, y: 0 },
   data: {
+    id: "node-1",
     node: {
+      documentation: "",
+      display_name: "Test component",
+      description: "",
       template: {
         param1: {
+          readonly: false,
+          show: true,
+          list: false,
+          required: false,
           type: "str",
           advanced: false,
           api_editable: true,
           value: "test-value",
         },
         param2: {
+          readonly: false,
+          show: true,
+          list: false,
+          required: false,
           type: "str",
           advanced: true,
           api_editable: false,
@@ -59,9 +71,17 @@ const mockNode2: AllNodeType = {
   type: "genericNode",
   position: { x: 100, y: 100 },
   data: {
+    id: "node-1",
     node: {
+      documentation: "",
+      display_name: "Test component",
+      description: "",
       template: {
         param3: {
+          readonly: false,
+          show: true,
+          list: false,
+          required: false,
           type: "str",
           advanced: false,
           api_editable: true,
@@ -79,9 +99,17 @@ const mockFrozenNode: AllNodeType = {
   type: "genericNode",
   position: { x: 200, y: 200 },
   data: {
+    id: "node-1",
     node: {
+      documentation: "",
+      display_name: "Test component",
+      description: "",
       template: {
         param4: {
+          readonly: false,
+          show: true,
+          list: false,
+          required: false,
           type: "str",
           advanced: false,
           api_editable: true,
@@ -369,7 +397,7 @@ describe("useTweaksStore", () => {
     });
 
     it("should skip nodes that are not genericNode type", () => {
-      const nonGenericNode = { ...mockNode, type: "customNode" };
+      const nonGenericNode = { ...mockNode, type: "noteNode" as const };
       const { result } = renderHook(() => useTweaksStore());
 
       act(() => {
@@ -388,7 +416,10 @@ describe("useTweaksStore", () => {
         ...mockNode,
         data: {
           ...mockNode.data,
-          node: { ...mockNode.data.node, template: undefined },
+          node: {
+            ...mockNode.data.node,
+            template: undefined,
+          },
         },
       };
       const { result } = renderHook(() => useTweaksStore());
@@ -396,7 +427,8 @@ describe("useTweaksStore", () => {
       act(() => {
         useTweaksStore.setState({
           currentFlowId: "test-flow",
-          nodes: [nodeWithoutTemplate],
+          // Deliberately malformed imported node exercises the runtime guard.
+          nodes: [nodeWithoutTemplate as unknown as AllNodeType],
         });
         result.current.updateTweaks();
       });
@@ -475,6 +507,11 @@ describe("useTweaksStore", () => {
             ...mockNode.data.node,
             template: {
               param1: {
+                readonly: false,
+                show: true,
+                list: false,
+                required: false,
+                type: "str",
                 advanced: true,
                 api_editable: true,
                 value: "hidden-value",
@@ -506,6 +543,11 @@ describe("useTweaksStore", () => {
             tool_mode: true,
             template: {
               param1: {
+                readonly: false,
+                show: true,
+                list: false,
+                required: false,
+                type: "str",
                 advanced: false,
                 api_editable: true,
                 tool_mode: true,
@@ -547,6 +589,11 @@ describe("useTweaksStore", () => {
               template: {
                 ...node.data.node?.template,
                 param1: {
+                  readonly: false,
+                  show: true,
+                  list: false,
+                  required: false,
+                  type: "str",
                   advanced: false,
                   value: "updated-value",
                 },

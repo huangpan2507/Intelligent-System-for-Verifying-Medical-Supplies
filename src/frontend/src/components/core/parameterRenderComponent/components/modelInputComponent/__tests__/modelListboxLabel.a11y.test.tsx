@@ -13,12 +13,11 @@ import type { ModelOption } from "../types";
 
 window.HTMLElement.prototype.scrollIntoView = jest.fn();
 
-const option = (name: string, provider: string): ModelOption =>
-  ({
-    name,
-    provider,
-    enabled: true,
-  }) as ModelOption;
+const option = (name: string, provider: string): ModelOption => ({
+  name,
+  provider,
+  icon: "Bot",
+});
 
 const groupedOptions = {
   OpenAI: [option("gpt-4o", "OpenAI")],

@@ -44,7 +44,10 @@ const operatingSystemTabs = [
   },
 ];
 
-const STEP_TITLE_KEYS: Record<string, string> = {
+const STEP_TITLE_KEYS: Record<
+  string,
+  "apiModal.uploadFilesStep" | "apiModal.executeFlowStep"
+> = {
   "Upload files to the server": "apiModal.uploadFilesStep",
   "Execute the flow with uploaded files": "apiModal.executeFlowStep",
 };

@@ -1,3 +1,4 @@
+import type en from "@/locales/en.json";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ForwardedIconComponent from "@/components/common/genericIconComponent";
@@ -70,7 +71,10 @@ const TAG_ORDER: Array<CapabilityTag["id"]> = [
 const buildCapabilityTags = (
   model: Model,
   showEmbeddingTag: boolean,
-  t: (key: string, options?: { defaultValue: string }) => string,
+  t: (
+    key: Extract<keyof typeof en, `modelProviders.tag.${string}`>,
+    options?: { defaultValue: string },
+  ) => string,
 ): CapabilityTag[] => {
   const metadata = (model.metadata ?? {}) as Record<string, unknown>;
   const isEmbedding = metadata.model_type === "embeddings";

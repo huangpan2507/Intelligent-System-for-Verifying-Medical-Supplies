@@ -55,7 +55,10 @@ export interface ProviderConfigurationFormProps {
 const getPlaceholder = (
   variableName: string,
   provider: string,
-  t: (key: string, opts?: Record<string, string>) => string,
+  t: (
+    key: "modelProviders.enterVariable",
+    opts?: Record<string, string>,
+  ) => string,
 ) => {
   const name = variableName.toLowerCase();
   const providerLower = provider.toLowerCase();

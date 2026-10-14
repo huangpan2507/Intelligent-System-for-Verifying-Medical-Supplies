@@ -1,4 +1,7 @@
-export const getModalPropsApiKey = (t: (key: string) => string) => {
+import type en from "@/locales/en.json";
+export const getModalPropsApiKey = (
+  t: (key: Extract<keyof typeof en, `modal.secretKey.${string}`>) => string,
+) => {
   const modalProps = {
     title: t("modal.secretKey.createTitle"),
     description: t("modal.secretKey.createDescription"),

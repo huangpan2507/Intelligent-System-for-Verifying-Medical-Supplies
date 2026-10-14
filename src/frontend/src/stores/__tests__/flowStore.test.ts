@@ -341,7 +341,7 @@ describe("useFlowStore", () => {
   describe("inputs and outputs management", () => {
     it("should set inputs", () => {
       const { result } = renderHook(() => useFlowStore());
-      const mockInputs = [{ name: "input1", type: "text" }];
+      const mockInputs = [{ id: "input1", displayName: "Input", type: "text" }];
 
       act(() => {
         result.current.setInputs(mockInputs);
@@ -352,7 +352,9 @@ describe("useFlowStore", () => {
 
     it("should set outputs", () => {
       const { result } = renderHook(() => useFlowStore());
-      const mockOutputs = [{ name: "output1", type: "text" }];
+      const mockOutputs = [
+        { id: "output1", displayName: "Output", type: "text" },
+      ];
 
       act(() => {
         result.current.setOutputs(mockOutputs);
@@ -381,7 +383,7 @@ describe("useFlowStore", () => {
   describe("flow pool management", () => {
     it("should set flow pool", () => {
       const { result } = renderHook(() => useFlowStore());
-      const mockFlowPool = { flow1: { id: "flow1", data: {} } };
+      const mockFlowPool = { flow1: [] };
 
       act(() => {
         result.current.setFlowPool(mockFlowPool);
@@ -406,7 +408,10 @@ describe("useFlowStore", () => {
       const mockAbort = jest.fn();
       act(() => {
         useFlowStore.setState({
-          buildController: { abort: mockAbort },
+          buildController: {
+            abort: mockAbort,
+            signal: new AbortController().signal,
+          },
           updateEdgesRunningByNodes: jest.fn(),
           revertBuiltStatusFromBuilding: jest.fn(),
           nodes: [mockNode],
@@ -450,10 +455,18 @@ describe("useFlowStore", () => {
     it("should handle fitViewNode when reactFlowInstance exists", () => {
       const { result } = renderHook(() => useFlowStore());
       const mockFitView = jest.fn();
+      // This test only exercises fitView, so the React Flow mock is partial.
+      const mockInstance: Partial<
+        NonNullable<
+          ReturnType<typeof useFlowStore.getState>["reactFlowInstance"]
+        >
+      > = { fitView: mockFitView };
 
       act(() => {
         useFlowStore.setState({
-          reactFlowInstance: { fitView: mockFitView },
+          reactFlowInstance: mockInstance as NonNullable<
+            ReturnType<typeof useFlowStore.getState>["reactFlowInstance"]
+          >,
           nodes: [mockNode],
         });
       });
@@ -506,8 +519,12 @@ describe("useFlowStore", () => {
 
       // Set up inputs/outputs
       act(() => {
-        result.current.setInputs([{ name: "input1", type: "text" }]);
-        result.current.setOutputs([{ name: "output1", type: "text" }]);
+        result.current.setInputs([
+          { id: "input1", displayName: "Input", type: "text" },
+        ]);
+        result.current.setOutputs([
+          { id: "output1", displayName: "Output", type: "text" },
+        ]);
         result.current.setHasIO(true);
       });
 
@@ -591,9 +608,11 @@ describe("useFlowStore", () => {
         result.current.setPlaygroundPage(true);
         result.current.setPositionDictionary({ 10: 20, 30: 40 });
         result.current.setComponentsToUpdate([]);
-        result.current.setInputs([{ name: "concurrent-input", type: "text" }]);
+        result.current.setInputs([
+          { id: "concurrent-input", displayName: "Input", type: "text" },
+        ]);
         result.current.setOutputs([
-          { name: "concurrent-output", type: "text" },
+          { id: "concurrent-output", displayName: "Output", type: "text" },
         ]);
         result.current.setHasIO(true);
       });
@@ -1588,7 +1607,15 @@ describe("useFlowStore", () => {
       useAuthStore.setState({
         isAuthenticated: true,
         autoLogin: false,
-        userData: { id: "user-123" },
+        userData: {
+          id: "user-123",
+          username: "test",
+          is_active: true,
+          is_superuser: false,
+          profile_image: "",
+          create_at: new Date("2026-01-01"),
+          updated_at: new Date("2026-01-01"),
+        },
       });
       useFlowStore.setState({ playgroundPage: true });
       mockedRunFlow.mockImplementation(async () => {

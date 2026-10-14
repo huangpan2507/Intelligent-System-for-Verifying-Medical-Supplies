@@ -1,3 +1,4 @@
+import type { TFunction } from "i18next";
 import {
   Check,
   CircleAlert,
@@ -10,7 +11,7 @@ import {
 import { useTranslation } from "react-i18next";
 import type { BuildTask, InProgressBuildTask } from "../assistant-panel.types";
 
-type Translate = ReturnType<typeof useTranslation>["t"];
+type Translate = TFunction<"translation">;
 
 interface AssistantBuildTasksProps {
   tasks: BuildTask[];

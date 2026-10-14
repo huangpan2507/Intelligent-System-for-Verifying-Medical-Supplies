@@ -1,12 +1,34 @@
+import { createInput } from "@/test-utils/factories";
+import type {
+  APITemplateType,
+  InputFieldType,
+  OutputFieldType,
+} from "@/types/api";
 import { checkCodeValidity } from "../check-code-validity";
+
+const completeTemplate = (
+  fields: Record<string, Partial<InputFieldType>>,
+): APITemplateType =>
+  Object.fromEntries(
+    Object.entries(fields).map(([name, field]) => [name, createInput(field)]),
+  );
 
 describe("checkCodeValidity", () => {
   const customComponentData = {
+    id: "node-1",
     type: "CustomComponent",
     node: {
+      documentation: "",
+      display_name: "Test component",
+      description: "",
       edited: false,
       template: {
         code: {
+          readonly: false,
+          show: true,
+          list: false,
+          required: false,
+          type: "str",
           value: "user custom code",
         },
       },
@@ -15,8 +37,16 @@ describe("checkCodeValidity", () => {
 
   const templates = {
     CustomComponent: {
+      documentation: "",
+      display_name: "Test component",
+      description: "",
       template: {
         code: {
+          readonly: false,
+          show: true,
+          list: false,
+          required: false,
+          type: "str",
           value: "user custom code",
         },
       },
@@ -62,23 +92,66 @@ describe("checkCodeValidity", () => {
 
   it("ignores transient template metadata when checking breaking changes", () => {
     const componentData = {
+      id: "node-1",
       type: "LanguageModelComponent",
       node: {
+        documentation: "",
+        display_name: "Test component",
+        description: "",
         edited: false,
         outputs: [],
         template: {
-          code: { value: "old component code" },
-          _frontend_node_flow_id: { value: "flow-1" },
-          _frontend_node_folder_id: { value: "folder-1" },
-          is_refresh: true,
-          tools_metadata: { value: [] },
+          code: {
+            readonly: false,
+            show: true,
+            list: false,
+            required: false,
+            type: "str",
+            value: "old component code",
+          },
+          _frontend_node_flow_id: {
+            readonly: false,
+            show: true,
+            list: false,
+            required: false,
+            type: "str",
+            value: "flow-1",
+          },
+          _frontend_node_folder_id: {
+            readonly: false,
+            show: true,
+            list: false,
+            required: false,
+            type: "str",
+            value: "folder-1",
+          },
+          tools_metadata: {
+            readonly: false,
+            show: true,
+            list: false,
+            required: false,
+            type: "str",
+            value: [],
+          },
         },
       },
     } as Parameters<typeof checkCodeValidity>[0];
+    // Backend refresh metadata is transient and is not an input field.
+    Object.assign(componentData.node!.template, { is_refresh: true });
     const currentTemplates = {
       LanguageModelComponent: {
+        documentation: "",
+        display_name: "Test component",
+        description: "",
         template: {
-          code: { value: "current component code" },
+          code: {
+            readonly: false,
+            show: true,
+            list: false,
+            required: false,
+            type: "str",
+            value: "current component code",
+          },
         },
         outputs: [],
       },
@@ -94,22 +167,57 @@ describe("checkCodeValidity", () => {
 
   it("treats a new required input without a usable default as breaking", () => {
     const componentData = {
+      id: "node-1",
       type: "LanguageModelComponent",
       node: {
+        documentation: "",
+        display_name: "Test component",
+        description: "",
         edited: false,
         outputs: [],
         template: {
-          code: { value: "old component code" },
-          _frontend_node_flow_id: { value: "flow-1" },
-          is_refresh: true,
+          code: {
+            readonly: false,
+            show: true,
+            list: false,
+            required: false,
+            type: "str",
+            value: "old component code",
+          },
+          _frontend_node_flow_id: {
+            readonly: false,
+            show: true,
+            list: false,
+            required: false,
+            type: "str",
+            value: "flow-1",
+          },
         },
       },
     } as Parameters<typeof checkCodeValidity>[0];
+    Object.assign(componentData.node!.template, { is_refresh: true });
     const currentTemplates = {
       LanguageModelComponent: {
+        documentation: "",
+        display_name: "Test component",
+        description: "",
         template: {
-          code: { value: "current component code" },
-          api_key: { value: "", required: true },
+          code: {
+            readonly: false,
+            show: true,
+            list: false,
+            required: false,
+            type: "str",
+            value: "current component code",
+          },
+          api_key: {
+            readonly: false,
+            show: true,
+            list: false,
+            type: "str",
+            value: "",
+            required: true,
+          },
         },
         outputs: [],
       },
@@ -128,20 +236,31 @@ describe("checkCodeValidity", () => {
   // rebuilt through /custom_component; a field only the saved node has holds a value
   // the updated code no longer reads. Mirrors the same cases in
   // src/lfx/tests/unit/upgrade/test_checker.py.
-  const nodeWithTemplate = (template: Record<string, unknown>) =>
+  const nodeWithTemplate = (
+    template: Record<string, Partial<InputFieldType>>,
+  ) =>
     ({
+      id: "node-1",
       type: "LanguageModelComponent",
       node: {
+        documentation: "",
+        display_name: "Test component",
+        description: "",
         edited: false,
         outputs: [],
-        template,
+        template: completeTemplate(template),
       },
     }) as Parameters<typeof checkCodeValidity>[0];
 
-  const templatesWithTemplate = (template: Record<string, unknown>) =>
+  const templatesWithTemplate = (
+    template: Record<string, Partial<InputFieldType>>,
+  ) =>
     ({
       LanguageModelComponent: {
-        template,
+        documentation: "",
+        display_name: "Test component",
+        description: "",
+        template: completeTemplate(template),
         outputs: [],
       },
     }) as Parameters<typeof checkCodeValidity>[1];
@@ -258,10 +377,14 @@ describe("checkCodeValidity", () => {
   // Switching a component to tool mode replaces its outputs with a single
   // component_as_tool entry, which no component declares, so comparing the two output
   // sets always reported a breaking change.
-  const toolModeNode = (template: Record<string, unknown>) =>
+  const toolModeNode = (template: Record<string, Partial<InputFieldType>>) =>
     ({
+      id: "node-1",
       type: "URLComponent",
       node: {
+        documentation: "",
+        display_name: "Test component",
+        description: "",
         edited: false,
         outputs: [
           {
@@ -271,24 +394,30 @@ describe("checkCodeValidity", () => {
             method: "to_toolkit",
           },
         ],
-        template,
+        template: completeTemplate(template),
       },
     }) as Parameters<typeof checkCodeValidity>[0];
 
-  const urlTemplates = (template: Record<string, unknown>) =>
-    ({
-      URLComponent: {
-        template,
-        outputs: [
-          {
-            name: "page_results",
-            display_name: "Table",
-            types: ["Table"],
-            method: "fetch_content",
-          },
-        ],
-      },
-    }) as Parameters<typeof checkCodeValidity>[1];
+  const urlOutputs: OutputFieldType[] = [
+    {
+      name: "page_results",
+      display_name: "Table",
+      types: ["Table"],
+      method: "fetch_content",
+    },
+  ];
+
+  const urlTemplates = (
+    template: Record<string, Partial<InputFieldType>>,
+  ): Parameters<typeof checkCodeValidity>[1] => ({
+    URLComponent: {
+      documentation: "",
+      display_name: "Test component",
+      description: "",
+      template: completeTemplate(template),
+      outputs: urlOutputs,
+    },
+  });
 
   it("does not treat a tool-mode node as breaking while the component supports tool mode", () => {
     const data = toolModeNode({

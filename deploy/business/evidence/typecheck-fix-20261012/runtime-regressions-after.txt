@@ -1,0 +1,10 @@
+
+> langflow@1.12.0 test
+> jest --runInBand src/components/common/genericIconComponent/__tests__ src/utils/__tests__/dateTime.test.ts src/modals/IOModal/components/chatView/__tests__/sort-sender-messages.test.ts src/modals/__tests__/prompt-modal-parity.test.tsx src/components/core/assistantPanel/hooks/__tests__/use-assistant-chat.test.ts
+
+
+Test Suites: 6 passed, 6 total
+Tests:       136 passed, 136 total
+Snapshots:   0 total
+Time:        7.084 s
+Ran all test suites matching src/components/common/genericIconComponent/__tests__|src/utils/__tests__/dateTime.test.ts|src/modals/IOModal/components/chatView/__tests__/sort-sender-messages.test.ts|src/modals/__tests__/prompt-modal-parity.test.tsx|src/components/core/assistantPanel/hooks/__tests__/use-assistant-chat.test.ts.

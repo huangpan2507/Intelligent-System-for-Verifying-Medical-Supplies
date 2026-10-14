@@ -1,0 +1,13 @@
+{
+  "flow_id": "ce588a72-0614-4d84-badd-0e4355c427e6",
+  "scheme": "core.normal.compact.v1",
+  "node_count": 11,
+  "source_rows": {
+    "INSPECTION_INFO_RECORD": 5,
+    "SERIES_INFO": 5
+  },
+  "activation": "active",
+  "release_id": "0dad5d43-06e7-471d-9be3-c5d42c05f7f3",
+  "version": 4,
+  "runtime_digest": "d91ccc3de455e6219caba2997e7d05d61b8c00774b71abcf38f006b9da99e57d"
+}

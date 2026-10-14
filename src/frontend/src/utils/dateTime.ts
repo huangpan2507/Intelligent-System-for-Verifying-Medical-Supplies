@@ -15,7 +15,13 @@ const ISO_DATE_PREFIX = /^\d{4}-\d{2}-\d{2}T/;
 
 const toIsoUtc = (raw: string): string => {
   const backendUtc = BACKEND_UTC_TIMESTAMP.exec(raw);
-  return backendUtc ? `${backendUtc[1]}T${backendUtc[2]}Z` : raw;
+  if (backendUtc) return `${backendUtc[1]}T${backendUtc[2]}Z`;
+  // Legacy API timestamps also omit the UTC suffix. Treat them like the
+  // timezone-free ISO format, independently of the browser's local timezone.
+  return raw.replace(
+    /^(\d{4}-\d{2}-\d{2}) (\d{2}:\d{2}:\d{2}(?:\.\d+)?)$/,
+    "$1T$2Z",
+  );
 };
 
 export const parseApiTimestamp = (value: unknown): Date | null => {
@@ -52,13 +58,13 @@ export const formatSmartTimestamp = (value: unknown): string => {
   }).format(date);
 
   const isToday =
-    date.getFullYear() === now.getFullYear() &&
-    date.getMonth() === now.getMonth() &&
-    date.getDate() === now.getDate();
+    date.getUTCFullYear() === now.getUTCFullYear() &&
+    date.getUTCMonth() === now.getUTCMonth() &&
+    date.getUTCDate() === now.getUTCDate();
 
   if (isToday) return time;
 
-  const sameYear = date.getFullYear() === now.getFullYear();
+  const sameYear = date.getUTCFullYear() === now.getUTCFullYear();
   if (sameYear) {
     return new Intl.DateTimeFormat(undefined, {
       day: "2-digit",
@@ -71,6 +77,6 @@ export const formatSmartTimestamp = (value: unknown): string => {
     }).format(date);
   }
 
-  const ddmmyyyy = `${pad2(date.getDate())}/${pad2(date.getMonth() + 1)}/${date.getFullYear()}`;
+  const ddmmyyyy = `${pad2(date.getUTCDate())}/${pad2(date.getUTCMonth() + 1)}/${date.getUTCFullYear()}`;
   return `${ddmmyyyy} ${time}`;
 };

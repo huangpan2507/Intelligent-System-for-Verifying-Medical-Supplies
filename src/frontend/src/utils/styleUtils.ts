@@ -313,6 +313,11 @@ export const FILE_ICONS = {
 
 export const SIDEBAR_CATEGORIES = [
   {
+    display_name: "sidebar.category.business",
+    name: "business",
+    icon: "Workflow",
+  },
+  {
     display_name: "sidebar.category.saved",
     name: "saved_components",
     icon: "Save",

@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-10-13T18:37:05.832057+00:00",
+  "services": {
+    "frontend": 200,
+    "platform": 200,
+    "public_api": 200,
+    "legacy_mock": 200,
+    "core_mock": 200
+  },
+  "intake": "open",
+  "pending_tasks": 0,
+  "nodes": {
+    "original": 42,
+    "compact": 10
+  },
+  "compatible_active_schemes": [
+    "acceptance.taskstart.5ac08f2620",
+    "demo.cross_database.v2",
+    "core.normal.1791804428546",
+    "core.normal.compact.v1",
+    "demo.consumables.v2"
+  ]
+}

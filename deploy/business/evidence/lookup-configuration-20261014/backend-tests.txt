@@ -1,0 +1,52 @@
+........................................................................ [ 48%]
+........................................................................ [ 96%]
+.....                                                                    [100%]
+=============================== warnings summary ===============================
+deploy/verification/.cache/runtime/lib/python3.13/site-packages/pydantic/_internal/_generate_schema.py:325
+deploy/verification/.cache/runtime/lib/python3.13/site-packages/pydantic/_internal/_generate_schema.py:325
+deploy/verification/.cache/runtime/lib/python3.13/site-packages/pydantic/_internal/_generate_schema.py:325
+  /home/huangpan/github_repo/langflow/deploy/verification/.cache/runtime/lib/python3.13/site-packages/pydantic/_internal/_generate_schema.py:325: PydanticDeprecatedSince20: `json_encoders` is deprecated. See https://docs.pydantic.dev/2.13/concepts/serialization/#custom-serializers for alternatives. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    warnings.warn(
+
+src/lfx/src/lfx/inputs/inputs.py:915
+  /home/huangpan/github_repo/langflow/src/lfx/src/lfx/inputs/inputs.py:915: PydanticDeprecatedSince212: Using `@model_validator` with mode='after' on a classmethod is deprecated. Instead, use an instance method. See the documentation at https://docs.pydantic.dev/2.13/concepts/validators/#model-after-validator. Deprecated in Pydantic V2.12 to be removed in V3.0.
+    @model_validator(mode="after")
+
+deploy/verification/.cache/runtime/lib/python3.13/site-packages/langchain_classic/chains/api/base.py:57
+  /home/huangpan/github_repo/langflow/deploy/verification/.cache/runtime/lib/python3.13/site-packages/langchain_classic/chains/api/base.py:57: DeprecationWarning: `langchain-community` is being sunset and is no longer actively maintained. See https://github.com/langchain-ai/langchain-community/issues/674 for details and migration guidance toward standalone integration packages.
+    from langchain_community.utilities.requests import TextRequestsWrapper
+
+deploy/verification/.cache/runtime/lib/python3.13/site-packages/sqlmodel/main.py:619
+  /home/huangpan/github_repo/langflow/deploy/verification/.cache/runtime/lib/python3.13/site-packages/sqlmodel/main.py:619: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    "SQLModel", super().__new__(cls, name, bases, dict_used, **config_kwargs)
+
+tests/test_classification_configuration.py: 12 warnings
+  /home/huangpan/github_repo/langflow/deploy/business/tests/test_classification_configuration.py:29: DeprecationWarning: fetch_arrow_table() is deprecated, use to_arrow_table() instead.
+    return db.execute(classification.rule_query(cfg, "source")).fetch_arrow_table().to_pylist()
+
+tests/test_compact_core.py::test_rule_classification_preserves_material_facts[\u4eba\u5de5\u9acb\u5173\u8282\uff08\u6a21\u62df\uff09-\u4eba\u5de5\u5168\u9acb\u5173\u8282\u7f6e\u6362\u672f-\u4eba\u5de5\u9acb\u5173\u8282]
+tests/test_compact_core.py::test_rule_classification_preserves_material_facts[\u4eba\u5de5\u819d\u5173\u8282\uff08\u6a21\u62df\uff09-\u4eba\u5de5\u5168\u819d\u5173\u8282\u7f6e\u6362\u672f-\u4eba\u5de5\u819d\u5173\u8282]
+tests/test_compact_core.py::test_rule_classification_preserves_material_facts[\u819d\u5173\u8282\u5047\u4f53\u7cfb\u7edf-\u4eba\u5de5\u5168\u819d\u5173\u8282\u7f6e\u6362\u672f-\u65e0\u6cd5\u786e\u5b9a]
+tests/test_compact_core.py::test_rule_classification_preserves_material_facts[\u4eba\u5de5\u9acb\u5173\u8282\uff08\u6a21\u62df\uff09-\u4eba\u5de5\u5168\u819d\u5173\u8282\u7f6e\u6362\u672f-\u65e0\u6cd5\u786e\u5b9a]
+tests/test_compact_core.py::test_rule_classification_preserves_material_facts[None-None-\u65e0\u6cd5\u786e\u5b9a]
+  /home/huangpan/github_repo/langflow/deploy/business/tests/test_compact_core.py:58: DeprecationWarning: fetch_arrow_table() is deprecated, use to_arrow_table() instead.
+    db.execute(classification.rule_query(config("Classification"), "source")).fetch_arrow_table().to_pylist()[0]
+
+tests/test_compact_core.py::test_lookup_keeps_hospital_system_scope_and_parses_actual_time
+  /home/huangpan/github_repo/langflow/deploy/business/tests/test_compact_core.py:117: DeprecationWarning: fetch_arrow_table() is deprecated, use to_arrow_table() instead.
+    rows = db.execute(query).fetch_arrow_table().to_pylist()
+
+tests/test_compact_core.py::test_multiple_images_collect_into_one_unit_and_incomplete_calls_do_not_pass
+  /home/huangpan/github_repo/langflow/deploy/business/tests/test_compact_core.py:143: DeprecationWarning: fetch_arrow_table() is deprecated, use to_arrow_table() instead.
+    rows = db.execute(query).fetch_arrow_table().to_pylist()
+
+tests/test_compact_core.py::test_multiple_images_collect_into_one_unit_and_incomplete_calls_do_not_pass
+  /home/huangpan/github_repo/langflow/deploy/business/tests/test_compact_core.py:147: DeprecationWarning: fetch_arrow_table() is deprecated, use to_arrow_table() instead.
+    assert db.execute(query).fetch_arrow_table().to_pylist()[0]["_issue_reason"] == "incomplete_api_request"
+
+tests/test_compact_core.py::test_compare_computes_independent_observed_amount_and_names_results
+  /home/huangpan/github_repo/langflow/deploy/business/tests/test_compact_core.py:164: DeprecationWarning: fetch_arrow_table() is deprecated, use to_arrow_table() instead.
+    result = db.execute(query).fetch_arrow_table().to_pylist()[0]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+149 passed, 27 warnings in 97.48s (0:01:37)

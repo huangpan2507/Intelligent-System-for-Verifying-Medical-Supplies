@@ -1,0 +1,65 @@
+{
+  "source": "current saved ClassificationSignals config",
+  "scope": "isolated Transform evaluation only; no model/API request; no flow mutation",
+  "passed": 8,
+  "source_fields_unchanged": true,
+  "unknown_field_rejected": true,
+  "results": [
+    {
+      "case": "明确髋",
+      "rule_hip": true,
+      "rule_knee": false,
+      "rule_other": false,
+      "rule_conflict": false
+    },
+    {
+      "case": "明确膝",
+      "rule_hip": false,
+      "rule_knee": true,
+      "rule_other": false,
+      "rule_conflict": false
+    },
+    {
+      "case": "明确其他",
+      "rule_hip": false,
+      "rule_knee": false,
+      "rule_other": true,
+      "rule_conflict": false
+    },
+    {
+      "case": "未覆盖名称",
+      "rule_hip": false,
+      "rule_knee": false,
+      "rule_other": false,
+      "rule_conflict": false
+    },
+    {
+      "case": "全部名称空值",
+      "rule_hip": false,
+      "rule_knee": false,
+      "rule_other": false,
+      "rule_conflict": false
+    },
+    {
+      "case": "髋膝同时命中",
+      "rule_hip": true,
+      "rule_knee": true,
+      "rule_other": false,
+      "rule_conflict": true
+    },
+    {
+      "case": "手术与耗材矛盾",
+      "rule_hip": true,
+      "rule_knee": false,
+      "rule_other": false,
+      "rule_conflict": true
+    },
+    {
+      "case": "其他与关节矛盾",
+      "rule_hip": true,
+      "rule_knee": false,
+      "rule_other": true,
+      "rule_conflict": true
+    }
+  ]
+}

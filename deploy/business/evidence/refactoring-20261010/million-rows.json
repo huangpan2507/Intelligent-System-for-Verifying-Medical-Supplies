@@ -1,0 +1,22 @@
+{
+  "source_kind": "mysql_postgresql",
+  "input_rows": 1000000,
+  "output_rows": 500000,
+  "counts": {
+    "different": 50,
+    "equal": 499950
+  },
+  "expected_differences": 50,
+  "elapsed_seconds": 42.624,
+  "peak_rss_mb": 1069.9,
+  "machine": "Linux-6.18.40.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "batch_size": 5000,
+  "peak_disk_mb_sampled": 400.1,
+  "peak_spill_mb_sampled": 258.2,
+  "disk_sample_interval_seconds": 0.1,
+  "runtime_digest": "b1fe8814be2d6b4e87f16a00024beb8feee406dd6d045615b8db134f7fa696d8",
+  "disk_mb": 155.8,
+  "task_id": "d0cc69f1-60d7-4cd2-8db0-d29de9d6050e",
+  "status": "completed",
+  "root": "/tmp/business-benchmark-fgow0r1l"
+}

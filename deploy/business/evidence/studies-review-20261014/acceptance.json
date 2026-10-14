@@ -1,0 +1,14 @@
+{
+  "mode": "read_only_verification_of_completed_task",
+  "task_id": "dda92490-dced-4144-aded-f73b2bd0ad2d",
+  "classification_rows": 2,
+  "studies_rows": 2,
+  "studies_issues": 0,
+  "series_rows": 2,
+  "database_columns": 94,
+  "study_return_mappings": 11,
+  "studies_output_columns_including_internal": 81,
+  "association_and_checks": "passed",
+  "source_quantity_and_price_preserved": true,
+  "next_node_link_binding": "passed"
+}
