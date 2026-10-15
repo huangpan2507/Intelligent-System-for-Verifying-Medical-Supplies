@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import {
   type Field,
@@ -7,6 +6,7 @@ import {
   type SourcePreview,
   useBusinessMutation,
 } from "@/controllers/API/queries/business";
+import { useTranslation } from "./business-i18n";
 import { businessError } from "./errors";
 import SourceFieldEditor, { fieldType } from "./SourceFieldEditor";
 

@@ -1,5 +1,3 @@
-from decimal import Decimal
-
 import pytest
 from langflow.verification.configuration import (
     ComparisonConfiguration,
@@ -100,9 +98,10 @@ def test_body_field_and_terms_are_configurable_but_unknown_is_retained():
         )
 
 
-def test_comparison_parameters_reject_empty_selection_and_invalid_tolerance():
+def test_comparison_parameters_reject_empty_selection_and_retired_tolerance():
     with pytest.raises(ValidationError):
         ComparisonConfiguration(comparisons=[])
     with pytest.raises(ValidationError):
         ComparisonConfiguration(quantity_tolerance=-1)
-    assert ComparisonConfiguration(money_tolerance="0.01").money_tolerance == Decimal("0.01")
+    with pytest.raises(ValidationError):
+        ComparisonConfiguration(money_tolerance="0.01")

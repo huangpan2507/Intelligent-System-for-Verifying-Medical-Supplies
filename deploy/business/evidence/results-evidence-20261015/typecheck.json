@@ -1,0 +1,25 @@
+{
+  "exit_code": 124,
+  "command": [
+    "node",
+    "--max-old-space-size=2304",
+    "node_modules/typescript/bin/tsc",
+    "--noEmit",
+    "--incremental",
+    "--assumeChangesOnlyAffectDirectDependencies",
+    "--extendedDiagnostics"
+  ],
+  "files": {
+    "src/frontend/src/pages/BusinessPage/BusinessResultEvidence.tsx": "d2b2a7e10ee5c8e336a6b62799794a34cdc0de91983f21595a109d6c652bebac",
+    "src/frontend/src/pages/BusinessPage/BusinessResults.tsx": "c2a727c611c0e81c57948db6677d46d99c158b9998274c05f0694eda6c915844",
+    "src/frontend/src/pages/BusinessPage/ResultStorage.tsx": "74589be86ed38b362d48bb77f9b8f77ff8af206093b335e914e6425a5cca07fd",
+    "src/frontend/src/pages/BusinessPage/ResultEvidenceDialog.tsx": "45de08ead3b2b7f1e62d085063c0d348daad90c2c709e2f19380850bb1aaf3f3",
+    "src/frontend/src/pages/BusinessPage/ResultsConfiguration.tsx": "0c232dbe7984a4323c437edd4d2148e9b22cdbc9613ac9a2047c3bed9af891ab",
+    "src/frontend/src/pages/BusinessPage/ResultFields.tsx": "e8a1e694e93d8d6aa9f0a764c9f63985333624487aca7c6da753acabce5ec2bc",
+    "src/frontend/src/controllers/API/queries/business/index.ts": "e3cb5b68db4552955abc4e75f6ff3abd3cfb379c975a313106d2f3f22a34a649",
+    "src/frontend/src/pages/FlowPage/components/SelectionMenuComponent/index.tsx": "0ec597b151c399ee9e0b8e425b9e824b5b699fb10078b1b28b01351ede01f609",
+    "src/frontend/src/pages/BusinessPage/__tests__/ResultEvidence.test.tsx": "eeba308246264ab6c2e09727c1937a832167e5372b12a95f66342b095c74b7a0",
+    "src/frontend/src/pages/BusinessPage/__tests__/ResultsConfiguration.test.tsx": "06a35505a519f9407c9da18fb1f4fa3b6784041e4a371cfff4d991fb8b65ab5f",
+    "src/frontend/src/pages/BusinessPage/__tests__/BusinessResultEvidence-query.test.tsx": "07f8a908a7eea398c57537e52860540815e91e280713b92110aaba0319f675d5"
+  }
+}

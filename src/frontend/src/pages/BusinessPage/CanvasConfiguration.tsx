@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import {
   type Catalog,
@@ -9,16 +8,23 @@ import {
   useBusinessQuery,
   useBusinessUpload,
 } from "@/controllers/API/queries/business";
+import {
+  businessNodeDescription,
+  businessNodeName,
+} from "@/pages/BusinessPage/business-node-presentation";
 import useFlowStore from "@/stores/flowStore";
 import type { NodeDataType } from "@/types/flow";
 import ApiConfiguration from "./ApiConfiguration";
 import ApiFieldConfiguration from "./ApiFieldConfiguration";
+import { useTranslation } from "./business-i18n";
 import ClassificationConfiguration from "./ClassificationConfiguration";
+import CompareConfiguration from "./CompareConfiguration";
 import DatabaseConfiguration from "./DatabaseConfiguration";
 import DatabasePreview from "./DatabasePreview";
 import { businessError } from "./errors";
 import ImagingConfiguration from "./ImagingConfiguration";
 import LookupConfiguration from "./LookupConfiguration";
+import ResultsConfiguration from "./ResultsConfiguration";
 import { SchemaForm } from "./SchemaForm";
 import TaskInputPanel from "./TaskInputPanel";
 import {
@@ -170,6 +176,7 @@ export default function CanvasConfiguration() {
     );
     fields.result = [...(fields.data ?? []), ...returns];
   }
+  fields.upstream = fields.data ?? [];
   if (kind === "compare" && config.calculations?.length)
     fields.data = Array.from(
       new Map(
@@ -276,9 +283,11 @@ export default function CanvasConfiguration() {
         }
       : undefined,
   };
+  const ResultConfiguration =
+    kind === "compare" ? CompareConfiguration : ImagingConfiguration;
   return (
     <div
-      className={`absolute right-3 top-16 z-30 max-h-[80%] max-w-[calc(100%-1.5rem)] overflow-auto rounded-lg border bg-background p-4 shadow-lg ${wide && ["databaselookup", "database", "validate", "classification", "taskinput", "api", "imaging"].includes(kind) ? "w-[56rem]" : "w-96"}`}
+      className={`absolute right-3 top-16 z-30 max-h-[80%] max-w-[calc(100%-1.5rem)] overflow-auto rounded-lg border bg-background p-4 shadow-lg ${wide && ["databaselookup", "database", "validate", "classification", "taskinput", "api", "imaging", "compare", "output"].includes(kind) ? "w-[56rem]" : "w-96"}`}
       data-testid="business-canvas-configuration"
     >
       <div className="flex items-center justify-between">
@@ -297,6 +306,8 @@ export default function CanvasConfiguration() {
           "taskinput",
           "api",
           "imaging",
+          "compare",
+          "output",
         ].includes(kind) && (
           <Button size="sm" variant="ghost" onClick={() => setWide(!wide)}>
             {t(
@@ -332,7 +343,9 @@ export default function CanvasConfiguration() {
             <p>{t("business.selectNode")}</p>
           ) : (
             <>
-              <p className="font-medium">{data?.node?.display_name}</p>
+              <p className="font-medium">
+                {businessNodeName(data?.type, data?.node?.display_name)}
+              </p>
               {["validate", "classification"].includes(kind) && (
                 <p className="break-words text-xs text-muted-foreground">
                   {t("business.lookup.upstream", {
@@ -434,6 +447,8 @@ export default function CanvasConfiguration() {
                   "validate",
                   "api",
                   "imaging",
+                  "compare",
+                  "output",
                 ].includes(kind) && (
                   <SchemaForm
                     key={`configuration-${selected.id}`}
@@ -450,6 +465,15 @@ export default function CanvasConfiguration() {
                   onChange={change}
                   schema={sourceFormSchema}
                   options={formOptions}
+                  nodeId={selected.id}
+                />
+              )}
+              {kind === "output" && (
+                <ResultsConfiguration
+                  key={`${flowId}-${selected.id}`}
+                  value={config}
+                  onChange={change}
+                  flowId={flowId}
                   nodeId={selected.id}
                 />
               )}
@@ -478,8 +502,8 @@ export default function CanvasConfiguration() {
                   }
                 />
               )}
-              {kind === "imaging" && sourceFormSchema && (
-                <ImagingConfiguration
+              {["imaging", "compare"].includes(kind) && sourceFormSchema && (
+                <ResultConfiguration
                   key={selected.id}
                   value={config}
                   onChange={change}
@@ -496,7 +520,7 @@ export default function CanvasConfiguration() {
                       )}
                     </pre>
                   </details>
-                </ImagingConfiguration>
+                </ResultConfiguration>
               )}
               {kind === "api" && sourceFormSchema && (
                 <ApiConfiguration
@@ -551,7 +575,9 @@ export default function CanvasConfiguration() {
                   />
                 </ApiConfiguration>
               )}
-              {!["taskinput", "api", "imaging"].includes(kind) && (
+              {!["taskinput", "api", "imaging", "compare", "output"].includes(
+                kind,
+              ) && (
                 <details>
                   <summary>{t("business.outputFields")}</summary>
                   <pre className="overflow-auto text-xs">

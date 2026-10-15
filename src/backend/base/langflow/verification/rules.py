@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from datetime import timedelta
-from decimal import ROUND_HALF_UP, Decimal
+from decimal import Decimal
 from operator import contains, eq, ge, gt, le, lt, ne
 from typing import TYPE_CHECKING
 
@@ -12,8 +12,6 @@ from langflow.verification.configuration import ScreeningConfiguration
 if TYPE_CHECKING:
     from langflow.verification.configuration import ComparisonConfiguration, FilterConfiguration
     from langflow.verification.schemas import ImageRef, Recognition, ReviewedScope, Settlement, Study
-
-MONEY = Decimal("0.01")
 
 
 def select_settlement(
@@ -138,8 +136,6 @@ def compare_scope(
 ) -> dict:
     """Compare one disjoint scope; never apportion one model total across price lines."""
     blockers = list(reasons)
-    if configuration is not None:
-        policy = {**policy, "money_tolerance": str(configuration.money_tolerance)}
     if not review:
         blockers.append("comparison_scope_not_reviewed")
     elif not review.target_confirmed:
@@ -233,15 +229,12 @@ def compare_scope(
         settled = sum((row.quantity for row in rows), Decimal(0))
         delta = recognition.count - settled
         result["quantity"] = {
-            "status": "equal"
-            if abs(delta) <= (configuration.quantity_tolerance if configuration else 0)
-            else relation(delta),
+            "status": "equal" if delta == 0 else relation(delta),
             "settlement": str(settled),
             "recognized": str(recognition.count),
             "delta": str(delta),
             "unit": review.unit,
             "reasons": [],
-            "tolerance": str(configuration.quantity_tolerance if configuration else 0),
         }
         result["fee"] = compare_fee(rows, recognition.count, policy)
     return requested_comparisons(result, configuration, coverage=review.coverage_confirmed)
@@ -277,25 +270,21 @@ def compare_fee(rows: list[Settlement], count: Decimal, policy: dict) -> dict:
         return not_compared(["multiple_prices_cannot_allocate_recognition_total"])
     if any(row.unit_price < 0 or row.amount < 0 for row in rows):
         return not_compared(["negative_fee_or_reversal"])
-    tolerance = Decimal(policy["money_tolerance"])
     for row in rows:
-        calculated = (row.quantity * row.unit_price).quantize(MONEY, rounding=ROUND_HALF_UP)
-        if abs(calculated - row.amount) > tolerance:
+        calculated = row.quantity * row.unit_price
+        if calculated != row.amount:
             reasons.append("source_amount_does_not_match_quantity_times_price")
     if reasons:
         return not_compared(reasons)
-    amount = sum((row.amount for row in rows), Decimal(0)).quantize(MONEY, rounding=ROUND_HALF_UP)
-    converted = (count * rows[0].unit_price).quantize(MONEY, rounding=ROUND_HALF_UP)
+    amount = sum((row.amount for row in rows), Decimal(0))
+    converted = count * rows[0].unit_price
     delta = converted - amount
     return {
-        "status": "equal" if abs(delta) <= tolerance else relation(delta),
+        "status": "equal" if delta == 0 else relation(delta),
         "source_amount": str(amount),
         "converted_amount": str(converted),
         "delta": str(delta),
         "unit_price": str(rows[0].unit_price),
         "currency": policy["currency"],
-        "rounding": "ROUND_HALF_UP",
-        "precision": "0.01",
-        "tolerance": str(tolerance),
         "reasons": [],
     }

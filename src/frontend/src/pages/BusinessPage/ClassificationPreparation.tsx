@@ -1,5 +1,5 @@
-import { useTranslation } from "react-i18next";
 import type { Field, JsonSchema } from "@/controllers/API/queries/business";
+import { useTranslation } from "./business-i18n";
 import type { ClassificationConfig } from "./classification-config";
 import { SchemaForm } from "./SchemaForm";
 

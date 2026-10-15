@@ -1,0 +1,13 @@
+{
+  "canvases_checked": 23,
+  "remaining_retired_parameters": 0,
+  "live_catalog_has_tolerance": false,
+  "task_intake": "open",
+  "health": {
+    "3000": 200,
+    "7860": 200,
+    "18081": 200,
+    "8090": 200,
+    "8091": 200
+  }
+}

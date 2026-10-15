@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import {
   type AcceptedTaskInput,
@@ -7,6 +6,7 @@ import {
   type Task,
   useBusinessQuery,
 } from "@/controllers/API/queries/business";
+import { businessOption, useTranslation } from "./business-i18n";
 import ConfigurationSection from "./ConfigurationSection";
 import { businessError } from "./errors";
 
@@ -144,7 +144,9 @@ export default function TaskInputPanel({
           disabled={!flowId}
           onChange={(e) => setSelection({ flowId, id: e.target.value })}
         >
-          <option value="">{t("business.taskInput.definition")}</option>
+          <option value="">
+            {businessOption("business.taskInput.definition")}
+          </option>
           {current &&
             !tasks.data?.items.some((task) => task.id === selected) && (
               <option value={selected}>

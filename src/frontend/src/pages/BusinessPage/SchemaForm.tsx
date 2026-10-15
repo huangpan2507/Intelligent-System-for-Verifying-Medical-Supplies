@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -8,6 +7,7 @@ import type {
   Field,
   JsonSchema,
 } from "@/controllers/API/queries/business";
+import { businessOption, useTranslation } from "./business-i18n";
 import DatabaseConditionHelp from "./DatabaseConditionHelp";
 import RequestBodyEditor from "./RequestBodyEditor";
 
@@ -165,7 +165,7 @@ export function SchemaForm({
             >
               {sources.map(([key, mode]) => (
                 <option key={key} value={key}>
-                  {t(`business.binding.${mode}`)}
+                  {businessOption(`business.binding.${mode}`)}
                 </option>
               ))}
             </select>
@@ -318,7 +318,9 @@ export function SchemaForm({
   if (schema.enum)
     choices = schema.enum.map((v) => ({
       value: String(v),
-      label: t(`business.value.${String(v)}`, { defaultValue: String(v) }),
+      label: businessOption(`business.value.${String(v)}`, {
+        defaultValue: String(v),
+      }),
     }));
   if (schema.format?.startsWith("field")) {
     const port = schema.format.split(":")[1] ?? "data";
@@ -347,7 +349,7 @@ export function SchemaForm({
   if (schema.format === "output_port")
     choices = (options.ports ?? []).map((v) => ({
       value: v,
-      label: t(`business.port.${v}`, { defaultValue: v }),
+      label: businessOption(`business.port.${v}`, { defaultValue: v }),
     }));
   if (schema.format === "parameter")
     choices = (options.parameters ?? []).map((value) => ({
@@ -363,10 +365,10 @@ export function SchemaForm({
         title={String(value ?? "")}
         onChange={(e) => onChange(e.target.value)}
       >
-        <option value="">{t("business.choose")}</option>
+        <option value="">{businessOption("business.choose")}</option>
         {Boolean(value) && !choices.some((c) => c.value === String(value)) && (
           <option value={String(value)}>
-            {t("business.invalidField", { field: value })}
+            {businessOption("business.invalidField", { field: value })}
           </option>
         )}
         {choices.map((c) => (

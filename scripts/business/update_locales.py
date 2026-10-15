@@ -154,7 +154,6 @@ FIELDS = {
     "metrics": "汇总指标",
     "comparisons": "比较字段配对",
     "mode": "比较／调用方式",
-    "tolerance": "数值容差",
     "null_equal": "允许双方空值视为相等",
     "input_fields": "发送给模型的字段",
     "prompt": "模型指令",

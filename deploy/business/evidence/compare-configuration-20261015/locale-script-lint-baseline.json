@@ -1,0 +1,7 @@
+{
+  "file": "scripts/business/update_locales.py",
+  "baseline_count": 116,
+  "current_count": 116,
+  "same_rules_and_messages": true,
+  "change": "one retired tolerance label removed; existing formatting and Chinese punctuation left unchanged"
+}

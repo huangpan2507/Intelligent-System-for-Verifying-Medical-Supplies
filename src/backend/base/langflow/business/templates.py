@@ -54,11 +54,7 @@ def comparison(connections=None):
             node(
                 "CompareAmounts",
                 "compare",
-                {
-                    "comparisons": [
-                        {"left": "left_amount", "right": "right_paid_total", "mode": "numeric", "tolerance": 0}
-                    ]
-                },
+                {"comparisons": [{"left": "left_amount", "right": "right_paid_total", "mode": "numeric"}]},
                 1400,
                 0,
             ),

@@ -13,6 +13,10 @@ import { useIsFlowReadOnly } from "@/contexts/permissionsContext";
 import { usePostValidateComponentCode } from "@/controllers/API/queries/nodes/use-post-validate-component-code";
 import { CustomNodeStatus } from "@/customization/components/custom-NodeStatus";
 import UpdateComponentModal from "@/modals/updateComponentModal";
+import {
+  businessNodeDescription,
+  businessNodeName,
+} from "@/pages/BusinessPage/business-node-presentation";
 import { useAlternate } from "@/shared/hooks/use-alternate";
 import type { FlowStoreType } from "@/types/zustand/flow";
 import { Button } from "../../components/ui/button";
@@ -672,6 +676,10 @@ function GenericNode({
               <div className="ml-3 flex flex-1 overflow-hidden">
                 <MemoizedNodeName
                   display_name={data.node?.display_name}
+                  presentedName={businessNodeName(
+                    data.type,
+                    data.node?.display_name,
+                  )}
                   nodeId={data.id}
                   selected={selected}
                   showNode={showNode}
@@ -732,6 +740,10 @@ function GenericNode({
             <div className="px-4 pb-3">
               <MemoizedNodeDescription
                 description={data.node?.description}
+                presentedDescription={businessNodeDescription(
+                  data.type,
+                  data.node?.description,
+                )}
                 charLimit={1000}
                 mdClassName={"dark:prose-invert"}
                 nodeId={data.id}

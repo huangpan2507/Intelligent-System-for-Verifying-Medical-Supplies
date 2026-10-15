@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import type { Field } from "@/controllers/API/queries/business";
+import { businessOption, useTranslation } from "./business-i18n";
 
 function Constant({
   value,
@@ -108,7 +108,7 @@ export default function RequestBodyEditor({
           {(["constant", "field", "parameter", "object", "array"] as const).map(
             (kind) => (
               <option value={kind} key={kind}>
-                {t(`business.binding.${kind}`)}
+                {businessOption(`business.binding.${kind}`)}
               </option>
             ),
           )}
@@ -121,10 +121,10 @@ export default function RequestBodyEditor({
           value={selected}
           onChange={(event) => onChange({ [mode]: event.target.value })}
         >
-          <option value="">{t("business.choose")}</option>
+          <option value="">{businessOption("business.choose")}</option>
           {selected && !options.some((option) => option.value === selected) && (
             <option value={selected}>
-              {t("business.invalidField", { field: selected })}
+              {businessOption("business.invalidField", { field: selected })}
             </option>
           )}
           {options.map((option) => (

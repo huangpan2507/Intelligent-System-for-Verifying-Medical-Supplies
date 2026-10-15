@@ -1,0 +1,140 @@
+{
+  "task_id": "7a36ff98-fdc5-4475-ab01-13a5bc59f406",
+  "database": "verification",
+  "schema": "verification_scope",
+  "result_count": 2,
+  "evidence_count": 38,
+  "recognition_requests": 2,
+  "idempotent": true,
+  "saved_text_unchanged": true,
+  "no_external_calls_when_resaving": true,
+  "foreign_keys": {
+    "business_result": [
+      {
+        "name": "business_result_release_id_fkey",
+        "constrained_columns": [
+          "release_id"
+        ],
+        "referred_schema": "verification_scope",
+        "referred_table": "business_release",
+        "referred_columns": [
+          "id"
+        ],
+        "options": {},
+        "comment": null
+      },
+      {
+        "name": "business_result_result_dataset_id_fkey",
+        "constrained_columns": [
+          "result_dataset_id"
+        ],
+        "referred_schema": "verification_scope",
+        "referred_table": "business_dataset",
+        "referred_columns": [
+          "id"
+        ],
+        "options": {},
+        "comment": null
+      },
+      {
+        "name": "business_result_task_id_fkey",
+        "constrained_columns": [
+          "task_id"
+        ],
+        "referred_schema": "verification_scope",
+        "referred_table": "business_task",
+        "referred_columns": [
+          "id"
+        ],
+        "options": {},
+        "comment": null
+      },
+      {
+        "name": "business_result_unit_dataset_id_fkey",
+        "constrained_columns": [
+          "unit_dataset_id"
+        ],
+        "referred_schema": "verification_scope",
+        "referred_table": "business_dataset",
+        "referred_columns": [
+          "id"
+        ],
+        "options": {},
+        "comment": null
+      }
+    ],
+    "business_result_evidence": [
+      {
+        "name": "business_result_evidence_request_id_fkey",
+        "constrained_columns": [
+          "request_id"
+        ],
+        "referred_schema": "verification_scope",
+        "referred_table": "business_external_request",
+        "referred_columns": [
+          "id"
+        ],
+        "options": {},
+        "comment": null
+      },
+      {
+        "name": "business_result_evidence_result_id_fkey",
+        "constrained_columns": [
+          "result_id"
+        ],
+        "referred_schema": "verification_scope",
+        "referred_table": "business_result",
+        "referred_columns": [
+          "id"
+        ],
+        "options": {},
+        "comment": null
+      },
+      {
+        "name": "business_result_evidence_source_dataset_id_fkey",
+        "constrained_columns": [
+          "source_dataset_id"
+        ],
+        "referred_schema": "verification_scope",
+        "referred_table": "business_dataset",
+        "referred_columns": [
+          "id"
+        ],
+        "options": {},
+        "comment": null
+      }
+    ]
+  },
+  "unique_constraints": {
+    "business_result": [
+      {
+        "column_names": [
+          "task_id",
+          "node_id",
+          "unit_dataset_id",
+          "unit_row_id"
+        ],
+        "name": "business_result_task_id_node_id_unit_dataset_id_unit_row_id_key",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": [],
+          "postgresql_nulls_not_distinct": false
+        }
+      }
+    ],
+    "business_result_evidence": [
+      {
+        "column_names": [
+          "result_id",
+          "ordinal"
+        ],
+        "name": "business_result_evidence_result_id_ordinal_key",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": [],
+          "postgresql_nulls_not_distinct": false
+        }
+      }
+    ]
+  }
+}

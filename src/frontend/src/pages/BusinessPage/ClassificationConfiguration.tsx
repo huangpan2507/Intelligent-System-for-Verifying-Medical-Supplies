@@ -1,10 +1,10 @@
-import { useTranslation } from "react-i18next";
 import { Textarea } from "@/components/ui/textarea";
 import type {
   Connection,
   Field,
   JsonSchema,
 } from "@/controllers/API/queries/business";
+import { useTranslation } from "./business-i18n";
 import ClassificationInputs from "./ClassificationInputs";
 import ClassificationPreparation, {
   dictionaryFields,

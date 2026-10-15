@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/disclosure";
 import { SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
 import { ENABLE_EXTENSION_RELOAD } from "@/customization/feature-flags";
+import { businessText } from "@/pages/BusinessPage/business-i18n";
 import { useUtilityStore } from "@/stores/utilityStore";
 import type { APIClassType, APIDataType } from "@/types/api";
 import { deriveBundleExtensionId } from "../helpers/derive-bundle-extension-id";
@@ -115,13 +116,17 @@ export const CategoryDisclosure = memo(function CategoryDisclosure({
                 className="h-4 w-4 group-aria-expanded/collapsible:text-accent-pink-foreground"
               />
               <ShadTooltip
-                content={t(item.display_name, {
-                  defaultValue: item.display_name,
-                })}
+                content={
+                  item.name === "business"
+                    ? businessText("business.palette")
+                    : t(item.display_name, { defaultValue: item.display_name })
+                }
                 styleClasses="z-50"
               >
                 <span className="flex-1 min-w-0 truncate group-aria-expanded/collapsible:font-semibold">
-                  {t(item.display_name, { defaultValue: item.display_name })}
+                  {item.name === "business"
+                    ? businessText("business.palette")
+                    : t(item.display_name, { defaultValue: item.display_name })}
                 </span>
               </ShadTooltip>
               {showActions && (

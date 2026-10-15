@@ -1,0 +1,18 @@
+{
+  "target_category": "人工髋关节",
+  "study_ckpt_name": "髋关节",
+  "study_exam_part": "BQ03ZZ900",
+  "study_relevance_code_name": "右侧股骨前后位(近髋)",
+  "study_relevance_code_status": "resolved",
+  "study_relevance_code_version": "WS/T 364.8-2023; CV04.30.002",
+  "study_relevance_code_source": "{\"url\": \"https://www.nhc.gov.cn/wjw/s9497/202311/fedbd15e15514084b419e08a3e989dcd.shtml\", \"sha256\": \"30a8dad9640387f36389dfdd64df18a08810990948f123ae80ecc2cf3093a39c\", \"entries\": [{\"name\": \"右侧股骨前后位(近髋)\", \"pdf_page\": 13, \"printed_page\": 11}]}",
+  "study_relevance": "无法确定",
+  "study_relevance_method": "model",
+  "study_relevance_reason": "invalid_or_conflicting_evidence",
+  "study_relevance_evidence_field": "study_relevance_code_name",
+  "study_relevance_evidence_text": "右侧股骨前后位(近骸)",
+  "study_relevance_confidence": "0.900000",
+  "study_relevance_ambiguity": "[]",
+  "study_relevance_disposition": "uncompared",
+  "study_relevance_disposition_reason": "invalid_or_conflicting_evidence"
+}

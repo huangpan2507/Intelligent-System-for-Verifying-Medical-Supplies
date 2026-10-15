@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import { useTranslation } from "react-i18next";
 import type { JsonSchema } from "@/controllers/API/queries/business";
+import { useTranslation } from "./business-i18n";
 import ConfigurationSection from "./ConfigurationSection";
 import { conditionSummary, configurationShape } from "./configuration-layout";
 import { lookupProblems } from "./lookup-config";

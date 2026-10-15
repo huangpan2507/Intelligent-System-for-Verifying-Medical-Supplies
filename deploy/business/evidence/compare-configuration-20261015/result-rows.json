@@ -1,0 +1,452 @@
+{
+  "id": "4954d008-1987-4156-ba4f-03480448e0d8",
+  "name": "核心流程核验结果",
+  "fields": [
+    {
+      "name": "unit_row_id",
+      "type": "int64",
+      "nullable": true
+    },
+    {
+      "name": "ORGAN_CODE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "SYSTEM_ID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "DATA_SOURCE",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "SETL_FEE_LIST_ID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ORGAN_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "PSN_NO",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "PSN_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "CERTNO",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "OP_EM_NO",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "OP_EM_MARK",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "RPT_NO",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "HILIST_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "PRODNAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "HOS_PROJ_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "MEDINS_LIST_NAME",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "SPEC",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "UPDATE_TIME",
+      "type": "timestamp[us, tz=UTC]",
+      "nullable": true
+    },
+    {
+      "name": "CNT",
+      "type": "decimal128(10, 2)",
+      "nullable": true
+    },
+    {
+      "name": "PRIC",
+      "type": "decimal128(10, 2)",
+      "nullable": true
+    },
+    {
+      "name": "settled_amount",
+      "type": "decimal128(18, 4)",
+      "nullable": true
+    },
+    {
+      "name": "target_category",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_method",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_reason",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_evidence_field",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_evidence_text",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "classification_confidence",
+      "type": "decimal128(38, 6)",
+      "nullable": true
+    },
+    {
+      "name": "recognized_category",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "recognized_quantity",
+      "type": "decimal128(38, 6)",
+      "nullable": true
+    },
+    {
+      "name": "observed_amount",
+      "type": "decimal128(38, 8)",
+      "nullable": true
+    },
+    {
+      "name": "category_status",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "quantity_status",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "amount_status",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "difference_1",
+      "type": "decimal128(38, 6)",
+      "nullable": true
+    },
+    {
+      "name": "difference_2",
+      "type": "decimal128(38, 8)",
+      "nullable": true
+    },
+    {
+      "name": "evidence_ref",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "image_manifest",
+      "type": "extension<arrow.json>",
+      "nullable": true
+    },
+    {
+      "name": "simulated",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "_business_row_id",
+      "type": "int64",
+      "nullable": true
+    }
+  ],
+  "total": 2,
+  "offset": 0,
+  "limit": 50,
+  "rows": [
+    {
+      "unit_row_id": 0,
+      "ORGAN_CODE": "MOCKHOSP0000000001",
+      "SYSTEM_ID": "MOCK-RIS01",
+      "DATA_SOURCE": "MOCK-HIS01",
+      "SETL_FEE_LIST_ID": "MOCK-DETAIL-HIP",
+      "ORGAN_NAME": "核心流程模拟医院",
+      "PSN_NO": "MOCK-PATIENT-HIP",
+      "PSN_NAME": "模拟患者甲",
+      "CERTNO": "MOCK-CARD-HIP",
+      "OP_EM_NO": "MOCK-VISIT-HIP",
+      "OP_EM_MARK": "3",
+      "RPT_NO": "MOCK-RPT-HIP",
+      "HILIST_NAME": "人工全髋关节置换术",
+      "PRODNAME": "人工髋关节（模拟A型号）",
+      "HOS_PROJ_NAME": "人工髋关节（模拟A型号）",
+      "MEDINS_LIST_NAME": "人工髋关节（模拟A型号）",
+      "SPEC": "模拟规格一套",
+      "UPDATE_TIME": "2025-08-20T10:00:00+08:00",
+      "CNT": "1.00",
+      "PRIC": "10000.00",
+      "settled_amount": "10000.0000",
+      "target_category": "人工髋关节",
+      "classification_method": "rule",
+      "classification_reason": "configured_rule",
+      "classification_evidence_field": "PRODNAME",
+      "classification_evidence_text": "人工髋关节（模拟A型号）",
+      "classification_confidence": null,
+      "recognized_category": "人工髋关节",
+      "recognized_quantity": "1.000000",
+      "observed_amount": "10000.00000000",
+      "category_status": "equal",
+      "quantity_status": "equal",
+      "amount_status": "equal",
+      "difference_1": "0.000000",
+      "difference_2": "0E-8",
+      "evidence_ref": "synthetic-core-observation:HIP:v1",
+      "image_manifest": "[\"https://dicom.invalid/core-flow/MOCK-SERIES-HIP-CT/1.dcm?signature=synthetic%2F1&expires=0\",\"https://dicom.invalid/core-flow/MOCK-SERIES-HIP-CT/2.dcm?signature=synthetic%2F2&expires=0\",\"https://dicom.invalid/core-flow/MOCK-SERIES-HIP-CT/3.dcm?signature=synthetic%2F3&expires=0\",\"https://dicom.invalid/core-flow/MOCK-SERIES-HIP-NEAR/1.dcm?signature=synthetic%2F1&expires=0\",\"https://dicom.invalid/core-flow/MOCK-SERIES-HIP-NEAR/2.dcm?signature=synthetic%2F2&expires=0\",\"https://dicom.invalid/core-flow/MOCK-SERIES-HIP/1.dcm?signature=synthetic%2F1&expires=0\",\"https://dicom.invalid/core-flow/MOCK-SERIES-HIP/2.dcm?signature=synthetic%2F2&expires=0\"]",
+      "simulated": true,
+      "_business_row_id": 0
+    },
+    {
+      "unit_row_id": 1,
+      "ORGAN_CODE": "MOCKHOSP0000000001",
+      "SYSTEM_ID": "MOCK-RIS01",
+      "DATA_SOURCE": "MOCK-HIS01",
+      "SETL_FEE_LIST_ID": "MOCK-DETAIL-KNEE",
+      "ORGAN_NAME": "核心流程模拟医院",
+      "PSN_NO": "MOCK-PATIENT-KNEE",
+      "PSN_NAME": "模拟患者乙",
+      "CERTNO": "MOCK-CARD-KNEE",
+      "OP_EM_NO": "MOCK-VISIT-KNEE",
+      "OP_EM_MARK": "1",
+      "RPT_NO": "MOCK-RPT-KNEE",
+      "HILIST_NAME": "人工全膝关节置换术",
+      "PRODNAME": "膝关节假体系统（模拟成套产品B）",
+      "HOS_PROJ_NAME": "膝关节假体系统（模拟成套产品B）",
+      "MEDINS_LIST_NAME": "膝关节假体系统（模拟成套产品B）",
+      "SPEC": "模拟规格一套",
+      "UPDATE_TIME": "2025-08-20T10:00:00+08:00",
+      "CNT": "1.00",
+      "PRIC": "5000.00",
+      "settled_amount": "5000.0000",
+      "target_category": "人工膝关节",
+      "classification_method": "model",
+      "classification_reason": "产品名称、医院项目名称和医保目录名称均为'膝关节假体系统（模拟成套产品B）'，明确为膝关节假体。",
+      "classification_evidence_field": "PRODNAME",
+      "classification_evidence_text": "膝关节假体系统（模拟成套产品B）",
+      "classification_confidence": "1.000000",
+      "recognized_category": "人工膝关节",
+      "recognized_quantity": "1.000000",
+      "observed_amount": "5000.00000000",
+      "category_status": "equal",
+      "quantity_status": "equal",
+      "amount_status": "equal",
+      "difference_1": "0.000000",
+      "difference_2": "0E-8",
+      "evidence_ref": "synthetic-core-observation:KNEE:v1",
+      "image_manifest": "[\"https://dicom.invalid/core-flow/MOCK-SERIES-KNEE-CT/1.dcm?signature=synthetic%2F1&expires=0\",\"https://dicom.invalid/core-flow/MOCK-SERIES-KNEE-CT/2.dcm?signature=synthetic%2F2&expires=0\",\"https://dicom.invalid/core-flow/MOCK-SERIES-KNEE-CT/3.dcm?signature=synthetic%2F3&expires=0\",\"https://dicom.invalid/core-flow/MOCK-SERIES-KNEE/1.dcm?signature=synthetic%2F1&expires=0\",\"https://dicom.invalid/core-flow/MOCK-SERIES-KNEE/2.dcm?signature=synthetic%2F2&expires=0\"]",
+      "simulated": true,
+      "_business_row_id": 1
+    }
+  ],
+  "raw": false,
+  "provenance": {
+    "lineage": "bc2ba63e-cf0c-435a-910f-60a061ace055",
+    "parents": [
+      "334d5c17-8f8c-4300-ad8c-0292ae5fcdb5"
+    ],
+    "operation": "output",
+    "completeness": {
+      "state": "complete"
+    },
+    "configuration": {
+      "name": "核心流程核验结果",
+      "columns": [
+        "unit_row_id",
+        "ORGAN_CODE",
+        "SYSTEM_ID",
+        "DATA_SOURCE",
+        "SETL_FEE_LIST_ID",
+        "ORGAN_NAME",
+        "PSN_NO",
+        "PSN_NAME",
+        "CERTNO",
+        "OP_EM_NO",
+        "OP_EM_MARK",
+        "RPT_NO",
+        "HILIST_NAME",
+        "PRODNAME",
+        "HOS_PROJ_NAME",
+        "MEDINS_LIST_NAME",
+        "SPEC",
+        "UPDATE_TIME",
+        "CNT",
+        "PRIC",
+        "settled_amount",
+        "target_category",
+        "classification_method",
+        "classification_reason",
+        "classification_evidence_field",
+        "classification_evidence_text",
+        "classification_confidence",
+        "recognized_category",
+        "recognized_quantity",
+        "observed_amount",
+        "category_status",
+        "quantity_status",
+        "amount_status",
+        "difference_1",
+        "difference_2",
+        "evidence_ref",
+        "image_manifest",
+        "simulated"
+      ],
+      "primary": true,
+      "obligation": {
+        "mode": "verification",
+        "checks": [
+          {
+            "name": "category",
+            "units": {
+              "node": "Classification",
+              "port": "data"
+            },
+            "results": [
+              {
+                "node": "Compare",
+                "port": "data",
+                "status_field": "category_status",
+                "evidence_field": "evidence_ref"
+              },
+              {
+                "node": "StudyRelevance",
+                "port": "issues",
+                "status": "uncompared",
+                "fallback": true,
+                "reason_field": "study_relevance_reason"
+              }
+            ]
+          },
+          {
+            "name": "quantity",
+            "units": {
+              "node": "Classification",
+              "port": "data"
+            },
+            "results": [
+              {
+                "node": "Compare",
+                "port": "data",
+                "status_field": "quantity_status",
+                "evidence_field": "evidence_ref"
+              },
+              {
+                "node": "StudyRelevance",
+                "port": "issues",
+                "status": "uncompared",
+                "fallback": true,
+                "reason_field": "study_relevance_reason"
+              }
+            ]
+          },
+          {
+            "name": "fee",
+            "units": {
+              "node": "Classification",
+              "port": "data"
+            },
+            "results": [
+              {
+                "node": "Compare",
+                "port": "data",
+                "status_field": "amount_status",
+                "evidence_field": "evidence_ref"
+              },
+              {
+                "node": "StudyRelevance",
+                "port": "issues",
+                "status": "uncompared",
+                "fallback": true,
+                "reason_field": "study_relevance_reason"
+              }
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "node": "Settlements",
+            "identity": "SettlementChecks"
+          }
+        ],
+        "dispositions": [
+          {
+            "node": "Studies",
+            "port": "issues",
+            "reason": "incomplete_evidence",
+            "status": "uncompared"
+          },
+          {
+            "node": "Series",
+            "port": "issues",
+            "reason": "incomplete_evidence",
+            "status": "uncompared"
+          },
+          {
+            "node": "Images",
+            "port": "issues",
+            "reason": "incomplete_evidence",
+            "status": "uncompared"
+          },
+          {
+            "node": "Observation",
+            "port": "issues",
+            "reason": "incomplete_evidence",
+            "status": "uncompared"
+          },
+          {
+            "node": "Classification",
+            "port": "issues",
+            "reason_field": "classification_disposition_reason",
+            "status_field": "classification_disposition"
+          }
+        ]
+      }
+    }
+  }
+}

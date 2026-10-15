@@ -4,12 +4,14 @@ import ShadTooltip from "@/components/common/shadTooltipComponent";
 import ToggleShadComponent from "@/components/core/parameterRenderComponent/components/toggleShadComponent";
 import { Button } from "@/components/ui/button";
 import { ENABLE_INSPECTION_PANEL } from "@/customization/feature-flags";
+import { businessText } from "@/pages/BusinessPage/business-i18n";
 import { useShortcutsStore } from "@/stores/shortcuts";
 import { cn } from "@/utils/utils";
 import ShortcutDisplay from "../shortcutDisplay";
 import { ToolbarButton } from "./toolbar-button";
 
 export interface ToolbarButtonRowProps {
+  business?: boolean;
   canEditCode: boolean;
   isCustomComponent: boolean;
   onCode: () => void;
@@ -30,6 +32,7 @@ export interface ToolbarButtonRowProps {
  * (LE-1736 W30); reads shortcuts from the store for display.
  */
 export function ToolbarButtonRow({
+  business = false,
   canEditCode,
   isCustomComponent,
   onCode,
@@ -63,7 +66,11 @@ export function ToolbarButtonRow({
       {ENABLE_INSPECTION_PANEL && (
         <ToolbarButton
           icon="SlidersHorizontal"
-          label={t("nodeToolbar.parameters")}
+          label={
+            business
+              ? businessText("business.configure")
+              : t("nodeToolbar.parameters")
+          }
           onClick={onToggleInspectionPanel}
           shortcut={shortcuts.find((s) =>
             s.name.toLowerCase().startsWith("advanced"),

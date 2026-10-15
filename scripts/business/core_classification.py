@@ -524,8 +524,8 @@ def build_graph(original, connections):
         {
             "comparisons": [
                 {"left": "target_category", "right": "recognized_category", "mode": "exact"},
-                {"left": "CNT", "right": "recognized_quantity", "mode": "numeric", "tolerance": 0},
-                {"left": "settled_amount", "right": "observed_amount", "mode": "numeric", "tolerance": 0},
+                {"left": "CNT", "right": "recognized_quantity", "mode": "numeric"},
+                {"left": "settled_amount", "right": "observed_amount", "mode": "numeric"},
             ]
         },
         "Amounts",

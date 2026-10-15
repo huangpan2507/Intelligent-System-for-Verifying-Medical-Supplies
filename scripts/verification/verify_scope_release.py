@@ -113,8 +113,7 @@ async def main():
         graph_v2 = copy.deepcopy(exported["data"])
         for n in graph_v2["nodes"]:
             if n["id"].endswith("-07"):
-                n["data"]["node"]["template"]["comparisons"]["value"] = ["数量"]
-                n["data"]["node"]["template"]["quantity_tolerance"]["value"] = 1
+                n["data"]["node"]["template"]["comparisons"]["value"] = ["种类"]
         await platform_call("PATCH", "/api/v1/flows/" + flow["id"], json={"data": graph_v2})
         v2 = await publish_activate(1)
         b = await accept("-b")

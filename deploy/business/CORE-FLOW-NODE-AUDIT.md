@@ -62,7 +62,7 @@
 | **Business Filter** | `conditions[]` 的 `field/op`；普通比较的右值来自常量 `value`、任务 `parameter` 或 `right_field` | `logic` 默认 and，可选 or；is_null/not_null 不需要右值 | 空条件全放行；当前能同时填多个右值来源，存在歧义，见 F06 |
 | **Business Join** | 左右两份数据；非空 `keys[]`，每项 `left/right` | `how` 默认 full；`cardinality` 默认 one_to_one；本业务应明确实际关联方式和基数 | 目录多对一、检查一对多等不能盲用默认；输出前缀字段应从下拉选择 |
 | **Business Aggregate** | 非空 `metrics[]`，每项 `operation/output`；除 count(*) 等情况外明确 `field` | `group_by` 空表示整体汇总；sum/count/min/max/avg/collect | 分组口径属于业务配置；分页不是分组；成员关系必须保留 |
-| **Business Compare** | 非空 `comparisons[]`，每项 `left/right` 来自当前同一输入表 | `mode` exact／numeric／case_insensitive；numeric 的 `tolerance` 默认 0；`null_equal` 默认 false | 两份数据先 Join；类别、数量、费用分别配置比较事项 |
+| **Business Compare** | 非空 `comparisons[]`，每项 `left/right` 来自当前同一输入表 | `mode` exact／numeric／case_insensitive；numeric 按数值相等比较，不支持容差（Q50）；`null_equal` 默认 false | 两份数据先 Join；类别、数量、费用分别配置比较事项 |
 | **Business Model** | `connection/input_fields/fields`；openai 模式还实际需要 `model` | `mode`、`path`、`prompt/max_calls`；structured 模式请求协议为 record/prompt/output_fields | 本图的规则部位初筛不用通用大模型；专业识别优先核对 Imaging 适配；openai 的条件必填不完整 |
 | **Business Union** | 一份或多份 Data 输入 | 当前作用是追加合并 | `deduplicate=true` 已禁止；`keys` 不参与执行，不应作为有效去重配置展示 |
 | **Business Output** | `name`；流程至少一个 Output。核验场景须在主 Output 声明 `obligation` 的来源、身份、事项和结果引用 | `columns` 空表示全部；`primary` 至多一个；普通数据处理可使用 ordinary | `key_fields/reason_fields/evidence_fields` 当前不参与结果计算；真正的结果责任在 obligation，见 F03 |

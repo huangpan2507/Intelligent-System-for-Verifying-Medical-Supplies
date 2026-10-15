@@ -8,6 +8,7 @@ import { cn } from "@/utils/utils";
 
 export default function NodeDescription({
   description,
+  presentedDescription,
   selected,
   nodeId,
   emptyPlaceholder = "",
@@ -23,6 +24,7 @@ export default function NodeDescription({
   readOnly = false,
 }: {
   description?: string;
+  presentedDescription?: string;
   selected?: boolean;
   nodeId: string;
   emptyPlaceholder?: string;
@@ -100,10 +102,10 @@ export default function NodeDescription({
           ),
         }}
       >
-        {String(description)}
+        {String(presentedDescription ?? description)}
       </MemoizedMarkdown>
     );
-  }, [description, emptyPlaceholder, mdClassName]);
+  }, [description, presentedDescription, emptyPlaceholder, mdClassName]);
 
   const handleBlurFn = () => {
     if (readOnly) {

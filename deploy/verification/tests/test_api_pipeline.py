@@ -98,8 +98,7 @@ async def test_pinned_rule_changes_do_not_leak(client, settings, database, trans
     graph = draft_graph()
     for n in graph["nodes"]:
         if "VerificationResultComparison@" in n["data"]["type"]:
-            n["data"]["node"]["template"]["quantity_tolerance"]["value"] = 1
-            n["data"]["node"]["template"]["comparisons"]["value"] = ["数量"]
+            n["data"]["node"]["template"]["comparisons"]["value"] = ["种类"]
     seed_release(database, settings, graph)
     second = await submit(client, "v2")
     await execute(database, settings, transport, first)

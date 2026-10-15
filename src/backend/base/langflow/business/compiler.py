@@ -43,6 +43,8 @@ EXECUTION_MODULES = {
     "collection",
     "lookup",
     "code_dictionary",
+    "result_templates",
+    "results",
 }
 
 
@@ -55,6 +57,9 @@ def runtime_digest():
         digest.update(path.name.encode())
         digest.update(path.read_bytes())
     for path in sorted((root / "code_dictionaries").glob("*.json")):
+        digest.update(path.name.encode())
+        digest.update(path.read_bytes())
+    for path in sorted((root / "result_templates").glob("*.json")):
         digest.update(path.name.encode())
         digest.update(path.read_bytes())
     import inspect
@@ -133,6 +138,8 @@ def inspect_graph(graph, database, settings, owner, *, strict=True):
     outputs, errors, connections, children = {}, {}, {}, {}
     parameters = {}
     classification_prompts = {}
+    result_templates = {}
+    single_output = sum(n["kind"] == "output" for n in nodes.values()) == 1
     task_entry = any(n["kind"] == "taskinput" for n in nodes.values())
     if task_entry and sum(n["kind"] in {"taskinput", "parameters"} for n in nodes.values()) != 1:
         errors["task_input"] = "A regulatory workflow needs one Task Start and no generic Parameters node"
@@ -142,6 +149,12 @@ def inspect_graph(graph, database, settings, owner, *, strict=True):
             node = nodes[node_id]
             try:
                 kind, config = node["kind"], node["config"]
+                if kind == "output":
+                    from langflow.business.result_templates import prepare_output
+
+                    profile = prepare_output(config, single=single_output)
+                    if profile:
+                        result_templates[node_id] = profile
                 if kind not in CATALOG:
                     msg = f"Unregistered component: {kind}"
                     raise ValueError(msg)
@@ -454,6 +467,7 @@ def inspect_graph(graph, database, settings, owner, *, strict=True):
         "graph": graph,
         "schemas": outputs,
         "classification_prompts": classification_prompts,
+        "result_templates": result_templates,
         "errors": errors,
         "parameters": list(parameters.values()),
         "task_input": CONTRACT if task_entry else None,

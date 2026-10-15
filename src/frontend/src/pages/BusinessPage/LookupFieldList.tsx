@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Input } from "@/components/ui/input";
 import type { Field } from "@/controllers/API/queries/business";
+import { useTranslation } from "./business-i18n";
 
 /** Selected fields stay visible; searching never drops a saved reference. */
 export default function LookupFieldList({

@@ -383,9 +383,71 @@ test(
       fullPage: true,
     });
     await panel.getByRole("button", { name: /Narrow Editor/i }).click();
+    await selectNode("Compare");
+    await expect(
+      panel.locator('[data-testid^="configuration-section-compare-"]'),
+    ).toHaveCount(4);
+    expect(
+      await panel
+        .locator('[data-testid^="configuration-section-compare-"]')
+        .evaluateAll((elements) =>
+          elements.map((el) => el.getAttribute("data-testid")),
+        ),
+    ).toEqual([
+      "configuration-section-compare-source",
+      "configuration-section-compare-calculations",
+      "configuration-section-compare-comparisons",
+      "configuration-section-compare-output",
+    ]);
+    await expect(panel.getByTestId("business-field-tolerance")).toHaveCount(0);
+    await expect(panel.getByRole("alert")).toHaveCount(0);
+    await expect(
+      panel.getByTestId("configuration-section-compare-calculations"),
+    ).toContainText("CNT * PRIC");
+    await expect(
+      panel.getByTestId("configuration-section-compare-comparisons"),
+    ).toContainText("Numeric equality");
+    await expect
+      .poll(() => panel.evaluate((el) => el.scrollWidth <= el.clientWidth + 1))
+      .toBe(true);
+    await page.screenshot({
+      path: test.info().outputPath("compare-narrow.png"),
+      fullPage: true,
+    });
+    await panel.getByRole("button", { name: /Widen Editor/i }).click();
+    await expect(panel).toHaveClass(/w-\[56rem\]/);
+    const calculation = panel
+      .getByText(/^Settlement-side calculated amount = CNT \* PRIC(?: \+ 0)?$/)
+      .locator("..");
+    await calculation.locator(":scope > summary").click();
+    const expression = calculation.getByRole("textbox", {
+      name: "Expression",
+      exact: true,
+    });
+    try {
+      await expression.fill("CNT * PRIC + 0");
+      await expect(expression).toHaveValue("CNT * PRIC + 0");
+    } finally {
+      await expression.fill("CNT * PRIC");
+    }
+    await expect(
+      calculation.getByRole("combobox", { name: "Field", exact: true }),
+    ).toHaveCount(0);
+    await page.screenshot({
+      path: test.info().outputPath("compare-wide.png"),
+      fullPage: true,
+    });
+    await panel.getByRole("button", { name: /Narrow Editor/i }).click();
     await page.keyboard.press("Control+s");
     await page.reload({ waitUntil: "domcontentloaded" });
     await expect(panel).toBeVisible({ timeout: 60_000 });
+    await selectNode("Compare");
+    await expect(
+      panel.getByTestId("configuration-section-compare-calculations"),
+    ).toContainText("CNT * PRIC");
+    await expect(
+      panel.getByTestId("configuration-section-compare-calculations"),
+    ).not.toContainText("CNT * PRIC + 0");
     await selectNode("SettlementChecks");
     await panel
       .getByText("System-managed identity details (read-only)", { exact: true })
@@ -446,6 +508,58 @@ test(
       path: test.info().outputPath("observation-zh-narrow.png"),
       fullPage: true,
     });
+    await panel.getByRole("button", { name: "收起", exact: true }).click();
+    await page.getByTestId("rf__node-Compare").click();
+    await panel.getByRole("button", { name: "展开", exact: true }).click();
+    await expect(
+      panel.getByTestId("configuration-section-compare-calculations"),
+    ).toContainText("比较前计算");
+    await expect(
+      panel.getByTestId("configuration-section-compare-comparisons"),
+    ).toContainText("数值相等");
+    await expect(panel.getByRole("alert")).toHaveCount(0);
+    await expect
+      .poll(() => panel.evaluate((el) => el.scrollWidth <= el.clientWidth + 1))
+      .toBe(true);
+    await page.screenshot({
+      path: test.info().outputPath("compare-zh-narrow.png"),
+      fullPage: true,
+    });
+    await panel.getByRole("button", { name: "收起", exact: true }).click();
+    await page.getByTestId("rf__node-Results").click();
+    await panel.getByRole("button", { name: "展开", exact: true }).click();
+    for (const id of ["template", "preview", "storage"]) {
+      await expect(
+        panel.getByTestId(`configuration-section-results-${id}`),
+      ).toBeVisible();
+    }
+    await expect(panel.getByTestId("business-result-card")).toHaveCount(1);
+    await expect(panel.getByTestId("business-result-card")).toContainText(
+      "示例（未执行、未保存）",
+    );
+    await panel
+      .getByTestId("configuration-section-results-preview")
+      .getByRole("combobox")
+      .selectOption(report.task_id);
+    await expect(panel.getByTestId("business-result-card")).toHaveCount(2);
+    await expect(
+      panel.getByTestId("business-result-card").first(),
+    ).toContainText("已保存至平台结果库");
+    await expect(panel.getByRole("textbox")).toHaveCount(0);
+    await expect(panel.getByRole("alert")).toHaveCount(0);
+    await expect
+      .poll(() => panel.evaluate((el) => el.scrollWidth <= el.clientWidth + 1))
+      .toBe(true);
+    await page.screenshot({
+      path: test.info().outputPath("results-zh-narrow.png"),
+      fullPage: true,
+    });
+    await panel.getByRole("button", { name: "宽编辑" }).click();
+    await expect(panel).toHaveClass(/w-\[56rem\]/);
+    await page.screenshot({
+      path: test.info().outputPath("results-zh-wide.png"),
+      fullPage: true,
+    });
     await page.evaluate(() => localStorage.setItem("languagePreference", "en"));
     await page.reload({ waitUntil: "domcontentloaded" });
     await page.goto(`/business/tasks/${report.task_id}`, {
@@ -454,6 +568,11 @@ test(
     await expect(
       page.getByText("Execution status: Completed", { exact: true }),
     ).toBeVisible({ timeout: 60_000 });
+    await page
+      .getByText("Original and intermediate datasets (technical view)", {
+        exact: true,
+      })
+      .click();
     await expect(
       page.getByText("MOCK-DETAIL-HIP", { exact: true }).first(),
     ).toBeVisible();
@@ -462,6 +581,14 @@ test(
     ).toBeVisible();
     await page.screenshot({
       path: test.info().outputPath("compact-results.png"),
+      fullPage: true,
+    });
+    await expect(page.getByTestId("business-result-card")).toHaveCount(2);
+    const card = page.getByTestId("business-result-card").first();
+    await card.getByText("Sources and evidence", { exact: true }).click();
+    await expect(card.getByText(/Related studies and images/)).toBeVisible();
+    await page.screenshot({
+      path: test.info().outputPath("saved-result-evidence.png"),
       fullPage: true,
     });
     // Stop task polling before the fixture verifies that all requests settled.

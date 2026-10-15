@@ -116,13 +116,10 @@ async def test_rule_draft_persists_without_activating_and_rejects_lost_updates(c
     assert (await client.put(PATH + "/draft", headers=HEADERS, json=body)).status_code == 409
 
 
-async def test_candidate_graph_accepts_semantically_equal_numeric_parameters(client):
+async def test_candidate_graph_accepts_selected_comparison_kinds(client):
     graph = draft_graph()
     node = next(n for n in graph["nodes"] if n["id"].endswith("-07"))
-    node["data"]["node"]["template"]["comparisons"]["value"] = ["数量"]
-    # Graph's FloatInput turns this JSON integer into 1.0 at runtime. Decimal equality
-    # must permit that, while still rejecting a different rule value.
-    node["data"]["node"]["template"]["quantity_tolerance"]["value"] = 1
+    node["data"]["node"]["template"]["comparisons"]["value"] = ["种类"]
     response = await client.post(
         PATH + "/candidates",
         headers=HEADERS,

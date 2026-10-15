@@ -13,6 +13,7 @@ import pyarrow as pa
 import pytest
 from langflow.business.catalog import CATALOG
 from langflow.business.datasets import DatasetStore
+from langflow.business.result_templates import template
 from langflow.business.runtime import Runtime
 from langflow.business.templates import templates
 from test_workflows import env  # noqa: F401
@@ -32,7 +33,7 @@ def test_imaging_contract_has_no_expected_quantity_or_unit_inputs():
         assert key not in schema["properties"]
         with pytest.raises(jsonschema.ValidationError):
             jsonschema.validate({**config, key: "CNT"}, schema)
-    assert "unit" not in configs()["Results"]["columns"]
+    assert "unit" not in template(configs()["Results"]["result_template"])["columns"]
 
 
 @pytest.mark.parametrize("unit", [None, "件", "套"])

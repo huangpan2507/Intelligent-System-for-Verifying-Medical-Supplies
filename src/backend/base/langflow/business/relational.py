@@ -1,8 +1,6 @@
 # ruff: noqa: S608 - SQL uses quoted identifiers/literals and validated operators; source SELECT runs read-only.
 """Pure SQL plans for business-neutral relational nodes."""
 
-from decimal import Decimal
-
 from langflow.business.datasets import ROW_ID, ident, literal
 from langflow.business.expressions import expression, predicate
 
@@ -225,8 +223,6 @@ def unary_query(kind, config, source, fields, parameters=None):
             mode = item.get("mode", "exact")
             eq = f"{a}={b}"
             if mode == "numeric":
-                tolerance = str(abs(Decimal(str(item.get("tolerance", 0)))))
-                eq = f"abs({a}-{b}) <= {tolerance}"
                 deltas.append(f"({b}-{a}) AS {ident('difference_' + str(index))}")
             elif mode == "case_insensitive":
                 eq = f"lower({a})=lower({b})"

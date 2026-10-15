@@ -1,7 +1,7 @@
-import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import type { Field } from "@/controllers/API/queries/business";
+import { businessOption, useTranslation } from "./business-i18n";
 
 export const fieldType = (value: string) => {
   const type = value.toLowerCase();
@@ -46,7 +46,9 @@ export default function SourceFieldEditor({
             {["text", "integer", "number", "boolean", "date", "datetime"].map(
               (type) => (
                 <option key={type} value={type}>
-                  {t(`business.value.${type}`, { defaultValue: type })}
+                  {businessOption(`business.value.${type}`, {
+                    defaultValue: type,
+                  })}
                 </option>
               ),
             )}

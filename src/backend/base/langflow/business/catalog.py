@@ -403,7 +403,6 @@ CATALOG = {
                             "left": FIELD,
                             "right": FIELD,
                             "mode": string(enum=["exact", "numeric", "case_insensitive"]),
-                            "tolerance": {"type": "number", "minimum": 0},
                             "null_equal": {"type": "boolean"},
                             "output": string(minLength=1),
                         },
@@ -445,9 +444,7 @@ CATALOG = {
             {
                 "name": string(),
                 "columns": FIELDS,
-                "key_fields": FIELDS,
-                "reason_fields": FIELDS,
-                "evidence_fields": FIELDS,
+                "result_template": string(),
                 "primary": {"type": "boolean"},
                 "obligation": OBLIGATION,
             },

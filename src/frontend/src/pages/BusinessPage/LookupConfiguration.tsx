@@ -1,7 +1,7 @@
 import { type ReactNode, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import type { JsonSchema } from "@/controllers/API/queries/business";
+import { useTranslation } from "./business-i18n";
 import LookupFieldList from "./LookupFieldList";
 import {
   type LookupConfig,

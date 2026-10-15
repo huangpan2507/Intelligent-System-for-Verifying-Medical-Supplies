@@ -1,0 +1,135 @@
+{
+  "canvases_checked": 23,
+  "canvases": [
+    {
+      "flow_id": "667614f1-5010-46dd-81ce-ae130fa97046",
+      "removed": [
+        {
+          "node": "CompareAmounts",
+          "comparison": 0,
+          "previous_tolerance": 0
+        }
+      ]
+    },
+    {
+      "flow_id": "00fd1db1-bbe9-42b4-bab6-f26f1c9fd3ff",
+      "removed": [
+        {
+          "node": "Compare",
+          "comparison": 0,
+          "previous_tolerance": 0
+        }
+      ]
+    },
+    {
+      "flow_id": "5d71b389-defe-4dde-add5-e7dae990ab26",
+      "removed": [
+        {
+          "node": "CompareAmounts",
+          "comparison": 0,
+          "previous_tolerance": 0
+        }
+      ]
+    },
+    {
+      "flow_id": "e55b03b0-7c7f-420b-b720-33b1a4cf5559",
+      "removed": [
+        {
+          "node": "CompareQuantityFee",
+          "comparison": 1,
+          "previous_tolerance": 0
+        },
+        {
+          "node": "CompareQuantityFee",
+          "comparison": 2,
+          "previous_tolerance": 0
+        }
+      ]
+    },
+    {
+      "flow_id": "ce588a72-0614-4d84-badd-0e4355c427e6",
+      "removed": [
+        {
+          "node": "Compare",
+          "comparison": 1,
+          "previous_tolerance": 0
+        },
+        {
+          "node": "Compare",
+          "comparison": 2,
+          "previous_tolerance": 0
+        }
+      ]
+    },
+    {
+      "flow_id": "455bc2fa-cebc-4094-aed3-9117dda16e00",
+      "removed": [
+        {
+          "node": "Compare",
+          "comparison": 1,
+          "previous_tolerance": 0
+        },
+        {
+          "node": "Compare",
+          "comparison": 2,
+          "previous_tolerance": 0
+        }
+      ]
+    }
+  ],
+  "active_schemes": [
+    {
+      "scheme": "acceptance.taskstart.5ac08f2620",
+      "removed": [],
+      "errors": {}
+    },
+    {
+      "scheme": "demo.cross_database.v2",
+      "removed": [
+        {
+          "node": "CompareAmounts",
+          "comparison": 0,
+          "previous_tolerance": 0
+        }
+      ],
+      "errors": {}
+    },
+    {
+      "scheme": "core.normal.1791804428546",
+      "removed": [
+        {
+          "node": "CompareQuantityFee",
+          "comparison": 1,
+          "previous_tolerance": 0
+        },
+        {
+          "node": "CompareQuantityFee",
+          "comparison": 2,
+          "previous_tolerance": 0
+        }
+      ],
+      "errors": {}
+    },
+    {
+      "scheme": "core.normal.compact.v1",
+      "removed": [
+        {
+          "node": "Compare",
+          "comparison": 1,
+          "previous_tolerance": 0
+        },
+        {
+          "node": "Compare",
+          "comparison": 2,
+          "previous_tolerance": 0
+        }
+      ],
+      "errors": {}
+    },
+    {
+      "scheme": "demo.consumables.v2",
+      "removed": [],
+      "errors": {}
+    }
+  ]
+}

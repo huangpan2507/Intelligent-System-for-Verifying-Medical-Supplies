@@ -151,4 +151,9 @@ def build_graph(original, settlement_fields):
         ],
     }
     add("Results", "output", output, "Compare")
-    return configure_graph({"nodes": nodes, "edges": edges})
+    graph = configure_graph({"nodes": nodes, "edges": edges})
+    next(n for n in graph["nodes"] if n["kind"] == "output")["config"] = {
+        "name": output["name"],
+        "result_template": "hip_knee_v1",
+    }
+    return graph

@@ -422,6 +422,7 @@ const NodeToolbarComponent = memo(
         <div className="noflow nopan nodelete nodrag">
           <div className="toolbar-wrapper">
             <ToolbarButtonRow
+              business={data.type.includes("Business")}
               canEditCode={canEditCode}
               isCustomComponent={isCustomComponent}
               onCode={handleCodeModal}

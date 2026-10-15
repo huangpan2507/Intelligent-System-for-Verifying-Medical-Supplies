@@ -1,0 +1,22 @@
+{
+  "http": {
+    "http://127.0.0.1:3000/health": 200,
+    "http://127.0.0.1:7860/health": 200,
+    "http://127.0.0.1:18081/health": 200,
+    "http://127.0.0.1:8090/openapi.json": 200,
+    "http://127.0.0.1:8091/openapi.json": 200
+  },
+  "processes": {
+    "langflow-platform": true,
+    "langflow-frontend": true,
+    "langflow-verification-api": true,
+    "langflow-verification-worker": true,
+    "langflow-verification-demo": true,
+    "langflow-business-core-demo": true
+  },
+  "intake": {
+    "status": "open",
+    "pending_tasks": [],
+    "safe_to_upgrade": false
+  }
+}

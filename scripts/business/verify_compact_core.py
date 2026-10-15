@@ -147,6 +147,27 @@ def main():
             assert all(Decimal(str(row[key])) == price for key in ["PRIC", "settled_amount", "observed_amount"])
         save(evidence / "result-rows.json", results)
         save(evidence / "image-manifest-rows.json", images)
+        saved_results = call(http, "GET", path + "/results?node_id=Results")
+        assert saved_results["total"] == 2
+        saved_evidence = {}
+        for result in saved_results["items"]:
+            assert result["status"] == "normal"
+            assert result["complete"]
+            assert "三项比较一致" in result["narrative"]
+            assert "模拟影像识别" in result["narrative"]
+            assert result["release_id"] == task["release_id"]
+            assert result["facts"]["RPT_NO"] in result["narrative"]
+            links = call(http, "GET", path + f"/results/{result['id']}/evidence?limit=200")
+            assert links["total"] == len(links["items"])
+            assert {item["kind"] for item in links["items"]} == {"source", "recognition", "image"}
+            images_saved = [item["context"] for item in links["items"] if item["kind"] == "image"]
+            assert all(item["RPT_NO"] == result["facts"]["RPT_NO"] for item in images_saved)
+            assert {item["address"] for item in images_saved} == set(json.loads(result["facts"]["image_manifest"]))
+            assert all(item["study_ris_study_id"] and item["series_id"] for item in images_saved)
+            assert any(item["request_id"] == result["facts"]["_request_id"] for item in links["items"])
+            saved_evidence[result["id"]] = links
+        save(evidence / "saved-results.json", saved_results)
+        save(evidence / "saved-result-evidence.json", saved_evidence)
         report = {
             "scheme": SCHEME,
             "task_id": task["id"],
@@ -156,6 +177,8 @@ def main():
             "counts": counts,
             "assessment": task["assessment"],
             "matches_expected_samples": True,
+            "saved_business_results": saved_results["total"],
+            "saved_evidence_links": sum(links["total"] for links in saved_evidence.values()),
             "real_text_model_calls": 2,
             "image_observation_simulated": True,
             "cross_business_acceptance": "deferred_by_Q24",

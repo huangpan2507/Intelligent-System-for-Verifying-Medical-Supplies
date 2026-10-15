@@ -2,7 +2,7 @@
 
 from datetime import datetime
 
-from sqlalchemy import Boolean, DateTime, Integer, MetaData, String, UniqueConstraint
+from sqlalchemy import BigInteger, Boolean, DateTime, ForeignKey, Integer, MetaData, String, UniqueConstraint
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 from langflow.verification.database import JSON_VALUE, new_id, now
@@ -122,6 +122,42 @@ class TaskAssessment(Base):
     task_id: Mapped[str] = mapped_column(String(36), primary_key=True)
     summary: Mapped[dict] = mapped_column(JSON_VALUE)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class BusinessResult(Base):
+    """Frozen business presentation and facts, independent of the source database."""
+
+    __tablename__ = "business_result"
+    __table_args__ = (UniqueConstraint("task_id", "node_id", "unit_dataset_id", "unit_row_id"),)
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
+    task_id: Mapped[str] = mapped_column(ForeignKey("verification.business_task.id"), index=True)
+    release_id: Mapped[str] = mapped_column(ForeignKey("verification.business_release.id"), index=True)
+    node_id: Mapped[str] = mapped_column(String(160))
+    template_id: Mapped[str] = mapped_column(String(100))
+    template_version: Mapped[int] = mapped_column(Integer)
+    unit_dataset_id: Mapped[str] = mapped_column(ForeignKey("verification.business_dataset.id"))
+    unit_row_id: Mapped[int] = mapped_column(BigInteger)
+    result_dataset_id: Mapped[str | None] = mapped_column(ForeignKey("verification.business_dataset.id"))
+    result_row_id: Mapped[int | None] = mapped_column(BigInteger)
+    status: Mapped[str] = mapped_column(String(30))
+    complete: Mapped[bool] = mapped_column(Boolean)
+    narrative: Mapped[str] = mapped_column(String)
+    facts: Mapped[dict] = mapped_column(JSON_VALUE)
+    checks: Mapped[list] = mapped_column(JSON_VALUE)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class ResultEvidence(Base):
+    __tablename__ = "business_result_evidence"
+    __table_args__ = (UniqueConstraint("result_id", "ordinal"),)
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
+    result_id: Mapped[str] = mapped_column(ForeignKey("verification.business_result.id"), index=True)
+    ordinal: Mapped[int] = mapped_column(Integer)
+    kind: Mapped[str] = mapped_column(String(30))
+    source_dataset_id: Mapped[str | None] = mapped_column(ForeignKey("verification.business_dataset.id"))
+    source_row_id: Mapped[int | None] = mapped_column(BigInteger)
+    request_id: Mapped[str | None] = mapped_column(ForeignKey("verification.business_external_request.id"), index=True)
+    context: Mapped[dict] = mapped_column(JSON_VALUE)
 
 
 def initialize(database):

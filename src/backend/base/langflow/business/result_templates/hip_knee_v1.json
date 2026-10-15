@@ -1,0 +1,208 @@
+{
+  "id": "hip_knee_v1",
+  "version": 1,
+  "name": "髋膝耗材核验结果",
+  "columns": [
+    "unit_row_id",
+    "ORGAN_CODE",
+    "SYSTEM_ID",
+    "DATA_SOURCE",
+    "SETL_FEE_LIST_ID",
+    "ORGAN_NAME",
+    "PSN_NO",
+    "PSN_NAME",
+    "CERTNO",
+    "OP_EM_NO",
+    "OP_EM_MARK",
+    "RPT_NO",
+    "HILIST_NAME",
+    "PRODNAME",
+    "HOS_PROJ_NAME",
+    "MEDINS_LIST_NAME",
+    "SPEC",
+    "UPDATE_TIME",
+    "CNT",
+    "PRIC",
+    "settled_amount",
+    "target_category",
+    "classification_method",
+    "classification_reason",
+    "classification_evidence_field",
+    "classification_evidence_text",
+    "classification_confidence",
+    "recognized_category",
+    "recognized_quantity",
+    "observed_amount",
+    "category_status",
+    "quantity_status",
+    "amount_status",
+    "difference_1",
+    "difference_2",
+    "evidence_ref",
+    "image_manifest",
+    "simulated",
+    "image_manifest_context",
+    "_request_id",
+    "_identity",
+    "_comparison_status",
+    "recognition_confirmed",
+    "coverage_confirmed"
+  ],
+  "obligation": {
+    "mode": "verification",
+    "sources": [
+      {
+        "node": "Settlements",
+        "identity": "SettlementChecks"
+      }
+    ],
+    "checks": [
+      {
+        "name": "category",
+        "units": {
+          "node": "Classification",
+          "port": "data"
+        },
+        "results": [
+          {
+            "node": "Compare",
+            "port": "data",
+            "status_field": "category_status",
+            "evidence_field": "evidence_ref"
+          },
+          {
+            "node": "StudyRelevance",
+            "port": "issues",
+            "status": "uncompared",
+            "reason_field": "study_relevance_reason",
+            "fallback": true
+          }
+        ]
+      },
+      {
+        "name": "quantity",
+        "units": {
+          "node": "Classification",
+          "port": "data"
+        },
+        "results": [
+          {
+            "node": "Compare",
+            "port": "data",
+            "status_field": "quantity_status",
+            "evidence_field": "evidence_ref"
+          },
+          {
+            "node": "StudyRelevance",
+            "port": "issues",
+            "status": "uncompared",
+            "reason_field": "study_relevance_reason",
+            "fallback": true
+          }
+        ]
+      },
+      {
+        "name": "fee",
+        "units": {
+          "node": "Classification",
+          "port": "data"
+        },
+        "results": [
+          {
+            "node": "Compare",
+            "port": "data",
+            "status_field": "amount_status",
+            "evidence_field": "evidence_ref"
+          },
+          {
+            "node": "StudyRelevance",
+            "port": "issues",
+            "status": "uncompared",
+            "reason_field": "study_relevance_reason",
+            "fallback": true
+          }
+        ]
+      }
+    ],
+    "dispositions": [
+      {
+        "node": "Studies",
+        "port": "issues",
+        "status": "uncompared",
+        "reason": "incomplete_evidence"
+      },
+      {
+        "node": "Series",
+        "port": "issues",
+        "status": "uncompared",
+        "reason": "incomplete_evidence"
+      },
+      {
+        "node": "Images",
+        "port": "issues",
+        "status": "uncompared",
+        "reason": "incomplete_evidence"
+      },
+      {
+        "node": "Observation",
+        "port": "issues",
+        "status": "uncompared",
+        "reason": "incomplete_evidence"
+      },
+      {
+        "node": "Classification",
+        "port": "issues",
+        "status_field": "classification_disposition",
+        "reason_field": "classification_disposition_reason"
+      }
+    ]
+  },
+  "units": {
+    "node": "Classification",
+    "port": "data"
+  },
+  "result_unit_field": "unit_row_id",
+  "checks": [
+    {
+      "name": "category",
+      "label": "类别",
+      "status": "category_status",
+      "left": "target_category",
+      "right": "recognized_category"
+    },
+    {
+      "name": "quantity",
+      "label": "数量",
+      "status": "quantity_status",
+      "left": "CNT",
+      "right": "recognized_quantity",
+      "difference": "difference_1"
+    },
+    {
+      "name": "fee",
+      "label": "折算金额",
+      "status": "amount_status",
+      "left": "settled_amount",
+      "right": "observed_amount",
+      "difference": "difference_2"
+    }
+  ],
+  "example": {
+    "PSN_NAME": "示例患者",
+    "ORGAN_NAME": "示例医院",
+    "HILIST_NAME": "人工全髋关节置换术",
+    "ORGAN_CODE": "EXAMPLE-HOSPITAL",
+    "SYSTEM_ID": "EXAMPLE-SYSTEM",
+    "RPT_NO": "EXAMPLE-RPT",
+    "target_category": "人工髋关节",
+    "recognized_category": "人工髋关节",
+    "CNT": "1",
+    "recognized_quantity": "1",
+    "settled_amount": "10000",
+    "observed_amount": "10000",
+    "category_status": "equal",
+    "quantity_status": "equal",
+    "amount_status": "equal",
+    "simulated": true
+  }
+}

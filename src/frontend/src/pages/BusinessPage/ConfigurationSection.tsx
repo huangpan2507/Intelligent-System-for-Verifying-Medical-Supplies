@@ -1,5 +1,5 @@
 import { type ReactNode, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "./business-i18n";
 
 /** Keep the configuration summary and errors visible while the editor is folded. */
 export default function ConfigurationSection({

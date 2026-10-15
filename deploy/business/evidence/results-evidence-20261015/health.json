@@ -1,0 +1,18 @@
+{
+  "checked_at": "2026-10-15T08:31:57.379863+00:00",
+  "http": {
+    "http://127.0.0.1:3000/health": 200,
+    "http://127.0.0.1:7860/health": 200,
+    "http://127.0.0.1:18081/health": 200,
+    "http://127.0.0.1:8090/openapi.json": 200,
+    "http://127.0.0.1:8091/openapi.json": 200
+  },
+  "sessions": [
+    "langflow-business-core-demo",
+    "langflow-frontend",
+    "langflow-platform",
+    "langflow-verification-api",
+    "langflow-verification-demo",
+    "langflow-verification-worker"
+  ]
+}

@@ -170,7 +170,7 @@ uv run --no-project --python deploy/verification/.cache/runtime/bin/python pytho
 | 04 部位初筛 | 部位/项目名称字段及词表，未知仍待核实 |
 | 05 影像清单 | 序列 URL、影像 URL，study_primary_id → series_id → DICOM 下载地址；只存清单 |
 | 06 模型识别 | 模型 URL（POST）；先登记请求，再调用，保存原始响应 |
-| 07 确定性比较 | 比较项目、数量/金额容差；事实依据、单位/计数范围/同价等条件必须满足 |
+| 07 确定性比较 | 比较项目，数量/金额严格相等、不设容差（Q50）；事实依据、单位/计数范围/同价等条件必须满足 |
 | 08 结果保存 | 检查所有快照明细由终态单元覆盖，事务保存汇总及运行完成状态；空范围明确记录 |
 
 本机默认 URL：01 `http://127.0.0.1:8090/v1/settlements/query`；03 `…/api/v2/study/list`；05 `…/api/v2/dicom/series-instance-uid?study_primary_id={study_primary_id}` 及 `…/api/v2/storage/dicom/sop-instance-uid?series_id={series_id}`；06 `…/v1/recognitions`。以画布中字段和发布检查解析的实际 URL 为准，不提供 cURL。

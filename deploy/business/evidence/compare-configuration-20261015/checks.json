@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "business_backend_tests": {"passed": 63, "log": "backend-tests.log"},
+  "verification_backend_tests": {"passed": 81, "log": "legacy-tests-final.log"},
+  "frontend_tests": {"suites": 13, "passed": 42, "log": "frontend-tests.log"},
+  "typescript": {"full": "passed", "incremental": "passed", "logs": ["typescript.log", "typescript-final.log"]},
+  "browser": {"passed": 1, "log": "browser.log", "prior_attempts": ["browser-cold-start.log", "browser-selector-attempt.log"]},
+  "changed_code_lint": "passed except the documented unchanged formatting baseline in update_locales.py",
+  "existing_locale_generator_lint": {"before": 116, "after": 116, "evidence": "locale-script-lint-baseline.json"},
+  "live_canvas": "final-canvas-verification.json",
+  "service_health": "final-health.json",
+  "actual_worker_task": "0a0f4dbf-66a8-416d-9afe-4a6af6dc47c3",
+  "release_version": 9,
+  "core_task_status": "completed",
+  "core_result_rows": 2,
+  "task_rechecked_after_restart": true,
+  "image_recognition": "simulated",
+  "scope": "Changed comparison behavior and related Business/verification regressions; not all repository tests"
+}

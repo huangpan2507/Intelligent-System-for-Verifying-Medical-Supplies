@@ -1,0 +1,336 @@
+{
+  "task_id": "7a36ff98-fdc5-4475-ab01-13a5bc59f406",
+  "flow_id": "ce588a72-0614-4d84-badd-0e4355c427e6",
+  "before": {
+    "results": 2,
+    "evidence": 38,
+    "hash": "f88b91097714a56aa116a54ec19dc2b149bb47c5e5197ebecbdd8f9852316e4b",
+    "all_requests": 60,
+    "all_tasks": 27
+  },
+  "results": [
+    {
+      "category": "人工髋关节",
+      "counts": {
+        "settlement": 1,
+        "study": 3,
+        "series": 3,
+        "recognition": 1,
+        "image": 7,
+        "unlinked": 0
+      }
+    },
+    {
+      "category": "人工膝关节",
+      "counts": {
+        "settlement": 1,
+        "study": 2,
+        "series": 2,
+        "recognition": 1,
+        "image": 5,
+        "unlinked": 0
+      }
+    }
+  ],
+  "storage": {
+    "task_status": "completed",
+    "release_version": 10,
+    "saved": 2,
+    "incomplete": 0,
+    "different": 0,
+    "assessment": {
+      "mode": "verification",
+      "state": "accounted",
+      "checks": [
+        {
+          "name": "category",
+          "units": 2,
+          "counts": {
+            "equal": 2
+          },
+          "effective": 2,
+          "dataset_id": "d40e910b-5549-4e12-adae-4664d7812591",
+          "coverage_gaps": 0
+        },
+        {
+          "name": "quantity",
+          "units": 2,
+          "counts": {
+            "equal": 2
+          },
+          "effective": 2,
+          "dataset_id": "3edb5235-5cb5-40b3-86cf-c7b6a05cc075",
+          "coverage_gaps": 0
+        },
+        {
+          "name": "fee",
+          "units": 2,
+          "counts": {
+            "equal": 2
+          },
+          "effective": 2,
+          "dataset_id": "c763a3f7-3cdd-49ec-971d-a8f6a8d27ea4",
+          "coverage_gaps": 0
+        }
+      ],
+      "sources": [
+        {
+          "node": "Settlements",
+          "basis": "query_exhausted",
+          "state": "complete",
+          "dataset_id": "b64b07dd-3813-4085-9264-98ee0ef07f90",
+          "received_rows": 2
+        },
+        {
+          "node": "Studies--source",
+          "basis": "query_exhausted",
+          "state": "complete",
+          "dataset_id": "e18f64ad-0c4a-4ca2-a687-033cba3ca42b",
+          "received_rows": 5
+        },
+        {
+          "node": "Series--source",
+          "basis": "query_exhausted",
+          "state": "complete",
+          "dataset_id": "e7f4ef40-58eb-42ec-a0cf-aa5074620502",
+          "received_rows": 5
+        },
+        {
+          "node": "Images--responses",
+          "basis": "core-flow-v1 controlled mock returns the complete finite set for each request",
+          "scope": "object",
+          "state": "complete",
+          "dataset_id": "798a4ef1-b235-427b-964d-482c23d8ac21",
+          "received_rows": 12
+        }
+      ],
+      "execution_errors": {},
+      "received_records": 2,
+      "discovery_complete": true,
+      "business_identities": 2,
+      "coverage_gap_records": 0,
+      "dispositions_dataset_id": "00e2f075-e387-43a0-b5c8-13637833843f",
+      "missing_identity_records": 0,
+      "known_record_accountability": 1.0
+    },
+    "templates": [
+      {
+        "node_id": "Results",
+        "id": "hip_knee_v1",
+        "name": "髋膝耗材核验结果",
+        "units": {
+          "node": "Classification",
+          "port": "data"
+        },
+        "checks": [
+          {
+            "left": "target_category",
+            "name": "category",
+            "label": "类别",
+            "right": "recognized_category",
+            "status": "category_status"
+          },
+          {
+            "left": "CNT",
+            "name": "quantity",
+            "label": "数量",
+            "right": "recognized_quantity",
+            "status": "quantity_status",
+            "difference": "difference_1"
+          },
+          {
+            "left": "settled_amount",
+            "name": "fee",
+            "label": "折算金额",
+            "right": "observed_amount",
+            "status": "amount_status",
+            "difference": "difference_2"
+          }
+        ],
+        "columns": [
+          "unit_row_id",
+          "ORGAN_CODE",
+          "SYSTEM_ID",
+          "DATA_SOURCE",
+          "SETL_FEE_LIST_ID",
+          "ORGAN_NAME",
+          "PSN_NO",
+          "PSN_NAME",
+          "CERTNO",
+          "OP_EM_NO",
+          "OP_EM_MARK",
+          "RPT_NO",
+          "HILIST_NAME",
+          "PRODNAME",
+          "HOS_PROJ_NAME",
+          "MEDINS_LIST_NAME",
+          "SPEC",
+          "UPDATE_TIME",
+          "CNT",
+          "PRIC",
+          "settled_amount",
+          "target_category",
+          "classification_method",
+          "classification_reason",
+          "classification_evidence_field",
+          "classification_evidence_text",
+          "classification_confidence",
+          "recognized_category",
+          "recognized_quantity",
+          "observed_amount",
+          "category_status",
+          "quantity_status",
+          "amount_status",
+          "difference_1",
+          "difference_2",
+          "evidence_ref",
+          "image_manifest",
+          "simulated",
+          "image_manifest_context",
+          "_request_id",
+          "_identity",
+          "_comparison_status",
+          "recognition_confirmed",
+          "coverage_confirmed"
+        ],
+        "example": {
+          "CNT": "1",
+          "RPT_NO": "EXAMPLE-RPT",
+          "PSN_NAME": "示例患者",
+          "SYSTEM_ID": "EXAMPLE-SYSTEM",
+          "simulated": true,
+          "ORGAN_CODE": "EXAMPLE-HOSPITAL",
+          "ORGAN_NAME": "示例医院",
+          "HILIST_NAME": "人工全髋关节置换术",
+          "amount_status": "equal",
+          "settled_amount": "10000",
+          "category_status": "equal",
+          "observed_amount": "10000",
+          "quantity_status": "equal",
+          "target_category": "人工髋关节",
+          "recognized_category": "人工髋关节",
+          "recognized_quantity": "1"
+        },
+        "version": 1,
+        "obligation": {
+          "mode": "verification",
+          "checks": [
+            {
+              "name": "category",
+              "units": {
+                "node": "Classification",
+                "port": "data"
+              },
+              "results": [
+                {
+                  "node": "Compare",
+                  "port": "data",
+                  "status_field": "category_status",
+                  "evidence_field": "evidence_ref"
+                },
+                {
+                  "node": "StudyRelevance",
+                  "port": "issues",
+                  "status": "uncompared",
+                  "fallback": true,
+                  "reason_field": "study_relevance_reason"
+                }
+              ]
+            },
+            {
+              "name": "quantity",
+              "units": {
+                "node": "Classification",
+                "port": "data"
+              },
+              "results": [
+                {
+                  "node": "Compare",
+                  "port": "data",
+                  "status_field": "quantity_status",
+                  "evidence_field": "evidence_ref"
+                },
+                {
+                  "node": "StudyRelevance",
+                  "port": "issues",
+                  "status": "uncompared",
+                  "fallback": true,
+                  "reason_field": "study_relevance_reason"
+                }
+              ]
+            },
+            {
+              "name": "fee",
+              "units": {
+                "node": "Classification",
+                "port": "data"
+              },
+              "results": [
+                {
+                  "node": "Compare",
+                  "port": "data",
+                  "status_field": "amount_status",
+                  "evidence_field": "evidence_ref"
+                },
+                {
+                  "node": "StudyRelevance",
+                  "port": "issues",
+                  "status": "uncompared",
+                  "fallback": true,
+                  "reason_field": "study_relevance_reason"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "node": "Settlements",
+              "identity": "SettlementChecks"
+            }
+          ],
+          "dispositions": [
+            {
+              "node": "Studies",
+              "port": "issues",
+              "reason": "incomplete_evidence",
+              "status": "uncompared"
+            },
+            {
+              "node": "Series",
+              "port": "issues",
+              "reason": "incomplete_evidence",
+              "status": "uncompared"
+            },
+            {
+              "node": "Images",
+              "port": "issues",
+              "reason": "incomplete_evidence",
+              "status": "uncompared"
+            },
+            {
+              "node": "Observation",
+              "port": "issues",
+              "reason": "incomplete_evidence",
+              "status": "uncompared"
+            },
+            {
+              "node": "Classification",
+              "port": "issues",
+              "reason_field": "classification_disposition_reason",
+              "status_field": "classification_disposition"
+            }
+          ]
+        },
+        "result_unit_field": "unit_row_id"
+      }
+    ]
+  },
+  "after": {
+    "results": 2,
+    "evidence": 38,
+    "hash": "f88b91097714a56aa116a54ec19dc2b149bb47c5e5197ebecbdd8f9852316e4b",
+    "all_requests": 60,
+    "all_tasks": 27
+  },
+  "read_only_verified": true
+}

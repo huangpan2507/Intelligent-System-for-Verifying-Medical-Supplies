@@ -441,6 +441,9 @@ async def run_task(database, settings, task_id):
     try:
         await runtime.run_graph()
         await asyncio.to_thread(finalize, runtime)
+        from langflow.business.results import persist
+
+        await asyncio.to_thread(persist, runtime)
         with database.sessions.begin() as session:
             task = session.get(Task, task_id)
             task.status = "failed" if runtime.failures else "completed"

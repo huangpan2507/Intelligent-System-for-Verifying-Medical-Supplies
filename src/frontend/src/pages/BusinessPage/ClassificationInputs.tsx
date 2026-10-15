@@ -1,7 +1,7 @@
-import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import type { Field } from "@/controllers/API/queries/business";
+import { businessOption, useTranslation } from "./business-i18n";
 import type { ClassificationConfig } from "./classification-config";
 
 export default function ClassificationInputs({
@@ -50,7 +50,7 @@ export default function ClassificationInputs({
                   }
                 >
                   <option value="">
-                    {t("business.classification.chooseField")}
+                    {businessOption("business.classification.chooseField")}
                   </option>
                   {entry.field && !fieldNames.includes(entry.field) && (
                     <option value={entry.field} disabled>
@@ -94,10 +94,10 @@ export default function ClassificationInputs({
                     }
                   >
                     <option value="evidence">
-                      {t("business.classification.evidence")}
+                      {businessOption("business.classification.evidence")}
                     </option>
                     <option value="context">
-                      {t("business.classification.context")}
+                      {businessOption("business.classification.context")}
                     </option>
                   </select>
                 </label>
@@ -179,10 +179,10 @@ export default function ClassificationInputs({
                     }
                   >
                     <option value="continue">
-                      {t("business.classification.continue")}
+                      {businessOption("business.classification.continue")}
                     </option>
                     <option value="excluded">
-                      {t("business.classification.excluded")}
+                      {businessOption("business.classification.excluded")}
                     </option>
                   </select>
                 </label>

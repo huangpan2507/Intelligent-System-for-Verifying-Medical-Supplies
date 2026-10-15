@@ -1,0 +1,11 @@
+{
+  "canvases_checked": 23,
+  "active_schemes_checked": 5,
+  "remaining_tolerance": 0,
+  "core_changed_nodes": [
+    "Compare"
+  ],
+  "edges_unchanged": true,
+  "node_count": 11,
+  "active_release_id": "ef29981a-9147-461d-9bd3-ee52f4f734be"
+}

@@ -1,5 +1,4 @@
 import { type ReactNode, useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -9,6 +8,7 @@ import {
   type SourcePreview,
   useBusinessMutation,
 } from "@/controllers/API/queries/business";
+import { businessOption, useTranslation } from "./business-i18n";
 import ConfigurationSection from "./ConfigurationSection";
 import { businessError } from "./errors";
 import SourceFieldEditor from "./SourceFieldEditor";
@@ -245,7 +245,7 @@ export default function ApiFieldConfiguration({
                   if (sample) setRecord(JSON.stringify(sample.row, null, 2));
                 }}
               >
-                <option value="">{t("business.choose")}</option>
+                <option value="">{businessOption("business.choose")}</option>
                 {upstreamRows.map((sample, index) => (
                   <option key={index} value={index}>
                     {sample.label}

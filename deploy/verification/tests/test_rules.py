@@ -46,7 +46,6 @@ def comparison():
         "reasons": [],
         "policy": {
             "catalog_mapping": {"DEMO-HIP": "hip_prosthesis"},
-            "money_tolerance": "0.01",
             "currency": "CNY",
             "simulated": True,
         },
@@ -185,3 +184,16 @@ def test_three_business_inputs_reject_old_trial_contract():
     assert SubmitTask.model_validate(example_task()).hospital_scope == "常州市第一人民医院"
     with pytest.raises(ValidationError):
         SubmitTask.model_validate({**example_task(), "detail_ids": ["detail-hip"]})
+
+
+def test_no_fee_rounding_or_tolerance(comparison):
+    comparison["recognition"].count = Decimal("2.00000001")
+    result = compare_scope(**comparison)
+    assert result["quantity"]["status"] == "greater"
+    assert result["fee"]["status"] == "greater"
+    assert Decimal(result["fee"]["delta"]) == Decimal("0.00010000")
+    assert "tolerance" not in result["fee"]
+    comparison["rows"][0].amount += Decimal("0.001")
+    result = compare_scope(**comparison)
+    assert result["fee"]["status"] == "not_compared"
+    assert "source_amount_does_not_match_quantity_times_price" in result["fee"]["reasons"]

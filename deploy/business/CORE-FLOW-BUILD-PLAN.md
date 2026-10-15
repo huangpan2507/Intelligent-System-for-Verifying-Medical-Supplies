@@ -131,7 +131,7 @@ N22恢复至少：unit_row_id、ORGAN_CODE、DATA_SOURCE、SETL_FEE_LIST_ID、PS
 | N27 KneeCategory | Business Filter | and：HILIST_NAME contains人工膝关节；recognized_category eq人工膝关节 | N25.valid |
 | N28 EqualCategories | Business Union | 追加两路matched；不去重 | N26.matched和N27.matched |
 | N29 Amounts | Business Transform | expression `'equal'→category_status`；`recognized_quantity * PRIC→observed_amount` | N28.data |
-| N30 CompareQuantityFee | Business Compare | CNT对recognized_quantity；settled_amount对observed_amount；均numeric、tolerance=0 | N29.data |
+| N30 CompareQuantityFee | Business Compare | CNT对recognized_quantity；settled_amount对observed_amount；均numeric、严格数值相等（Q50取消容差） | N29.data |
 | N31 ResultFields | Business Transform | comparison_0→quantity_status；comparison_1→amount_status；可生成数量/金额差值 | N30.data |
 | N32 Results | Business Output | name=核心流程核验结果；primary=true；columns和obligation见下文 | N31.data |
 

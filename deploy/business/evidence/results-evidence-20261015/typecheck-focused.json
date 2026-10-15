@@ -1,0 +1,15 @@
+{
+  "scope": "Changed production files; real tsconfig and imports; no type stubs",
+  "exit_code": 0,
+  "diagnostics": "",
+  "files": {
+    "src/frontend/src/pages/BusinessPage/ResultFields.tsx": "7c7ab2e0a6ab64f2b4babb28bc59cdad08952fac596119ef6d4a32015a5b7cda",
+    "src/frontend/src/pages/BusinessPage/ResultEvidenceDialog.tsx": "45de08ead3b2b7f1e62d085063c0d348daad90c2c709e2f19380850bb1aaf3f3",
+    "src/frontend/src/pages/BusinessPage/BusinessResultEvidence.tsx": "d2b2a7e10ee5c8e336a6b62799794a34cdc0de91983f21595a109d6c652bebac",
+    "src/frontend/src/pages/BusinessPage/ResultStorage.tsx": "74589be86ed38b362d48bb77f9b8f77ff8af206093b335e914e6425a5cca07fd",
+    "src/frontend/src/pages/BusinessPage/BusinessResults.tsx": "c2a727c611c0e81c57948db6677d46d99c158b9998274c05f0694eda6c915844",
+    "src/frontend/src/pages/BusinessPage/ResultsConfiguration.tsx": "0c232dbe7984a4323c437edd4d2148e9b22cdbc9613ac9a2047c3bed9af891ab",
+    "src/frontend/src/controllers/API/queries/business/index.ts": "e3cb5b68db4552955abc4e75f6ff3abd3cfb379c975a313106d2f3f22a34a649",
+    "src/frontend/src/pages/FlowPage/components/SelectionMenuComponent/index.tsx": "0ec597b151c399ee9e0b8e425b9e824b5b699fb10078b1b28b01351ede01f609"
+  }
+}

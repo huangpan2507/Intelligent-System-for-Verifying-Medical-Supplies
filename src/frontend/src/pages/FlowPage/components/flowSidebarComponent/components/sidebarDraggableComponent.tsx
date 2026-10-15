@@ -19,6 +19,10 @@ import {
 } from "@/contexts/permissionsContext";
 import useDeleteFlow from "@/hooks/flows/use-delete-flow";
 import { useAddComponent } from "@/hooks/use-add-component";
+import {
+  businessNodeDescription,
+  businessNodeName,
+} from "@/pages/BusinessPage/business-node-presentation";
 import { useDarkStore } from "@/stores/darkStore";
 import useFlowStore from "@/stores/flowStore";
 import useFlowsManagerStore from "@/stores/flowsManagerStore";
@@ -133,7 +137,9 @@ export const SidebarDraggableComponent = forwardRef(
     // visible text — so it goes into the name too ("Add Listen Beta to
     // canvas"), otherwise voice-control users saying "click Listen Beta"
     // get no match. Keep these literals in sync with the badges below.
-    const visibleName = [display_name, beta && "Beta", legacy && "Legacy"]
+    const presentedName =
+      businessNodeName(itemName, display_name) ?? display_name;
+    const visibleName = [presentedName, beta && "Beta", legacy && "Legacy"]
       .filter(Boolean)
       .join(" ");
     const addToCanvasLabel = t("sidebar.addComponentToCanvas", {
@@ -213,12 +219,18 @@ export const SidebarDraggableComponent = forwardRef(
                 className="h-[18px] w-[18px] shrink-0"
               />
               <div className="flex flex-1 items-center overflow-hidden">
-                <ShadTooltip content={display_name} styleClasses="z-50">
+                <ShadTooltip
+                  content={
+                    businessNodeDescription(itemName, apiClass.description) ||
+                    presentedName
+                  }
+                  styleClasses="z-50"
+                >
                   <span
                     data-testid="display-name"
                     className="truncate text-sm font-normal"
                   >
-                    {display_name}
+                    {presentedName}
                   </span>
                 </ShadTooltip>
                 {beta && (

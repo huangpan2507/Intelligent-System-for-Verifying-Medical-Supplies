@@ -1,6 +1,6 @@
 import { type ReactNode, useRef } from "react";
-import { useTranslation } from "react-i18next";
 import type { Field, JsonSchema } from "@/controllers/API/queries/business";
+import { useTranslation } from "./business-i18n";
 import ConfigurationSection from "./ConfigurationSection";
 import { configurationShape } from "./configuration-layout";
 import LookupFieldList from "./LookupFieldList";

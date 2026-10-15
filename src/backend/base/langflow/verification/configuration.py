@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from decimal import Decimal
 from string import Formatter
 from typing import Literal
 from urllib.parse import urlsplit
@@ -117,8 +116,6 @@ class ComparisonConfiguration(Contract):
     comparisons: list[Literal["type", "quantity", "fee"]] = Field(
         default_factory=lambda: ["type", "quantity", "fee"], min_length=1, max_length=3
     )
-    quantity_tolerance: Number = Field(default=Decimal(0), ge=0, le=1000)
-    money_tolerance: Number = Field(default=Decimal("0.01"), ge=0, le=1)
 
 
 def validate_api_url(value: str, placeholder: str | None = None, aliases: tuple[str, ...] = ()) -> str:

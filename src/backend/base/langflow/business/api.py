@@ -1,7 +1,7 @@
 # ruff: noqa: S608 - SQL uses quoted identifiers/literals and validated operators; source SELECT runs read-only.
 """Owner management facade and source-isolated public business task queries."""
 
-from typing import Annotated
+from typing import Annotated, Literal
 
 import duckdb
 import jsonschema
@@ -23,10 +23,12 @@ from langflow.business.contracts import (
 )
 from langflow.business.datasets import DatasetStore, safe_json
 from langflow.business.models import (
+    BusinessResult,
     Connection,
     Dataset,
     ExternalRequest,
     Release,
+    ResultEvidence,
     Scheme,
     Task,
     TaskAssessment,
@@ -566,6 +568,178 @@ def register(app, database, settings, internal_auth, source_auth):
                     )
                 ],
             }
+
+    @app.get(internal + "/result-templates", dependencies=dependencies)
+    def result_templates(_actor: actor_type):
+        from langflow.business.result_templates import preview
+
+        return [preview()]
+
+    def saved_results(task_id, node_id, limit, offset, *, actor=None, source=None):
+        with database.sessions() as session:
+            query_task(session, task_id, actor=actor, source=source)
+            criteria = [BusinessResult.task_id == task_id]
+            if node_id:
+                criteria.append(BusinessResult.node_id == node_id)
+            items = list(
+                session.scalars(
+                    select(BusinessResult)
+                    .where(*criteria)
+                    .order_by(BusinessResult.node_id, BusinessResult.unit_row_id)
+                    .limit(limit)
+                    .offset(offset)
+                )
+            )
+            return {
+                "total": session.scalar(select(func.count()).select_from(BusinessResult).where(*criteria)),
+                "items": [view(item) for item in items],
+            }
+
+    @app.get(internal + "/tasks/{task_id}/results", dependencies=dependencies)
+    def admin_results(
+        task_id: str,
+        actor: actor_type,
+        node_id: str | None = None,
+        limit: int = Query(20, ge=1, le=200),
+        offset: int = Query(0, ge=0),
+    ):
+        return saved_results(task_id, node_id, limit, offset, actor=actor)
+
+    @app.get(public + "/tasks/{task_id}/results")
+    def public_results(
+        task_id: str,
+        source: str = source_dep,
+        node_id: str | None = None,
+        limit: int = Query(20, ge=1, le=200),
+        offset: int = Query(0, ge=0),
+    ):
+        return saved_results(task_id, node_id, limit, offset, source=source)
+
+    def result_evidence(task_id, result_id, limit, offset, *, actor=None, source=None):
+        with database.sessions() as session:
+            query_task(session, task_id, actor=actor, source=source)
+            result = session.get(BusinessResult, result_id)
+            if result is None or result.task_id != task_id:
+                raise HTTPException(404, "Result not found")
+            criteria = ResultEvidence.result_id == result_id
+            return {
+                "total": session.scalar(select(func.count()).select_from(ResultEvidence).where(criteria)),
+                "items": [
+                    view(e)
+                    for e in session.scalars(
+                        select(ResultEvidence)
+                        .where(criteria)
+                        .order_by(ResultEvidence.ordinal)
+                        .limit(limit)
+                        .offset(offset)
+                    )
+                ],
+            }
+
+    @app.get(internal + "/tasks/{task_id}/results/{result_id}/evidence", dependencies=dependencies)
+    def admin_result_evidence(
+        task_id: str,
+        result_id: str,
+        actor: actor_type,
+        limit: int = Query(50, ge=1, le=200),
+        offset: int = Query(0, ge=0),
+    ):
+        return result_evidence(task_id, result_id, limit, offset, actor=actor)
+
+    @app.get(public + "/tasks/{task_id}/results/{result_id}/evidence")
+    def public_result_evidence(
+        task_id: str,
+        result_id: str,
+        source: str = source_dep,
+        limit: int = Query(50, ge=1, le=200),
+        offset: int = Query(0, ge=0),
+    ):
+        return result_evidence(task_id, result_id, limit, offset, source=source)
+
+    def evidence_query(task_id, result_id, *, actor=None, source=None, evidence_id=None, **page):
+        from langflow.business.result_evidence import EvidenceView, source_detail
+
+        with database.sessions() as session:
+            query_task(session, task_id, actor=actor, source=source)
+            result = session.get(BusinessResult, result_id)
+            if result is None or result.task_id != task_id:
+                raise HTTPException(404, "Result not found")
+        try:
+            if evidence_id:
+                return source_detail(database, task_id, result_id, evidence_id)
+            return EvidenceView(database, task_id, result).page(**page)
+        except ValueError as exc:
+            raise HTTPException(404, str(exc)) from exc
+        except (OSError, duckdb.Error) as exc:
+            raise HTTPException(409, "Saved source snapshot is unavailable") from exc
+
+    evidence_group = Literal["settlement", "study", "series", "image", "recognition", "unlinked"]
+
+    @app.get(internal + "/tasks/{task_id}/results/{result_id}/evidence-view", dependencies=dependencies)
+    def admin_evidence_view(
+        task_id: str,
+        result_id: str,
+        actor: actor_type,
+        group: evidence_group = "settlement",
+        parent: str | None = None,
+        limit: int = Query(20, ge=1, le=100),
+        offset: int = Query(0, ge=0),
+    ):
+        return evidence_query(task_id, result_id, actor=actor, group=group, parent=parent, limit=limit, offset=offset)
+
+    @app.get(public + "/tasks/{task_id}/results/{result_id}/evidence-view")
+    def public_evidence_view(
+        task_id: str,
+        result_id: str,
+        source: str = source_dep,
+        group: evidence_group = "settlement",
+        parent: str | None = None,
+        limit: int = Query(20, ge=1, le=100),
+        offset: int = Query(0, ge=0),
+    ):
+        return evidence_query(task_id, result_id, source=source, group=group, parent=parent, limit=limit, offset=offset)
+
+    @app.get(internal + "/tasks/{task_id}/results/{result_id}/evidence/{evidence_id}/detail", dependencies=dependencies)
+    def admin_evidence_detail(task_id: str, result_id: str, evidence_id: str, actor: actor_type):
+        return evidence_query(task_id, result_id, evidence_id=evidence_id, actor=actor)
+
+    @app.get(public + "/tasks/{task_id}/results/{result_id}/evidence/{evidence_id}/detail")
+    def public_evidence_detail(task_id: str, result_id: str, evidence_id: str, source: str = source_dep):
+        return evidence_query(task_id, result_id, evidence_id=evidence_id, source=source)
+
+    def result_storage(task_id, node_id, *, actor=None, source=None):
+        with database.sessions() as session:
+            task = query_task(session, task_id, actor=actor, source=source)
+            release = session.get(Release, task.release_id)
+            criteria = [BusinessResult.task_id == task_id]
+            if node_id:
+                criteria.append(BusinessResult.node_id == node_id)
+            totals = session.execute(
+                select(BusinessResult.complete, BusinessResult.status, func.count())
+                .where(*criteria)
+                .group_by(BusinessResult.complete, BusinessResult.status)
+            ).all()
+            assessment = session.get(TaskAssessment, task_id)
+            profiles = release.package.get("result_templates", {})
+            return {
+                "task_status": task.status,
+                "release_version": release.version,
+                "saved": sum(n for _, _, n in totals),
+                "incomplete": sum(n for complete, _, n in totals if not complete),
+                "different": sum(n for _, status, n in totals if status == "difference"),
+                "assessment": assessment.summary if assessment else None,
+                "templates": [
+                    {"node_id": key, **value} for key, value in profiles.items() if not node_id or key == node_id
+                ],
+            }
+
+    @app.get(internal + "/tasks/{task_id}/result-storage", dependencies=dependencies)
+    def admin_result_storage(task_id: str, actor: actor_type, node_id: str | None = None):
+        return result_storage(task_id, node_id, actor=actor)
+
+    @app.get(public + "/tasks/{task_id}/result-storage")
+    def public_result_storage(task_id: str, source: str = source_dep, node_id: str | None = None):
+        return result_storage(task_id, node_id, source=source)
 
     @app.get(internal + "/tasks/{task_id}/requests", dependencies=dependencies)
     def admin_requests(

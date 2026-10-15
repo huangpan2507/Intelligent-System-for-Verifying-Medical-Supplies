@@ -123,6 +123,7 @@ def create_app(settings: VerificationSettings | None = None, database: Database 
     prefix = "/api/v1/verification"
 
     from langflow.business.api import register as register_business
+
     register_business(app, database, settings, internal_auth, source_auth)
 
     @app.get("/health")
@@ -153,6 +154,7 @@ def create_app(settings: VerificationSettings | None = None, database: Database 
                         conflict("Idempotency key already exists with different content")
                     return task_view(session, task)
                 from langflow.business.migration import require_legacy_intake
+
                 require_legacy_intake(session)
                 hospitals = [
                     h
@@ -204,7 +206,6 @@ def create_app(settings: VerificationSettings | None = None, database: Database 
                             "catalog_mapping": release.package["catalog_mapping"],
                             "rule_version": f"{rule.code}@{release.version}",
                             "currency": release.package["currency"],
-                            "money_tolerance": release.package["configurations"]["07"]["money_tolerance"],
                             "simulated": release.package["simulated"],
                         },
                     )
@@ -299,6 +300,7 @@ def create_app(settings: VerificationSettings | None = None, database: Database 
     def rerun(task_id: UUID, body: RerunAction, source: str = source_dep) -> dict:
         with database.sessions.begin() as session:
             from langflow.business.migration import require_legacy_intake
+
             require_legacy_intake(session)
             task = task_for_source(session, str(task_id), source)
             old = session.get(Run, task.current_run_id)

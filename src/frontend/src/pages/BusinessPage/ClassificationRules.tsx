@@ -1,7 +1,7 @@
-import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import type { Field } from "@/controllers/API/queries/business";
+import { businessOption, useTranslation } from "./business-i18n";
 import type {
   ClassificationConfig,
   ClassificationRule,
@@ -101,7 +101,7 @@ export default function ClassificationRules({
                 >
                   {(["contains", "eq", "contains_all"] as const).map((op) => (
                     <option key={op} value={op}>
-                      {t(`business.classification.op.${op}`)}
+                      {businessOption(`business.classification.op.${op}`)}
                     </option>
                   ))}
                 </select>
@@ -142,7 +142,7 @@ export default function ClassificationRules({
                   onChange={(e) => update(index, { category: e.target.value })}
                 >
                   <option value="">
-                    {t("business.classification.chooseCategory")}
+                    {businessOption("business.classification.chooseCategory")}
                   </option>
                   {rule.category && !categories.includes(rule.category) && (
                     <option value={rule.category} disabled>

@@ -1,4 +1,4 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "./business-i18n";
 
 const operators: Record<string, string> = {
   eq: "=",

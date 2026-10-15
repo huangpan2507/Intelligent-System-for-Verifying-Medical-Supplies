@@ -1,6 +1,10 @@
 import Fuse from "fuse.js";
 import { cloneDeep } from "lodash";
 import { useEffect, useMemo, useState } from "react";
+import {
+  businessNodeDescription,
+  businessNodeName,
+} from "@/pages/BusinessPage/business-node-presentation";
 import type { APIClassType, APIDataType } from "@/types/api";
 import type { MCPServerInfoType } from "@/types/mcp";
 import { combinedResultsFn } from "../helpers/combined-results";
@@ -76,6 +80,8 @@ export function useSidebarSearch({
     const options = {
       keys: [
         "display_name",
+        "businessDisplayName",
+        "businessDescription",
         "description",
         "type",
         "category",
@@ -91,6 +97,8 @@ export function useSidebarSearch({
           ...value,
           category,
           key,
+          businessDisplayName: businessNodeName(key, value.display_name),
+          businessDescription: businessNodeDescription(key, value.description),
         })),
     );
 

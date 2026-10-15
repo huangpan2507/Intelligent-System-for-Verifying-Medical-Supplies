@@ -1,0 +1,167 @@
+{
+  "canvases_checked": 23,
+  "canvases": [
+    {
+      "flow_id": "170f55a2-2b50-49a1-a1e1-efc5e05b0fea",
+      "removed": [
+        {
+          "node": "ConsumableVerificationStage-07",
+          "field": "quantity_tolerance",
+          "previous_tolerance": 0
+        },
+        {
+          "node": "ConsumableVerificationStage-07",
+          "field": "money_tolerance",
+          "previous_tolerance": 0.01
+        }
+      ]
+    },
+    {
+      "flow_id": "d2bf4cde-9993-4576-bb6e-261628d6bcc3",
+      "removed": [
+        {
+          "node": "ext:verification:VerificationResultComparison@extra-W9CZf",
+          "field": "quantity_tolerance",
+          "previous_tolerance": 0
+        },
+        {
+          "node": "ext:verification:VerificationResultComparison@extra-W9CZf",
+          "field": "money_tolerance",
+          "previous_tolerance": 0.01
+        }
+      ]
+    },
+    {
+      "flow_id": "8266cda9-82a1-4831-9f3a-59a463a9fedc",
+      "removed": [
+        {
+          "node": "ext:verification:VerificationResultComparison@extra-5p9eB",
+          "field": "quantity_tolerance",
+          "previous_tolerance": 0
+        },
+        {
+          "node": "ext:verification:VerificationResultComparison@extra-5p9eB",
+          "field": "money_tolerance",
+          "previous_tolerance": 0.01
+        }
+      ]
+    },
+    {
+      "flow_id": "be14df3b-ba4f-412c-9c74-267e7961a126",
+      "removed": [
+        {
+          "node": "VerificationResultComparison-07",
+          "field": "quantity_tolerance",
+          "previous_tolerance": 0.0
+        },
+        {
+          "node": "VerificationResultComparison-07",
+          "field": "money_tolerance",
+          "previous_tolerance": 0.01
+        }
+      ]
+    },
+    {
+      "flow_id": "0900743c-f079-40c4-8347-006fcd5b1bfd",
+      "removed": [
+        {
+          "node": "VerificationResultComparison-07",
+          "field": "quantity_tolerance",
+          "previous_tolerance": 1
+        },
+        {
+          "node": "VerificationResultComparison-07",
+          "field": "money_tolerance",
+          "previous_tolerance": 0.01
+        }
+      ]
+    },
+    {
+      "flow_id": "bdd762bb-eb05-4521-bdfa-a5322f4ca98a",
+      "removed": [
+        {
+          "node": "VerificationResultComparison-07",
+          "field": "quantity_tolerance",
+          "previous_tolerance": 1
+        },
+        {
+          "node": "VerificationResultComparison-07",
+          "field": "money_tolerance",
+          "previous_tolerance": 0.01
+        }
+      ]
+    },
+    {
+      "flow_id": "f86f2f07-d8b9-4a4e-9204-1aab0ff9f5ff",
+      "removed": [
+        {
+          "node": "VerificationResultComparison-07",
+          "field": "quantity_tolerance",
+          "previous_tolerance": 1
+        },
+        {
+          "node": "VerificationResultComparison-07",
+          "field": "money_tolerance",
+          "previous_tolerance": 0.01
+        }
+      ]
+    },
+    {
+      "flow_id": "5c25e942-18eb-4adb-a7de-719ffecef47b",
+      "removed": [
+        {
+          "node": "VerificationResultComparison-07",
+          "field": "quantity_tolerance",
+          "previous_tolerance": 1
+        },
+        {
+          "node": "VerificationResultComparison-07",
+          "field": "money_tolerance",
+          "previous_tolerance": 0.01
+        }
+      ]
+    },
+    {
+      "flow_id": "53748853-bc43-4734-a668-30a4a3e05132",
+      "removed": [
+        {
+          "node": "VerificationResultComparison-07",
+          "field": "quantity_tolerance",
+          "previous_tolerance": 1
+        },
+        {
+          "node": "VerificationResultComparison-07",
+          "field": "money_tolerance",
+          "previous_tolerance": 0.01
+        }
+      ]
+    }
+  ],
+  "active_schemes": [
+    {
+      "scheme": "acceptance.taskstart.5ac08f2620",
+      "removed": [],
+      "errors": {}
+    },
+    {
+      "scheme": "demo.cross_database.v2",
+      "removed": [],
+      "errors": {}
+    },
+    {
+      "scheme": "core.normal.1791804428546",
+      "removed": [],
+      "errors": {}
+    },
+    {
+      "scheme": "core.normal.compact.v1",
+      "removed": [],
+      "errors": {}
+    },
+    {
+      "scheme": "demo.consumables.v2",
+      "removed": [],
+      "errors": {}
+    }
+  ]
+}

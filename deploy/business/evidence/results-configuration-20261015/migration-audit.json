@@ -1,0 +1,22 @@
+[
+  {
+    "scheme": "acceptance.taskstart.5ac08f2620",
+    "errors": {}
+  },
+  {
+    "scheme": "demo.cross_database.v2",
+    "errors": {}
+  },
+  {
+    "scheme": "core.normal.1791804428546",
+    "errors": {}
+  },
+  {
+    "scheme": "core.normal.compact.v1",
+    "errors": {}
+  },
+  {
+    "scheme": "demo.consumables.v2",
+    "errors": {}
+  }
+]

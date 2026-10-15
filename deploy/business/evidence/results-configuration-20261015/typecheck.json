@@ -1,0 +1,13 @@
+{
+  "command": "NODE_OPTIONS=--max-old-space-size=3072 node_modules/.bin/tsc --noEmit --incremental",
+  "exit_code": 0,
+  "checked_current_files": {
+    "./src/pages/BusinessPage/BusinessResults.tsx": true,
+    "./src/pages/BusinessPage/ResultsConfiguration.tsx": true,
+    "./src/pages/BusinessPage/CanvasConfiguration.tsx": true,
+    "./src/pages/BusinessPage/Tasks.tsx": true,
+    "./src/pages/BusinessPage/__tests__/ResultsConfiguration.test.tsx": true,
+    "./src/pages/BusinessPage/__tests__/Tasks-result-selection.test.tsx": true,
+    "./src/pages/BusinessPage/__tests__/Tasks-validation-issues.test.tsx": true
+  }
+}

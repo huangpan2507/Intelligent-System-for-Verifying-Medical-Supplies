@@ -6,7 +6,7 @@ import json
 
 import httpx
 from lfx.custom.custom_component.component import Component
-from lfx.io import DropdownInput, FloatInput, HandleInput, IntInput, MultiselectInput, Output, StrInput, TableInput
+from lfx.io import DropdownInput, HandleInput, IntInput, MultiselectInput, Output, StrInput, TableInput
 from lfx.schema.data import Data
 from lfx.schema.message import Message
 
@@ -47,7 +47,7 @@ class VerificationStageComponent(Component):
         "04": ["body_field", "body_rules"],
         "05": ["series_url", "images_url"],
         "06": ["model_api_url"],
-        "07": ["comparisons", "quantity_tolerance", "money_tolerance"],
+        "07": ["comparisons"],
     }
     STAGE_DESCRIPTIONS = {
         "00": "任务入口：核对已受理运行、医院与医保结算范围、发布版本及作业登记。输入由Worker提供。",
@@ -57,7 +57,7 @@ class VerificationStageComponent(Component):
         "04": "部位初筛：选择文本字段并维护类别词表，按完整文本匹配、忽略大小写；未命中保留待核实。",
         "05": "影像清单：用03/04传入的study_primary_id查询序列，再用series_id获取DICOM下载地址；保存清单。",
         "06": "模型识别：向配置的URL发送POST请求；先登记请求，保存原始响应。默认接入模拟服务。",
-        "07": "结果比较：选择比较项目和绝对差容差。数量及费用仍须满足种类、计数范围、单位和证据条件。",
+        "07": "结果比较：选择比较项目，数值严格相等，不设置容差。数量及费用仍须满足种类、计数范围、单位和证据条件。",
         "08": "结果保存：将比较结果和完成状态一起写入业务库，以保存回执确认成功。",
     }
 
@@ -215,20 +215,6 @@ class VerificationStageComponent(Component):
             show=False,
             info="至少选择一项。未选择的项目标记为未启用，不冒充一致。",
         ),
-        FloatInput(
-            name="quantity_tolerance",
-            display_name="数量绝对差容差",
-            value=0,
-            show=False,
-            info="绝对差不超过容差视为一致，原始差值仍保留。默认0，最大1000。",
-        ),
-        FloatInput(
-            name="money_tolerance",
-            display_name="金额绝对差容差（元）",
-            value=0.01,
-            show=False,
-            info="0—1元，默认0.01；用于源金额校验和费用差比较。按结算单价折算，不代表基金损失。",
-        ),
     ]
     outputs = [Output(name="verified_context", display_name="核验上下文", method="execute_stage")]
 
@@ -271,8 +257,6 @@ class VerificationStageComponent(Component):
             fields = {"种类": "type", "数量": "quantity", "费用": "fee"}
             return {
                 "comparisons": [fields[name] for name in self.comparisons],
-                "quantity_tolerance": str(self.quantity_tolerance),
-                "money_tolerance": str(self.money_tolerance),
             }
         return None
 

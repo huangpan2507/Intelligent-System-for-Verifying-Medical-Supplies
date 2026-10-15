@@ -144,7 +144,7 @@ async def management(path: str, request: Request, user: CurrentActiveUser):
     admin(user)
     # Explicit management surface; service-only execution paths are not proxied.
     if path.endswith("/execution") or (
-        path not in {"catalog", "connections", "schemes", "tasks", "maintenance"}
+        path not in {"catalog", "connections", "schemes", "tasks", "maintenance", "result-templates"}
         and not path.startswith(("connections/", "schemes/", "tasks/"))
     ):
         raise HTTPException(404, "Not found")

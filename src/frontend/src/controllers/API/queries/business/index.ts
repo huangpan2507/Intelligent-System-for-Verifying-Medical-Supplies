@@ -193,12 +193,18 @@ export function useBusinessQuery<T>(
   path: string,
   enabled = true,
   polling = false,
+  { staleTime = 0 }: { staleTime?: number } = {},
 ): UseQueryResult<T, Error> {
   const { query } = UseRequestProcessor();
   return query(
     ["useBusinessQuery", path],
     async () => (await api.get(`${getURL("BUSINESS")}/${path}`)).data,
-    { enabled, retry: false, refetchInterval: polling ? 2500 : false },
+    {
+      enabled,
+      retry: false,
+      refetchInterval: polling ? 2500 : false,
+      staleTime,
+    },
   );
 }
 type BusinessMutationVariables = {

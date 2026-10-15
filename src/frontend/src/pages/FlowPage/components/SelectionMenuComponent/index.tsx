@@ -24,7 +24,13 @@ export default function SelectionMenu({
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [lastNodes, setLastNodes] = useState(nodes);
 
-  useHotkeys("esc", unselectAll, { preventDefault: true });
+  useHotkeys("esc", unselectAll, {
+    preventDefault: true,
+    ignoreEventWhen: (event) =>
+      event.defaultPrevented ||
+      (event.target instanceof Element &&
+        !!event.target.closest('[role="dialog"], [role="alertdialog"]')),
+  });
 
   useEffect(() => {
     if (isOpen) {
