@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,6 +8,7 @@ import {
 } from "@/controllers/API/queries/business";
 import AssessmentPanel from "./AssessmentPanel";
 import BusinessResults from "./BusinessResults";
+import { businessOption, useTranslation } from "./business-i18n";
 import RequestLog from "./RequestLog";
 import { TaskInputValues } from "./TaskInputPanel";
 
@@ -205,10 +205,10 @@ function TaskDetail({ taskId }: { taskId: string }) {
                   {task.data.datasets?.map((d) => (
                     <option key={d.id} value={d.id}>
                       {task.data!.results.includes(d.id)
-                        ? t("business.result")
+                        ? businessOption("business.result")
                         : d.raw
-                          ? t("business.raw")
-                          : t(`business.port.${d.port}`, {
+                          ? businessOption("business.raw")
+                          : businessOption(`business.port.${d.port}`, {
                               defaultValue: d.port,
                             })}{" "}
                       · {d.name} · {d.node_id} · {d.row_count}

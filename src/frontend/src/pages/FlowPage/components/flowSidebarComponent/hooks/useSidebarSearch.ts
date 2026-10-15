@@ -80,8 +80,16 @@ export function useSidebarSearch({
     const options = {
       keys: [
         "display_name",
-        "businessDisplayName",
-        "businessDescription",
+        {
+          name: "businessDisplayName",
+          getFn: (item: SidebarSearchItem) =>
+            businessNodeName(item.key, item.display_name) ?? "",
+        },
+        {
+          name: "businessDescription",
+          getFn: (item: SidebarSearchItem) =>
+            businessNodeDescription(item.key, item.description) ?? "",
+        },
         "description",
         "type",
         "category",
@@ -97,8 +105,6 @@ export function useSidebarSearch({
           ...value,
           category,
           key,
-          businessDisplayName: businessNodeName(key, value.display_name),
-          businessDescription: businessNodeDescription(key, value.description),
         })),
     );
 

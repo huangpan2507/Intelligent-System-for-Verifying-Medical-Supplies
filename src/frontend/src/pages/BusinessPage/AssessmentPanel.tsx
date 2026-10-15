@@ -1,6 +1,6 @@
-import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import type { Assessment } from "@/controllers/API/queries/business";
+import { useTranslation } from "./business-i18n";
 
 export default function AssessmentPanel({
   assessment,

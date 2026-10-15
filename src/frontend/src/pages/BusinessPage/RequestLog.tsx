@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import {
   type ExternalRequest,
   useBusinessQuery,
 } from "@/controllers/API/queries/business";
+import { useTranslation } from "./business-i18n";
 
 export default function RequestLog({ taskId }: { taskId: string }) {
   const { t } = useTranslation();

@@ -1,5 +1,5 @@
-import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "./business-i18n";
 import Connections from "./Connections";
 import History from "./History";
 import Schemes from "./Schemes";

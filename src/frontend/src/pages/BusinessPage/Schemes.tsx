@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,6 +10,7 @@ import {
   useBusinessMutation,
   useBusinessQuery,
 } from "@/controllers/API/queries/business";
+import { businessOption, useTranslation } from "./business-i18n";
 import { businessError } from "./errors";
 import MaintenancePanel from "./MaintenancePanel";
 import { SchemaForm } from "./SchemaForm";
@@ -80,7 +80,9 @@ export default function Schemes() {
             >
               {templates.data?.map((item) => (
                 <option key={item.id} value={item.id}>
-                  {t(`business.template.${item.id}`, { defaultValue: item.id })}
+                  {businessOption(`business.template.${item.id}`, {
+                    defaultValue: item.id,
+                  })}
                 </option>
               ))}
             </select>

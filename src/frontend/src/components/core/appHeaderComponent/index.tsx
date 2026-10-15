@@ -9,10 +9,10 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { AuthContext } from "@/contexts/authContext";
 import CustomAccountMenu from "@/customization/components/custom-AccountMenu";
-import CustomLangflowCounts from "@/customization/components/custom-langflow-counts";
 import { CustomOrgSelector } from "@/customization/components/custom-org-selector";
 import { useCustomNavigate } from "@/customization/hooks/use-custom-navigate";
 import useTheme from "@/customization/hooks/use-custom-theme";
+import { businessText } from "@/pages/BusinessPage/business-i18n";
 import useAlertStore from "@/stores/alertStore";
 import FlowMenu from "./components/FlowMenu";
 
@@ -89,7 +89,7 @@ export default function AppHeader(): JSX.Element {
             size="sm"
             onClick={() => navigate("/business/tasks")}
           >
-            {t("business.tasks")}
+            {businessText("business.tasks")}
           </Button>
         )}
         {userData?.is_superuser && (
@@ -98,13 +98,10 @@ export default function AppHeader(): JSX.Element {
             size="sm"
             onClick={() => navigate("/business")}
           >
-            {t("business.schemes")}
+            {businessText("business.schemes")}
           </Button>
         )}
         {false && <ModelProviderCount />}
-        <div className="hidden pr-2 whitespace-nowrap lg:inline-flex lg:items-center">
-          <CustomLangflowCounts />
-        </div>
         <AlertDropdown
           notificationRef={notificationContentRef}
           onClose={() => setActiveState(null)}

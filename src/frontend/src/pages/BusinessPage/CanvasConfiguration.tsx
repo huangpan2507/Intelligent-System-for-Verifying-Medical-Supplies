@@ -8,10 +8,7 @@ import {
   useBusinessQuery,
   useBusinessUpload,
 } from "@/controllers/API/queries/business";
-import {
-  businessNodeDescription,
-  businessNodeName,
-} from "@/pages/BusinessPage/business-node-presentation";
+import { businessNodeName } from "@/pages/BusinessPage/business-node-presentation";
 import useFlowStore from "@/stores/flowStore";
 import type { NodeDataType } from "@/types/flow";
 import ApiConfiguration from "./ApiConfiguration";
