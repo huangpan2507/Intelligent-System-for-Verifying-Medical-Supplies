@@ -1,7 +1,7 @@
-import { useTranslation } from "react-i18next";
 import IconComponent from "@/components/common/genericIconComponent";
 import ShadTooltip from "@/components/common/shadTooltipComponent";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "@/pages/BusinessPage/business-i18n";
 
 export const AddFolderButton = ({
   onClick,

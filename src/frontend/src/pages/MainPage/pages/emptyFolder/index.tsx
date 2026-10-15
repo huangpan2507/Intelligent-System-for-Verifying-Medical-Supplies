@@ -1,6 +1,6 @@
-import { useTranslation } from "react-i18next";
 import ForwardedIconComponent from "@/components/common/genericIconComponent";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "@/pages/BusinessPage/business-i18n";
 import { useFolderStore } from "@/stores/foldersStore";
 import { useUtilityStore } from "@/stores/utilityStore";
 

@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { useLocation, useParams } from "react-router-dom";
 import PaginatorComponent from "@/components/common/paginatorComponent";
 import CardsWrapComponent from "@/components/core/cardsWrapComponent";
@@ -15,9 +14,10 @@ import {
 } from "@/customization/feature-flags";
 import { useCustomNavigate } from "@/customization/hooks/use-custom-navigate";
 import { useDocumentTitle } from "@/hooks/use-document-title";
+import { useTranslation } from "@/pages/BusinessPage/business-i18n";
 import useFlowsManagerStore from "@/stores/flowsManagerStore";
 import { useFolderStore } from "@/stores/foldersStore";
-import { getProjectDisplayName } from "@/utils/project-display-name";
+import { getProjectDisplayLabel } from "@/utils/project-display-name";
 import HeaderComponent from "../../components/header";
 import ListComponent from "../../components/list";
 import ListSkeleton from "../../components/listSkeleton";
@@ -65,7 +65,7 @@ const HomePage = ({ type }: { type: "flows" | "components" | "mcp" }) => {
     folders.find((folder) => folder.id === currentFolderId) ?? folders[0];
   const folderName = currentFolder?.name ?? "";
   const folderDisplayName = currentFolder
-    ? getProjectDisplayName(currentFolder, t)
+    ? getProjectDisplayLabel(currentFolder, t)
     : "";
   const flows = useFlowsManagerStore((state) => state.flows);
   // The primary "New Flow" handler — creates an empty flow, primes the

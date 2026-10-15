@@ -1,6 +1,5 @@
 import { useIsFetching, useIsMutating } from "@tanstack/react-query";
 import { type ReactNode, useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { useLocation, useParams } from "react-router-dom";
 import ForwardedIconComponent from "@/components/common/genericIconComponent";
 import {
@@ -38,10 +37,11 @@ import { createFileUpload } from "@/helpers/create-file-upload";
 import { getObjectsFromFilelist } from "@/helpers/get-objects-from-filelist";
 import useUploadFlow from "@/hooks/flows/use-upload-flow";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useTranslation } from "@/pages/BusinessPage/business-i18n";
 import useAuthStore from "@/stores/authStore";
 import type { FlowType } from "@/types/flow";
 import { extractApiErrorMessages } from "@/utils/apiError";
-import { getProjectDisplayName } from "@/utils/project-display-name";
+import { getProjectDisplayLabel } from "@/utils/project-display-name";
 import type { FolderType } from "../../../../../pages/MainPage/entities";
 import useAlertStore from "../../../../../stores/alertStore";
 import useFlowsManagerStore from "../../../../../stores/flowsManagerStore";
@@ -517,9 +517,12 @@ const SideBarFoldersButtonsComponent = ({
                                           // per user the list fills with rows
                                           // that differ only in the truncated
                                           // part.
-                                          title={getProjectDisplayName(item, t)}
+                                          title={getProjectDisplayLabel(
+                                            item,
+                                            t,
+                                          )}
                                         >
-                                          {getProjectDisplayName(item, t)}
+                                          {getProjectDisplayLabel(item, t)}
                                         </span>
                                       )}
                                     </div>

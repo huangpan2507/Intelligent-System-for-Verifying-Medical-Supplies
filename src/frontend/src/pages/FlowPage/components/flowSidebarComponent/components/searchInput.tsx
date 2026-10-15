@@ -1,7 +1,7 @@
 import { memo } from "react";
-import { useTranslation } from "react-i18next";
 import { Input } from "@/components/ui/input";
 import { ENABLE_NEW_SIDEBAR } from "@/customization/feature-flags";
+import { useTranslation } from "@/pages/BusinessPage/business-i18n";
 import ShortcutDisplay from "../../nodeToolbarComponent/shortcutDisplay";
 
 export const SearchInput = memo(function SearchInput({

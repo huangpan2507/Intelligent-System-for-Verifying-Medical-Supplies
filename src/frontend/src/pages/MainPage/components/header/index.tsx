@@ -1,6 +1,5 @@
 import { debounce } from "lodash";
 import { useCallback, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 import ForwardedIconComponent from "@/components/common/genericIconComponent";
 import ShadTooltip from "@/components/common/shadTooltipComponent";
 import { Badge } from "@/components/ui/badge";
@@ -12,6 +11,7 @@ import { useDeleteDeleteFlows } from "@/controllers/API/queries/flows/use-delete
 import { useGetDownloadFlows } from "@/controllers/API/queries/flows/use-get-download-flows";
 import { ENABLE_MCP } from "@/customization/feature-flags";
 import DeleteConfirmationModal from "@/modals/deleteConfirmationModal";
+import { useTranslation } from "@/pages/BusinessPage/business-i18n";
 import useAlertStore from "@/stores/alertStore";
 import useFlowsManagerStore from "@/stores/flowsManagerStore";
 import { useUtilityStore } from "@/stores/utilityStore";

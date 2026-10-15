@@ -31,6 +31,7 @@ jest.mock("react-i18next", () => ({
       if (key === "sidebar.projectCreateError") {
         return "Unable to create project.";
       }
+      if (key === "project.starterName") return "初始项目";
       if (key === "project.ownedBy") {
         return `${options?.name} — ${options?.owner}`;
       }
@@ -260,8 +261,8 @@ describe("project creation errors", () => {
 
     expect(screen.getByTestId("sidebar-nav-own-id")).toBeInTheDocument();
     expect(screen.getByTestId("sidebar-nav-foreign-id")).toBeInTheDocument();
-    const ownLabel = screen.getByText("Starter Project");
-    const foreignLabel = screen.getByText("Starter Project — other-user");
+    const ownLabel = screen.getByText("初始项目");
+    const foreignLabel = screen.getByText("初始项目 — other-user");
     fireEvent.doubleClick(foreignLabel);
 
     expect(

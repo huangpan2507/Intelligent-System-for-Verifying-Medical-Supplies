@@ -1,6 +1,6 @@
-import { useTranslation } from "react-i18next";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
+import { useTranslation } from "@/pages/BusinessPage/business-i18n";
 
 const FeatureToggles = ({
   showBeta,

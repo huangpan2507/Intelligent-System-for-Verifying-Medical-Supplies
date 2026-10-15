@@ -5,7 +5,6 @@ import {
   useCallback,
   useMemo,
 } from "react";
-import { useTranslation } from "react-i18next";
 import { ForwardedIconComponent } from "@/components/common/genericIconComponent";
 import ShadTooltip from "@/components/common/shadTooltipComponent";
 import {
@@ -15,7 +14,10 @@ import {
 } from "@/components/ui/disclosure";
 import { SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
 import { ENABLE_EXTENSION_RELOAD } from "@/customization/feature-flags";
-import { businessText } from "@/pages/BusinessPage/business-i18n";
+import {
+  businessText,
+  useTranslation,
+} from "@/pages/BusinessPage/business-i18n";
 import { useUtilityStore } from "@/stores/utilityStore";
 import type { APIClassType, APIDataType } from "@/types/api";
 import { deriveBundleExtensionId } from "../helpers/derive-bundle-extension-id";
@@ -104,7 +106,7 @@ export const CategoryDisclosure = memo(function CategoryDisclosure({
         <DisclosureTrigger className="group/collapsible">
           <SidebarMenuButton asChild>
             <div
-              data-testid={`disclosure-${t(item.display_name, { defaultValue: item.display_name }).toLocaleLowerCase()}`}
+              data-testid={`disclosure-${t(item.name === "verification" ? "sidebar.category.verification" : item.display_name, { defaultValue: item.display_name }).toLocaleLowerCase()}`}
               role="button"
               tabIndex={0}
               onKeyDown={handleKeyDownInput}
@@ -119,14 +121,24 @@ export const CategoryDisclosure = memo(function CategoryDisclosure({
                 content={
                   item.name === "business"
                     ? businessText("business.palette")
-                    : t(item.display_name, { defaultValue: item.display_name })
+                    : t(
+                        item.name === "verification"
+                          ? "sidebar.category.verification"
+                          : item.display_name,
+                        { defaultValue: item.display_name },
+                      )
                 }
                 styleClasses="z-50"
               >
                 <span className="flex-1 min-w-0 truncate group-aria-expanded/collapsible:font-semibold">
                   {item.name === "business"
                     ? businessText("business.palette")
-                    : t(item.display_name, { defaultValue: item.display_name })}
+                    : t(
+                        item.name === "verification"
+                          ? "sidebar.category.verification"
+                          : item.display_name,
+                        { defaultValue: item.display_name },
+                      )}
                 </span>
               </ShadTooltip>
               {showActions && (

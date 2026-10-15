@@ -1,5 +1,5 @@
-import { useTranslation } from "react-i18next";
 import { ENABLE_NEW_SIDEBAR } from "@/customization/feature-flags";
+import { useTranslation } from "@/pages/BusinessPage/business-i18n";
 import { SearchConfigTrigger } from "./searchConfigTrigger";
 
 interface NoResultsMessageProps {

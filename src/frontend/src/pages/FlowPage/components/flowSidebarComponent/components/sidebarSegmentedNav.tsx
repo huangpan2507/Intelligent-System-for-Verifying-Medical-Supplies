@@ -1,5 +1,4 @@
 import { Fragment } from "react";
-import { useTranslation } from "react-i18next";
 import ForwardedIconComponent from "@/components/common/genericIconComponent";
 import ShadTooltip from "@/components/common/shadTooltipComponent";
 import {
@@ -9,6 +8,7 @@ import {
   type SidebarSection,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { useTranslation } from "@/pages/BusinessPage/business-i18n";
 import { usePlaygroundStore } from "@/stores/playgroundStore";
 import { cn } from "@/utils/utils";
 import { useSearchContext } from "../index";

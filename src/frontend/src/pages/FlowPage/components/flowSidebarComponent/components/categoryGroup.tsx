@@ -1,5 +1,4 @@
 import { memo } from "react";
-import { useTranslation } from "react-i18next";
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -7,6 +6,7 @@ import {
   SidebarMenu,
 } from "@/components/ui/sidebar";
 import { ENABLE_NEW_SIDEBAR } from "@/customization/feature-flags";
+import { useTranslation } from "@/pages/BusinessPage/business-i18n";
 import { SIDEBAR_BUNDLES } from "@/utils/styleUtils";
 import { toTitleCase } from "@/utils/utils";
 import { deriveBundleExtensionId } from "../helpers/derive-bundle-extension-id";

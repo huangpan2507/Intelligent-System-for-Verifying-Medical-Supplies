@@ -37,7 +37,11 @@ const mockFolderQuery = {
 jest.mock("react-i18next", () => ({
   useTranslation: () => ({
     t: (key: string, options?: Record<string, string>) =>
-      key === "project.ownedBy" ? `${options?.name} — ${options?.owner}` : key,
+      key === "project.starterName"
+        ? "初始项目"
+        : key === "project.ownedBy"
+          ? `${options?.name} — ${options?.owner}`
+          : key,
   }),
 }));
 jest.mock("react-router-dom", () => ({
@@ -107,7 +111,7 @@ describe("HomePage project names", () => {
     render(<HomePage type="mcp" />);
 
     expect(screen.getByTestId("header-project-name")).toHaveTextContent(
-      "Starter Project — other-user",
+      "初始项目 — other-user",
     );
     expect(await screen.findByTestId("mcp-project-name")).toHaveTextContent(
       "Starter Project",
@@ -120,7 +124,7 @@ describe("HomePage project names", () => {
     render(<HomePage type="flows" />);
 
     expect(screen.getByTestId("header-project-name")).toHaveTextContent(
-      "Starter Project",
+      "初始项目",
     );
     expect(screen.getByTestId("header-project-name")).not.toHaveTextContent(
       "other-user",

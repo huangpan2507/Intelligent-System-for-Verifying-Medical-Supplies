@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 import IconComponent from "@/components/common/genericIconComponent";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { useUpdateUser } from "@/controllers/API/queries/auth";
 import CustomGetStartedProgress from "@/customization/components/custom-get-started-progress";
+import { useTranslation } from "@/pages/BusinessPage/business-i18n";
 import useAuthStore from "@/stores/authStore";
 import { useUtilityStore } from "@/stores/utilityStore";
 import { AddFolderButton } from "./add-folder-button";

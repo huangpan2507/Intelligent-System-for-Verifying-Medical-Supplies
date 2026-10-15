@@ -1,6 +1,5 @@
 import { cloneDeep } from "lodash";
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { useShallow } from "zustand/react/shallow";
 import ForwardedIconComponent from "@/components/common/genericIconComponent";
 import ShadTooltip from "@/components/common/shadTooltipComponent";
@@ -18,6 +17,7 @@ import {
   ENABLE_NEW_SIDEBAR,
 } from "@/customization/feature-flags";
 import { useAddComponent } from "@/hooks/use-add-component";
+import { useTranslation } from "@/pages/BusinessPage/business-i18n";
 import { useUtilityStore } from "@/stores/utilityStore";
 import { setLocalStorage } from "@/utils/local-storage-util";
 import {

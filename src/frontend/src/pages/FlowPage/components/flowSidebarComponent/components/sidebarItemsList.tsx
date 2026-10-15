@@ -1,14 +1,14 @@
 import { useMemo } from "react";
 import ShadTooltip from "@/components/common/shadTooltipComponent";
-import {
-  businessNodeDescription,
-  businessNodeName,
-} from "@/pages/BusinessPage/business-node-presentation";
 import useFlowStore from "@/stores/flowStore";
 import { getPresentComponentTypes } from "@/utils/componentConstraints";
 import { removeCountFromString } from "@/utils/utils";
 import { disableItem } from "../helpers/disable-item";
 import { getDisabledTooltip } from "../helpers/get-disabled-tooltip";
+import {
+  sidebarNodeDescription,
+  sidebarNodeName,
+} from "../helpers/node-presentation";
 import SidebarDraggableComponent from "./sidebarDraggableComponent";
 
 const SidebarItemsList = ({
@@ -60,8 +60,8 @@ const SidebarItemsList = ({
           return (
             <ShadTooltip
               content={
-                businessNodeDescription(SBItemName, currentItem.description) ||
-                businessNodeName(SBItemName, currentItem.display_name)
+                sidebarNodeDescription(SBItemName, currentItem.description) ||
+                sidebarNodeName(SBItemName, currentItem.display_name)
               }
               side="right"
               key={SBItemName}
@@ -111,8 +111,8 @@ const UniqueInputsDraggableComponent = ({
   return (
     <ShadTooltip
       content={
-        businessNodeDescription(SBItemName, currentItem.description) ||
-        businessNodeName(SBItemName, currentItem.display_name)
+        sidebarNodeDescription(SBItemName, currentItem.description) ||
+        sidebarNodeName(SBItemName, currentItem.display_name)
       }
       side="right"
       key={SBItemName}

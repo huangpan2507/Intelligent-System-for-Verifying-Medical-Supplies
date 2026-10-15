@@ -1,14 +1,14 @@
 import Fuse from "fuse.js";
 import { cloneDeep } from "lodash";
 import { useEffect, useMemo, useState } from "react";
-import {
-  businessNodeDescription,
-  businessNodeName,
-} from "@/pages/BusinessPage/business-node-presentation";
 import type { APIClassType, APIDataType } from "@/types/api";
 import type { MCPServerInfoType } from "@/types/mcp";
 import { combinedResultsFn } from "../helpers/combined-results";
 import { filteredDataFn } from "../helpers/filtered-data";
+import {
+  sidebarNodeDescription,
+  sidebarNodeName,
+} from "../helpers/node-presentation";
 import { normalizeString } from "../helpers/normalize-string";
 import { traditionalSearchMetadata } from "../helpers/traditional-search-metadata";
 
@@ -83,12 +83,12 @@ export function useSidebarSearch({
         {
           name: "businessDisplayName",
           getFn: (item: SidebarSearchItem) =>
-            businessNodeName(item.key, item.display_name) ?? "",
+            sidebarNodeName(item.key, item.display_name) ?? "",
         },
         {
           name: "businessDescription",
           getFn: (item: SidebarSearchItem) =>
-            businessNodeDescription(item.key, item.description) ?? "",
+            sidebarNodeDescription(item.key, item.description) ?? "",
         },
         "description",
         "type",

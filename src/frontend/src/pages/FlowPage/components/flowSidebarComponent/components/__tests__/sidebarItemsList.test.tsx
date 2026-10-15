@@ -212,10 +212,10 @@ describe("SidebarItemsList", () => {
       render(<SidebarItemsList {...defaultProps} />);
 
       const tooltips = screen.getAllByTestId("tooltip");
-      expect(tooltips[0]).toHaveAttribute("data-content", "Chat Input");
+      expect(tooltips[0]).toHaveAttribute("data-content", "对话输入");
       expect(tooltips[1]).toHaveAttribute("data-content", "Component 1");
       expect(tooltips[2]).toHaveAttribute("data-content", "Component 2");
-      expect(tooltips[3]).toHaveAttribute("data-content", "Webhook");
+      expect(tooltips[3]).toHaveAttribute("data-content", "Webhook 接收");
     });
 
     it("should set tooltip side to right", () => {

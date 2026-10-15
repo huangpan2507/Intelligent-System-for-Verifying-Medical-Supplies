@@ -19,10 +19,6 @@ import {
 } from "@/contexts/permissionsContext";
 import useDeleteFlow from "@/hooks/flows/use-delete-flow";
 import { useAddComponent } from "@/hooks/use-add-component";
-import {
-  businessNodeDescription,
-  businessNodeName,
-} from "@/pages/BusinessPage/business-node-presentation";
 import { useDarkStore } from "@/stores/darkStore";
 import useFlowStore from "@/stores/flowStore";
 import useFlowsManagerStore from "@/stores/flowsManagerStore";
@@ -33,6 +29,10 @@ import {
   getNodeId,
 } from "@/utils/reactflowUtils";
 import { cn, removeCountFromString } from "@/utils/utils";
+import {
+  sidebarNodeDescription,
+  sidebarNodeName,
+} from "../helpers/node-presentation";
 
 export const SidebarDraggableComponent = forwardRef(
   (
@@ -138,7 +138,7 @@ export const SidebarDraggableComponent = forwardRef(
     // canvas"), otherwise voice-control users saying "click Listen Beta"
     // get no match. Keep these literals in sync with the badges below.
     const presentedName =
-      businessNodeName(itemName, display_name) ?? display_name;
+      sidebarNodeName(itemName, display_name) ?? display_name;
     const visibleName = [presentedName, beta && "Beta", legacy && "Legacy"]
       .filter(Boolean)
       .join(" ");
@@ -221,7 +221,7 @@ export const SidebarDraggableComponent = forwardRef(
               <div className="flex flex-1 items-center overflow-hidden">
                 <ShadTooltip
                   content={
-                    businessNodeDescription(itemName, apiClass.description) ||
+                    sidebarNodeDescription(itemName, apiClass.description) ||
                     presentedName
                   }
                   styleClasses="z-50"
